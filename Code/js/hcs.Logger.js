@@ -1,6 +1,4 @@
-if(typeof hcs === 'undefined'){
-    hcs = function(){};
-}
+var hcs = window.hcs || {};
 
 hcs.Logger = function(){
     var __debugMode = false;
@@ -17,7 +15,7 @@ hcs.Logger = function(){
         out : function(msg) {
             if (__debugMode) {
                 var obj = document.getElementById("debugArea");
-                n.innerHTML = "<div>" + msg + "</div>" + n.innerHTML;
+                obj.innerHTML = "<div>" + msg + "</div>" + obj.innerHTML;
             }
         }, 
         clear : function() {
