@@ -1,4 +1,8 @@
 /*
+ * Author：吴疆
+ * Date：2014年11月3日
+ * Email：me@wujiang.name
+ * 
  * 包含指针和鼠标操作控制
  */
 var hcs = window.hcs || {};
