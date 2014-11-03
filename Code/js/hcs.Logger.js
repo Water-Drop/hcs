@@ -1,3 +1,15 @@
+/*
+ * Author：吴疆
+ * Date：2014年11月2日
+ * Email：me@wujiang.name
+ * 
+ * Logger模块提供调试信息
+ * setDebugMode;true为开启，false为关闭，默认开启
+ * message，warning,error：对应于控制台是输出
+ * out和clear分别控制系统界面调试信息输出和清空
+ * 
+ */
+
 var hcs = window.hcs || {};
 
 hcs.Logger = function(){
