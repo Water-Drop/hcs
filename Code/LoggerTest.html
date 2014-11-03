@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Housing customization system</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="icon" type="image/png" href="favicon.png"/>
+        <link rel="stylesheet" href="css/hcs.css"/>
+        <meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        <div id="subMenuContainer"><div id="subMenu"><ul id="subMenuList"></ul></div></div>
+        <section id="main-ui" class="show">
+            <div id="toolbar">
+                <div id="toolbar-bar">
+                    <ul id="toolbarMenu">
+                    </ul>
+                </div>
+            </div>
+
+            <section id="mainMenu">
+                <div id="mainMenuTabsContainer">
+                    <ul id="mainMenuTabs"></ul>
+                </div>
+                <h3 id="mainMenuTitle"></h3>
+                <div id="mainMenuContent">
+                    <ul id="mainMenuContentList" class="mainList layout-list"></ul>
+                </div>
+            </section>
+        </section>
+
+        <!-- Debug view -->
+        <div id="debugArea"></div>
+
+        <!-- Plan2D Area -->
+        <div class="drawableSurface with-menu" id="container2d"></div>
+
+        <!-- Plan3D Area -->
+        <div class="drawableSurface with-menu" id="container3d">
+        </div>
+
+        <div id="waiter" class="hidden"></div>
+        <div id="ephemeralInfos" class="hidden"></div>
+
+        <section id="modalWidgets"></section>
+
+        <!-- Scripts -->
+        <section id="scripts">
+            <script>"use strict"</script>
+            <script src="js/hand-1.3.8.js"></script>
+            <script src="js/babylon.1.13.js"></script>
+            <script src="js/hcs.Logger.js"></script>
+            <script src="js/hcs.Core.js"></script>
+            <script src="js/hcs.Assets.js"></script>
+            <script src="js/hcs.Configuration.js"></script>
+            <script src="js/hcs.Handle.js"></script>
+            <script src="js/hcs.Camera.js"></script>
+            <script src="js/hcs.ComponentCollection.js"></script>
+            <script src="js/hcs.UI.js"></script>
+            <script src="js/hcs.Engine2D.js"></script>
+            <script src="js/hcs.Engine3D.js"></script>
+            <script src="js/hcs.Material.js"></script>
+            <script src="js/hcs.js"></script>
+        </section>
+        <script>
+            hcs.Logger.message("message test");
+            hcs.Logger.warning("warn test");
+            hcs.Logger.error("error test");
+            hcs.Logger.out("out test");
+            hcs.Logger.clear();
+            hcs.Logger.out("clear ok!");
+            hcs.Logger.setDebugMode(false);
+            hcs.Logger.out("no output!");
+        </script>
+    </body>
+</html>
