@@ -8,7 +8,7 @@ var hcs = window.hcs || {};
 
 var Keys = {up: 38,down: 40,left: 37,right: 39,space: 32,escape: 27,shift: 16,ctrl: 17,alt: 18,tab: 9,a: 65,z: 90,e: 69,q: 81,s: 83,d: 68,r: 82,cmd: 91};
 
-hcs.Handle.KeyboardManager = function() {
+hcs.KeyboardManager = function() {
     function clearKeys(keys) {
         for (var i = 0; 110 > i; i++)
             keys[i] = false;
