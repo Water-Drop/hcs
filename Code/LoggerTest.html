@@ -52,28 +52,26 @@
             <script>"use strict"</script>
             <script src="js/hand-1.3.8.js"></script>
             <script src="js/babylon.1.13.js"></script>
-            <script src="js/hcs.Logger.js"></script>
-            <script src="js/hcs.Core.js"></script>
-            <script src="js/hcs.Assets.js"></script>
-            <script src="js/hcs.Configuration.js"></script>
-            <script src="js/hcs.Handle.js"></script>
-            <script src="js/hcs.Camera.js"></script>
-            <script src="js/hcs.ComponentCollection.js"></script>
-            <script src="js/hcs.UI.js"></script>
-            <script src="js/hcs.Engine2D.js"></script>
-            <script src="js/hcs.Engine3D.js"></script>
-            <script src="js/hcs.Material.js"></script>
             <script src="js/hcs.js"></script>
         </section>
         <script>
-            hcs.Logger.message("message test");
-            hcs.Logger.warning("warn test");
-            hcs.Logger.error("error test");
-            hcs.Logger.out("out test");
-            hcs.Logger.clear();
-            hcs.Logger.out("clear ok!");
-            hcs.Logger.setDebugMode(false);
-            hcs.Logger.out("no output!");
+            
+        </script>
+        <script>
+
+        (function() {
+            window.onload = function() {
+                hcs.Logger.setDebugMode(true);
+                hcs.Logger.message("message test");
+                hcs.Logger.warning("warn test");
+                hcs.Logger.error("error test");
+                hcs.Logger.out("out test");
+                hcs.Logger.clear();
+                hcs.Logger.out("clear ok!");
+                hcs.Logger.setDebugMode(false);
+                hcs.Logger.out("no output!");
+            };
+        })();
         </script>
     </body>
 </html>
