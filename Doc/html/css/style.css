@@ -1,0 +1,208 @@
+.main-nav {
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+}
+.main-nav .container {
+    width: 100%;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.header-top {
+    display: block;
+    overflow: hidden;
+    padding-top: 100px;
+}
+@-webkit-keyframes header { 0% { -moz-transform: translate3d(0,-1em,0); -webkit-transform: translate3d(0,-1em,0); -o-transform: translate3d(0,-1em,0); -ms-transform: translate3d(0,-1em,0); transform: translate3d(0,-1em,0); opacity: 0; } 100% { -moz-transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); transform: translate3d(0,0,0); opacity: 0.8; } }
+.navbar-right {
+    -webkit-animation: header 1s 1s forwards;
+    opacity: 0;
+    cursor: default;
+    padding: 0 30px 0 0;
+    background-color:#897364;
+}
+.navbar-right li a {
+    font-size: 22px;
+    padding: 35px 20px;
+    color: #fff;
+}
+.navbar-right li a:hover, .navbar-right li a:focus, .navbar-right .active a {
+    background-color: #fff;
+    color: #897364;
+}
+#bg-slider .carousel-caption {
+    background: none repeat scroll 0 0 #fff;
+    bottom: 20%;
+    opacity:0.7;
+    float: left;
+    left: 0;
+    padding: 10px 60px 35px;
+    right: inherit;
+    color: #333;
+    text-align: left;
+}
+#survey {
+    position: relative;
+    background-color: #BD403E;
+}
+#survey-bg {
+    padding: 200px 0 200px;
+    background-image: url("../img/bg1.jpg");
+    background-repeat: no-repeat;
+    background-position: 0px -100px;
+    background-size: 100% 160%;
+}
+#survey-header {
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 10%;
+    left: 21%;
+    color: #EEE;
+}
+#survey-content {
+    position: absolute;
+    top: 14%;
+    left: 40%;
+    color: #EEE;
+}
+#survey-content .btn-primary {
+    background-color: #EEE;
+    color: #BD403E;
+    border: none;
+    margin-top: 20px;
+    border-radius: 0;
+    font-size: 20px;
+    padding: 10px 20px;
+    opacity: 0.8;
+    margin-left: 260px;
+}
+#survey-content .btn-primary:hover {
+    background-color: #E6E6E6;
+    opacity: 0.9;
+}
+#shape {
+    position: relative;
+    background-color: #D5CFC4;
+    padding: 200px 0 200px;
+}
+#shape-pic {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#shape-header {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    color: #333;
+}
+#shape-content {
+    text-align: right;
+    position: absolute;
+    top: 30%;
+    right: 50%;
+    color: #333;
+}
+#shape-content .btn-primary {
+    background-color: #444;
+    color: #DDD;
+    border: none;
+    margin-top: 20px;
+    border-radius: 0;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+#shape-content .btn-primary:hover {
+    background-color: #333;
+    color: #D5CFC4;
+}
+#decoration {
+    background-color: #806854;
+    position: relative;
+}
+#decoration-bg {
+    padding: 200px 0 200px;
+    background-image: url("../img/bg3.jpg");
+    background-repeat: no-repeat;
+    background-position: 0px -80px;
+    background-size: 100% 120%;
+    opacity: 0.4;
+}
+#decoration-header {
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 10%;
+    left: 21%;
+    color: #EEE;
+}
+#decoration-content {
+    position: absolute;
+    top: 14%;
+    left: 40%;
+    color: #EEE;
+}
+#decoration-content .btn-primary {
+    background-color: #EEE;
+    color: #755C49;
+    border: none;
+    margin-top: 20px;
+    border-radius: 0;
+    font-size: 20px;
+    padding: 10px 20px;
+    opacity: 0.8;
+    margin-left: 260px;
+}
+#decoration-content .btn-primary:hover {
+    background-color: #E6E6E6;
+    opacity: 0.9;
+}
+#footer {
+    background-color: #333;
+    color: #DDD;
+    font-size: 20px;
+    padding: 12px 0;
+}
+
+#scrollToTop {
+    position: fixed;
+    display: block;
+    z-index: 20;
+    right: 4%;
+    bottom: 10%;
+    width: 50px;
+    height: 50px;
+    opacity: 0.5;
+    font-size:10px;
+    opacity: 0.5;
+    background-color: #DDD;
+}
+#scrollToTop:before, #scrollToTop:after {
+    content:"";
+    position:absolute;
+    left:0;
+    background:transparent;
+    font-size:1em;
+}
+#scrollToTop:before {
+    left:20%;top:40%;
+    width:40%;height:12%;
+    background:#666;
+    transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg);
+}
+#scrollToTop:after {
+    left:40%;top:40%;
+    width:40%;height:12%;
+    background:#666;
+    transform:rotate(45deg);-webkit-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);
+}
+#scrollToTop:hover:before {
+    background:#333;
+}
+#scrollToTop:hover:after {
+    background:#333;
+}
