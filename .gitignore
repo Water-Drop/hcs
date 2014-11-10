@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 *.class
 *.pyc
 *.pyo
+=======
+/Code/nbproject/private/
+Code/nbproject/
+>>>>>>> b90f6ddde2ac99fc68d1e1fddcea77290b910a20
