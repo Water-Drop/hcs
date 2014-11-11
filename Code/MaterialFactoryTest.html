@@ -1,0 +1,80 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>Housing customization system</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="icon" type="image/png" href="favicon.png"/>
+        <link rel="stylesheet" href="css/hcs.css"/>
+        <meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+        <style type="text/css">
+            
+        </style>
+    </head>
+    <body>
+        <div id="subMenuContainer"><div id="subMenu"><ul id="subMenuList"></ul></div></div>
+        <section id="main-ui" class="show">
+            <div id="toolbar">
+                <div id="toolbar-bar">
+                    <ul id="toolbarMenu">
+                    </ul>
+                </div>
+            </div>
+
+            <section id="mainMenu">
+                <div id="mainMenuTabsContainer">
+                    <ul id="mainMenuTabs"></ul>
+                </div>
+                <h3 id="mainMenuTitle"></h3>
+                <div id="mainMenuContent">
+                    <ul id="mainMenuContentList" class="mainList layout-list"></ul>
+                </div>
+            </section>
+        </section>
+
+        <!-- Debug view -->
+        <div id="debugArea"></div>
+
+        <!-- Plan2D Area -->
+        <div class="drawableSurface with-menu" id="container2d"></div>
+
+        <!-- Plan3D Area -->
+        <div class="drawableSurface with-menu" id="container3d">
+		<canvas id="canvas3d" width="1000" height="1000">
+        </div>
+
+        <div id="waiter" class="hidden"></div>
+        <div id="ephemeralInfos" class="hidden"></div>
+
+        <section id="modalWidgets"></section>
+
+        <!-- Scripts -->
+        <section id="scripts">
+            <script>"use strict"</script>
+            <script src="js/hand-1.3.8.js"></script>
+            <script src="js/babylon.1.13.js"></script>
+            <script src="js/hcs.js"></script>
+			<script>
+			var canvas = document.getElementById("canvas3d");
+			var engine = new BABYLON.Engine(canvas, true);
+			hcs.scene=new BABYLON.Scene(engine);
+			hcs.scene.clearColor = new BABYLON.Color3(255,255, 255);
+			var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), hcs.scene);
+			camera.setTarget(new BABYLON.Vector3.Zero());
+			camera.attachControl(canvas, false);
+			var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), hcs.scene);
+			light.intensity = .5;
+			var sphere1  = BABYLON.Mesh.CreateSphere("Sphere1", 15, 6,hcs.scene);
+			var materialSphere1 = new BABYLON.StandardMaterial("texture1", hcs.scene);
+			d=new BABYLON.Color3(1.0, 0.2, 0.7);
+			materialSphere1.diffuseColor=d;
+			sphere1.material=materialSphere1;
+        	engine.runRenderLoop(function () {
+				hcs.scene.render();
+			});</script>
+        </section>
+    </body>
+</html>
