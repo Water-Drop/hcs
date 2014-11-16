@@ -21,7 +21,7 @@
 var hcs = window.hcs || {};
 
 hcs.Symbols2D = function() {
-	///// modify: t --> symbols2D
+	///// variables : symbols2D
     var symbols2D = function() {
         this.COLOR_ACTIVE_STROKE = "#89B808", 
         this.COLOR_ACTIVE_STROKE_DARKER = "#6C9104", 
@@ -35,9 +35,9 @@ hcs.Symbols2D = function() {
     return symbols2D.prototype.drawPoint = function(context2D, o) {
     	/*
     	 * function: 画点（实心圆）
-    	 * modify: 
-    	 * t --> context2D(canvas.getContext("2d")) ： canvas的2D上下对象
-    	 * e --> o (BABYLON.Vector2(x, y)) ： 圆心
+    	 * args: 
+    	 * context2D(canvas.getContext("2d")) ： canvas的2D上下对象
+    	 * o (BABYLON.Vector2(x, y)) ： 圆心
     	 */
         context2D.save(),
         context2D.fillStyle = this.COLOR_ACTIVE_STROKE, // 填充（实心圆）
@@ -48,10 +48,10 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawPointHover = function(context2D, o, out_r) {
     	/*
     	 * function: 画鼠标悬挂点（实心圆，外围一个圆环（空心圆））
-    	 * modify:
-    	 * t --> context2D(canvas.getContext("2d")) ： canvas的2D上下对象
-    	 * e --> o (BABYLON.Vector2(x, y)) ： 圆心
-    	 * n --> out_r (number, 表示外围圆环距圆心的距离/12，空心圆)
+    	 * args:
+    	 * context2D(canvas.getContext("2d")) ： canvas的2D上下对象
+    	 * o (BABYLON.Vector2(x, y)) ： 圆心
+    	 * out_r (number, 表示外围圆环距圆心的距离/12，空心圆)
     	 */
         var out_r = out_r || 1;
         context2D.save(), 
@@ -67,13 +67,13 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawAngle = function(context2D, v, n, sector_r, s_angle, e_angle, isClockwise) {
     	/*
     	 * function: 画角度（扇形+圆形+角度标注）
-    	 * modify:
-    	 * t --> context2D(canvas.getContext("2d")) ： canvas的2D上下对象
-    	 * e --> v (BABYLON.Vector2(x, y)) ： 顶点
-    	 * i --> sector_r ：扇形半径
-    	 * o --> s_angle ：起始角弧度
-    	 * r --> e_angle ：终止角弧度
-    	 * s --> isClockwise ：是否是顺时针（推荐顺时针/False）
+    	 * args:
+    	 * context2D(canvas.getContext("2d")) ： canvas的2D上下对象
+    	 * v (BABYLON.Vector2(x, y)) ： 顶点
+    	 * sector_r ：扇形半径
+    	 * s_angle ：起始角弧度
+    	 * e_angle ：终止角弧度
+    	 * isClockwise ：是否是顺时针（推荐顺时针/False）
     	 * n --> not use
     	 */
         context2D.save(), 
@@ -104,10 +104,10 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawSegment = function(context2D, start, end) {
     	/*
     	 * function ：分割线（当鼠标移动至分隔线上，出现的绿色分割线，由一条线和两个圆形端点构成）
-    	 * modify: 
-    	 * e --> start ({x:10, y:10})
-    	 * n --> end ({x:10, y:10})
-    	 * t --> context2D
+    	 * args: 
+    	 * start ({x:10, y:10})
+    	 * end ({x:10, y:10})
+    	 * context2D
     	 */
         start.x = Math.round(start.x) + .5, 
         start.y = Math.round(start.y) + .5, 
@@ -127,11 +127,11 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawArc = function(context2D, start, control, end) {
     	/*
     	 * function ：画弧线（采用二次贝塞尔曲线）
-    	 * modify ：
-    	 * e --> start（开始点）
-    	 * n --> control（控制点）
-    	 * i --> end（结束点）
-    	 * t --> context2D
+    	 * args ：
+    	 * start（开始点）
+    	 * control（控制点）
+    	 * end（结束点）
+    	 * context2D
     	 */
         start.x = Math.round(start.x) + .5, 
         start.y = Math.round(start.y) + .5, 
@@ -155,11 +155,11 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawGrip = function(context2D, o, directions, startRotate) {
     	/*
     	 * function ：中间为一空心圆 周围（上下左右）四方向有三角形，分别由数组directions决定有无
-    	 * modify：
-    	 * t --> context2D
-    	 * e --> o （空心圆圆心）
-    	 * n --> directions [up, right, down, left]
-    	 * i --> startRotate （调用drawArrows时，起始三角形的偏转度数） // [0, 1, 0, 1] --> MATH.PI/4 [1, 1, 1, 1] --> 0
+    	 * args：
+    	 * context2D
+    	 * o （空心圆圆心）
+    	 * directions [up, right, down, left]
+    	 * startRotate （调用drawArrows时，起始三角形的偏转度数） // [0, 1, 0, 1] --> MATH.PI/4 [1, 1, 1, 1] --> 0
     	 */
         var startRotate = startRotate || 0;
         o.x = Math.round(o.x), 
@@ -178,11 +178,11 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawCheckGrip = function(context2D, o, directions, startRotate) {
     	/*
     	 * function ：中间为一空心圆 周围（上下左右）四方向有三角形，分别由数组directions决定有无，中心圆包含一个对勾
-    	 * modify：
-    	 * t --> context2D
-    	 * e --> o （空心圆圆心）
-    	 * n --> directions [up, left, down, right]
-    	 * i --> startRotate （调用drawArrows时，起始三角形的偏转度数） // [0, 1, 0, 1] --> MATH.PI/4 [1, 1, 1, 1] --> 0
+    	 * arg：
+    	 * context2D
+    	 * o （空心圆圆心）
+    	 * directions [up, left, down, right]
+    	 * startRotate （调用drawArrows时，起始三角形的偏转度数） // [0, 1, 0, 1] --> MATH.PI/4 [1, 1, 1, 1] --> 0
     	 */
         var startRotate = startRotate || 0;
         o.x = Math.round(o.x), 
@@ -209,11 +209,11 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawCancelGrip = function(context2D, o, directions, startRotate) {
     	/*
     	 * function ：中间为一空心圆 周围（上下左右）四方向有三角形，分别由数组directions决定有无，中心圆包含一个叉
-    	 * modify：
-    	 * t --> context2D
-    	 * e --> o （空心圆圆心）
-    	 * n --> directions [left, up, right, down]
-    	 * i --> startRotate （调用drawArrows时，起始三角形的偏转度数） // [1, 0, 1, 0] --> MATH.PI/4 [1, 1, 1, 1] --> 0
+    	 * args：
+    	 * context2D
+    	 * o （空心圆圆心）
+    	 * directions [left, up, right, down]
+    	 * startRotate （调用drawArrows时，起始三角形的偏转度数） // [1, 0, 1, 0] --> MATH.PI/4 [1, 1, 1, 1] --> 0
     	 */
         var startRotate = startRotate || 0;
         o.x = Math.round(o.x), 
@@ -240,12 +240,12 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawGripSegment = function(context2D, start, end, startDirections, endDirections, startRotate) {
     	/*
     	 * function :两头带空心圆（包括小三角形）的线段
-    	 * t --> context2D
-    	 * e --> start
-    	 * n --> end
-    	 * i --> startDirections
-    	 * o --> endDirections
-    	 * r --> startRotate
+    	 * context2D
+    	 * start
+    	 * end
+    	 * startDirections
+    	 * endDirections
+    	 * startRotate
     	 */
         var startRotate = startRotate || 0;
         start.x = Math.round(start.x) + .5, 
@@ -267,14 +267,14 @@ hcs.Symbols2D = function() {
     	///// to be continued....
     	/*
     	 * function ：画箭头上的小三角形（上下左右）
-    	 * modify ：
-    	 * t --> context2D
-    	 * n --> directions(array:up right down left)
-    	 * r --> startRotate(起始三角形偏转角度)
-    	 * e --> translatePt(偏移位置)
-    	 * s --> isStoke 是否描边
-    	 * o --> distFromO 三角形顶点据中心圆圆心的位置
-    	 * a --> triSize 三角形的尺寸
+    	 * args ：
+    	 * context2D
+    	 * directions(array:up right down left)
+    	 * startRotate(起始三角形偏转角度)
+    	 * translatePt(偏移位置)
+    	 * isStoke 是否描边
+    	 * distFromO 三角形顶点据中心圆圆心的位置
+    	 * triSize 三角形的尺寸
     	 */
         var a = a || {}, 
         l = a.size || 6, // 三角形的尺寸（等腰三角形，底为2*l，高为l）
@@ -301,12 +301,12 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawMeasure = function(context2D, start, end, message, color) {
     	/*
     	 * function ：箭头线段，中间有数值表示
-    	 * modify ：
-    	 * t --> context2D
-    	 * e --> start
-    	 * n --> end
-    	 * i --> message
-    	 * o --> color
+    	 * args ：
+    	 * context2D
+    	 * start
+    	 * end
+    	 * message
+    	 * color
     	 */
         context2D.save(), 
         context2D.strokeStyle = color || this.COLOR_ANNOTATION, 
@@ -315,12 +315,6 @@ hcs.Symbols2D = function() {
         context2D.font = "normal 8pt sans-serif", 
         context2D.textBaseline = "middle", 
         context2D.textAlign = "center";
-        /*
-         * modify:
-         * r --> deltaX
-         * s --> deltaY
-         * a --> distStart2End
-         */
         var deltaX = end.x > start.x ? end.x - start.x : start.x - end.x, 
         deltaY = end.y > start.y ? end.y - start.y : start.y - end.y, 
         distStart2End = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2)), 
@@ -362,9 +356,9 @@ hcs.Symbols2D = function() {
     }, symbols2D.prototype.drawCursorCheck = function(context2D, pt) {
     	/*
     	 * function ：画对勾
-    	 * modify ：
-    	 * t --> context2D
-    	 * e --> pt (position/point)
+    	 * args ：
+    	 * context2D
+    	 * pt (position/point)
     	 */
         var n = pt.x + 20, i = pt.y + 20;
         context2D.save(), 

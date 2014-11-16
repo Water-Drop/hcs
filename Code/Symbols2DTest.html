@@ -1,26 +1,23 @@
 <html>
 	<meta charset="UTF-8">
 	<head>
-		<script src="js/hand-1.3.8.js"></script>
-            <script src="js/babylon.1.13.js"></script>
-            <script src="js/hcs.Engine2D.js"></script>
-            <script src="js/hcs.Symbols2D.js"></script>
-            <script src="js/hcs.ComponentCollection.js"></script>
-            <script src="js/hcs.TestEngine2D.js"></script>
+		<script src="js/babylon.1.13.js"></script>
+		<script src="js/hcs.Symbols2D.js"></script>
 	</head>
 	<body>
-		<h1>HelloWorld!!!</h1>
+		<h1>This is the test html for hcs.Symbols2D module</h1>
+		<!-- Sepcification -->
+		<h3>This html page test hcs.Symbols2D module.</h3>
+		<h3>
+			This tech prototype draws basic shapes of our hcs project by invoking some HTML5 draw functions in the canvas.
+			<br />
+			These shapes will be also used in our hcs project.
+		</h3>
 		<!-- Plan2D Area -->
-        <div class="drawableSurface with-menu" id="container2d">
-        	<h1>Hello hello!!!</h1>
-        </div>
         <canvas id="canvas2d" width="1000" height="1000">
         	
         </canvas>
         <script>
-        	// var wanaplan = null;
-        	// var container2D = document.getElementById("container2d");
-        	// hcs.Engine2D(container2D, 1, 1);
         	var draw = new hcs.Symbols2D;
         	var canvas = document.getElementById("canvas2d");
         	var point = new BABYLON.Vector2(50, 50);
