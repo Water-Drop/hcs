@@ -49,19 +49,20 @@ try {
         "hcs.PointerManager",
         "hcs.Structure",
         "hcs.Symbols2D",
+        "hcs.UI.FormBuilder",
+        "hcs.UI.Frame",
+        "hcs.UI.ProductList",
+        "hcs.UI.ContextMenu",
         "hcs.UI.AboutWindow",
         "hcs.UI.BackgroundPopup",
         "hcs.UI.ColorPopup",
-        "hcs.UI.ContextMenu",
-        "hcs.UI.FormBuilder",
-        "hcs.UI.Frame",
         "hcs.UI.HelpBubble",
         "hcs.UI.HelpBubbleManager",
+        "hcs.UI.RemoteController",
+        "hcs.UI.MessageBox",
+        "hcs.UI.Menu",
         "hcs.UI.IFrame",
         "hcs.UI",
-        "hcs.UI.Menu",
-        "hcs.UI.MessageBox",
-        "hcs.UI.ProductList",
         "hcs.Widget.Elevation",
         "hcs.Widget.Info",
         "hcs.Widget.Rotator"
@@ -70,7 +71,7 @@ try {
         var ele=document.createElement("script"); 
         ele.setAttribute("src","js/"+scripts[i] + ".js");
         var obj = document.getElementById('scripts');
-        obj.appendChild(ele); 
+        obj.appendChild(ele);
     }
 })();
 
