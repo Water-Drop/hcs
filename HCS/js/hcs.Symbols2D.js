@@ -1,7 +1,7 @@
 var wnp = window.wnp || {};
 wnp.Symbols2D = function() {
     var t = function() {
-        this.COLOR_ACTIVE_STROKE = "#89B808", this.COLOR_ACTIVE_STROKE_DARKER = "#6C9104", this.COLOR_ACTIVE_FILL = "rgba(137, 184, 8, 0.2)", this.COLOR_ACTIVE_LARGEZONE_FILL = "rgba(137, 137, 137, 0.5)", this.COLOR_INACTIVE_STROKE = "#777777", this.COLOR_INACTIVE_FILL = "rgba(90, 119, 119, 0.1)", this.COLOR_BACKGROUND = "#FAFAFA", this.COLOR_ANNOTATION = "#888"
+        this.COLOR_ACTIVE_STROKE = "#897364", this.COLOR_ACTIVE_STROKE_DARKER = "#A99384", this.COLOR_ACTIVE_FILL = "rgba(137, 115, 100, 0.2)", this.COLOR_ACTIVE_LARGEZONE_FILL = "rgba(137, 137, 137, 0.5)", this.COLOR_INACTIVE_STROKE = "#777777", this.COLOR_INACTIVE_FILL = "rgba(137, 115, 100, 0.1)", this.COLOR_BACKGROUND = "#FAFAFA", this.COLOR_ANNOTATION = "#888"
     };
     return t.prototype.drawPoint = function(t, e) {
         t.save(), t.fillStyle = this.COLOR_ACTIVE_STROKE, t.beginPath(), t.arc(e.x, e.y, 6, 0, 2 * Math.PI, !1), t.fill(), t.restore()
