@@ -9,7 +9,7 @@ var GridBackgroundComponent2D = function() {
     }, t.prototype.initialize = function() {
         var t = {
             id: "gridBackgroundMenu",
-            title: _("Add Background"),
+            title: _("添加背景"),
             action: "wnp.engine2d.onAddBackground",
             cancelAction: "wnp.engine2d.onEndBackground"
         };

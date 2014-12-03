@@ -99,24 +99,24 @@ StairwayComponent2D = function() {
         return null
     }, e.prototype.initialize = function() {
         _item = {
-            title: _("Stairway"),
+            title: _("楼梯"),
             id: "stairways",
             items: [{
-                title: _("Winder Stairs"),
+                title: _("一般式楼梯"),
                 action: "wnp.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !1
                 }
             }, {
-                title: _("Landing Stairs"),
+                title: _("楼梯平台"),
                 action: "wnp.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !0
                 }
             }, {
-                title: _("Hanging"),
+                title: _("悬式楼梯"),
                 action: "wnp.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
@@ -128,7 +128,7 @@ StairwayComponent2D = function() {
                     stair_offset: 0
                 }
             }, {
-                title: _("Spiral"),
+                title: _("螺旋梯"),
                 action: "wnp.engine2d.onAddStairway",
                 params: {
                     stairwayType: "spiral"

@@ -21,13 +21,13 @@ SubSlopeOvertureComponent2D = function() {
         }
     }, t.prototype.initialize = function() {
         var t = {
-                title: _("Velux"),
+                title: _("天窗"),
                 index: 90,
                 id: "Velux",
                 action: "wnp.engine2d.onAddSubSlopeOverture"
             },
             e = {
-                title: _("Dormer"),
+                title: _("屋顶窗"),
                 index: 91,
                 id: "Dormer",
                 action: "wnp.engine2d.onAddSubSlopeOverture"
@@ -175,7 +175,7 @@ SubSlopeOvertureComponent2D = function() {
             o = Math.atan((e.parent.hiHeight - e.parent.lowHeight) / e.parent.offset);
         n = "Dormer" == e.type ? 2 * e.wallThickness : 0, "Dormer" != e.type && i.push({
             name: "height",
-            label: _("Height"),
+            label: _("高度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -187,7 +187,7 @@ SubSlopeOvertureComponent2D = function() {
             }
         }), i.push({
             name: "width",
-            label: _("Width"),
+            label: _("宽度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -199,7 +199,7 @@ SubSlopeOvertureComponent2D = function() {
             }
         }), "Dormer" == e.type && (i.push({
             name: "dormerRoofHeight",
-            label: _("Dormer roof height"),
+            label: _("屋顶高度"),
             type: "slider",
             cast: "int",
             value: {
@@ -210,7 +210,7 @@ SubSlopeOvertureComponent2D = function() {
             }
         }), i.push({
             name: "nbCasement",
-            label: _("Number of casements"),
+            label: _("窗的个数"),
             type: "slider",
             cast: "int",
             value: {
@@ -221,7 +221,7 @@ SubSlopeOvertureComponent2D = function() {
             }
         }), i.push({
             name: "height",
-            label: _("Height"),
+            label: _("高度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -233,9 +233,9 @@ SubSlopeOvertureComponent2D = function() {
             }
         }), i.push({
             name: "depth",
-            label: _("Depth"),
+            label: _("深度"),
             type: "html",
-            html: "<label>" + _("Depth") + '</label><span class="field">' + Math.round(e.height * Math.cos(o)) + " cm</span>"
+            html: "<label>" + _("深度") + '</label><span class="field">' + Math.round(e.height * Math.cos(o)) + " cm</span>"
         })), wanaplan.engine2D.displayContextMenu(i, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         var i = Math.atan((t.parent.hiHeight - t.parent.lowHeight) / t.parent.offset);

@@ -10,7 +10,7 @@ SubSlopeComponent2D = function() {
         this.startListening();
         var t = {
             id: "subslopes",
-            title: _("Subslope"),
+            title: _("æ–œé¡¶"),
             index: 90,
             action: "wnp.engine2d.onEditSubSlope",
             cancelAction: "wnp.engine2d.onModeSubSlopeEnd"
@@ -172,7 +172,7 @@ SubSlopeComponent2D = function() {
                                 ss: e.wall.subSlopes[i],
                                 index: t.indexClosest(e.wall.subSlopes[i].points)
                             };
-                        Logger.message("Probl¨¨me : sous-pente adjacente non-trouv¨¦e")
+                        Logger.message("ProblÂ®Â®me : sous-pente adjacente non-trouvÂ®Â¶e")
                     }
             },
             a = s();
@@ -233,7 +233,7 @@ SubSlopeComponent2D = function() {
             name: "Length",
             label: _("Angle"),
             type: "html",
-            html: "<label>" + _("Angle") + '</label><span class="field">' + Math.round(180 * Math.atan2(e.hiHeight - e.lowHeight, e.offset) / Math.PI) + "¡ã</span>"
+            html: "<label>" + _("Angle") + '</label><span class="field">' + Math.round(180 * Math.atan2(e.hiHeight - e.lowHeight, e.offset) / Math.PI) + "Â°â€ž</span>"
         }), n.push({
             name: "_applyHeightToAll",
             label: _("Apply heights to") + "<br />" + _(" all floor's subslopes"),

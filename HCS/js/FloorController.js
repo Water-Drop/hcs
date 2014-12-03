@@ -122,22 +122,12 @@ var FloorController = function() {
         }
     }, e.prototype.onAddItemClick = function() {
         var e = '<form id="addFloorOptions">' + _("The following items will be duplicated") + '<table style="width:100%;">';
-        e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="walls" checked="checked" /></td>', e += "<td>" + _("Walls") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="overtures" checked="checked" /></td>', e += "<td>" + _("Doors") + " & " + _("Windows") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="cloisons" /></td>', e += "<td>" + _("Bulkheads") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="stairways" /></td>', e += "<td>" + _("Stairways") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="objects" /></td>', e += "<td>" + _("Objects") + "</td>", e += "</tr>", e += "</table></form>";
-        var n = {
-            title: _("Create a new floor"),
-            message: e,
-            y: 30,
-            x: 10,
-            buttonA: !0,
-            buttonB: !0,
-            buttonBText: _("Create"),
-            buttonAText: _("Cancel"),
-            onClickB: function(e) {
-                for (var n = document.getElementsByName("duplicateOptions[]"), i = [], o = 0; o < n.length; o++)
-                    n[o].checked && i.push(n[o].value);
-                return t.onAddItemConfirm(e, i), !0
-            }
-        };
+        e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="walls" checked="checked" /></td>', e += "<td>" + _("墙") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="overtures" checked="checked" /></td>', e += "<td>" + _("门") + " & " + _("窗") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="cloisons" /></td>', e += "<td>" + _("隔板") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="stairways" /></td>', e += "<td>" + _("Stairways") + "</td>", e += "</tr>", e += "<tr>", e += '<td><input type="checkbox" name="duplicateOptions[]" value="objects" /></td>', e += "<td>" + _("Objects") + "</td>", e += "</tr>", e += "</table></form>";
+        var n = {title: _("Create a new floor"),message: e,y: 30,x: 10,buttonA: !0,buttonB: !0,buttonBText: _("Create"),buttonAText: _("Cancel"),onClickB: function(e) {
+            for (var n = document.getElementsByName("duplicateOptions[]"), i = [], o = 0; o < n.length; o++)
+                n[o].checked && i.push(n[o].value);
+            return t.onAddItemConfirm(e, i), !0
+        }};
         wnp.UI.MessageBox.show(n)
     }, e.prototype.onAddItemConfirm = function(e, n) {
         var i = t.duplicateForFloor(n);

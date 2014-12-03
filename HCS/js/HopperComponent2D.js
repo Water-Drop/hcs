@@ -89,14 +89,14 @@ HopperComponent2D = function() {
             value: _("Add")
         })) : (n.push({
             name: "enable_sticks",
-            label: _("Enable the guard-rail on all side"),
+            label: _("四周有护栏"),
             type: "button",
-            value: _("Enable")
+            value: _("选择")
         }), n.push({
             name: "disable_sticks",
-            label: _("Disable the guard-rail on all side"),
+            label: _("四周没有护栏"),
             type: "button",
-            value: _("Disable")
+            value: _("选择")
         })), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, e.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         if (-1 != e.indexOf("sticks_")) {
@@ -126,7 +126,7 @@ HopperComponent2D = function() {
         wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D)), this.draw(this._tmpHopper, t, e, n)
     }, e.prototype.initialize = function() {
         var t = {
-            title: _("Hoppers"),
+            title: _("储料仓"),
             index: 80,
             action: "wnp.engine2d.onAddHopper"
         };

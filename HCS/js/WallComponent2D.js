@@ -13,42 +13,41 @@ var WallComponent2D = function() {
     }, t.prototype.initialize = function() {
         this.startListening();
         var t = {
-            title: _("Rooms & Walls"),
+            title: _("房间和墙"),
             id: "rooms_walls",
-            items: [{
-                title: _("Wall"),
-                action: "wnp.engine2d.onAddWall",
-                cancelAction: "wnp.engine2d.onAddWallEnd",
-                params: {
-                    wallType: this.TYPE_NORMAL,
-                    thickness: 30,
-                    putPoint: !1
+            items: [
+                {
+                    title: _("厚墙"),
+                    action: "wnp.engine2d.onAddWall",
+                    cancelAction: "wnp.engine2d.onAddWallEnd",
+                    params: {
+                        wallType: this.TYPE_NORMAL,
+                        thickness: 30,
+                        putPoint: !1
+                    }
+                },
+                {
+                    title: _("隔板"),
+                    action: "wnp.engine2d.onAddWall",
+                    cancelAction: "wnp.engine2d.onAddWallEnd",
+                    params: {
+                        wallType: this.TYPE_NORMAL,
+                        thickness: 7,
+                        putPoint: !1
+                    }
+                },
+                {
+                    title: _("房间分割线(无实体)"),
+                    cancelAction: "wnp.engine2d.onAddWallEnd",
+                    action: "wnp.engine2d.onAddWall",
+                    params: {
+                        wallType: this.TYPE_SEPARATOR,
+                        thickness: .2,
+                        putPoint: !1
+                    }
                 }
-            }, {
-                title: _("Bulkhead"),
-                action: "wnp.engine2d.onAddWall",
-                cancelAction: "wnp.engine2d.onAddWallEnd",
-                params: {
-                    wallType: this.TYPE_NORMAL,
-                    thickness: 7,
-                    putPoint: !1
-                }
-            }, {
-                title: _("Room separator (invisible)"),
-                cancelAction: "wnp.engine2d.onAddWallEnd",
-                action: "wnp.engine2d.onAddWall",
-                params: {
-                    wallType: this.TYPE_SEPARATOR,
-                    thickness: .2,
-                    putPoint: !1
-                }
-            }]
-        };
-        ujs.notify("wnp.menu.main.add", {
-            item: t,
-            menuPath: "draw2D",
-            position: .5
-        })
+            ]};
+        ujs.notify("wnp.menu.main.add", {item: t,menuPath: "draw2D",position: .5})
     }, t.prototype.update = function(t) {
         var e, n = t || this.structure.getCurrentStructure(),
             i = n.getElements("walls");

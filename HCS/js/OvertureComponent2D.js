@@ -8,23 +8,23 @@ var OvertureComponent2D = function() {
         document.removeEventListener("wnp.engine2d.onAddOverture", this.onAddOverture, !1), document.removeEventListener("wnp.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.drag-start"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.leave"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.context-menu"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.double-click")
     }, t.prototype.initialize = function() {
         var t, e = [
-            ["doors", _("Opening"), "Overture", 0, 90, 204, 0, !1, !1],
-            ["doors", _("Simple Door"), "Door", 0, 73, 204, 1, !1, !1],
-            ["doors", _("Bi-Fold Door"), "Door", 0, 140, 204, 2, !1, !1],
-            ["doors", _("Sliding Door"), "Door", 0, 140, 204, 2, !0, !1],
-            ["doors", _("Garage Door"), "Garage", 0, 240, 200, 3, !1, !1],
-            ["bay_windows", _("Fixed Bay Window"), "Window", 0, 80, 215, 1, !0, !1],
-            ["bay_windows", _("French Door"), "Window", 0, 80, 215, 1, !1, !1],
-            ["bay_windows", _("Bi-Fold French Door"), "Window", 0, 120, 215, 2, !1, !1],
-            ["bay_windows", _("Sliding Bay Window"), "Window", 0, 160, 215, 2, !0, !1],
-            ["windows", _("Opening"), "Overture", 90, 80, 125, 0, !1, !1],
-            ["windows", _("Fixed Window"), "Window", 90, 60, 125, 1, !0, !1],
-            ["windows", _("Single Casement"), "Window", 90, 80, 125, 1, !1, !1],
-            ["windows", _("Double Casement"), "Window", 90, 100, 125, 2, !1, !1],
-            ["windows", _("Sliding Window"), "Window", 90, 100, 125, 2, !0, !1]
+            ["doors", _("开放式门"), "Overture", 0, 90, 204, 0, !1, !1],
+            ["doors", _("一般的门"), "Door", 0, 73, 204, 1, !1, !1],
+            ["doors", _("双开门"), "Door", 0, 140, 204, 2, !1, !1],
+            ["doors", _("滑门"), "Door", 0, 140, 204, 2, !0, !1],
+            ["doors", _("车库门"), "Garage", 0, 240, 200, 3, !1, !1],
+            ["bay_windows", _("固定式凸窗"), "Window", 0, 80, 215, 1, !0, !1],
+            ["bay_windows", _("法式门"), "Window", 0, 80, 215, 1, !1, !1],
+            ["bay_windows", _("双开法式门"), "Window", 0, 120, 215, 2, !1, !1],
+            ["bay_windows", _("滑式凸窗"), "Window", 0, 160, 215, 2, !0, !1],
+            ["windows", _("开放式窗"), "Overture", 90, 80, 125, 0, !1, !1],
+            ["windows", _("固定式窗"), "Window", 90, 60, 125, 1, !0, !1],
+            ["windows", _("单个窗"), "Window", 90, 80, 125, 1, !1, !1],
+            ["windows", _("双开窗"), "Window", 90, 100, 125, 2, !1, !1],
+            ["windows", _("滑窗"), "Window", 90, 100, 125, 2, !0, !1]
         ];
         t = {
-            title: _("Doors"),
+            title: _("门"),
             id: "doors",
             items: []
         }, ujs.notify("wnp.menu.main.add", {
@@ -32,7 +32,7 @@ var OvertureComponent2D = function() {
             menuPath: "draw2D",
             position: 1
         }), t = {
-            title: _("Bay Windows"),
+            title: _("凸窗"),
             id: "bay_windows",
             items: []
         }, ujs.notify("wnp.menu.main.add", {
@@ -40,7 +40,7 @@ var OvertureComponent2D = function() {
             menuPath: "draw2D",
             position: 2
         }), t = {
-            title: _("Windows"),
+            title: _("窗"),
             id: "windows",
             items: []
         }, ujs.notify("wnp.menu.main.add", {
