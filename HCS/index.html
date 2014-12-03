@@ -109,7 +109,7 @@
         </section>
 
         <!-- Splashscreen -->
-        <div id="splashscreen">
+        <div id="splashscreen" style="display:none">
             <div id="splash-text">
                 <img src="images/wanaplan-logo.png" style="width:50px;vertical-align:-10px;">
                 Wanaplan
@@ -151,6 +151,7 @@
             <script src="js/vendors/TypedArray.js"></script>
             <![endif]-->
 
+	        <!-- modified by Zhouj -->
             <script src="js/hcs.Prepare.js"></script>
             <script src="js/hcs.Logger.js"></script>
             <script src="js/hcs.Handjs.js"></script>
@@ -197,8 +198,120 @@
             <script src="js/hcs.UI.Menu.js"></script>
             <script src="js/hcs.UI.LanguageSelector.js"></script>
             <script src="js/hcs.UI.IFrame.js"></script>
+            <!-- <script src="js/wanaplan.min.js"></script> -->
             
-            <script src="js/wanaplan.min.js"></script>
+
+
+            <!-- modified by Dujw -->
+	     
+            <script type="text/javascript" src="js/hcs.Input.OrbitCamera.js"></script>
+            <script type="text/javascript" src="js/hcs.Input.FirstPersonCamera.js"></script>
+            <script type="text/javascript" src="js/hcs.Input.TouchManager.js"></script>
+            <script type="text/javascript" src="js/hcs.Input.PointerManager.js"></script>
+            <script type="text/javascript" src="js/hcs.KeyboardManager.js"></script>
+            <script type="text/javascript" src="js/hcs.MaterialFactory.js"></script>
+            <script type="text/javascript" src="js/hcs.Structure.js"></script>
+            <script type="text/javascript" src="js/hcs.Configuration.js"></script>
+            <script type="text/javascript" src="js/hcs.ComponentCollection.js"></script>
+            <script type="text/javascript" src="js/hcs.Core.js"></script>
+            <script type="text/javascript" src="js/hcs.Engine2D.js"></script>
+            <script type="text/javascript" src="js/hcs.Engine3D.js"></script>
+            <script type="text/javascript" src="js/hcs.Basics.js"></script>
+            <script type="text/javascript" src="js/Structure.js"></script>
+            <script type="text/javascript" src="js/BaseComponent2D.js"></script>
+            <script type="text/javascript" src="js/BaseComponent3D.js"></script>
+            <script type="text/javascript" src="js/BaseEditionComponent.js"></script>
+            <script type="text/javascript" src="js/MainMenuComponent.js"></script>
+            <script type="text/javascript" src="js/TopMenuComponent.js"></script>
+            <script type="text/javascript" src="js/BaseTopMenuComponent2D.js"></script>
+            <script type="text/javascript" src="js/SaveComponent.js"></script>
+            <script type="text/javascript" src="js/NewComponent.js"></script>
+            <script type="text/javascript" src="js/OptionsComponent.js"></script>
+            <script type="text/javascript" src="js/ExitComponent.js"></script>
+            <script type="text/javascript" src="js/ScreenShotMenuComponent.js"></script>
+            <script type="text/javascript" src="js/FullscreenComponent.js"></script>
+            <script type="text/javascript" src="js/TransparencyComponent.js"></script>
+            <script type="text/javascript" src="js/CameraComponent.js"></script>
+            <script type="text/javascript" src="js/GridStructure.js"></script>
+            <script type="text/javascript" src="js/GridComponent2D.js"></script>
+            <script type="text/javascript" src="js/GridBackgroundComponent2D.js"></script>
+            <script type="text/javascript" src="js/GridComponent3D.js"></script>
+            <script type="text/javascript" src="js/HistoryEditionComponent.js"></script>
+            <script type="text/javascript" src="js/HistoryComponent.js"></script>
+            <script type="text/javascript" src="js/PrintComponent2D.js"></script>
+            <script type="text/javascript" src="js/PrintComponent3D.js"></script>
+            <script type="text/javascript" src="js/PerformanceComponent3D.js"></script>
+            <script type="text/javascript" src="js/HardwareScalingComponent3D.js"></script>
+            <script type="text/javascript" src="js/RemoteControlComponent3D.js"></script>
+            <script type="text/javascript" src="js/MeasureStructure.js"></script>
+            <script type="text/javascript" src="js/MeasureComponent.js"></script>
+            <script type="text/javascript" src="js/DebugComponent2D.js"></script>
+            <script type="text/javascript" src="js/DebugState.js"></script>
+            <script type="text/javascript" src="js/DebugComponent3D.js"></script>
+		    <script type="text/javascript" src="js/updateRenderer.js"></script>
+		    <script type="text/javascript" src="js/DebugMark.js"></script>
+		    <script type="text/javascript" src="js/AnalyticsComponent.js"></script>
+		    <script type="text/javascript"  src="js/GroupConfiguratorModComponent3D.js"></script>
+		    <script type="text/javascript"  src="js/GroupConfiguratorPanelComponent3D.js"></script>
+		    <script type="text/javascript" src="js/ConfiguratorModComponent3D.js"></script>
+		    <script type="text/javascript" src="js/ConfiguratorPanelComponent3D.js"></script>
+		    <script type="text/javascript" src="js/ConfiguratorInOutAnimationComponent3D.js"></script>
+		    <script type="text/javascript" src="js/ConfiguratorXrayComponent3D.js"></script>
+		    <script type="text/javascript" src="js/MasterReshaperComponent3D.js"></script>
+		    <script type="text/javascript" src="js/DimensionReshaperComponent3D.js"></script>
+		    <script type="text/javascript" src="js/HandlesDisplayerForDimensionReshaperFactoryComponent3D.js"></script>
+		    <script type="text/javascript" src="js/BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D.js"></script>
+		    <script type="text/javascript" src="js/MesureDisplayerForDimensionReshaperFactoryComponent3D.js"></script>
+		    <script type="text/javascript" src="js/MagnetismComponent2D.js"></script>
+		    <script type="text/javascript" src="js/MagnetismComponent3D.js"></script>
+		    <script type="text/javascript" src="js/AvatarComponent3D.js"></script>
+		    <script type="text/javascript" src="js/FloorStructure.js"></script>
+		    <script type="text/javascript" src="js/FloorComponent3D.js"></script>
+		    <script type="text/javascript" src="js/FloorController.js"></script>
+		    <script type="text/javascript" src="js/PointStructure.js"></script>
+		    <script type="text/javascript" src="js/PointComponent2D.js"></script>
+		    <script type="text/javascript" src="js/Graph.js"></script>
+		    <script type="text/javascript" src="js/WallStructure.js"></script>
+		    <script type="text/javascript" src="js/WallPane3D.js"></script>
+		    <script type="text/javascript" src="js/PolygonWall.js"></script>
+		    <script type="text/javascript" src="js/CurvedWall.js"></script>
+		    <script type="text/javascript" src="js/WallComponent2D.js"></script>
+		    <script type="text/javascript" src="js/WallComponent3D.js"></script>
+		    <script type="text/javascript" src="js/RoomStructure.js"></script>
+		    <script type="text/javascript" src="js/RoomHierarchy.js"></script>
+		    <script type="text/javascript" src="js/RoomComponent2D.js"></script>
+		    <script type="text/javascript" src="js/RoomComponent3D.js"></script>
+		    <script type="text/javascript" src="js/OvertureStructure.js"></script>
+		    <script type="text/javascript" src="js/OvertureComponent2D.js"></script>
+		    <script type="text/javascript" src="js/OvertureComponent3D.js"></script>
+		    <script type="text/javascript" src="js/SubSlopeStructure.js"></script>
+            <script type="text/javascript" src="js/SubSlopeOvertureStructure.js"></script>
+            <script type="text/javascript" src="js/SubSlopeComponent2D.js"></script>
+            <script type="text/javascript" src="js/SubSlopeOvertureComponent2D.js"></script>
+            <script type="text/javascript" src="js/SubSlopeComponent3D.js"></script>
+            <script type="text/javascript" src="js/StairwayStructure.js"></script>
+            <script type="text/javascript" src="js/SpiralStairwayStructure.js"></script>
+            <script type="text/javascript" src="js/StairwayComponent2D.js"></script>
+            <script type="text/javascript" src="js/StairwayComponent3D.js"></script>
+            <script type="text/javascript" src="js/HopperStructure.js"></script>
+            <script type="text/javascript" src="js/HopperComponent2D.js"></script>
+            <script type="text/javascript" src="js/HopperComponent3D.js"></script>
+            <script type="text/javascript" src="js/GeneralOptionComponent2D.js"></script>
+            <script type="text/javascript" src="js/ObjectStructure.js"></script>
+            <script type="text/javascript" src="js/hcs.Programmable.js"></script>
+            <script type="text/javascript" src="js/DecorationComponent3D.js"></script>
+            <script type="text/javascript" src="js/LuxensComponent3D.js"></script>
+            <script type="text/javascript" src="js/OutsideComponent3D.js"></script>
+            <script type="text/javascript" src="js/ObjectComponent3D.js"></script>
+            <script type="text/javascript" src="js/EditionComponent3D.js"></script>
+            <script type="text/javascript" src="js/MobileComponent.js"></script>
+            <script type="text/javascript" src="js/MobileInputComponent.js"></script>
+            <script type="text/javascript" src="js/PedagoComponent.js"></script>
+            <script type="text/javascript" src="js/LockComponent.js"></script>
+            <script type="text/javascript" src="js/EditMeasureComponent.js"></script>
+            <script type="text/javascript" src="js/HideAvatarComponent.js"></script>
+            <script type="text/javascript" src="js/hcs.LoopTimer.js"></script>
+            <script type="text/javascript" src="js/hcs.js"></script>
         </section>
     </body>
 </html>
