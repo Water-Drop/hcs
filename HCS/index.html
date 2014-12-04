@@ -6,6 +6,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF8"/>
         <link rel="icon" type="image/png" href="favicon.png"/>
         <link rel="stylesheet" href="css/wanaplan.min.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
         <meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
         <!--[if lt IE 10]>
         <style type="text/css">
@@ -88,9 +89,26 @@
         </style>
     </head>
     <body>
-        <div id="subMenuContainer" style="display:none"><div id="subMenu"><ul id="subMenuList"></ul></div></div>
+        <header id="header-fixed">
+            <div class="navbar-inner">
+                <div class="nav-header"><h1>爱</h1><h2>家居</h2></div>
+                <div class="nav-left">
+                    <ul class="nav navbar-nav" id="mainMenuTabs">
+                    </ul>
+                </div>
+                <div class="nav-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" class="button">登录</a></li>
+                        <li><a href="#" class="button">注册</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header><!--/#header-->
+
+        
+        <div id="subMenuContainer" style="display:none;"><div id="subMenu"><ul id="subMenuList"></ul></div></div>
         <section id="main-ui" class="show">
-            <div id="toolbar" style="">
+            <div id="toolbar" style="display:none;">
                 <div id="toolbar-bar">
                     <ul id="toolbarMenu">
                     </ul>
@@ -98,9 +116,10 @@
             </div>
             
             <section id="mainMenu">
-                <div id="mainMenuTabsContainer">
+                <!--<div id="mainMenuTabsContainer">
                     <ul id="mainMenuTabs"></ul>
-                </div>
+                </div>-->
+                <div style="height:50px;"></div>
                 <h3 id="mainMenuTitle"></h3>
                 <div id="mainMenuContent">
                     <ul id="mainMenuContentList" class="mainList layout-list"></ul>

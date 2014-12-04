@@ -1,8 +1,8 @@
 var MainMenuComponent = function() {
     var t = [{
-            title: "房型",
+            title: "房型设计",
             index: 1,
-            icon: "http://v2.wanaplan.fr/images/dessiner.png",
+            icon: "",
             action: "wnp.request.changeEngine",
             id: "draw2D",
             params: {
@@ -12,9 +12,9 @@ var MainMenuComponent = function() {
             context: "2D",
             items: []
         }, {
-            title: "家具",
+            title: "家具设计",
             index: 2,
-            icon: "http://v2.wanaplan.fr/images/meubler.png",
+            icon: "",
             action: "wnp.request.changeEngine",
             id: "furnishing3D",
             context: "3D",
@@ -24,9 +24,9 @@ var MainMenuComponent = function() {
             layout: "layout-list",
             items: []
         }, {
-            title: "装饰",
+            title: "装饰设计",
             index: 3,
-            icon: "http://v2.wanaplan.fr/images/decorer.png",
+            icon: "",
             action: "wnp.request.changeEngine",
             id: "decorate3D",
             context: "3D",
