@@ -100,18 +100,18 @@
         var n = [];
         n.push({
             name: "label",
-            label: _("Name"),
+            label: _("房间名"),
             type: "text",
             cast: "string",
             value: e.label
-        }), n.push({
+        }), /*n.push({
             name: "ceiling",
-            label: _("Ceiling"),
+            label: _("天花板"),
             type: "checkbox",
             value: e.ceiling
-        }), n.push({
+        }),*/ n.push({
             name: "elevation",
-            label: _("Elevation"),
+            label: _("地面高度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -121,7 +121,7 @@
                 step: 1,
                 value: e.elevation
             }
-        }), n.push({
+        }), /*n.push({
             name: "thickness",
             label: _("Thickness"),
             type: "slider",
@@ -133,7 +133,7 @@
                 step: 1,
                 value: e.thickness
             }
-        }), this.core.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this))
+        }),*/ this.core.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         t[e] = n
     }, t.prototype.onStaticDraw = function(t, e, n) {

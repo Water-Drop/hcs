@@ -1,7 +1,7 @@
 var RoomStructure = function() {
     var t = 0,
         e = function() {
-            BaseStructure.call(this, "roomStructure"), this.points = [], this.holes = [], this.walls = [], this.parentWallSides = [], this.panes = null, this.cycle = null, this.name = "room_" + t++, this.label = _("Room"), this.color = "#FFFFFF", this.area = 0, this.areaPosition = new BABYLON.Vector2, this.textWidth = 0, this.textHeight = 12, this.materials = {}, this.panesMaterials = [], this.elevation = 0, this.height = 0, this.thickness = 5, this.ceiling = 2
+            BaseStructure.call(this, "roomStructure"), this.points = [], this.holes = [], this.walls = [], this.parentWallSides = [], this.panes = null, this.cycle = null, this.name = "room_" + t++, this.label = _("房间"), this.color = "#FFFFFF", this.area = 0, this.areaPosition = new BABYLON.Vector2, this.textWidth = 0, this.textHeight = 12, this.materials = {}, this.panesMaterials = [], this.elevation = 0, this.height = 0, this.thickness = 5, this.ceiling = 2
         };
     e.prototype = new BaseStructure, e.Deserialize = function(t) {
         var e = new RoomStructure;

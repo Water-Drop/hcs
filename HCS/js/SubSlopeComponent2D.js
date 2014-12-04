@@ -1,6 +1,6 @@
 SubSlopeComponent2D = function() {
     var t = function(t) {
-        BaseComponent2D.call(this, t, "SubSlopeComponent2D"), this.priority = 100, this.subSlopes = [], this.needsUpdate = !0, this._applyHeightToAll = !1, this._HANDLERADIUS = 10, this._HANDLESTATICSTYLE = "rgba(60,82,129,0.8)", this._HANDLESTYLE = this._HANDLESTATICSTYLE
+        BaseComponent2D.call(this, t, "SubSlopeComponent2D"), this.priority = 100, this.subSlopes = [], this.needsUpdate = !0, this._applyHeightToAll = !1, this._HANDLERADIUS = 10, this._HANDLESTATICSTYLE = "rgba(137,115,100,0.8)", this._HANDLESTYLE = this._HANDLESTATICSTYLE
     };
     return t.prototype = new BaseComponent2D, t.prototype.startListening = function() {
         this.onEditSubSlope = this.onEditSubSlope.bind(this), this.onModeSubSlopeEnd = this.onModeSubSlopeEnd.bind(this), document.addEventListener("wnp.engine2d.onEditSubSlope", this.onEditSubSlope, !1), document.addEventListener("wnp.engine2d.onModeSubSlopeEnd", this.onModeSubSlopeEnd, !1), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.static-draw", this.priority, "static-draw", wanaplan.engine2D.MODE_SUBSLOPE | wanaplan.engine2D.MODE_DRAG, null, this.onStaticDraw.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.hover", this.priority, "hover", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onHover.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.leave", this.priority, "leave", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onLeave.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.dragstart", this.priority, "drag-start", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.subslope-end", this.priority, "subslope-end", null, null, this.onSubSlopeEnd.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.context-menu", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onContextMenu.bind(this), null)
@@ -29,9 +29,9 @@ SubSlopeComponent2D = function() {
     }, t.prototype.onStaticDraw = function(t, e, n) {
         0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE) && (this.getSubSlopes(), this.update(), this.draw(t, e, n))
     }, t.prototype.onHover = function(t, e) {
-        return this._HANDLESTYLE = "rgba(190,230,190,0.8)", wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onDynamicDraw.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
+        return this._HANDLESTYLE = "rgba(137,115,100,0.8)", wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onDynamicDraw.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onLeave = function() {
-        this._HANDLESTYLE = "rgba(130,130,150,0.8)", wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.dynamic-draw"), wanaplan.engine2D.requestDynamicDraw()
+        this._HANDLESTYLE = "rgba(137,115,100,0.8)", wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.dynamic-draw"), wanaplan.engine2D.requestDynamicDraw()
     }, t.prototype.onDragStart = function(t, e) {
         return wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), !1
     }, t.prototype.onDragging = function(t, e, n, i) {
@@ -195,7 +195,7 @@ SubSlopeComponent2D = function() {
         var n = [];
         n.push({
             name: "lowHeight",
-            label: _("Start height"),
+            label: _("相对低的高度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -207,7 +207,7 @@ SubSlopeComponent2D = function() {
             }
         }), n.push({
             name: "hiHeight",
-            label: _("End height"),
+            label: _("相对高的高度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -219,7 +219,7 @@ SubSlopeComponent2D = function() {
             }
         }), n.push({
             name: "offset",
-            label: _("Length"),
+            label: _("长度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -231,12 +231,12 @@ SubSlopeComponent2D = function() {
             }
         }), n.push({
             name: "Length",
-            label: _("Angle"),
+            label: _("角度"),
             type: "html",
-            html: "<label>" + _("Angle") + '</label><span class="field">' + Math.round(180 * Math.atan2(e.hiHeight - e.lowHeight, e.offset) / Math.PI) + "°„</span>"
+            html: "<label>" + _("角度") + '</label><span class="field">' + Math.round(180 * Math.atan2(e.hiHeight - e.lowHeight, e.offset) / Math.PI) + "°</span>"
         }), n.push({
             name: "_applyHeightToAll",
-            label: _("Apply heights to") + "<br />" + _(" all floor's subslopes"),
+            label: _("将高度应用到所有的斜顶"),
             type: "checkbox",
             cast: "bool",
             value: this._applyHeightToAll

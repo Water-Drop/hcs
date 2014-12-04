@@ -14,7 +14,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.ContextMenu = function() {
         return e
     }, o.show = function(o, r, s, a, l) {
         var o = o || {};
-        o.width = o.width || 250, o.height = o.height || !1, o.x = o.x || i.x || window.innerWidth / 2 - o.width / 2, o.y = o.y || i.y || window.innerHeight / 2 - o.height / 2, o.title = o.title || "Paramètres", o.layout = o.layout || "horizontal", o.autoSize = o.autoSize === !1 ? !1 : !0;
+        o.width = o.width || 250, o.height = o.height || !1, o.x = o.x || i.x || window.innerWidth / 2 - o.width / 2, o.y = o.y || i.y || window.innerHeight / 2 - o.height / 2, o.title = o.title || "参数", o.layout = o.layout || "horizontal", o.autoSize = o.autoSize === !1 ? !1 : !0;
         var h = o.menuName || o.title.replace(/ /g, "_");
         null == t && (t = new wnp.UI.ContextMenu(o, {title: o.title}), t.initialize()), o.id && t.domElement.setAttribute("id", o.id);
         var c = function() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="zh">
     <head>
         <title>Wanaplan</title>
         <meta charset="utf-8"/>
@@ -88,15 +88,15 @@
         </style>
     </head>
     <body>
-        <div id="subMenuContainer"><div id="subMenu"><ul id="subMenuList"></ul></div></div>
+        <div id="subMenuContainer" style="display:none"><div id="subMenu"><ul id="subMenuList"></ul></div></div>
         <section id="main-ui" class="show">
-            <div id="toolbar">
+            <div id="toolbar" style="">
                 <div id="toolbar-bar">
                     <ul id="toolbarMenu">
                     </ul>
                 </div>
             </div>
-
+            
             <section id="mainMenu">
                 <div id="mainMenuTabsContainer">
                     <ul id="mainMenuTabs"></ul>
@@ -121,7 +121,7 @@
         <div id="screenshot-flash"></div>
 
         <!-- Help Bubble -->
-        <div id="helpbubble" class="">
+        <div id="helpbubble" class="" style="display:none">
             <div id="helpbubble-close" class="close"></div>
             <div class="wrapper">
                 <div class="image"><img src="" alt="" id="helpbubble-image" /></div>
@@ -153,8 +153,8 @@
 
 	        <!-- modified by Zhouj -->
             <script src="js/hcs.Prepare.js"></script>
-            <script src="js/hcs.Logger.js"></script>
-            <script src="js/hcs.Handjs.js"></script>
+            <script src="js/Logger.js"></script>
+            <script src="js/Handjs.js"></script>
             <script src="js/Babylon.js"></script>
             <script src="js/hcs.Widget.Rotator.js"></script>
             <script src="js/hcs.Widget.Info.js"></script>
@@ -163,16 +163,16 @@
             <script src="js/hcs.Widget.Remove.js"></script>
             <script src="js/hcs.Widget.Group.js"></script>
             <script src="js/hcs.API.js"></script>
-            <script src="js/hcs.Ujs.js"></script>
-            <script src="js/hcs.PolygonMerger.js"></script>
+            <script src="js/Ujs.js"></script>
+            <script src="js/PolygonMerger.js"></script>
             <script src="js/hcs.Module.js"></script>
-            <script src="js/hcs.SaveAs.js"></script>
-            <script src="js/hcs.Stats.js"></script>
-            <script src="js/hcs.I18njs.js"></script>
-            <script src="js/hcs.BrowserDetector.js"></script>
-            <script src="js/hcs.GeometryHelper.js"></script>
-            <script src="js/hcs.GlobalHelper.js"></script>
-            <script src="js/hcs.HTMLHelper.js"></script>
+            <script src="js/SaveAs.js"></script>
+            <script src="js/Stats.js"></script>
+            <script src="js/I18njs.js"></script>
+            <script src="js/BrowserDetector.js"></script>
+            <script src="js/GeometryHelper.js"></script>
+            <script src="js/GlobalHelper.js"></script>
+            <script src="js/HTMLHelper.js"></script>
             <script src="js/hcs.Symbols2D.js"></script>
             <script src="js/hcs.uuid.js"></script>
             <script src="js/hcs.Dummy.js"></script>
@@ -182,7 +182,7 @@
             <script src="js/hcs.CameraFeatures.js"></script>
             <script src="js/hcs.DragControls.js"></script>
             <script src="js/hcs.Box3.js"></script>
-            <script src="js/hcs.MaterialInfo.js"></script>
+            <script src="js/MaterialInfo.js"></script>
             <!-- UI js -->
             <script src="js/hcs.UI.FormBuilder.js"></script>
             <script src="js/hcs.UI.Frame.js"></script>

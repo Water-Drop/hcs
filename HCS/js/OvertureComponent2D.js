@@ -8,20 +8,20 @@ var OvertureComponent2D = function() {
         document.removeEventListener("wnp.engine2d.onAddOverture", this.onAddOverture, !1), document.removeEventListener("wnp.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.drag-start"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.leave"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.context-menu"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.double-click")
     }, t.prototype.initialize = function() {
         var t, e = [
-            ["doors", _("开放式门"), "Overture", 0, 90, 204, 0, !1, !1],
-            ["doors", _("一般的门"), "Door", 0, 73, 204, 1, !1, !1],
-            ["doors", _("双开门"), "Door", 0, 140, 204, 2, !1, !1],
+            ["doors", _("门洞"), "Door", 0, 90, 204, 0, !1, !1],
+            ["doors", _("房门"), "Door", 0, 73, 204, 1, !1, !1],
+            /*["doors", _("双开门"), "Door", 0, 140, 204, 2, !1, !1],
             ["doors", _("滑门"), "Door", 0, 140, 204, 2, !0, !1],
-            ["doors", _("车库门"), "Garage", 0, 240, 200, 3, !1, !1],
-            ["bay_windows", _("固定式凸窗"), "Window", 0, 80, 215, 1, !0, !1],
+            ["doors", _("车库门"), "Garage", 0, 240, 200, 3, !1, !1],*/
+            /*["bay_windows", _("固定式凸窗"), "Window", 0, 80, 215, 1, !0, !1],
             ["bay_windows", _("法式门"), "Window", 0, 80, 215, 1, !1, !1],
             ["bay_windows", _("双开法式门"), "Window", 0, 120, 215, 2, !1, !1],
-            ["bay_windows", _("滑式凸窗"), "Window", 0, 160, 215, 2, !0, !1],
-            ["windows", _("开放式窗"), "Overture", 90, 80, 125, 0, !1, !1],
-            ["windows", _("固定式窗"), "Window", 90, 60, 125, 1, !0, !1],
-            ["windows", _("单个窗"), "Window", 90, 80, 125, 1, !1, !1],
-            ["windows", _("双开窗"), "Window", 90, 100, 125, 2, !1, !1],
-            ["windows", _("滑窗"), "Window", 90, 100, 125, 2, !0, !1]
+            ["bay_windows", _("滑式凸窗"), "Window", 0, 160, 215, 2, !0, !1],*/
+            ["windows", _("窗户"), "Window", 90, 80, 125, 0, !1, !1],
+            /*["windows", _("固定式窗"), "Window", 90, 60, 125, 1, !0, !1],*/
+            ["windows", _("单面推窗"), "Window", 90, 80, 125, 1, !1, !1],
+            /*["windows", _("双开窗"), "Window", 90, 100, 125, 2, !1, !1],*/
+            ["windows", _("滑动窗"), "Window", 90, 100, 125, 2, !0, !1]
         ];
         t = {
             title: _("门"),
@@ -31,7 +31,7 @@ var OvertureComponent2D = function() {
             item: t,
             menuPath: "draw2D",
             position: 1
-        }), t = {
+        }), /*t = {
             title: _("凸窗"),
             id: "bay_windows",
             items: []
@@ -39,14 +39,14 @@ var OvertureComponent2D = function() {
             item: t,
             menuPath: "draw2D",
             position: 2
-        }), t = {
+        }),*/ t = {
             title: _("窗"),
             id: "windows",
             items: []
         }, ujs.notify("wnp.menu.main.add", {
             item: t,
             menuPath: "draw2D",
-            position: 3
+            position: 2
         });
         for (var n in e)
             t = {
@@ -166,7 +166,7 @@ var OvertureComponent2D = function() {
         var n = [];
         if (n.push({
                 name: "width",
-                label: _("Width"),
+                label: _("宽度"),
                 type: "slider",
                 cast: "int",
                 unit: "cm",
@@ -178,7 +178,7 @@ var OvertureComponent2D = function() {
                 }
             }), n.push({
                 name: "height",
-                label: _("Height"),
+                label: _("高度"),
                 type: "slider",
                 cast: "int",
                 unit: "cm",
@@ -190,7 +190,7 @@ var OvertureComponent2D = function() {
                 }
             }), n.push({
                 name: "elevation",
-                label: _("Elevation"),
+                label: _("离地面的高度"),
                 type: "slider",
                 cast: "int",
                 unit: "cm",
@@ -200,7 +200,7 @@ var OvertureComponent2D = function() {
                     step: 1,
                     value: e.elevation
                 }
-            }), n.push({
+            }), /*n.push({
                 name: "plinte",
                 label: _("Plinte"),
                 type: "slider",
@@ -217,7 +217,7 @@ var OvertureComponent2D = function() {
                 type: "checkbox",
                 cast: "bool",
                 value: e.stretched_texture
-            }), "Garage" == e.type && n.push({
+            }),*/ "Garage" == e.type && n.push({
                 name: "nbCasement",
                 label: _("Number of casements"),
                 type: "slider",
@@ -229,10 +229,10 @@ var OvertureComponent2D = function() {
                     value: e.nbCasement
                 }
             }), "Garage" != e.type) {
-            var i = _("Door" == e.type ? "doors" : "Window" == e.type ? "windows" : "opening");
+            var i = _("Door" == e.type ? "门" : "Window" == e.type ? "窗" : "");
             n.push({
                 name: "_applyToAll",
-                label: _("Apply width, height and elevation") + "<br />" + _(" to all the floor's {typetarget}").replace("{typetarget}", i),
+                label: _("将宽度、高度、离地面高度应用到所有的{typetarget}").replace("{typetarget}", i),
                 type: "checkbox",
                 cast: "bool",
                 value: this._applyToAll
@@ -240,7 +240,7 @@ var OvertureComponent2D = function() {
         }
         (e.sliding || "Window" == e.type) && n.push({
             name: "nbCasement",
-            label: _("Number of casements"),
+            label: _("窗的个数"),
             type: "slider",
             cast: "int",
             value: {
@@ -251,16 +251,16 @@ var OvertureComponent2D = function() {
             }
         }), e.nbCasement % 2 != 1 || e.sliding || "Garage" == e.type || n.push({
             name: "hinge",
-            label: _("Hinges position"),
+            label: _("开窗方向"),
             type: "button",
             cast: "int",
-            value: _("invert")
+            value: _("切换")
         }), e.nbCasement > 0 && !e.sliding && n.push({
             name: "side",
-            label: _("Wall Side"),
+            label: _("内外方向"),
             type: "button",
             cast: "int",
-            value: _("invert")
+            value: _("切换")
         }), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         switch (e) {

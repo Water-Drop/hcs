@@ -199,18 +199,18 @@ wnp.Engine2D = function() {
             label: "Debug",
             action: "wnp.engine2D.contextMenu.debug"
         }), null != i && h.push({
-            label: _("Remove"),
+            label: _("删除"),
             action: "wnp.engine2D.contextMenu.remove",
             "class": "remove"
         }), h.push({
-            label: _("Ok"),
+            label: _("确定"),
             action: "wnp.engine2D.contextMenu.close"
         }), this._callMouseEventCb("leave", e, {}, o), this.requestStaticDraw(), this.setMode(this.MODE_CONTEXTMENU);
         var c = (o.prevButtons & o.BUTTON_LEFT) > 0 ? 200 : 0,
             u = this._enabled ? o.pos.x + 2 : this._core.getWidth() / 2,
             p = this._enabled ? o.pos.y + 2 : 100;
         wnp.UI.ContextMenu.show({
-            title: _("Settings"),
+            title: _("设置"),
             x: u,
             y: p
         }, l, h, c)

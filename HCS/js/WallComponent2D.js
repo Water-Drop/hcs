@@ -17,7 +17,7 @@ var WallComponent2D = function() {
             id: "rooms_walls",
             items: [
                 {
-                    title: _("厚墙"),
+                    title: _("承重墙"),
                     action: "wnp.engine2d.onAddWall",
                     cancelAction: "wnp.engine2d.onAddWallEnd",
                     params: {
@@ -27,7 +27,7 @@ var WallComponent2D = function() {
                     }
                 },
                 {
-                    title: _("隔板"),
+                    title: _("墙"),
                     action: "wnp.engine2d.onAddWall",
                     cancelAction: "wnp.engine2d.onAddWallEnd",
                     params: {
@@ -35,9 +35,9 @@ var WallComponent2D = function() {
                         thickness: 7,
                         putPoint: !1
                     }
-                },
+                }/*,
                 {
-                    title: _("房间分割线(无实体)"),
+                    title: _("房间分割线"),
                     cancelAction: "wnp.engine2d.onAddWallEnd",
                     action: "wnp.engine2d.onAddWall",
                     params: {
@@ -45,7 +45,7 @@ var WallComponent2D = function() {
                         thickness: .2,
                         putPoint: !1
                     }
-                }
+                }*/
             ]};
         ujs.notify("wnp.menu.main.add", {item: t,menuPath: "draw2D",position: .5})
     }, t.prototype.update = function(t) {
@@ -250,7 +250,7 @@ var WallComponent2D = function() {
         var n = [];
         e.type != e.TYPE_SEPARATOR && (n.push({
             name: "thickness",
-            label: _("Thickness"),
+            label: _("厚度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -262,7 +262,7 @@ var WallComponent2D = function() {
             }
         }), n.push({
             name: "height",
-            label: _("Height"),
+            label: _("高度"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -274,13 +274,13 @@ var WallComponent2D = function() {
             }
         }), n.push({
             name: "_applyHeightToAll",
-            label: _("Apply the height to") + "<br />" + _(" all floor's walls"),
+            label: _("将高度应用到所有的墙"),
             type: "checkbox",
             cast: "bool",
             value: this._applyHeightToAll
         })), n.push({
             name: "measureDist",
-            label: _("Mesures distance"),
+            label: _("度量信息离目标物体的距离"),
             type: "slider",
             cast: "int",
             unit: "cm",
@@ -292,7 +292,7 @@ var WallComponent2D = function() {
             }
         }), n.push({
             name: "measureDisplayed",
-            label: _("Display mesures"),
+            label: _("显示度量信息"),
             type: "checkbox",
             cast: "bool",
             value: e.measureDisplayed

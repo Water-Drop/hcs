@@ -107,7 +107,7 @@ wnp.Assets = {
         cam: "images/remote-controller/green_cam.png",
         bg: "images/remote-controller/bg.png"
     },
-    mainUIColor: "#555",
+    mainUIColor: "#897364",
     complementaryUIColor: "#897364",
     groupColor: "#897364"
 };
