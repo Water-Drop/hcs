@@ -1,0 +1,13 @@
+.lockComponent-icon-mobile {
+	position: absolute;
+	top: 45px;
+	left: 25px;
+	display: block;
+	width: 42px;
+}
+
+.lockComponent-icon-mobile:hover {
+	transform: scale(1.1);
+	transition: all .2s;
+    -webkit-transition: all .2s;
+}
