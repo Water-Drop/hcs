@@ -1,4 +1,4 @@
-var MainMenuComponent = function() {
+﻿var MainMenuComponent = function() {
     var t = [{
             title: "房型设计",
             index: 1,

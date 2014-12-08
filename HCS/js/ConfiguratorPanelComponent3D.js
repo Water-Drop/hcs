@@ -1,4 +1,4 @@
-var ConfiguratorPanelComponent3D = function() {
+﻿var ConfiguratorPanelComponent3D = function() {
     var t = function(t) {
         BaseComponent3D.call(this, t, "ConfiguratorPanelComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.hec = wanaplan.getComponentByName("HistoryEditionComponent"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D"), this.camF = wanaplan.engine3D.cameraFeatures
     };
@@ -34,32 +34,32 @@ var ConfiguratorPanelComponent3D = function() {
         if (t) {
             this._enabled = !0;
             var e = [{
-                label: _("Remove"),
+                label: _("删除"),
                 action: "wnp.request.object.remove",
                 "class": "remove"
             }, {
-                label: _("Duplicate"),
+                label: _("复制"),
                 action: "wnp.request.object.clone"
             }, {
-                label: _("Submit"),
+                label: _("确定"),
                 action: "wnp.widget.contextMenu.FurnitureEditor.closed"
             }];
             wanaplan.isPublisher() && e.push({
-                label: _("Add to products"),
+                label: _("增加到物品列表"),
                 action: "wnp.request.object.addToProducts"
             });
             var n = t.structure,
                 i = n.getAvailableProperties(),
                 o = [{
-                    title: _("Settings"),
+                    title: _("设置"),
                     content: i
                 }, {
-                    title: _("Position & Rotation"),
+                    title: _("位置 和 旋转"),
                     content: this._getPositionAndRotationMenu(n)
                 }];
             wnp.UI.ContextMenu.show({
                 menuName: "FurnitureEditor",
-                title: _("Product infos"),
+                title: _("物品属性"),
                 width: 500,
                 maxHeight: window.innerHeight - 140,
                 height: window.innerHeight - 140,
@@ -75,10 +75,10 @@ var ConfiguratorPanelComponent3D = function() {
             var e = t.structure,
                 n = e.getAvailableProperties(),
                 i = [{
-                    title: _("Settings"),
+                    title: _("设置"),
                     content: n
                 }, {
-                    title: _("Position & Rotation"),
+                    title: _("位置 和 旋转"),
                     content: this._getPositionAndRotationMenu(e)
                 }];
             wnp.UI.ContextMenu.update(i)
@@ -141,11 +141,11 @@ var ConfiguratorPanelComponent3D = function() {
             };
         return e.push({
             type: "separator",
-            label: _("rotation")
+            label: _("旋转")
         }), e.push({
-            label: _("x (pivotement avant/arriere)"),
+            label: _("x 轴"),
             type: "slider",
-            unit: "��",
+            unit: "°",
             value: {
                 step: 1,
                 min: 0,
@@ -158,9 +158,9 @@ var ConfiguratorPanelComponent3D = function() {
             },
             id: "rotation-x"
         }), e.push({
-            label: _("y (standard rotation)"),
+            label: _("y 轴"),
             type: "slider",
-            unit: "��",
+            unit: "°",
             value: {
                 step: 1,
                 min: 0,
@@ -173,9 +173,9 @@ var ConfiguratorPanelComponent3D = function() {
             },
             id: "rotation-y"
         }), e.push({
-            label: _("z (pivot left/right)"),
+            label: _("z 轴"),
             type: "slider",
-            unit: "��",
+            unit: "°",
             value: {
                 step: 1,
                 min: 0,
@@ -189,9 +189,9 @@ var ConfiguratorPanelComponent3D = function() {
             id: "rotation-z"
         }), e.push({
             type: "separator",
-            label: _("positioning")
+            label: _("位置")
         }), e.push({
-            label: _("x (left/right)"),
+            label: _("x 轴"),
             type: "number",
             unit: "cm",
             value: {
@@ -206,7 +206,7 @@ var ConfiguratorPanelComponent3D = function() {
             },
             id: "position-x"
         }), e.push({
-            label: _("y (elevation)"),
+            label: _("y 轴"),
             type: "number",
             unit: "cm",
             value: {
@@ -221,7 +221,7 @@ var ConfiguratorPanelComponent3D = function() {
             },
             id: "position-y"
         }), e.push({
-            label: _("z (forward/backward)"),
+            label: _("z 轴"),
             type: "number",
             unit: "cm",
             value: {

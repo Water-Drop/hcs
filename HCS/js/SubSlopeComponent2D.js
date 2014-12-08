@@ -1,4 +1,4 @@
-SubSlopeComponent2D = function() {
+﻿SubSlopeComponent2D = function() {
     var t = function(t) {
         BaseComponent2D.call(this, t, "SubSlopeComponent2D"), this.priority = 100, this.subSlopes = [], this.needsUpdate = !0, this._applyHeightToAll = !1, this._HANDLERADIUS = 10, this._HANDLESTATICSTYLE = "rgba(137,115,100,0.8)", this._HANDLESTYLE = this._HANDLESTATICSTYLE
     };
@@ -8,7 +8,7 @@ SubSlopeComponent2D = function() {
         document.removeEventListener("wnp.engine2d.onEditSubSlope", this.onEditSubSlope, !1), document.removeEventListener("wnp.engine2d.onModeSubSlopeEnd", this.onModeSubSlopeEnd, !1), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.leave"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.dragstart"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.subslope-end"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.context-menu")
     }, t.prototype.initialize = function() {
         this.startListening();
-        var t = {
+        /*var t = {
             id: "subslopes",
             title: _("斜顶"),
             index: 90,
@@ -19,7 +19,7 @@ SubSlopeComponent2D = function() {
             item: t,
             menuPath: "0",
             position: 90
-        })
+        })*/
     }, t.prototype.onEditSubSlope = function() {
         this.needsUpdate = !0, wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_SUBSLOPE), wanaplan.engine2D.requestStaticDraw()
     }, t.prototype.onModeSubSlopeEnd = function() {

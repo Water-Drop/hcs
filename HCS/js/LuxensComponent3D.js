@@ -1,10 +1,10 @@
-var LuxensComponent3D = function() {
+Ôªøvar LuxensComponent3D = function() {
     var t = function(t) {
         BaseComponent3D.call(this, t, "LuxensComponent3D")
     };
     t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         _item = {
-            title: _("Paints (Luxens)"),
+            title: _("ÂÆ∂ÂÖ∑È¢úËâ≤"),
             id: "luxens",
             items: e,
             layout: "layout-table-26"
@@ -438,7 +438,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris zingu®¶ 1",
+        title: "Gris zingu√© 1",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -452,7 +452,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris zingu®¶ 2",
+        title: "Gris zingu√© 2",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -466,7 +466,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris zingu®¶ 3",
+        title: "Gris zingu√© 3",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -480,7 +480,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris zingu®¶ 4",
+        title: "Gris zingu√© 4",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -494,7 +494,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris zingu®¶ 5",
+        title: "Gris zingu√© 5",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -508,7 +508,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris zingu®¶ 6",
+        title: "Gris zingu√© 6",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -690,7 +690,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris poivr®¶ 1",
+        title: "Gris poivr√© 1",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -704,7 +704,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris poivr®¶ 2",
+        title: "Gris poivr√© 2",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -718,7 +718,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris poivr®¶ 3",
+        title: "Gris poivr√© 3",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -732,7 +732,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris poivr®¶ 4",
+        title: "Gris poivr√© 4",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -746,7 +746,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris poivr®¶ 5",
+        title: "Gris poivr√© 5",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -760,7 +760,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris poivr®¶ 6",
+        title: "Gris poivr√© 6",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -774,7 +774,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris dor®¶ 1",
+        title: "Gris dor√© 1",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -788,7 +788,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris dor®¶ 2",
+        title: "Gris dor√© 2",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -802,7 +802,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris dor®¶ 3",
+        title: "Gris dor√© 3",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -816,7 +816,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris dor®¶ 4",
+        title: "Gris dor√© 4",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -830,7 +830,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris dor®¶ 5",
+        title: "Gris dor√© 5",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -844,7 +844,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Gris dor®¶ 6",
+        title: "Gris dor√© 6",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -1782,7 +1782,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange vitamin®¶ 1",
+        title: "Orange vitamin√© 1",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -1796,7 +1796,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange vitamin®¶ 2",
+        title: "Orange vitamin√© 2",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -1810,7 +1810,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange vitamin®¶ 3",
+        title: "Orange vitamin√© 3",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -1824,7 +1824,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange vitamin®¶ 4",
+        title: "Orange vitamin√© 4",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -1838,7 +1838,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange vitamin®¶ 5",
+        title: "Orange vitamin√© 5",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -1852,7 +1852,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange vitamin®¶ 6",
+        title: "Orange vitamin√© 6",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2034,7 +2034,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange dor®¶ 1",
+        title: "Orange dor√© 1",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2048,7 +2048,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange dor®¶ 2",
+        title: "Orange dor√© 2",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2062,7 +2062,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange dor®¶ 3",
+        title: "Orange dor√© 3",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2076,7 +2076,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange dor®¶ 4",
+        title: "Orange dor√© 4",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2090,7 +2090,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange dor®¶ 5",
+        title: "Orange dor√© 5",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2104,7 +2104,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Orange dor®¶ 6",
+        title: "Orange dor√© 6",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2202,7 +2202,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Jaune p®¶pite 1",
+        title: "Jaune p√©pite 1",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2216,7 +2216,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Jaune p®¶pite 2",
+        title: "Jaune p√©pite 2",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2230,7 +2230,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Jaune p®¶pite 3",
+        title: "Jaune p√©pite 3",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2244,7 +2244,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Jaune p®¶pite 4",
+        title: "Jaune p√©pite 4",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2258,7 +2258,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Jaune p®¶pite 5",
+        title: "Jaune p√©pite 5",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2272,7 +2272,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Jaune p®¶pite 6",
+        title: "Jaune p√©pite 6",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2958,7 +2958,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Vert c®®dre 1",
+        title: "Vert c√®dre 1",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2972,7 +2972,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Vert c®®dre 2",
+        title: "Vert c√®dre 2",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -2986,7 +2986,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Vert c®®dre 3",
+        title: "Vert c√®dre 3",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -3000,7 +3000,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Vert c®®dre 4",
+        title: "Vert c√®dre 4",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -3014,7 +3014,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Vert c®®dre 5",
+        title: "Vert c√®dre 5",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],
@@ -3028,7 +3028,7 @@ var LuxensComponent3D = function() {
         }
     }, {
         texture: !0,
-        title: "Vert c®®dre 6",
+        title: "Vert c√®dre 6",
         icon: "",
         action: "wnp.engine3D.paint",
         items: [],

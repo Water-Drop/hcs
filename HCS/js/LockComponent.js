@@ -1,5 +1,5 @@
 var LockComponent = function() {
-    var t = "http://v2.wanaplan.fr/js/Components/LockComponent/Assets/",
+    var t = "js/Components/LockComponent/Assets/",
         e = function(t) {
             BaseComponent3D.call(this, t, "LockComponent"), this._editionComponent = null, this._isLocked = !1
         };

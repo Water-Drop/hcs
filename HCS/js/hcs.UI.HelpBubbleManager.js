@@ -6,7 +6,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.HelpBubbleManager = function() {
     return t.prototype.setActive = function(t) {
         this._enabled = t
     }, t.prototype.display = function(t, e) {
-        !this._enabled || !e && this._bubbles[t].disp || (this._bubbles[t].disp = !0, this.helpBubble.newBubble("http://v2.wanaplan.fr/images/help/" + this._bubbles[t].image, this._bubbles[t].content, !0), this._save())
+//         !this._enabled || !e && this._bubbles[t].disp || (this._bubbles[t].disp = !0, this.helpBubble.newBubble("http://v2.wanaplan.fr/images/help/" + this._bubbles[t].image, this._bubbles[t].content, !0), this._save())
     }, t.prototype.alreadyDisplayed = function(t) {
         return this._bubbles[t].disp
     }, t.prototype._save = function() {

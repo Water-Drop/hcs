@@ -1,8 +1,8 @@
 var wnp = window.wnp || {};
 wnp.Constants = {
     VERSION: "1.2.0.0",
-    BACK_URL: "http://back1.wanaplan.org/",
-    WNP_URL: "http://v2.wanaplan.fr/",
+    BACK_URL: "",
+    WNP_URL: "",
     MIGRATION_PATH: "migration/plan?json=",
     ENGINE_2D: 1,
     ENGINE_3D: 2,

@@ -139,7 +139,7 @@ wnp.Programmable = function() {
             }
             Object.keys(e.advanced).length > 0 && t.push({
                 type: "html",
-                html: "<a href='' onclick='wnp.Programmable.toggleVisible();return false;'>" + _("show advanced params") + "</a>"
+                html: "<a href='' onclick='wnp.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
             })
         }
         return t

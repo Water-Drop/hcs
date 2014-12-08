@@ -1,4 +1,4 @@
-var WallComponent2D = function() {
+﻿var WallComponent2D = function() {
     var t = function(t) {
         BaseComponent2D.call(this, t, "WallComponent2D"), this.TYPE_NORMAL = 1, this.TYPE_SEPARATOR = 2, this._COLORS = ["#333333", "#616161", "#BEBEBE", "#EEEEEE"], this._PATTERNS = [null, null, null, null], this._PATTERN_IMGS = [new Image, new Image, null, null], this._PATTERN_IMGS[0].addEventListener("load", function() {
             this._PATTERNS[0] = wanaplan.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[0], "repeat"), wanaplan.engine2D.requestStaticDraw()

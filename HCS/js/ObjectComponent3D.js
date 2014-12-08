@@ -11,7 +11,7 @@ var ObjectComponent3D = function() {
             BaseComponent3D.call(this, t, "ObjectComponent3D"), i = t.version, e = this
         });
     return r.prototype = new BaseComponent3D, r.prototype.initialize = function() {
-        wnp.Constants.PRODUCTS_CATEGORY_FILE && ujs.ajax({
+        /*wnp.Constants.PRODUCTS_CATEGORY_FILE && ujs.ajax({
             url: wnp.Constants.PRODUCTS_CATEGORY_FILE,
             method: "GET",
             params: ["t=", Math.round(100 * Math.random())].join(""),
@@ -26,7 +26,13 @@ var ObjectComponent3D = function() {
                     Logger.message("BAD JSON FILE")
                 }
             }.bind(this)
-        })
+        })*/
+		xmlHttp = new XMLHttpRequest();
+		xmlHttp.open("GET", 'data/1/categories.json', false);
+		xmlHttp.send(null);
+		//console.warn(xmlHttp.responseText);
+		productsMenu = JSON.parse(xmlHttp.responseText);
+		ujs.notify("wnp.menu.main.add", {item: productsMenu,menuPath: "1",position: 0})
     }, r.prototype.onFloorReady = function(t) {
         for (var n = t.floor || e.getFloor(), i = t.structure || wanaplan.getSelectedStructure(), o = i.getElements("objects"), r = 0; r < o.length; r++)
             o[r].isRecentlyAdded = !1, e.buildObject(o[r], o[r].programmableInstance, n)

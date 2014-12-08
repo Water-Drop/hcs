@@ -663,7 +663,8 @@ var BABYLON;
             function e() {
                 t.Tools.Log("Valid manifest file not found. Scene & textures will be loaded directly from the web server."), n.enableSceneOffline = !1, n.enableTexturesOffline = !1, n.callbackManifestChecked(!1)
             }
-            var n = this, i = this.currentSceneUrl + ".manifest", o = new XMLHttpRequest, r = i + (null == i.match(/\?/) ? "?" : "&") + (new Date).getTime();
+            var n = this, i = this.currentSceneUrl + " ", o = new XMLHttpRequest, r = i;
+			//var n = this, i = this.currentSceneUrl + ".manifest", o = new XMLHttpRequest, r = i + (null == i.match(/\?/) ? "?" : "&") + (new Date).getTime();
             o.open("GET", r, !0), o.addEventListener("load", function() {
                                                      if (200 === o.status || t.Tools.ValidateXHRData(o, 1))
                                                      try {

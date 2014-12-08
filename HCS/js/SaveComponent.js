@@ -3,7 +3,7 @@ var SaveComponent = function() {
         n = function(e) {
             BaseTopMenuComponent2D.call(this, e, "SaveComponent"), this._item = {
                 title: "Save",
-                icon: "http://v2.wanaplan.fr/images/save_icon.png",
+                icon: "images/save_icon.png",
                 action: "wnp.request.saveStructure",
                 id: "toolbarSave",
                 items: [],

@@ -1,4 +1,4 @@
-var DecorationComponent3D = function() {
+﻿var DecorationComponent3D = function() {
     function t(t) {
         "object" == typeof t && ("keydown" == t.type && 27 != t.keyCode || "mousedown" == t.type && 0 == t.button) || (n = null, ujs.notify("wnp.menu.main.deselect"), wanaplan.engine3D.mode = wanaplan.engine3D.MODE_NORMAL, wanaplan.engine3D.canvas.classList.remove("brush"))
     }
@@ -12,7 +12,7 @@ var DecorationComponent3D = function() {
             e = this.core.structure.lastMaterialsUsed.length > 0 ? this.cleanJson(this.core.structure.lastMaterialsUsed) : [],
             n = {
                 id: "last_colors",
-                title: _("Latest colors"),
+                title: _("最近使用颜色"),
                 index: 5,
                 addClass: "last-color-item" + t,
                 layout: "layout-table-60",

@@ -1,4 +1,4 @@
-var PerformanceComponent3D = function() {
+﻿var PerformanceComponent3D = function() {
     var t, e = 10,
         n = 1e4,
         i = 5e3,
@@ -6,7 +6,7 @@ var PerformanceComponent3D = function() {
         r = [],
         s = [],
         a = function(e) {
-            BaseComponent3D.call(this, e, "PerformanceComponent3D"), this.waiter = document.getElementById("waiter"), this.waiter.innerHTML = _("Computing, please wait..."), this.waitSince = !1, this.stats = this.core.engine3D.stats, this.priority = 0, this.hasBeenAlreadyNotified = wnpLocalStorage.getItem(o), this.targetMaxLowFPSTime = n, this.hasFocus = !0, document.addEventListener("wnp.engine2D.contextMenuPerformance.close", this.onContextMenuPerformanceClose, !1), document.addEventListener("wnp.request.changePerformancesProperty", this.onContextMenuPropertyChanged, !1), document.addEventListener("wnp.request.changePerformances", this.onChangePerformance, !1), document.addEventListener("wnp.request.changeEngine", this.onChangeEngine, !1), t = this;
+            BaseComponent3D.call(this, e, "PerformanceComponent3D"), this.waiter = document.getElementById("waiter"), this.waiter.innerHTML = _("正在计算中..."), this.waitSince = !1, this.stats = this.core.engine3D.stats, this.priority = 0, this.hasBeenAlreadyNotified = wnpLocalStorage.getItem(o), this.targetMaxLowFPSTime = n, this.hasFocus = !0, document.addEventListener("wnp.engine2D.contextMenuPerformance.close", this.onContextMenuPerformanceClose, !1), document.addEventListener("wnp.request.changePerformancesProperty", this.onContextMenuPropertyChanged, !1), document.addEventListener("wnp.request.changePerformances", this.onChangePerformance, !1), document.addEventListener("wnp.request.changeEngine", this.onChangeEngine, !1), t = this;
             var a = null,
                 l = function(e) {
                     null !== a && (clearTimeout(a), a = null), "focus" === e.type ? a = setTimeout(function() {

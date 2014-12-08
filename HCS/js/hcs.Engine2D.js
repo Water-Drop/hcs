@@ -1,4 +1,4 @@
-var wnp = window.wnp || {};
+﻿var wnp = window.wnp || {};
 wnp.Engine2D = function() {
     var t = function(t, e, n) {
         this.MODE_NORMAL = 1, this.MODE_DRAG = 2, this.MODE_DRAW = 4, this.MODE_CONTEXTMENU = 8, this.MODE_SUBSLOPE = 16, this._container = t, this.isViewer = "undefined" != typeof n ? n : !1, this.getContainer = function() {

@@ -1,1 +1,70 @@
-[{"title":"ma categorie","index":null,"icon":"","params":{"categoryId":126,"categoryName":"ma categorie","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":{"en_EN":{"ma categorie":"my cat\n                                    \n                                    \n                \n                "},"fr_FR":{"ma categorie":"ma cat\n                                    \n                "}},"items":[]},{"title":"Bath room","index":1,"icon":"","params":{"categoryId":73,"categoryName":"Bath room","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":[],"items":[]},{"title":"Kitchen","index":2,"icon":"","params":{"categoryId":72,"categoryName":"Kitchen","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":[],"items":[]},{"title":"Room","index":3,"icon":"","params":{"categoryId":71,"categoryName":"Room","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":[],"items":[]},{"title":"Living room","index":4,"icon":"","params":{"categoryId":76,"categoryName":"Living room","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":[],"items":[]},{"title":"Decoration","index":5,"icon":"","params":{"categoryId":74,"categoryName":"Decoration","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":[],"items":[]},{"title":"Basic shapes","index":6,"icon":"","params":{"categoryId":75,"categoryName":"Basic shapes","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":[],"items":[]},{"title":"Custom","index":7,"icon":"","params":{"categoryId":84,"categoryName":"Custom","categoryFilter":null},"action":"wnp.engine3D.showProducts","translations":[],"items":[]}]
+﻿[
+    {
+        "title":"卫生间",
+        "index":1,
+        "icon":"",
+        "params":{
+            "categoryId":73,
+            "categoryName":"卫生间",
+            "categoryFilter":null
+        },
+        "action":"wnp.engine3D.showProducts",
+        "translations":[
+            
+        ],
+        "items":[
+            
+        ]
+    },
+    {
+        "title":"厨房",
+        "index":2,
+        "icon":"",
+        "params":{
+            "categoryId":72,
+            "categoryName":"厨房",
+            "categoryFilter":null
+        },
+        "action":"wnp.engine3D.showProducts",
+        "translations":[
+            
+        ],
+        "items":[
+            
+        ]
+    },
+    {
+        "title":"卧室",
+        "index":3,
+        "icon":"",
+        "params":{
+            "categoryId":71,
+            "categoryName":"卧室",
+            "categoryFilter":null
+        },
+        "action":"wnp.engine3D.showProducts",
+        "translations":[
+            
+        ],
+        "items":[
+            
+        ]
+    },
+    {
+        "title":"客厅",
+        "index":4,
+        "icon":"",
+        "params":{
+            "categoryId":76,
+            "categoryName":"客厅",
+            "categoryFilter":null
+        },
+        "action":"wnp.engine3D.showProducts",
+        "translations":[
+            
+        ],
+        "items":[
+            
+        ]
+    }
+]

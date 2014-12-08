@@ -1,4 +1,4 @@
-var OvertureComponent2D = function() {
+﻿var OvertureComponent2D = function() {
     var t = function(t) {
         BaseComponent2D.call(this, t, "OvertureComponent2D"), this.COLOR = "#888", this.MINSIZE = 30, this.priority = 60, this.overtureDragged = !1, this._applyToAll = !1
     };

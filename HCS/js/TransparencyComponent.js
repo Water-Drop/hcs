@@ -5,7 +5,7 @@ var TransparencyComponent = function() {
             BaseComponent3D.call(this, t, "TransparencyComponent"), this._item = {
                 title: _("Transparency"),
                 id: "transparencyButton",
-                icon: "http://v2.wanaplan.fr/images/icon-transparency.png",
+                icon: "images/icon-transparency.png",
                 action: "wnp.request.switch-transparency",
                 addClass: "hidden",
                 index: 12
@@ -58,7 +58,7 @@ var TransparencyComponent = function() {
         if (t) {
             var e = t.submenu;
             e.replaceMenuItem("transparencyButton", {
-                icon: "http://v2.wanaplan.fr/images/icon-opacity.png"
+                icon: "images/icon-opacity.png"
             }, !0), e.updateHtml()
         }
     }, n.prototype.onWallTransparencyOff = function() {
@@ -66,7 +66,7 @@ var TransparencyComponent = function() {
         if (t) {
             var e = t.submenu;
             e.replaceMenuItem("transparencyButton", {
-                icon: "http://v2.wanaplan.fr/images/icon-transparency.png"
+                icon: "images/icon-transparency.png"
             }, !0), e.updateHtml()
         }
     }, n.prototype.onEngineSwitched = function() {
