@@ -1,4 +1,4 @@
-BABYLON.Engine.ShadersRepository = "js/Vendors/Babylon/Shaders/"
+ï»¿BABYLON.Engine.ShadersRepository = "js/Vendors/Babylon/Shaders/"
     //,  window.location.href.split("#").length < 2 && (window.location.href = "http://www.wanaplan.com")
 ;
 var wanaplan = null,
@@ -57,7 +57,7 @@ try {
             s = loc.split("#");
         // s[0] = "http://v2.wanaplan.fr/"
         // s[1] = apiKey
-        // n = "origin=http://www.wanaplan.com&apiKey=cf9866b640f6c6c27122c9ccca8d9dd7&saveUrl=htt¡­ewUrl=http://www.wanaplan.com/api/plan/new/&autoResize=true&params=[object Object]&width=1277&height=146&id=1&params={}"
+        // n = "origin=http://www.wanaplan.com&apiKey=cf9866b640f6c6c27122c9ccca8d9dd7&saveUrl=httâ€¦ewUrl=http://www.wanaplan.com/api/plan/new/&autoResize=true&params=[object Object]&width=1277&height=146&id=1&params={}"
         s[1] && (n = a(s[1]));
         var p = function(t) {
                 for (var e = {}, n = t.split("&"), i = 0; i < n.length; i++) {
@@ -66,7 +66,7 @@ try {
                 }
                 return e
             },
-            d = p(n); // ½«n×°»»³Émap£¨²ÎÊýÎªkey£¬ÖµÎªvalue£¬ÀýÈç{width=1277, height=146...}£©
+            d = p(n); // å°†nè£…æ¢æˆmapï¼ˆå‚æ•°ä¸ºkeyï¼Œå€¼ä¸ºvalueï¼Œä¾‹å¦‚{width=1277, height=146...}ï¼‰
         if (!GlobalHelper.hasWebGL() && e && (d.allow3D = !1),
             d.apiKey /*|| (document.location.href = "http://www.wanaplan.com")*/ , u = d.lang ? d.lang : u, t(u),
             wanaplan = new l.Core(h, c, d), wanaplan.engine2D.addComponent(GridComponent2D), wanaplan.engine2D.addComponent(PointComponent2D), wanaplan.engine2D.addComponent(WallComponent2D), wanaplan.engine2D.addComponent(RoomComponent2D), /* wanaplan.engine2D.addComponent(StairwayComponent2D), wanaplan.engine2D.addComponent(HopperComponent2D),*/ wanaplan.engine2D.addComponent(SubSlopeComponent2D), wanaplan.engine2D.addComponent(SubSlopeOvertureComponent2D), wanaplan.engine2D.addComponent(OvertureComponent2D), wanaplan.engine2D.addComponent(MobileComponent), wanaplan.engine2D.addComponent(MobileInputComponent), /*wanaplan.engine2D.addComponent(AnalyticsComponent), wanaplan.engine2D.addComponent(FloorController),*/ wanaplan.engine2D.addComponent(MeasureComponent), wanaplan.engine3D.addComponent(CameraComponent), wanaplan.engine3D.addComponent(GridComponent3D), wanaplan.engine3D.addComponent(AvatarComponent3D), wanaplan.engine3D.addComponent(RoomComponent3D), wanaplan.engine3D.addComponent(OvertureComponent3D), wanaplan.engine3D.addComponent(SubSlopeComponent3D), wanaplan.engine3D.addComponent(WallComponent3D), wanaplan.engine3D.addComponent(StairwayComponent3D), wanaplan.engine3D.addComponent(HopperComponent3D), wanaplan.engine3D.addComponent(ObjectComponent3D), wanaplan.engine3D.addComponent(FloorComponent3D), wanaplan.engine3D.addComponent(RemoteControlComponent3D), wanaplan.engine3D.addComponent(TransparencyComponent), r(), o(d), i(d), wanaplan.setSelectedEngine(wanaplan.ENGINE_2D), wanaplan.mode == wanaplan.MODE_VIEWER) {
@@ -75,7 +75,7 @@ try {
                 wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.update(!0), wanaplan.setSelectedEngine(m), wanaplan.hideSplashScreen()
             })
         } else
-            wanaplan.initialize(); // wanaplan = new l.Core(h, c, d) == new wnp.Core(h, c, d) Òò´Ëwanaplan ÊÇwnp.CoreµÄº¯Êý¶ÔÏó
+            wanaplan.initialize(); // wanaplan = new l.Core(h, c, d) == new wnp.Core(h, c, d) å› æ­¤wanaplan æ˜¯wnp.Coreçš„å‡½æ•°å¯¹è±¡
     }
 
     function n(t) {
@@ -152,12 +152,12 @@ try {
     }
     t(u, h), window.onload = function() {
         var t = new PedagoComponent;
-        if (t.checkBrowserCapability()) { // ¼ì²éä¯ÀÀÆ÷¼æÈÝÐÔ
+        if (t.checkBrowserCapability()) { // æ£€æŸ¥æµè§ˆå™¨å…¼å®¹æ€§
             if (!GlobalHelper.isMobileDevice() && "Windows" == BrowserDetect.OS)
-            // ÉèÖÃÑÓ³Ù¼ÓÔØº¯Êý
+            // è®¾ç½®å»¶è¿ŸåŠ è½½å‡½æ•°
                 var n = setTimeout(function() {
-                // ÓÉ setTimeout() ·µ»ØµÄ ID Öµ-n¡£¸ÃÖµ±êÊ¶ÒªÈ¡ÏûµÄÑÓ³ÙÖ´ÐÐ´úÂë¿é¡£
-                // µ±wanaplan.isFullyInitializedÎªtrueÊ±£¬Ìø×ªÖÁhttp://v2.wanaplan.fr/b3JpZ2luPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tJmFwaUtleT1jZjk4NjZiNjQwZjZjNmMyNzEyMmM5Y2NjYThkOWRkNyZzYXZlVXJsPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tL2FwaS9wbGFuL3NhdmUvJm5ld1VybD1odHRwOi8vd3d3LndhbmFwbGFuLmNvbS9hcGkvcGxhbi9uZXcvJmF1dG9SZXNpemU9dHJ1ZSZwYXJhbXM9W29iamVjdCBPYmplY3RdJndpZHRoPTEyNzcmaGVpZ2h0PTM4MSZpZD0xJnBhcmFtcz17fQ==/js/Components/PedagoComponent/pedago/pages/grapics.php
+                // ç”± setTimeout() è¿”å›žçš„ ID å€¼-nã€‚è¯¥å€¼æ ‡è¯†è¦å–æ¶ˆçš„å»¶è¿Ÿæ‰§è¡Œä»£ç å—ã€‚
+                // å½“wanaplan.isFullyInitializedä¸ºtrueæ—¶ï¼Œè·³è½¬è‡³http://v2.wanaplan.fr/b3JpZ2luPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tJmFwaUtleT1jZjk4NjZiNjQwZjZjNmMyNzEyMmM5Y2NjYThkOWRkNyZzYXZlVXJsPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tL2FwaS9wbGFuL3NhdmUvJm5ld1VybD1odHRwOi8vd3d3LndhbmFwbGFuLmNvbS9hcGkvcGxhbi9uZXcvJmF1dG9SZXNpemU9dHJ1ZSZwYXJhbXM9W29iamVjdCBPYmplY3RdJndpZHRoPTEyNzcmaGVpZ2h0PTM4MSZpZD0xJnBhcmFtcz17fQ==/js/Components/PedagoComponent/pedago/pages/grapics.php
                 clearTimeout(n), wanaplan.isFullyInitialized || t.redirectToPage("graphics")
             }, 15e3);
             e(), wanaplan.engine2D.addInstancedComponent(t), s()
