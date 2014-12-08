@@ -484,7 +484,7 @@ canvas.eraser {
 
 #mainMenu ul.layout-list li.selected {
     background-color: #eee;
-    border: #897364 solid 1px;
+    border: #897364 solid 2px;
     border-right: none;
     margin-top: -2px;
 }
