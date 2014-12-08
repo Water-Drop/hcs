@@ -5,7 +5,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Remove = function() {
     };
     return i.prototype.buildHTML = function() {
         var t = document.getElementById("edition-panel"), e = document.createElement("li");
-        e.setAttribute("id", "edition-remove-button"), e.setAttribute("title", _("Remove"));
+        e.setAttribute("id", "edition-remove-button"), e.setAttribute("title", _("删除"));
         var n = document.createElement("span");
         n.setAttribute("id", "edition-remove-icon"), n.setAttribute("class", "menu-icon");
         var i = document.createElement("i");

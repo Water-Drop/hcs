@@ -5,7 +5,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Clone = function() {
     };
     return i.prototype.buildHTML = function() {
         var t = document.getElementById("edition-panel"), e = document.createElement("li");
-        e.setAttribute("id", "edition-clone-button"), e.setAttribute("title", _("Duplicate"));
+        e.setAttribute("id", "edition-clone-button"), e.setAttribute("title", _("复制"));
         var n = document.createElement("span");
         n.setAttribute("id", "edition-clone-icon"), n.setAttribute("class", "menu-icon");
         var i = document.createElement("i");

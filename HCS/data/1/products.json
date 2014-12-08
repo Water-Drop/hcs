@@ -15,7 +15,7 @@
         "items":[
             {
                 "id":815,
-                "title":"Bathtub",
+                "title":"方形浴缸",
                 "index":0,
                 "action":"wnp.engine3D.addProgrammable",
                 "type":"programmable",
@@ -37,7 +37,7 @@
             },
 	    {
                 "id":849,
-                "title":"Corner Bath",
+                "title":"圆角浴缸",
                 "index":0,
                 "action":"wnp.engine3D.addProgrammable",
                 "type":"programmable",
@@ -67,7 +67,7 @@
         "items":[
             {
                 "id":818,
-                "title":"Furniture angle",
+                "title":"橱柜",
                 "index":0,
                 "action":"wnp.engine3D.addProgrammable",
                 "type":"programmable",
@@ -97,7 +97,7 @@
         "items":[
             {
                 "id":788,
-                "title":"Bed",
+                "title":"双人床",
                 "index":0,
                 "action":"wnp.engine3D.addProgrammable",
                 "type":"programmable",
@@ -119,7 +119,7 @@
             },
             {
                 "id":826,
-                "title":"Dressing",
+                "title":"衣柜",
                 "index":0,
                 "action":"wnp.engine3D.addProgrammable",
                 "type":"programmable",
@@ -149,7 +149,7 @@
         "items":[
             {
                 "id":796,
-                "title":"TV",
+                "title":"电视机",
                 "index":0,
                 "action":"wnp.engine3D.addProgrammable",
                 "type":"programmable",
@@ -171,7 +171,7 @@
             },
             {
                 "id":810,
-                "title":"Sofa",
+                "title":"沙发",
                 "index":0,
                 "action":"wnp.engine3D.addProgrammable",
                 "type":"programmable",

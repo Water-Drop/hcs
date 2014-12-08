@@ -9,7 +9,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
         var e = document.createElement("ul");
         e.setAttribute("id", "edition-panel");
         var n = document.createElement("li");
-        n.setAttribute("id", "edition-slider-bar"), n.setAttribute("title", _("Elevation"));
+        n.setAttribute("id", "edition-slider-bar"), n.setAttribute("title", _("距地面高度"));
         var i = document.createElement("div");
         i.setAttribute("id", "edition-slider-content");
         var o = document.createElement("img");

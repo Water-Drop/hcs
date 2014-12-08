@@ -20,7 +20,7 @@ SubSlopeOvertureComponent2D = function() {
             return !1
         }
     }, t.prototype.initialize = function() {
-        var t = {
+        /*var t = {
                 title: _("天窗"),
                 index: 90,
                 id: "Velux",
@@ -40,7 +40,7 @@ SubSlopeOvertureComponent2D = function() {
             item: e,
             menuPath: "draw2D.subslopes",
             position: 91
-        })
+        })*/
     }, t.prototype.startListening = function() {
         this.onAddSubSlopeOverture = this.onAddSubSlopeOverture.bind(this), this.onDragEndSubSlope = this.onDragEndSubSlope.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("wnp.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.addEventListener("wnp.subslope.drag-end", this.onDragEndSubSlope, !1), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hover", this.priority, "hover", null, SubSlopeOvertureStructure, this.onHover.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.leave", this.priority, "leave", null, SubSlopeOvertureStructure, this.onLeave.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.context-menu", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onContextMenu.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, SubSlopeOvertureStructure, this.onDragDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("SubSlopeOvertureComponent2D.double-click", this.priority, "double-click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDoubleClick, null)
     }, t.prototype.stopListening = function() {

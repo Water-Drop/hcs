@@ -1,4 +1,4 @@
-var wnp = window.wnp || {};
+﻿var wnp = window.wnp || {};
 wnp.Constants = {
     VERSION: "1.2.0.0",
     BACK_URL: "",
@@ -16,7 +16,7 @@ wnp.Constants = {
     LC_MAC_GL_CHECK: "wanadev.planner.macosx.check",
     PRODUCTS_PATH: "data/products/",
     TEMPLATE_PATH: "js/Core/UI/Templates/",
-    PROGRAMMABLE_PATH: "http://v2.wanaplan.fr/js/Components/CoreComponents/Object/Programmable",
+    PROGRAMMABLE_PATH: "js/Components/CoreComponents/Object/Programmable",
     GRAPHICS_FAST: 0,
     GRAPHICS_GOOD: 1,
     GRAPHICS_QUALITY: 2,

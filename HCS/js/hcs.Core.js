@@ -14,7 +14,10 @@ wnp.Core = function () {
         }, v.css && HTMLHelper.addStylesheet(v.css), this.allow3D = "undefined" != typeof v.allow3D ? v.allow3D : !0, this.api = v || {}, d = this.api.saveUrl || null, m = this.api.newUrl || null, g = this.api.planUrl || null, y = this.api.screenshotUrl || null, f = this.api.publisher || !1, _origin = this.api.origin || !1, this.mode = "true" === this.api.isViewer ? this.MODE_VIEWER : this.MODE_EDITOR, this.api.params = this.api.params ? JSON.parse(this.api.params) : {}, this.api.components && (this.api.components = JSON.parse(this.api.components)), this.api.id > 0) {
             p = this.api.id, u = wnp.Constants.MODE_CUSTOMER, b = this.api.params, w = this.api.screenshotMode || "2D", x = this.api.title || null;
             var C = b.env || "";
-            wnp.Constants.PRODUCTS_CATEGORY_FILE = [wnp.Constants.WNP_URL, "/data/", p, "/categories" + C + ".json"].join(""), wnp.Constants.TEXTURES_FILE = [wnp.Constants.WNP_URL, "/data/", p, "/textures" + C + ".json"].join(""), wnp.Constants.PRODUCTS_FILE = [wnp.Constants.WNP_URL, "/data/", p, "/products" + C + ".json"].join(""), wnp.Constants.PRODUCTS_PREVIEWS = [wnp.Constants.WNP_URL, "/data/previews/"].join("")
+            wnp.Constants.PRODUCTS_CATEGORY_FILE = [wnp.Constants.WNP_URL, "data/", p, "/categories" + C + ".json"].join(""), 
+			wnp.Constants.TEXTURES_FILE = [wnp.Constants.WNP_URL, "data/", p, "/textures" + C + ".json"].join(""), 
+			wnp.Constants.PRODUCTS_FILE = [wnp.Constants.WNP_URL, "data/", p, "/products" + C + ".json"].join(""), 
+			wnp.Constants.PRODUCTS_PREVIEWS = [wnp.Constants.WNP_URL, "data/previews/"].join("")
         }
         i = window.innerWidth, o = window.innerHeight, this.needPageRefresh = !1, this.loopTimer = new wnp.LoopTimer, this.structure = new wnp.Structure(e), this.keyboardManager = new wnp.KeyboardManager, this.configuration = new wnp.Configuration, this.engine2D = new wnp.Engine2D(l, this), this.engine3D = null, this.engine3D = GlobalHelper.hasWebGL() ? new wnp.Engine3D(h) : new wnp.Dummy.Engine3D(h), this.aboutWindow = null;
         var M = this;
@@ -96,7 +99,7 @@ wnp.Core = function () {
                 var e = this._getLocaleStorageStructure();
                 this._loadStructure(e ? e.uuid == t.uuid ? e.lastModified >= t.lastModified ? e : t : t : t), this.structure.setCurrentStructureIndex(0), this.engine2D.bestZoom(), this.hideSplashScreen()
             } .bind(this)) : (this._localStructureExists() && this._loadStructure(this._getLocaleStorageStructure()), this.structure.setCurrentStructureIndex(0), this.engine2D.bestZoom(), this.hideSplashScreen());
-        window.addEventListener("focus", function () {
+			window.addEventListener("focus", function () {
             this.saveLocalStructure(!1, !0)
         } .bind(this), !1), this.aboutWindow = new wnp.UI.AboutWindow, this.setSize(window.innerWidth - 260, window.innerHeight)
     }, C.prototype.update = function () {
