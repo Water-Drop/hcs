@@ -23,7 +23,7 @@
             },
             layout: "layout-list",
             items: []
-        }, {
+        }/*, {
             title: "装饰设计",
             index: 3,
             icon: "",
@@ -35,7 +35,7 @@
             },
             layout: "layout-list",
             items: []
-        }],
+        }*/],
         e = function(e) {
             BaseComponent2D.call(this, e, "MainMenuComponent"), this.menu = new wnp.UI.Menu(t, "mainMenuTabs", {
                 selected: t[0],
