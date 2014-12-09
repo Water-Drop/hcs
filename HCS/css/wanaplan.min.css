@@ -1,3 +1,4 @@
+
 body:-moz-full-screen,body:-webkit-full-screen {
     position: fixed;
     top: 0;
@@ -44,7 +45,7 @@ body,html {
     -moz-user-select: -moz-none;
     user-select: none;
     -ms-touch-action: none;
-    font-family: arial;
+    font-family: arial,"Microsoft YaHei",微软雅黑;
     font-size: 14px;
 }
 
