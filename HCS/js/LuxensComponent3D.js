@@ -10,7 +10,7 @@
             layout: "layout-table-26"
         }, ujs.notify("wnp.menu.main.add", {
             item: _item,
-            menuPath: "decorate3D",
+            menuPath: /*"decorate3D",*/ "furnishing3D",
             position: 10
         })
     }, t.getLuxens = function() {

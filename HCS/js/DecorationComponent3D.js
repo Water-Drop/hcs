@@ -20,7 +20,7 @@
             };
         ujs.notify("wnp.menu.main.add", {
             item: n,
-            menuPath: "decorate3D",
+            menuPath: /*"decorate3D",*/ "furnishing3D",
             position: 0
         })
     }, o.prototype.destroy = function() {
