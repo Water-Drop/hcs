@@ -6,3 +6,10 @@
 /Code/nbproject/private/
 Code/nbproject/
 >>>>>>> b90f6ddde2ac99fc68d1e1fddcea77290b910a20
+HCS/.ntvs_analysis.dat
+HCS/bin/Microsoft.NodejsTools.WebRole.dll
+HCS/hcs.njsproj
+HCS/hcs.sln
+HCS/hcs.v12.suo
+HCS/obj/Debug/hcs.njsproj.FileListAbsolute.txt
+HCS/obj/Debug/hcs.njsprojResolveAssemblyReference.cache
