@@ -1,5 +1,6 @@
 ﻿var http = require('http');
 var fs = require('fs');
+var url = require('url')
 var path = require('path');
 var mime = require('mime');
 var cache = {};
@@ -43,12 +44,11 @@ function serveStatic(response, cache, absPath) {
 
 var server = http.createServer(function (request, response) {
     var filePath = false;
-    if (request.url == '/') {
-        filePath = 'index.html';
-    } else {
-        filePath = request.url;
+    var filePath = url.parse(request.url).pathname;
+    if (filePath == '/') {
+        filePath = '/index.html';
     }
-    var absPath = './' + filePath;
+    var absPath = '.' + filePath;
     serveStatic(response, cache, absPath);
 });
 
