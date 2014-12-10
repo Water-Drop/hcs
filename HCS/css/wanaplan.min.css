@@ -263,7 +263,7 @@ canvas.eraser {
 #mainMenu {
     height: 100%;
     background: #f0f0f0;
-    /*box-shadow: 0 0 8px rgba(0,0,0,.4);*/
+    box-shadow: 0 0 8px rgba(0,0,0,.4);
 }
 
 #mainMenu ul#mainMenuTabs {
