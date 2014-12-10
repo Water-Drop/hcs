@@ -121,7 +121,7 @@
                 step: 1,
                 value: e.elevation
             }
-        }), /*n.push({
+        })/*, n.push({
             name: "thickness",
             label: _("Thickness"),
             type: "slider",
@@ -133,7 +133,7 @@
                 step: 1,
                 value: e.thickness
             }
-        }),*/ this.core.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this))
+        }),*/ /*this.core.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this))*/
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         t[e] = n
     }, t.prototype.onStaticDraw = function(t, e, n) {
@@ -158,8 +158,8 @@
                 0 == o ? e.moveTo(r.x, r.y) : e.lineTo(r.x, r.y)
             }
             if (e.fill(), this.displayRoomName) {
-                var s = t.areaPosition.scale(i).addInPlace(n);
-                e.font = "normal 9pt sans-serif", e.textBaseline = "middle", e.textAlign = "center", e.fillStyle = this.core.engine2D.symbols2D.COLOR_ANNOTATION, e.fillText(t.label, s.x, s.y - 7), e.fillText(Math.round(t.area / 100) / 100 + " m²", s.x, s.y + 7)
+//                var s = t.areaPosition.scale(i).addInPlace(n);
+//                e.font = "normal 9pt sans-serif", e.textBaseline = "middle", e.textAlign = "center", e.fillStyle = this.core.engine2D.symbols2D.COLOR_ANNOTATION, e.fillText(t.label, s.x, s.y - 7), e.fillText(Math.round(t.area / 100) / 100 + " m²", s.x, s.y + 7)
             }
         }
     }, t

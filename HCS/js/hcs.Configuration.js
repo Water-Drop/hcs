@@ -6,7 +6,7 @@ wnp.Configuration = function () {
         this.boundingSize = { min: { x: -5e3, y: -5e3, z: -5e3 }, max: { x: 5e3, y: 5e3, z: 5e3 }, getSize: function () {
             return { x: this.max.x - this.min.x, y: this.max.y - this.min.y, z: this.max.z - this.min.z }
         } 
-        }, this.hardwareScalingLevel = 1, this.hasMobileConfig = !1, this.maxTextureSize = 1024, this.useAntialiasing = !0, this.useEnvMap = !0, this.useMultiLights = !0, this.useMultiTexturing = !0, this.useShadow = !0, this.useStats = !0, this.useAreaProcessing = !0, this.useRealtimeMeasure = !0, this.loadConfiguration(), t = this
+        }, this.hardwareScalingLevel = 1, this.hasMobileConfig = !1, this.maxTextureSize = 1024, this.useAntialiasing = !0, this.useEnvMap = !0, this.useMultiLights = !0, this.useMultiTexturing = !0, this.useShadow = !0, this.useStats = !1, this.useAreaProcessing = !0, this.useRealtimeMeasure = !0, this.loadConfiguration(), t = this
     };
     return e.prototype.loadConfiguration = function () {
         var t = wnpLocalStorage.getItem(LOCAL_STORAGE_CONFIGURATION_KEY);

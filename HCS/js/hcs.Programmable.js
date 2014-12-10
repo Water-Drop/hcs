@@ -137,10 +137,10 @@ wnp.Programmable = function() {
                     o = i.split(".")[0];
                 e.invisible && (e.invisible.hasOwnProperty(i) || e.invisible.hasOwnProperty(o)) ? delete t[n] : e.basic && e.basic.hasOwnProperty(i) ? t[n].label = t[n].label ? e.basic[i] : "" : e.advanced && e.advanced.hasOwnProperty(i) ? (t[n].label = t[n].label ? e.advanced[i] : "", t[n]["class"] = "hidden advancedParams") : delete t[n]
             }
-            Object.keys(e.advanced).length > 0 && t.push({
-                type: "html",
-                html: "<a href='' onclick='wnp.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
-            })
+//            Object.keys(e.advanced).length > 0 && t.push({
+//                type: "html",
+//                html: "<a href='' onclick='wnp.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
+//            })
         }
         return t
     }, e.prototype.generateFormForObject = function(t, e, n, i, o) {
