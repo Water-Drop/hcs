@@ -373,7 +373,7 @@ body {
 }
 #header-fixed .nav-left {
     position: relative;
-    float: left!important;
+    left: 30px;
 }
 #header-fixed .nav-right {
     position: relative;
