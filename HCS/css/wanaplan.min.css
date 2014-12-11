@@ -2065,7 +2065,7 @@ iframe {
 .window .window-action-bar {
     margin-top: -11px;
     text-align: right;
-    padding: 9px;
+    padding: 0 10px;
 }
 
 .tabbed {
