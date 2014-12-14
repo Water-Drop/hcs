@@ -1,0 +1,11 @@
+{
+	"name": "hcs",
+	"version": "0.0.1",
+	"main":  "server.js",
+	"author": "Wu Jiang <me@wujiang.name>",
+	"description": "Housing customization system",
+	"repository": "https://github.com/Water-Drop/hcs",
+	"dependencies": {
+		"mime": "~1.2.7"
+	}
+}
