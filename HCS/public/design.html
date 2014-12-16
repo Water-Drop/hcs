@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <title>HCS房屋定制系统</title>
+        <meta charset="utf-8"/>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8"/>
+        <link rel="icon" type="image/png" href="favicon.png"/>
+        <link rel="stylesheet" href="css/wanaplan.min.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+        <meta id="extViewportMeta" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+        <!--[if lt IE 10]>
+        <style type="text/css">
+            .input-range { display: none !important; }
+        </style>
+        <![endif]-->
+        <style type="text/css">
+            #splashscreen {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, .9);
+                z-index: 42000;
+            }
+
+            #splash-text {
+                position: absolute;
+                width: 400px;
+                top: 40%;
+                left: 50%;
+                margin-left: -234px;
+                border: #fff solid 4px;
+                padding: 30px;
+                text-align: center;
+                font-size: 22pt;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+                border-radius: 5px;
+                color: #333;
+                pointer-events: none;
+                background: #f1f1f1; /* Old browsers */
+                background: -moz-linear-gradient(top, #f1f1f1 0%, #e5e5e5 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f1f1), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top, #f1f1f1 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top, #f1f1f1 0%,#e5e5e5 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top, #f1f1f1 0%,#e5e5e5 100%); /* IE10+ */
+                background: linear-gradient(to bottom, #f1f1f1 0%,#e5e5e5 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+            }
+
+            #splash-bar {
+                height: 12px;
+                border: #6E910F solid 1px;
+                margin-top: 20px;
+                border-radius: 3px;
+                padding: 1px;
+                background: #f1f1f1;
+            }
+
+            #splash-bar div {
+                background: #89B808;
+                height: 100%;
+                border-radius: 2px;
+                width: 100%;
+                animation: loading 5s linear;
+                -webkit-animation: loading 5s linear;
+            }
+
+            @keyframes loading {
+                0% {width: 0%;}
+                20% {width: 0%;}
+                70% {width: 70%;}
+                80% {width: 80%;}
+                90% {width: 80%;}
+                100% {width: 100%;}
+            }
+
+            @-webkit-keyframes loading {
+                0% {width: 0%;}
+                20% {width: 0%;}
+                30% {width: 10%;}
+                40% {width: 50%;}
+                45% {width: 50%;}
+                70% {width: 70%;}
+                80% {width: 80%;}
+                90% {width: 80%;}
+                100% {width: 100%;}
+            }
+        </style>
+    </head>
+    <body>
+        <header id="header-fixed">
+            <div class="navbar-inner">
+                <div class="nav-header"><a href="index.html"><h1>爱</h1><h2>家居</h2></a></div>
+                <div class="nav-left">
+                    <ul class="nav navbar-nav">
+                        <li><a href="manage_survey.html" class="button">问卷调查</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav" id="mainMenuTabs">
+                    </ul>
+                </div>
+                <div class="nav-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" class="button">登录</a></li>
+                        <li><a href="#" class="button">注册</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header><!--/#header-->
+
+        
+        <div id="subMenuContainer" style="display:none;"><div id="subMenu"><ul id="subMenuList"></ul></div></div>
+        <section id="main-ui" class="show">
+            <div id="toolbar" style="display:none;">
+                <div id="toolbar-bar">
+                    <ul id="toolbarMenu">
+                    </ul>
+                </div>
+            </div>
+            
+            <section id="mainMenu">
+                <!--<div id="mainMenuTabsContainer">
+                    <ul id="mainMenuTabs"></ul>
+                </div>-->
+                <div style="height:50px;"></div>
+                <h3 id="mainMenuTitle"></h3>
+                <div id="mainMenuContent">
+                    <ul id="mainMenuContentList" class="mainList layout-list"></ul>
+                </div>
+            </section>
+        </section>
+
+        <!-- Splashscreen -->
+        <div id="splashscreen" style="display:none">
+            <div id="splash-text">
+                <img src="images/wanaplan-logo.png" style="width:50px;vertical-align:-10px;">
+                Wanaplan
+                <div id="splash-bar"><div id="splash-bar-inner"></div></div>
+            </div>
+        </div>
+
+        <!-- Screenshot Flash -->
+        <div id="screenshot-flash"></div>
+
+        <!-- Help Bubble -->
+        <div id="helpbubble" class="" style="display:none">
+            <div id="helpbubble-close" class="close"></div>
+            <div class="wrapper">
+                <div class="image"><img src="" alt="" id="helpbubble-image" /></div>
+                <div id="helpbubble-content" class="content"></div>
+            </div>
+        </div>
+
+        <!-- Debug view -->
+        <div id="debugArea"></div>
+
+        <!-- Plan2D Area -->
+        <div class="drawableSurface with-menu" id="container2d"></div>
+
+        <!-- Plan3D Area -->
+        <div class="drawableSurface with-menu" id="container3d"></div>
+
+        <div id="waiter" class="hidden"></div>
+        <div id="ephemeralInfos" class="hidden"></div>
+
+        <section id="modalWidgets"></section>
+
+        <!-- Scripts -->
+        <section id="scripts">
+            <script>"use strict"</script>
+
+            <!--[if IE 9]>  
+            <script src="js/vendors/TypedArray.js"></script>
+            <![endif]-->
+
+            <!-- modified by Zhouj -->
+            <script src="js/hcs.Prepare.js"></script>
+            <script src="js/Logger.js"></script>
+            <script src="js/Handjs.js"></script>
+            <script src="js/Babylon.js"></script>
+            <script src="js/hcs.Widget.Rotator.js"></script>
+            <script src="js/hcs.Widget.Info.js"></script>
+            <script src="js/hcs.Widget.Elevation.js"></script>
+            <script src="js/hcs.Widget.Clone.js"></script>
+            <script src="js/hcs.Widget.Remove.js"></script>
+            <script src="js/hcs.Widget.Group.js"></script>
+            <script src="js/hcs.API.js"></script>
+            <script src="js/Ujs.js"></script>
+            <script src="js/PolygonMerger.js"></script>
+            <script src="js/hcs.Module.js"></script>
+            <script src="js/SaveAs.js"></script>
+            <script src="js/Stats.js"></script>
+            <script src="js/I18njs.js"></script>
+            <script src="js/BrowserDetector.js"></script>
+            <script src="js/GeometryHelper.js"></script>
+            <script src="js/GlobalHelper.js"></script>
+            <script src="js/HTMLHelper.js"></script>
+            <script src="js/hcs.Symbols2D.js"></script>
+            <script src="js/hcs.uuid.js"></script>
+            <script src="js/hcs.Dummy.js"></script>
+            <script src="js/hcs.Assets.js"></script>
+            <script src="js/hcs.AnimationHandler.js"></script>
+            <script src="js/hcs.Constants.js"></script>
+            <script src="js/hcs.CameraFeatures.js"></script>
+            <script src="js/hcs.DragControls.js"></script>
+            <script src="js/hcs.Box3.js"></script>
+            <script src="js/MaterialInfo.js"></script>
+            <!-- UI js -->
+            <script src="js/UI/hcs.UI.FormBuilder.js"></script>
+            <script src="js/UI/hcs.UI.Frame.js"></script>
+            <script src="js/UI/hcs.UI.ProductList.js"></script>
+            <script src="js/UI/hcs.UI.ContextMenu.js"></script>
+            <script src="js/hcs.UI.AboutWindow.js"></script>
+            <script src="js/hcs.UI.BackgroundPopup.js"></script>
+            <script src="js/hcs.UI.ColorPopup.js"></script>
+            <script src="js/hcs.UI.HelpBubble.js"></script>
+            <script src="js/hcs.UI.HelpBubbleManager.js"></script>
+            <script src="js/hcs.UI.RemoteController.js"></script>
+            <script src="js/UI/hcs.UI.MessageBox.js"></script>
+            <script src="js/UI/hcs.UI.Menu.js"></script>
+            <script src="js/hcs.UI.LanguageSelector.js"></script>
+            <script src="js/UI/hcs.UI.IFrame.js"></script>
+            <!-- <script src="js/wanaplan.min.js"></script> -->
+            
+
+
+            <!-- modified by Dujw -->
+         
+            <script type="text/javascript" src="js/hcs.Input.OrbitCamera.js"></script>
+            <script type="text/javascript" src="js/hcs.Input.FirstPersonCamera.js"></script>
+            <script type="text/javascript" src="js/hcs.Input.TouchManager.js"></script>
+            <script type="text/javascript" src="js/hcs.Input.PointerManager.js"></script>
+            <script type="text/javascript" src="js/hcs.KeyboardManager.js"></script>
+            <script type="text/javascript" src="js/hcs.MaterialFactory.js"></script>
+            <script type="text/javascript" src="js/hcs.Structure.js"></script>
+            <script type="text/javascript" src="js/hcs.Configuration.js"></script>
+            <script type="text/javascript" src="js/hcs.ComponentCollection.js"></script>
+            <script type="text/javascript" src="js/hcs.Core.js"></script>
+            <script type="text/javascript" src="js/hcs.Engine2D.js"></script>
+            <script type="text/javascript" src="js/hcs.Engine3D.js"></script>
+            <script type="text/javascript" src="js/hcs.Basics.js"></script>
+            <script type="text/javascript" src="js/Structure.js"></script>
+            <script type="text/javascript" src="js/BaseComponent2D.js"></script>
+            <script type="text/javascript" src="js/BaseComponent3D.js"></script>
+            <script type="text/javascript" src="js/BaseEditionComponent.js"></script>
+            <script type="text/javascript" src="js/MainMenuComponent.js"></script>
+            <script type="text/javascript" src="js/TopMenuComponent.js"></script>
+            <script type="text/javascript" src="js/BaseTopMenuComponent2D.js"></script>
+            <script type="text/javascript" src="js/SaveComponent.js"></script>
+            <script type="text/javascript" src="js/NewComponent.js"></script>
+            <script type="text/javascript" src="js/OptionsComponent.js"></script>
+            <script type="text/javascript" src="js/ExitComponent.js"></script>
+            <script type="text/javascript" src="js/ScreenShotMenuComponent.js"></script>
+            <script type="text/javascript" src="js/FullscreenComponent.js"></script>
+            <script type="text/javascript" src="js/TransparencyComponent.js"></script>
+            <script type="text/javascript" src="js/CameraComponent.js"></script>
+            <script type="text/javascript" src="js/GridStructure.js"></script>
+            <script type="text/javascript" src="js/GridComponent2D.js"></script>
+            <script type="text/javascript" src="js/GridBackgroundComponent2D.js"></script>
+            <script type="text/javascript" src="js/GridComponent3D.js"></script>
+            <script type="text/javascript" src="js/HistoryEditionComponent.js"></script>
+            <script type="text/javascript" src="js/HistoryComponent.js"></script>
+            <script type="text/javascript" src="js/PrintComponent2D.js"></script>
+            <script type="text/javascript" src="js/PrintComponent3D.js"></script>
+            <script type="text/javascript" src="js/PerformanceComponent3D.js"></script>
+            <script type="text/javascript" src="js/HardwareScalingComponent3D.js"></script>
+            <script type="text/javascript" src="js/RemoteControlComponent3D.js"></script>
+            <script type="text/javascript" src="js/MeasureStructure.js"></script>
+            <script type="text/javascript" src="js/MeasureComponent.js"></script>
+            <script type="text/javascript" src="js/DebugComponent2D.js"></script>
+            <script type="text/javascript" src="js/DebugState.js"></script>
+            <script type="text/javascript" src="js/DebugComponent3D.js"></script>
+            <script type="text/javascript" src="js/updateRenderer.js"></script>
+            <script type="text/javascript" src="js/DebugMark.js"></script>
+            <script type="text/javascript" src="js/AnalyticsComponent.js"></script>
+            <script type="text/javascript"  src="js/GroupConfiguratorModComponent3D.js"></script>
+            <script type="text/javascript"  src="js/GroupConfiguratorPanelComponent3D.js"></script>
+            <script type="text/javascript" src="js/ConfiguratorModComponent3D.js"></script>
+            <script type="text/javascript" src="js/ConfiguratorPanelComponent3D.js"></script>
+            <script type="text/javascript" src="js/ConfiguratorInOutAnimationComponent3D.js"></script>
+            <script type="text/javascript" src="js/ConfiguratorXrayComponent3D.js"></script>
+            <script type="text/javascript" src="js/MasterReshaperComponent3D.js"></script>
+            <script type="text/javascript" src="js/DimensionReshaperComponent3D.js"></script>
+            <script type="text/javascript" src="js/HandlesDisplayerForDimensionReshaperFactoryComponent3D.js"></script>
+            <script type="text/javascript" src="js/BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D.js"></script>
+            <script type="text/javascript" src="js/MesureDisplayerForDimensionReshaperFactoryComponent3D.js"></script>
+            <script type="text/javascript" src="js/MagnetismComponent2D.js"></script>
+            <script type="text/javascript" src="js/MagnetismComponent3D.js"></script>
+            <script type="text/javascript" src="js/AvatarComponent3D.js"></script>
+            <script type="text/javascript" src="js/FloorStructure.js"></script>
+            <script type="text/javascript" src="js/FloorComponent3D.js"></script>
+            <script type="text/javascript" src="js/FloorController.js"></script>
+            <script type="text/javascript" src="js/PointStructure.js"></script>
+            <script type="text/javascript" src="js/PointComponent2D.js"></script>
+            <script type="text/javascript" src="js/Graph.js"></script>
+            <script type="text/javascript" src="js/WallStructure.js"></script>
+            <script type="text/javascript" src="js/WallPane3D.js"></script>
+            <script type="text/javascript" src="js/PolygonWall.js"></script>
+            <script type="text/javascript" src="js/CurvedWall.js"></script>
+            <script type="text/javascript" src="js/WallComponent2D.js"></script>
+            <script type="text/javascript" src="js/WallComponent3D.js"></script>
+            <script type="text/javascript" src="js/RoomStructure.js"></script>
+            <script type="text/javascript" src="js/RoomHierarchy.js"></script>
+            <script type="text/javascript" src="js/RoomComponent2D.js"></script>
+            <script type="text/javascript" src="js/RoomComponent3D.js"></script>
+            <script type="text/javascript" src="js/OvertureStructure.js"></script>
+            <script type="text/javascript" src="js/OvertureComponent2D.js"></script>
+            <script type="text/javascript" src="js/OvertureComponent3D.js"></script>
+            <script type="text/javascript" src="js/SubSlopeStructure.js"></script>
+            <script type="text/javascript" src="js/SubSlopeOvertureStructure.js"></script>
+            <script type="text/javascript" src="js/SubSlopeComponent2D.js"></script>
+            <script type="text/javascript" src="js/SubSlopeOvertureComponent2D.js"></script>
+            <script type="text/javascript" src="js/SubSlopeComponent3D.js"></script>
+            <script type="text/javascript" src="js/StairwayStructure.js"></script>
+            <script type="text/javascript" src="js/SpiralStairwayStructure.js"></script>
+            <script type="text/javascript" src="js/StairwayComponent2D.js"></script>
+            <script type="text/javascript" src="js/StairwayComponent3D.js"></script>
+            <script type="text/javascript" src="js/HopperStructure.js"></script>
+            <script type="text/javascript" src="js/HopperComponent2D.js"></script>
+            <script type="text/javascript" src="js/HopperComponent3D.js"></script>
+            <script type="text/javascript" src="js/GeneralOptionComponent2D.js"></script>
+            <script type="text/javascript" src="js/ObjectStructure.js"></script>
+            <script type="text/javascript" src="js/hcs.Programmable.js"></script>
+            <script type="text/javascript" src="js/DecorationComponent3D.js"></script>
+            <script type="text/javascript" src="js/LuxensComponent3D.js"></script>
+            <script type="text/javascript" src="js/OutsideComponent3D.js"></script>
+            <script type="text/javascript" src="js/ObjectComponent3D.js"></script>
+            <script type="text/javascript" src="js/EditionComponent3D.js"></script>
+            <script type="text/javascript" src="js/MobileComponent.js"></script>
+            <script type="text/javascript" src="js/MobileInputComponent.js"></script>
+            <script type="text/javascript" src="js/PedagoComponent.js"></script>
+            <script type="text/javascript" src="js/LockComponent.js"></script>
+            <script type="text/javascript" src="js/EditMeasureComponent.js"></script>
+            <script type="text/javascript" src="js/HideAvatarComponent.js"></script>
+            <script type="text/javascript" src="js/hcs.LoopTimer.js"></script>
+            <script type="text/javascript" src="js/hcs.init.js"></script>
+        </section>
+    </body>
+</html>

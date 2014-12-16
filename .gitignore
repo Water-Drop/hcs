@@ -13,3 +13,7 @@ HCS/hcs.sln
 HCS/hcs.v12.suo
 HCS/obj/Debug/hcs.njsproj.FileListAbsolute.txt
 HCS/obj/Debug/hcs.njsprojResolveAssemblyReference.cache
+HCS/.ntvs_analysis.dat.tmp
+.gitattributes
+hcs.sln
+hcs.v12.suo
