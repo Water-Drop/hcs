@@ -6,6 +6,8 @@
 	"description": "Housing customization system",
 	"repository": "https://github.com/Water-Drop/hcs",
 	"dependencies": {
-		"mime": "~1.2.7"
+		"express.io": "*",
+		"ejs": "~0.8.5",
+		"stylus": "*"
 	}
 }

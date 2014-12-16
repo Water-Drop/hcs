@@ -1,0 +1,2 @@
+D:\nodejs\hcs\HCS\obj\Release\hcs.njsprojResolveAssemblyReference.cache
+D:\nodejs\hcs\HCS\bin\Microsoft.NodejsTools.WebRole.dll
