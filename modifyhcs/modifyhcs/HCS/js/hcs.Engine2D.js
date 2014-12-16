@@ -1,4 +1,4 @@
-﻿var hcs = window.hcs || {};
+var hcs = window.hcs || {};
 hcs.Engine2D = function() {
     var t = function(t, e, n) {
         this.MODE_NORMAL = 1, this.MODE_DRAG = 2, this.MODE_DRAW = 4, this.MODE_CONTEXTMENU = 8, this.MODE_SUBSLOPE = 16, this._container = t, this.isViewer = "undefined" != typeof n ? n : !1, this.getContainer = function() {
@@ -83,7 +83,7 @@ hcs.Engine2D = function() {
         }.bind(this), !1), this.setTranslation(new BABYLON.Vector2((this._core.getWidth() - 260) / 2, this._core.getHeight() / 2)), this.resize(), this.initializeComponents(), this._initialized = !0, document.addEventListener("hcs.engine2D.requestCompute", function() {
             this.requestCompute()
         }.bind(this), !1), window.setTimeout(function() {
-            this._core.helpBubbleManager.display("hcs.2d.wall-basics")
+            /*this._core.helpBubbleManager.display("hcs.2d.wall-basics")*/
         }.bind(this), 2e3)
     }, t.prototype.bestZoom = function(t, e) {
         var n = this.getBestZoomAttributes(t, e);
@@ -263,7 +263,7 @@ hcs.Engine2D = function() {
                 default:
                     this._callMouseEventCb(r, a, s, o, e)
             }
-            (e & (this.MODE_NORMAL | this.MODE_CONTEXTMENU)) > 0 && this.setEnableAutoScroll(!1), c && (e & this.MODE_CONTEXTMENU) > 0 && ("click" == r || "double-click" == r ? (i = n, this.setMode(i)) : "drag-start" == r && (i = n, this.setMode(i), t.evName = "drag-start", t.target = this.getTarget(o), this._stateMachine(t))), a != l && 0 == (e & this.MODE_CONTEXTMENU) ? (null != l && this._callMouseEventCb("leave", l, s, o, e), null != a && this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (e & this.MODE_CONTEXTMENU) ? null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (i & this.MODE_CONTEXTMENU) && null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)), e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_SUBSLOPE) > 1 ? this._core.helpBubbleManager.display("hcs.2d.subslope") : e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_DRAW) > 1 || e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && 0 == (i & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && this._core.helpBubbleManager.helpBubble.hide()
+            (e & (this.MODE_NORMAL | this.MODE_CONTEXTMENU)) > 0 && this.setEnableAutoScroll(!1), c && (e & this.MODE_CONTEXTMENU) > 0 && ("click" == r || "double-click" == r ? (i = n, this.setMode(i)) : "drag-start" == r && (i = n, this.setMode(i), t.evName = "drag-start", t.target = this.getTarget(o), this._stateMachine(t))), a != l && 0 == (e & this.MODE_CONTEXTMENU) ? (null != l && this._callMouseEventCb("leave", l, s, o, e), null != a && this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (e & this.MODE_CONTEXTMENU) ? null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (i & this.MODE_CONTEXTMENU) && null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)), e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_SUBSLOPE) > 1 &&/*? *this._core.helpBubbleManager.display("hcs.2d.subslope") :*/ e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_DRAW) > 1 || e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && 0 == (i & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) /*&& this._core.helpBubbleManager.helpBubble.hide()*/
     }, t.prototype._callMouseEventCb = function(t, e, n, i, o) {
         if (void 0 != t) {
             var e = e;

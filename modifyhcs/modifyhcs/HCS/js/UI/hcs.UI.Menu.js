@@ -35,7 +35,7 @@ hcs.UI = hcs.UI || {}, hcs.UI.Menu = function() {
             if (n.colorable) {
                 var h = document.createElement("div");
                 h.setAttribute("class", "colorChooser");
-                var c = t(n.params.addColor && n.params.addColor.color ? n.params.addColor.color : {r: 137 / 255,g: 184 / 255,b: 8 / 255});
+                var c = t(n.params.addColor && n.params.addColor.color ? n.params.addColor.color : {r: 137 / 255,g: 115 / 255,b: 100 / 255});
                 h.setAttribute("style", c), r.appendChild(h), r.classList.add("colorable"), h.item = n, h.addEventListener("click", this.onColorChooserClick.bind(this), !1)
             }
         } else if (n.icon) {

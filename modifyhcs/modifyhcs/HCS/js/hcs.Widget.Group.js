@@ -12,7 +12,7 @@ hcs.Widget = hcs.Widget || {}, hcs.Widget.Group = function() {
         return i.setAttribute("id", "edition-group-img"), i.setAttribute("class", this.imageUngroup), n.appendChild(i), e.appendChild(n), t.appendChild(e), e
     }, i.prototype.updatePanelColor = function(e) {
         var n = document.getElementById("edition-panel");
-        t.isGroup(e) ? (n.style.backgroundColor = "#d08c00", n.style.borderColor = "#af6b00") : (n.style.backgroundColor = "#89B808", n.style.borderColor = "#769b10")
+        t.isGroup(e) ? (n.style.backgroundColor = "#a99384", n.style.borderColor = "#a99384") : (n.style.backgroundColor = "#897364", n.style.borderColor = "#897364")
     }, i.prototype.updateGroupImg = function() {
         this.img = t.isVirtualGroup(e.selectedObject) ? this.imageUngroup : this.imageGroup, document.getElementById("edition-group-img").setAttribute("class", this.img)
     }, i.prototype.show = function() {

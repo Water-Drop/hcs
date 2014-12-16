@@ -982,9 +982,9 @@ canvas.eraser {
 #edition-panel {
     list-style-type: none;
     padding: 10px 0;
-    margin: 0;
+    margin: 15px 0;
     width: 57px;
-    border-radius: 46px 0 0 46px;
+    border-radius: 5px 0 0 5px;
     border: 1px solid;
     opacity: .5;
     transition: all .2s;

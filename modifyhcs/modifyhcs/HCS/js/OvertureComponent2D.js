@@ -157,7 +157,7 @@
         var o = this.structure.getCurrentStructure();
         return e instanceof WallStructure && i.setParentWall(e), o.insertElement("overtures", i), this.onDraggingMove(t, e, n, i), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onAddOvertureEnd = function(t, e, n, i) {
-        return "deselect" != t.from && ujs.notify("hcs.menu.main.deselect"), "touchUp" == t.type && this.onAddOvertureUpdate(t, e, n, i), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), hcsdesign.helpBubbleManager.display("hcs.2d.properties"), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), !1
+        return "deselect" != t.from && ujs.notify("hcs.menu.main.deselect"), "touchUp" == t.type && this.onAddOvertureUpdate(t, e, n, i), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), /*hcsdesign.helpBubbleManager.display("hcs.2d.properties"), */hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onAddOvertureLeaveZone = function(t, e) {
         this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.wall.hover"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.click"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.move"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.drag-start"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.leave-draw-zone");
         var n = this.core.getSelectedStructure();
@@ -284,7 +284,7 @@
         var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, t.prototype.onDoubleClick = function(t, e) {
-        return hcsdesign.helpBubbleManager.display("hcs.2d.dup-overture"), this.onAddOverture({
+        return /*hcsdesign.helpBubbleManager.display("hcs.2d.dup-overture"),*/ this.onAddOverture({
             overtureType: e.type,
             elevation: e.elevation,
             width: e.width,
