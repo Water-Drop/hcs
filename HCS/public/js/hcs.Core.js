@@ -218,7 +218,7 @@ hcs.Core = function () {
             currentStructure = n.structure.serialize(),
             //本地存储结构 
             localStructure = hcsLocalStorage.getItem(n.LOCAL_STORAGE_STRUCTURE_KEY);
-		return localStructure !== currentStructure || e ? (n.removeLocalStructure(false), hcsLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && hcs.UI.MessageBox.show({ title: _("保存设计"), message: _("你的设计已经保存成功."), buttonAText: _("关闭"), button: true }), currentStructure) : null
+		return localStructure !== currentStructure || e ? (hcsLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && hcs.UI.MessageBox.show({ title: _("保存设计"), message: _("你的设计已经保存成功."), buttonAText: _("关闭"), button: true }), currentStructure) : null
 	}, C.prototype.loadLocalStructure = function (t) {
 		var t = "undefined" != typeof t ? t : false, e = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY), n = this;
 		if (null != e) {
