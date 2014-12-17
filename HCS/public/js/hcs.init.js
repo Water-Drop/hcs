@@ -18,6 +18,11 @@ var wnpLocalStorage = {
     }
 }
 
+socket.on('reconnect', function () {
+    socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (data) { 
+        wnpLocalStorage.items = data;
+    });
+});
 socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (data) {
     
     wnpLocalStorage.items = data;

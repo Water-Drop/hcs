@@ -15854,7 +15854,7 @@ wnp.Core = function () {
             currentStructure = n.structure.serialize(),
             //���ش洢�ṹ 
             localStructure = wnpLocalStorage.getItem(n.LOCAL_STORAGE_STRUCTURE_KEY);
-		return localStructure !== currentStructure || e ? (n.removeLocalStructure(false), wnpLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && wnp.UI.MessageBox.show({ title: _("��������"), message: _("���������Ѿ������ɹ�."), buttonAText: _("�ر�"), button: true }), currentStructure) : null
+		return localStructure !== currentStructure || e ? (wnpLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && wnp.UI.MessageBox.show({ title: _("��������"), message: _("���������Ѿ������ɹ�."), buttonAText: _("�ر�"), button: true }), currentStructure) : null
 	}, C.prototype.loadLocalStructure = function (t) {
 		var t = "undefined" != typeof t ? t : false, e = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY), n = this;
 		if (null != e) {
@@ -30589,6 +30589,11 @@ var wnpLocalStorage = {
     }
 }
 
+socket.on('reconnect', function () {
+    socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (data) { 
+        wnpLocalStorage.items = data;
+    });
+});
 socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (data) {
     
     wnpLocalStorage.items = data;
