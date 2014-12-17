@@ -1,27 +1,28 @@
 ﻿
-var wanaplan = null,
-    wnpLocalStorage;
-try {
-    wnpLocalStorage = localStorage
-} catch (e) {
-    wnpLocalStorage = {
-        fallback: !0,
-        item: {},
-        setItem: function(t, e) {
-            this.item[t] = e
-        },
-        getItem: function(t) {
-            return this.item[t] || null
-        },
-        removeItem: function(t) {
-            delete this.item[t]
-        }
+var socket = io.connect();
+var wanaplan = null;
+
+var wnpLocalStorage = {
+    fallback: true,
+    items : {},
+    setItem: function(key, val) {
+        socket.emit('set', { key: key, val: val });
+        this.items[key] = val;
+    },
+    getItem: function(key) {
+        return this.items[key] || null;
+    },
+    removeItem: function(key) {
+        socket.emit('del', { key: key });
+        delete this.items[key];
     }
 }
-!function () {
-    BABYLON.Engine.ShadersRepository = "js/Vendors/Babylon/Shaders/"
-    //,  window.location.href.split("#").length < 2 && (window.location.href = "http://www.wanaplan.com")
-    ;
+
+socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (data) {
+    
+    wnpLocalStorage.items = data;
+
+    BABYLON.Engine.ShadersRepository = "js/Vendors/Babylon/Shaders/";
     function t(t, e) {
         var e = e || 1;
         switch ("fr" == t.toLowerCase() && (l.Constants.LANG = "fr"), t.toLowerCase()) {
@@ -152,17 +153,17 @@ try {
         var d = u.split("-");
         u = d instanceof Array ? d[0] : d
     }
-    t(u, h), window.onload = function() {
-        var t = new PedagoComponent;
-        if (t.checkBrowserCapability()) { // 检查浏览器兼容性
+    t(u, h);
+        var com = new PedagoComponent;
+        if (com.checkBrowserCapability()) { // 检查浏览器兼容性
             if (!GlobalHelper.isMobileDevice() && "Windows" == BrowserDetect.OS)
             // 设置延迟加载函数
                 var n = setTimeout(function() {
                 // 由 setTimeout() 返回的 ID 值-n。该值标识要取消的延迟执行代码块。
                 // 当wanaplan.isFullyInitialized为true时，跳转至http://v2.wanaplan.fr/b3JpZ2luPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tJmFwaUtleT1jZjk4NjZiNjQwZjZjNmMyNzEyMmM5Y2NjYThkOWRkNyZzYXZlVXJsPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tL2FwaS9wbGFuL3NhdmUvJm5ld1VybD1odHRwOi8vd3d3LndhbmFwbGFuLmNvbS9hcGkvcGxhbi9uZXcvJmF1dG9SZXNpemU9dHJ1ZSZwYXJhbXM9W29iamVjdCBPYmplY3RdJndpZHRoPTEyNzcmaGVpZ2h0PTM4MSZpZD0xJnBhcmFtcz17fQ==/js/Components/PedagoComponent/pedago/pages/grapics.php
-                clearTimeout(n), wanaplan.isFullyInitialized || t.redirectToPage("graphics")
+                clearTimeout(n), wanaplan.isFullyInitialized || com.redirectToPage("graphics")
             }, 15e3);
-            e(), wanaplan.engine2D.addInstancedComponent(t), s()
+            e(), wanaplan.engine2D.addInstancedComponent(com), s()
         }
-    }
-}();
+    
+});

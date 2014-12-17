@@ -35,3 +35,17 @@ app.get('/design', routes.design);
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+var planServer = require('./lib/plan_server');
+planServer.start(app);
+
+//截获contro-c命令
+process.on('SIGINT', function () {
+    process.exit();
+});
+//进程退出时触发
+process.on('exit', function () {
+    //保存数据到文件
+    planServer.saveToDisk();
+});
+
