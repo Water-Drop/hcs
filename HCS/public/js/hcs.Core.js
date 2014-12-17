@@ -1,26 +1,26 @@
-var wnp = window.wnp || {};
-wnp.Core = function () {
+var hcs = window.hcs || {};
+hcs.Core = function () {
 	function t() {
 		var t = n.mode == n.MODE_EDITOR ? r : 0;
 		n.setSize(window.innerWidth - t, window.innerHeight)
 	}
 	function e(t, e) {
-		return t.uuid || (t.uuid = wnp.uuid.uuid4()), t.lastModified || "wnpLocalStorage" == e ? t.lastModified || (t.lastModified = 0) : t.lastModified = (new Date).getTime(), t
+		return t.uuid || (t.uuid = hcs.uuid.uuid4()), t.lastModified || "hcsLocalStorage" == e ? t.lastModified || (t.lastModified = 0) : t.lastModified = (new Date).getTime(), t
 	}
-	var n = null, i = 640, o = 480, r = 260, s = 260, a = 1, l = null, h = null, c = {}, u = wnp.Constants.MODE_STANDALONE, p = null, d = null, m = null, g = null, f = false, y = null, v = false, b = null, w = "2D", x = null, C = function (e, _, v) {
-			if (this.version = e, this.isFullyInitialized = false, window.wanaplan = this, this.ENGINE_2D = 1, this.ENGINE_3D = 2, this.MODE_EDITOR = 1, this.MODE_VIEWER = 2, this.LOCAL_STORAGE_STRUCTURE_KEY = "wanadev.planner.structure", this.i18n = _, wnp.UI.LanguageSelector.setLocal(_.getLocale().split("_")[0]), l = document.getElementById("container2d"), h = document.getElementById("container3d"), a = this.ENGINE_2D, c = {
+	var n = null, i = 640, o = 480, r = 260, s = 260, a = 1, l = null, h = null, c = {}, u = hcs.Constants.MODE_STANDALONE, p = null, d = null, m = null, g = null, f = false, y = null, v = false, b = null, w = "2D", x = null, C = function (e, _, v) {
+			if (this.version = e, this.isFullyInitialized = false, window.hcsdesign = this, this.ENGINE_2D = 1, this.ENGINE_3D = 2, this.MODE_EDITOR = 1, this.MODE_VIEWER = 2, this.LOCAL_STORAGE_STRUCTURE_KEY = "wanadev.planner.structure", this.i18n = _, hcs.UI.LanguageSelector.setLocal(_.getLocale().split("_")[0]), l = document.getElementById("container2d"), h = document.getElementById("container3d"), a = this.ENGINE_2D, c = {
 				structure: [], limit: 50, cursor: 0, getLatest: function () {
 					return this.structure[this.cursor]
 				}
 			}, v.css && HTMLHelper.addStylesheet(v.css), this.allow3D = "undefined" != typeof v.allow3D ? v.allow3D : true, this.api = v || {}, d = this.api.saveUrl || null, m = this.api.newUrl || null, g = this.api.planUrl || null, y = this.api.screenshotUrl || null, f = this.api.publisher || false, _origin = this.api.origin || false, this.mode = "true" === this.api.isViewer ? this.MODE_VIEWER : this.MODE_EDITOR, this.api.params = this.api.params ? JSON.parse(this.api.params) : {}, this.api.components && (this.api.components = JSON.parse(this.api.components)), this.api.id > 0) {
-				p = this.api.id, u = wnp.Constants.MODE_CUSTOMER, b = this.api.params, w = this.api.screenshotMode || "2D", x = this.api.title || null;
+				p = this.api.id, u = hcs.Constants.MODE_CUSTOMER, b = this.api.params, w = this.api.screenshotMode || "2D", x = this.api.title || null;
 				var C = b.env || "";
-				wnp.Constants.PRODUCTS_CATEGORY_FILE = [wnp.Constants.WNP_URL, "data/", p, "/categories" + C + ".json"].join(""), 
-			wnp.Constants.TEXTURES_FILE = [wnp.Constants.WNP_URL, "data/", p, "/textures" + C + ".json"].join(""), 
-			wnp.Constants.PRODUCTS_FILE = [wnp.Constants.WNP_URL, "data/", p, "/products" + C + ".json"].join(""), 
-			wnp.Constants.PRODUCTS_PREVIEWS = [wnp.Constants.WNP_URL, "data/previews/"].join("")
+				hcs.Constants.PRODUCTS_CATEGORY_FILE = [hcs.Constants.hcs_URL, "data/", p, "/categories" + C + ".json"].join(""), 
+			hcs.Constants.TEXTURES_FILE = [hcs.Constants.hcs_URL, "data/", p, "/textures" + C + ".json"].join(""), 
+			hcs.Constants.PRODUCTS_FILE = [hcs.Constants.hcs_URL, "data/", p, "/products" + C + ".json"].join(""), 
+			hcs.Constants.PRODUCTS_PREVIEWS = [hcs.Constants.hcs_URL, "data/previews/"].join("")
 			}
-			i = window.innerWidth, o = window.innerHeight, this.needPageRefresh = false, this.loopTimer = new wnp.LoopTimer, this.structure = new wnp.Structure(e), this.keyboardManager = new wnp.KeyboardManager, this.configuration = new wnp.Configuration, this.engine2D = new wnp.Engine2D(l, this), this.engine3D = null, this.engine3D = GlobalHelper.hasWebGL() ? new wnp.Engine3D(h) : new wnp.Dummy.Engine3D(h), this.aboutWindow = null;
+			i = window.innerWidth, o = window.innerHeight, this.needPageRefresh = false, this.loopTimer = new hcs.LoopTimer, this.structure = new hcs.Structure(e), this.keyboardManager = new hcs.KeyboardManager, this.configuration = new hcs.Configuration, this.engine2D = new hcs.Engine2D(l, this), this.engine3D = null, this.engine3D = GlobalHelper.hasWebGL() ? new hcs.Engine3D(h) : new hcs.Dummy.Engine3D(h), this.aboutWindow = null;
 			var M = this;
 			n = this, window.addEventListener("resize", t, false);
 			var D = false;
@@ -34,10 +34,10 @@ wnp.Core = function () {
 				var e = JSON.parse(t.data);
 				switch (e.action) {
 					case "close-frame":
-						wnp.UI.IFrame.close();
+						hcs.UI.IFrame.close();
 						break;
 					case "resize-frame":
-						wnp.UI.IFrame.resize(e.width, e.height);
+						hcs.UI.IFrame.resize(e.width, e.height);
 						break;
 					case "take-screenshot":
 						this.takeScreenshot({})
@@ -58,7 +58,7 @@ wnp.Core = function () {
 			this.engine2D.bestZoom()
 		}.bind(this), 50), this.engine2D.bestZoom(), window.setTimeout(function () {
 			this.hideSplashScreen()
-		}.bind(this), 7e3), this.keyboardManager.startEventsListening(), GlobalHelper.hasWebGL() || HTMLHelper.hide3DMenus(), ujs.notify("wnp.core.initialized")
+		}.bind(this), 7e3), this.keyboardManager.startEventsListening(), GlobalHelper.hasWebGL() || HTMLHelper.hide3DMenus(), ujs.notify("hcs.core.initialized")
 	}, C.prototype.initializeViewer = function (t) {
 		var t = t || function () {
 		}, e = this, n = document.getElementById("toggleEngine");
@@ -74,27 +74,27 @@ wnp.Core = function () {
 			}, display: function () {
 			}
 		}, this.engine2D.isViewer = true, this.engine3D.isViewer = true, this.engine2D.initialize(), this.engine3D.initialize(), g ? this._getStructureFromUrl(g, function (e) {
-			this._loadStructure(e), this.engine2D.bestZoom(), this.hideSplashScreen(), t.call(this), ujs.notify("wnp.structure.locale.loaded")
+			this._loadStructure(e), this.engine2D.bestZoom(), this.hideSplashScreen(), t.call(this), ujs.notify("hcs.structure.locale.loaded")
 		}.bind(this)) : this._localStructureExists() ? this._loadStructure(this._getLocaleStorageStructure(), function (e) {
-			t(e), ujs.notify("wnp.structure.locale.loaded")
+			t(e), ujs.notify("hcs.structure.locale.loaded")
 		}) : t(this)
 	}, C.prototype.initializeEditor = function () {
 		var t = this;
-		this.helpBubbleManager = new wnp.UI.HelpBubbleManager(!GlobalHelper.isMobileDevice()), document.addEventListener("wnp.request.takeScreenshot", this.takeScreenshot, false), document.addEventListener("wnp.request.saveStructrure", this.saveStructure.bind(this), false), document.addEventListener("wnp.request.loadStructure", this.loadStructure.bind(this), false), this.engine2D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine2D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false);
+		this.helpBubbleManager = new hcs.UI.HelpBubbleManager(!GlobalHelper.isMobileDevice()), document.addEventListener("hcs.request.takeScreenshot", this.takeScreenshot, false), document.addEventListener("hcs.request.saveStructrure", this.saveStructure.bind(this), false), document.addEventListener("hcs.request.loadStructure", this.loadStructure.bind(this), false), this.engine2D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine2D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false);
 		var e = window.PointerEvent ? "pointerup" : "mouseup";
-		if (e = window.MSPointerEvent ? "MSPointerUp" : e, this.engine2D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), document.addEventListener("wnp.request.saveHistory", this.saveHistory.bind(this), false), document.addEventListener("wnp.request.switchEngine", this.switchEngine.bind(this), false), document.addEventListener("wnp.request.changeEngine", function (e) {
-			ujs.notify("wnp.request.closePopup"), "undefined" != typeof e.engine && setTimeout(function () {
+		if (e = window.MSPointerEvent ? "MSPointerUp" : e, this.engine2D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), document.addEventListener("hcs.request.saveHistory", this.saveHistory.bind(this), false), document.addEventListener("hcs.request.switchEngine", this.switchEngine.bind(this), false), document.addEventListener("hcs.request.changeEngine", function (e) {
+			ujs.notify("hcs.request.closePopup"), "undefined" != typeof e.engine && setTimeout(function () {
 				t.setSelectedEngine(e.engine)
 			}, 10)
-		}, false), document.addEventListener("wnp.request.changeLang", function () {
-			ujs.notify("wnp.menu.top.deselect"), wnp.UI.LanguageSelector.show()
+		}, false), document.addEventListener("hcs.request.changeLang", function () {
+			ujs.notify("hcs.menu.top.deselect"), hcs.UI.LanguageSelector.show()
 		}, false), this._createDefaultStructure(), this.engine2D.initialize(), this.engine3D.initialize(), v = true, ":new" == g) {
 			var n = false;
 			if (this._localStructureExists()) {
-				var i = this._getLocaleStorageStructure(), o = wnpLocalStorage.getItem("wanadev.planner.stack");
+				var i = this._getLocaleStorageStructure(), o = hcsLocalStorage.getItem("wanadev.planner.stack");
 				o != i.uuid && confirm(_("An unsaved plan exists, would you like to load it ?")) && (this._loadStructure(i), n = true)
 			}
-			n === false && (this._clearLocaleStructure(), this._createDefaultStructure(), ujs.notify("wnp.core.structure.loaded")), this.engine2D.bestZoom(), this.hideSplashScreen()
+			n === false && (this._clearLocaleStructure(), this._createDefaultStructure(), ujs.notify("hcs.core.structure.loaded")), this.engine2D.bestZoom(), this.hideSplashScreen()
 		} else
 			g ? this._getStructureFromUrl(g, function (t) {
 				if (!t)
@@ -104,9 +104,9 @@ wnp.Core = function () {
 			}.bind(this)) : (this._localStructureExists() && this._loadStructure(this._getLocaleStorageStructure()), this.structure.setCurrentStructureIndex(0), this.engine2D.bestZoom(), this.hideSplashScreen());
 		window.addEventListener("focus", function () {
 			this.saveLocalStructure(false, true)
-		}.bind(this), false), this.aboutWindow = new wnp.UI.AboutWindow, this.setSize(window.innerWidth - 260, window.innerHeight)
+		}.bind(this), false), this.aboutWindow = new hcs.UI.AboutWindow, this.setSize(window.innerWidth - 260, window.innerHeight)
 	}, C.prototype.update = function () {
-		this.loopTimer.update(), this.keyboardManager.isPressed(82) && (this.keyboardManager.isPressed(17) || this.keyboardManager.isPressed(91) || this.keyboardManager.isPressed(224)) && (this.needPageRefresh || (this.needPageRefresh = true, location.href = location.href, this.needPageRefresh = false)), this.engine2D.isEnabled() && this.keyboardManager.isPressed(Keys.escape) && (this.engine2D.setMode(this.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), this.engine2D.requestStaticDraw(), this.keyboardManager.keys[Keys.escape] = false), this.engine2D.isEnabled() ? this.engine2D.update(this.loopTimer.getDeltaTime()) : this.engine3D.update(this.loopTimer.getDeltaTime())
+		this.loopTimer.update(), this.keyboardManager.isPressed(82) && (this.keyboardManager.isPressed(17) || this.keyboardManager.isPressed(91) || this.keyboardManager.isPressed(224)) && (this.needPageRefresh || (this.needPageRefresh = true, location.href = location.href, this.needPageRefresh = false)), this.engine2D.isEnabled() && this.keyboardManager.isPressed(Keys.escape) && (this.engine2D.setMode(this.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), this.engine2D.requestStaticDraw(), this.keyboardManager.keys[Keys.escape] = false), this.engine2D.isEnabled() ? this.engine2D.update(this.loopTimer.getDeltaTime()) : this.engine3D.update(this.loopTimer.getDeltaTime())
 	}, C.prototype.draw = function () {
 		this.engine2D.isEnabled() ? this.engine2D.draw(this.loopTimer.getDeltaTime()) : this.engine3D.draw(this.loopTimer.getDeltaTime())
 	}, C.prototype.compareVersion = function (t, e) {
@@ -135,7 +135,7 @@ wnp.Core = function () {
 			return void (e && e.parentNode.removeChild(e))
 		}
 		var n = t == this.ENGINE_3D || "3D" == t, i = this.engine2D.isEnabled() ? "2D" : "3D", o = n ? "3D" : "2D";
-		this.engine2D.setEnabled(!n), this.engine3D.setEnabled(n), a = "3D" == t || t == this.ENGINE_3D ? this.ENGINE_3D : this.ENGINE_2D, ujs.notify("wnp.contextChanged", { context: o, previousContext: i }), this.helpBubbleManager && this.helpBubbleManager.helpBubble && this.helpBubbleManager.helpBubble.hide()
+		this.engine2D.setEnabled(!n), this.engine3D.setEnabled(n), a = "3D" == t || t == this.ENGINE_3D ? this.ENGINE_3D : this.ENGINE_2D, ujs.notify("hcs.contextChanged", { context: o, previousContext: i }), this.helpBubbleManager && this.helpBubbleManager.helpBubble && this.helpBubbleManager.helpBubble.hide()
 	}, C.prototype.getSelectedStructure = function () {
 		return this.structure.getCurrentStructure()
 	}, C.prototype.getHistory = function () {
@@ -144,7 +144,7 @@ wnp.Core = function () {
 		var o, r = "undefined" != typeof t.selectedEngine ? t.selectedEngine : a, s = "undefined" != typeof t.sendBlob ? t.sendBlob : false, e = e || function () {
 			}, i = i || function () {
 			};
-		if (o = r == n.ENGINE_2D ? l.children[0] : h.children[0], u == wnp.Constants.MODE_STANDALONE || null === y) {
+		if (o = r == n.ENGINE_2D ? l.children[0] : h.children[0], u == hcs.Constants.MODE_STANDALONE || null === y) {
 			if (e(), s)
 				return o.toDataURL("image/png");
 			r === n.ENGINE_2D ? o.toBlob(function (t) {
@@ -165,17 +165,17 @@ wnp.Core = function () {
 					method: "POST", withCredentials: true, url: y, params: t.join(""), error: i, success: function (t) {
 						var o = JSON.parse(t), r = _("An error occured. Please try later.");
 						if ("ok" === o.status)
-							r = _("Your screenshot has been saved."), n.structure.planId = true, wnp.UI.MessageBox.show({ title: _("Screenshot"), message: r, buttonAText: _("Close"), buttonA: true, autoHide: true, force: true }), o.params && (b = o.params), wnp.UI.MessageBox.show(s), e();
+							r = _("Your screenshot has been saved."), n.structure.planId = true, hcs.UI.MessageBox.show({ title: _("Screenshot"), message: r, buttonAText: _("Close"), buttonA: true, autoHide: true, force: true }), o.params && (b = o.params), hcs.UI.MessageBox.show(s), e();
 						else {
 							if (o.connectionUrl)
 								n._loginIframe(o.connectionUrl, o.frameWidth || Math.round(window.innerWidth / 2), o.frameHeight || Math.round(window.innerHeight / 2));
 							else {
 								var s = {
 									title: _("Screenshot"), message: o.message || _("Error occured during save."), buttonA: true, buttonAText: _("Ok"), onClickA: function () {
-										wnp.UI.MessageBox.close()
+										hcs.UI.MessageBox.close()
 									}
 								};
-								wnp.UI.MessageBox.show(s)
+								hcs.UI.MessageBox.show(s)
 							}
 							i()
 						}
@@ -208,7 +208,7 @@ wnp.Core = function () {
 	}, C.prototype.updateDeserialisation = function (t) {
 		this.engine2D.requestStaticDraw(), this.unlock(t), this.getComponentByName("RoomComponent2D", this.ENGINE_2D).needsUpdate = true, this.engine2D.requestStaticDraw(), this.engine2D.requestCompute(), this.engine2D.update(), this.engine2D.draw()
 	}, C.prototype.checkLocalPlan = function () {
-		var t = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
+		var t = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
 		null != t && this.loadLocalStructure(false)
 	}, C.prototype.saveLocalStructure = function (t, e) {
 		if (this.mode == this.MODE_VIEWER)
@@ -217,25 +217,25 @@ wnp.Core = function () {
             //当前结构
             currentStructure = n.structure.serialize(),
             //本地存储结构 
-            localStructure = wnpLocalStorage.getItem(n.LOCAL_STORAGE_STRUCTURE_KEY);
-		return localStructure !== currentStructure || e ? (n.removeLocalStructure(false), wnpLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && wnp.UI.MessageBox.show({ title: _("保存设计"), message: _("你的设计已经保存成功."), buttonAText: _("关闭"), button: true }), currentStructure) : null
+            localStructure = hcsLocalStorage.getItem(n.LOCAL_STORAGE_STRUCTURE_KEY);
+		return localStructure !== currentStructure || e ? (n.removeLocalStructure(false), hcsLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && hcs.UI.MessageBox.show({ title: _("保存设计"), message: _("你的设计已经保存成功."), buttonAText: _("关闭"), button: true }), currentStructure) : null
 	}, C.prototype.loadLocalStructure = function (t) {
-		var t = "undefined" != typeof t ? t : false, e = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY), n = this;
+		var t = "undefined" != typeof t ? t : false, e = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY), n = this;
 		if (null != e) {
 			var i = n.lock();
-			return n.structure.deserialize(e) ? (n.structure.setCurrentStructureIndex(0), n.updateDeserialisation(i)) : (this.removeLocalStructure(false), t && wnp.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Unable to load your plan: its version is too old."), buttonAText: _("Close"), buttonA: true })), t && wnp.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Your plan has been loaded."), buttonAText: _("Close"), buttonA: true }), ujs.notify("wnp.structure.locale.loaded"), true
+			return n.structure.deserialize(e) ? (n.structure.setCurrentStructureIndex(0), n.updateDeserialisation(i)) : (this.removeLocalStructure(false), t && hcs.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Unable to load your plan: its version is too old."), buttonAText: _("Close"), buttonA: true })), t && hcs.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Your plan has been loaded."), buttonAText: _("Close"), buttonA: true }), ujs.notify("hcs.structure.locale.loaded"), true
 		}
-		return t && wnp.UI.MessageBox.show({ title: _("Load a Plan"), message: _("You have no saved plan."), buttonAText: _("Close"), buttonA: true }), false
+		return t && hcs.UI.MessageBox.show({ title: _("Load a Plan"), message: _("You have no saved plan."), buttonAText: _("Close"), buttonA: true }), false
 	}, C.prototype.removeLocalStructure = function (t) {
-		var t = "undefined" != typeof t ? t : false, e = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
-		return null != e ? (wnpLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), t && wnp.UI.MessageBox.show({ title: _("Remove a Plan"), message: _("Your plan has been removed."), buttonAText: _("Close"), button: true }), true) : false
+		var t = "undefined" != typeof t ? t : false, e = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
+		return null != e ? (hcsLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), t && hcs.UI.MessageBox.show({ title: _("Remove a Plan"), message: _("Your plan has been removed."), buttonAText: _("Close"), button: true }), true) : false
 	}, C.prototype.getPreviewImage = function (t, e) {
 		var i = null, o = null, r = n.engine2D.getZoom(), s = n.engine2D.getTranslation();
 		n.setSize(t, e), this.getSelectedEngine() == this.ENGINE_2D ? (n.engine2D.bestZoom(), n.engine2D.draw(), o = n.engine2D.canvas) : (o = n.getContainer3D().getElementsByTagName("canvas")[0], n.engine3D.draw()), i = o.toDataURL("image/png");
 		var a = n.mode == n.MODE_EDITOR ? 260 : 0;
 		return n.setSize(window.innerWidth - a, window.innerHeight), this.getSelectedEngine() == this.ENGINE_2D && (n.engine2D.setZoom(r), n.engine2D.setTranslation(s)), i
 	}, C.prototype.saveStackToLocal = function () {
-		wnpLocalStorage.setItem("wanadev.planner.stack", n.structure.uuid)
+		hcsLocalStorage.setItem("wanadev.planner.stack", n.structure.uuid)
 	}, C.prototype.saveStructure = function () {
 	}, C.prototype.loadStructure = function (t, e) {
 		var e = e || function () {
@@ -245,7 +245,7 @@ wnp.Core = function () {
 				n.structure.deserialize(t) && n.updateDeserialisation(i), n.saveLocalStructure(false), e(1)
 			}, o = function (t) {
 				ujs.ajax({
-					url: wnp.Constants.BACK_URL + wnp.Constants.MIGRATION_PATH + t, withCredentials: true, success: function (t) {
+					url: hcs.Constants.BACK_URL + hcs.Constants.MIGRATION_PATH + t, withCredentials: true, success: function (t) {
 						t ? i(t) : e(-1)
 					}
 				})
@@ -254,7 +254,7 @@ wnp.Core = function () {
 			url: g, withCredentials: true, success: function (t) {
 				if (t) {
 					var n = JSON.parse(t);
-					1 == wanaplan.compareVersion(wnp.Constants.VERSION, n.version) ? i(t) : (console.log("migration"), o(g))
+					1 == hcsdesign.compareVersion(hcs.Constants.VERSION, n.version) ? i(t) : (console.log("migration"), o(g))
 				} else
 					e(-1)
 			}
@@ -289,9 +289,9 @@ wnp.Core = function () {
 			document.getElementById("splashscreen").style.display = "none", n.isFullyInitialized = true
 		}, t)
 	}, C.prototype._localStructureExists = function () {
-		return void 0 != wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY) ? true : false
+		return void 0 != hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY) ? true : false
 	}, C.prototype._getLocaleStorageStructure = function () {
-		return this._localStructureExists() ? e(JSON.parse(wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY)), "wnpLocalStorage") : null
+		return this._localStructureExists() ? e(JSON.parse(hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY)), "hcsLocalStorage") : null
 	}, C.prototype.isPublisher = function () {
 		return f
 	}, C.prototype.getOrigin = function () {
@@ -300,11 +300,11 @@ wnp.Core = function () {
 		var i = function (i) {
 			if (i) {
 				var r = JSON.parse(i);
-				1 == wanaplan.compareVersion(wnp.Constants.VERSION, r.version) ? o(t, n) : n(e(r))
+				1 == hcsdesign.compareVersion(hcs.Constants.VERSION, r.version) ? o(t, n) : n(e(r))
 			} else
 				n(null)
 		}, o = function (t, e) {
-				var n = wnp.Constants.BACK_URL + wnp.Constants.MIGRATION_PATH + t;
+				var n = hcs.Constants.BACK_URL + hcs.Constants.MIGRATION_PATH + t;
 				ujs.ajax({
 					url: n, success: i, onerror: function () {
 						r(n, e)
@@ -323,13 +323,13 @@ wnp.Core = function () {
 		for (var e in t.members)
 			this.engine2D.coherenceControl(t.members[e])
 	}, C.prototype._loadStructure = function (t, e) {
-		this.structure.deserialize("string" == typeof t ? t : JSON.stringify(t)), ujs.notify("wnp.core.structure.loaded");
+		this.structure.deserialize("string" == typeof t ? t : JSON.stringify(t)), ujs.notify("hcs.core.structure.loaded");
 		var e = e || function () {
 		};
 		e.call(this), this.engine2D.requestCompute()
 	}, C.prototype._clearLocaleStructure = function () {
-		var t = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
-		null != t && wnpLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), this.structure.clear()
+		var t = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
+		null != t && hcsLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), this.structure.clear()
 	}, C.prototype._createDefaultStructure = function () {
 		this.addStrutureElement(new FloorStructure);
 		for (var t = this.structure.getCurrentStructure(), e = [new PolygonWall, new PolygonWall, new PolygonWall, new PolygonWall], n = [new BABYLON.Vector2(-515, 0), new BABYLON.Vector2(0, 415), new BABYLON.Vector2(515, 0), new BABYLON.Vector2(0, -415)], i = 0; i < e.length; i++) {
@@ -340,6 +340,6 @@ wnp.Core = function () {
 			e[i].translate(n[i]), t.insertElement("walls", e[i]), t.insertElement("points", e[i].getPoints(1))
 	}, C.prototype._loginIframe = function (t, e, n) {
 		var e = e || window.innerWidth / 2, n = n || window.innerHeight / 2;
-		wnp.UI.IFrame.show(document.body, { width: e, height: n, src: t }, { showClose: true })
+		hcs.UI.IFrame.show(document.body, { width: e, height: n, src: t }, { showClose: true })
 	}, C
 }();

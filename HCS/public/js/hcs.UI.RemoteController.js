@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.RemoteController = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.RemoteController = function() {
     var t, e = document.getElementById("modalWidgets"), n = function(n, i) {
         function o() {
             if (++l > t.repeat) {
@@ -63,7 +63,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.RemoteController = function() {
                                                                             t.onSliderMouseMove(e, t)
                                                                             }, !1), document.body.addEventListener("mouseup", function(e) {
                                                                                                                    t.onMouseUp(e, t)
-                                                                                                                   }, !1), document.addEventListener("wnp.keyboardManager.keyDown", t.onKeyDown, !0), this.sliderSelected = !1, this.updateSliderPos(), this.mouse = {y: 0,lastY: 0,getDelta: function() {
+                                                                                                                   }, !1), document.addEventListener("hcs.keyboardManager.keyDown", t.onKeyDown, !0), this.sliderSelected = !1, this.updateSliderPos(), this.mouse = {y: 0,lastY: 0,getDelta: function() {
             return this.y - this.lastY
         }}, o(), this.buttonState = null, this.running = !0, this.repeat = 3;
         var l = 0;

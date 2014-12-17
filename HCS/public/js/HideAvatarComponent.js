@@ -5,9 +5,9 @@ var HideAvatarComponent = function() {
     return t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         BaseComponent3D.prototype.initialize.call(this)
     }, t.prototype.startListening = function() {
-        this.onZoom = this.onZoom.bind(this), document.addEventListener("wnp.engine3D.camera.zoom", this.onZoom, !1)
+        this.onZoom = this.onZoom.bind(this), document.addEventListener("hcs.engine3D.camera.zoom", this.onZoom, !1)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3D.camera.zoom", this.onZoom, !1)
+        document.removeEventListener("hcs.engine3D.camera.zoom", this.onZoom, !1)
     }, t.prototype.onZoom = function() {
         var t = 500,
             e = API.getComponent("CameraComponent");

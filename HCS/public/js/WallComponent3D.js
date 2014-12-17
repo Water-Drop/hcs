@@ -1,6 +1,6 @@
 var WallComponent3D = function() {
     var t, e = function(e) {
-        BaseComponent3D.call(this, e, "WallComponent3D"), this.walls = [], this.initialized = !1, this.defaultWallTexture = null, this.priority = 10, t = this, this._defaultMaterial = new wnp.WhiteMaterial("defaultWall", wanaplan.engine3D.scene, {
+        BaseComponent3D.call(this, e, "WallComponent3D"), this.walls = [], this.initialized = !1, this.defaultWallTexture = null, this.priority = 10, t = this, this._defaultMaterial = new hcs.WhiteMaterial("defaultWall", hcsdesign.engine3D.scene, {
             factor: 1
         })
     };
@@ -9,19 +9,19 @@ var WallComponent3D = function() {
             i = e.structure || t.core.getSelectedStructure();
         t.walls.length = 0;
         var o = t.draw(i);
-        ujs.notify("wnp.engine3d.wallsReady", {
+        ujs.notify("hcs.engine3d.wallsReady", {
             floor: n,
             structure: i,
             walls: o
         })
     }, e.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.roomsReady", this.onRoomsReady, !1)
+        document.addEventListener("hcs.engine3d.roomsReady", this.onRoomsReady, !1)
     }, e.prototype.stopListening = function() {
-        document.addEventListener("wnp.engine3d.roomsReady", this.onRoomsReady, !1)
+        document.addEventListener("hcs.engine3d.roomsReady", this.onRoomsReady, !1)
     }, e.prototype.get3DWallFrom2D = function(t) {
-        return wanaplan.engine3D.scene.getMeshByName("WallMesh_" + t.id)
+        return hcsdesign.engine3D.scene.getMeshByName("WallMesh_" + t.id)
     }, e.prototype.replaceWall = function(t, e) {
-        -1 != wanaplan.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, t.dispose())
+        -1 != hcsdesign.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, t.dispose())
     };
     var n = function(t, e) {
         for (var n, i, o, r = 0, s = this.subMeshes.length; s > r; r++)
@@ -29,20 +29,20 @@ var WallComponent3D = function() {
         return o
     };
     return e.prototype.draw = function(t) {
-        t = t || wanaplan.getSelectedStructure();
-        var e = wanaplan.getComponentByName("RoomComponent2D").getInternalRooms(),
-            i = wanaplan.getComponentByName("RoomComponent2D").getExternalRooms(),
-            o = wanaplan.getComponentByName("MeasureComponent"),
+        t = t || hcsdesign.getSelectedStructure();
+        var e = hcsdesign.getComponentByName("RoomComponent2D").getInternalRooms(),
+            i = hcsdesign.getComponentByName("RoomComponent2D").getExternalRooms(),
+            o = hcsdesign.getComponentByName("MeasureComponent"),
             r = o.getInternalMeasures(),
             s = (o.getExternalMeasures(), t.getElements("walls")),
-            a = wanaplan.getComponentByName("FloorComponent3D").getFloor(t),
-            l = new BABYLON.Mesh("WallMesh_" + t.id, wanaplan.engine3D.scene),
+            a = hcsdesign.getComponentByName("FloorComponent3D").getFloor(t),
+            l = new BABYLON.Mesh("WallMesh_" + t.id, hcsdesign.engine3D.scene),
             h = [],
             c = [],
             u = [],
             p = [],
             d = {};
-        l.objectInstances = [], l.material = new BABYLON.MultiMaterial("wall_material", wanaplan.engine3D.scene), l.material.subMaterials.push(new wnp.WhiteMaterial("white", wanaplan.engine3D.scene), new wnp.WhiteMaterial("white", wanaplan.engine3D.scene));
+        l.objectInstances = [], l.material = new BABYLON.MultiMaterial("wall_material", hcsdesign.engine3D.scene), l.material.subMaterials.push(new hcs.WhiteMaterial("white", hcsdesign.engine3D.scene), new hcs.WhiteMaterial("white", hcsdesign.engine3D.scene));
         var m, g, f, y, _, v, b, w, x, C = {},
             M = 0,
             D = 0,
@@ -71,7 +71,7 @@ var WallComponent3D = function() {
                     }, B++, D += 4, M += 2, "undefined" == typeof d[m.id] && (d[m.id] = []), d[m.id].push([t[i].points[0], t[i].points[1]])
                 }
             }.bind(this),
-            P = wanaplan.structure.version;
+            P = hcsdesign.structure.version;
         "1.2.0.1" == P && this.migrateMaterials(t.walls, r);
         for (var I = 0, N = e.length; N > I; I++)
             e[I].dispatchMaterials(), currentPanes = e[I].panes, O(currentPanes);
@@ -86,14 +86,14 @@ var WallComponent3D = function() {
             R[I].parent.type != R[I].parent.TYPE_SEPARATOR && (L(R[I].points[0].position, R[I].points[1].position, R[I].parent.height, 0, k, 0), C[0].indexCount += 6, D += 4, M += 2)
         }
         for (var V, F, Y, z, j = [], I = 0, N = s.length; N > I; I++)
-            s[I].type !== s[I].TYPE_SEPARATOR && (V = s[I].getPolygon(), V && (F = BABYLON.Mesh.TriangulateNewMesh("wallTop", V, null, wanaplan.engine3D.scene), F && (Y = F.duplicate(), Y.invertFaces(), F.position.y = s[I].height, j.push(F), j.push(Y))));
-        z = BABYLON.Mesh.mergeMeshes("wallTop", j, wanaplan.engine3D.scene), BABYLON.Mesh.ComputeFlatNormal(h, c, p), l.setVerticesData(BABYLON.VertexBuffer.PositionKind, h), l.setVerticesData(BABYLON.VertexBuffer.NormalKind, c), l.setVerticesData(BABYLON.VertexBuffer.UVKind, u), l.setIndices(p), l.subMeshes = [];
+            s[I].type !== s[I].TYPE_SEPARATOR && (V = s[I].getPolygon(), V && (F = BABYLON.Mesh.TriangulateNewMesh("wallTop", V, null, hcsdesign.engine3D.scene), F && (Y = F.duplicate(), Y.invertFaces(), F.position.y = s[I].height, j.push(F), j.push(Y))));
+        z = BABYLON.Mesh.mergeMeshes("wallTop", j, hcsdesign.engine3D.scene), BABYLON.Mesh.ComputeFlatNormal(h, c, p), l.setVerticesData(BABYLON.VertexBuffer.PositionKind, h), l.setVerticesData(BABYLON.VertexBuffer.NormalKind, c), l.setVerticesData(BABYLON.VertexBuffer.UVKind, u), l.setIndices(p), l.subMeshes = [];
         for (var I in C) {
             var W = BABYLON.SubMesh.CreateFromIndices(+I, C[I].indexStart, C[I].indexCount, l);
             W.boundingBox = C[I].boundingBox, W.objectInstance = C[I].objectInstance
         }
-        var G = BABYLON.Mesh.mergeMeshes("WallMesh_" + t.id, [z, l], wanaplan.engine3D.scene, !0);
-        return G.material = l.material, G.isDecorable = !0, wanaplan.engine3D.castShadows(G), G.receiveShadows = !0, G.parent = a, G.decorate = n, this._mesh = G, G
+        var G = BABYLON.Mesh.mergeMeshes("WallMesh_" + t.id, [z, l], hcsdesign.engine3D.scene, !0);
+        return G.material = l.material, G.isDecorable = !0, hcsdesign.engine3D.castShadows(G), G.receiveShadows = !0, G.parent = a, G.decorate = n, this._mesh = G, G
     }, e.prototype.migrateMaterials = function(t, e) {
         for (var n, i, o, r, s = 0, a = t.length; a > s; s++)
             if (t[s].materials) {
@@ -103,14 +103,14 @@ var WallComponent3D = function() {
                         for (var h = null, c = 0, u = e.length; u > c; c++)
                             for (var p = 0, d = e[c].length; d > p; p++)
                                 o = e[c][p].center().distanceTo(n), e[c][p].center().distanceTo(n) < r && e[c][p].offsetVector.dot(i) > 0 && void 0 !== t[s].materials[l].params.baseColor && (r = o, h = e[c][p]);
-                        h ? (h.addMaterial(t[s].materials[l]), Logger.message("Material " + l + " : succ¨¨s.")) : Logger.message("Echec non critique pour le material " + l + " : mat¨¦riau par d¨¦faut.")
+                        h ? (h.addMaterial(t[s].materials[l]), Logger.message("Material " + l + " : succï¿½ï¿½s.")) : Logger.message("Echec non critique pour le material " + l + " : matï¿½ï¿½riau par dï¿½ï¿½faut.")
                     }
             }
-        Logger.message("Conversion termin¨¦e");
-        var m = wanaplan.structure.version.split(".");
-        m[1] = +m[1] + 1, wanaplan.structure.version = m.join(".")
+        Logger.message("Conversion terminï¿½ï¿½e");
+        var m = hcsdesign.structure.version.split(".");
+        m[1] = +m[1] + 1, hcsdesign.structure.version = m.join(".")
     }, e.prototype.switchTransparentStatusByStructure = function(t) {
-        var e = (wanaplan.getComponentByName("FloorComponent3D").getFloor(t), this.get3DWallFrom2D(t));
+        var e = (hcsdesign.getComponentByName("FloorComponent3D").getFloor(t), this.get3DWallFrom2D(t));
         if (e)
             for (var n, i, o = 0, r = e.subMeshes.length; r > o; o++)
                 n = e.subMeshes[o], i = n.getMaterial(), void 0 !== i.alternativeMaterialIndex && switchMaterialIndex(i)
@@ -123,7 +123,7 @@ var WallComponent3D = function() {
                     var c;
                     h.objectInstance.materialInfo ? c = h.objectInstance.materialInfo.material : "OvertureStructure" == h.objectInstance.name || "SubSlopeOvertureStructure" == h.objectInstance.name ? c = h.objectInstance.material : "SubSlopeStructure" == h.objectInstance.name && (c = o ? h.objectInstance.materials.bottom : h.objectInstance.materials.top, o = !o), h.materialIndex = s, i[s] = c, h.boundingBox && (n[s] = h.boundingBox), s++
                 } else
-                    0 == a || 1 == a ? (i[s] = new wnp.WhiteMaterial("white", wanaplan.engine3D.scene, {
+                    0 == a || 1 == a ? (i[s] = new hcs.WhiteMaterial("white", hcsdesign.engine3D.scene, {
                         factor: 0
                     }), h.materialIndex = 0, s++) : r.push(a)
             }

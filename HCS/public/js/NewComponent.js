@@ -3,16 +3,16 @@ var NewComponent = function() {
         BaseTopMenuComponent2D.call(this, e, "NewComponent"), this._item = {
             title: _("New"),
             icon: "fa fa-file",
-            action: "wnp.request.newPlan",
+            action: "hcs.request.newPlan",
             id: "toolbarNew",
             items: [],
             index: "0"
-        }, t = this, document.addEventListener("wnp.request.newPlan", function() {
+        }, t = this, document.addEventListener("hcs.request.newPlan", function() {
             t.launchProcess(), t.core.engine2D.bestZoom()
         }, !1)
     };
     return e.prototype = Object.create(BaseTopMenuComponent2D.prototype), e.prototype.createNewPlan = function() {
-        ujs.notify("wnp.request.closePopup"), t.core.structure.clear(), t.core._createDefaultStructure(), t.core.engine2D.reinitialize(), t.core.setSelectedEngine(t.core.ENGINE_2D), t.core.saveLocalStructure(!1), t.core.structure.planId = -1, t.core.structure.name = "planStructure", ujs.triggerEvent(document.getElementById("draw2D"), "click"), ujs.notify("wnp.request.newPlanReady"), t.core.engine2D.bestZoom()
+        ujs.notify("hcs.request.closePopup"), t.core.structure.clear(), t.core._createDefaultStructure(), t.core.engine2D.reinitialize(), t.core.setSelectedEngine(t.core.ENGINE_2D), t.core.saveLocalStructure(!1), t.core.structure.planId = -1, t.core.structure.name = "planStructure", ujs.triggerEvent(document.getElementById("draw2D"), "click"), ujs.notify("hcs.request.newPlanReady"), t.core.engine2D.bestZoom()
     }, e.prototype.launchProcess = function() {
         if (!t.core.api.newUrl || !t.core.api.saveUrl)
             return void t.createNewPlan();
@@ -39,20 +39,20 @@ var NewComponent = function() {
                                 buttonA: !0,
                                 buttonAText: _("Ok"),
                                 onClickA: function() {
-                                    wnp.UI.MessageBox.close()
+                                    hcs.UI.MessageBox.close()
                                 }
                             };
-                            wnp.UI.MessageBox.show(i)
+                            hcs.UI.MessageBox.show(i)
                         }
                     }
                 })
             },
             o = function() {
-                ujs.notify("wnp.request.saveStructure", {
+                ujs.notify("hcs.request.saveStructure", {
                     callback: i
                 })
             };
-        wnp.UI.MessageBox.show({
+        hcs.UI.MessageBox.show({
             title: _("New Plan"),
             message: _("Do you want to save your current plan?"),
             buttonCText: _("Yes"),
@@ -64,7 +64,7 @@ var NewComponent = function() {
             onClickC: o,
             onClickB: i,
             onClickA: function() {
-                wnp.UI.MessageBox.close()
+                hcs.UI.MessageBox.close()
             }
         })
     }, e

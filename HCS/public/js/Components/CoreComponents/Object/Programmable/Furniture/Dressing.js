@@ -1,14 +1,14 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Furniture.Dressing = (function() {
+hcs.Programmable.Furniture.Dressing = (function() {
     var that;
 
     /**
@@ -16,20 +16,20 @@ wnp.Programmable.Furniture.Dressing = (function() {
      *
      * @constructor
      * @class Dressing
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var Dressing = function (engine, structure, params) {
-        wnp.Programmable.Furniture.call(this, engine, structure, params);
+        hcs.Programmable.Furniture.call(this, engine, structure, params);
         that = this;
-        structure.magnetismCollider = wnp.Constants.MAGNETISM.DEFAULT;
+        structure.magnetismCollider = hcs.Constants.MAGNETISM.DEFAULT;
         structure.preferredYAngle = Math.PI;
     }
 
-    if (typeof wnp.Programmable.Furniture != "undefined") {
-        for (var i in wnp.Programmable.Furniture.prototype) {
+    if (typeof hcs.Programmable.Furniture != "undefined") {
+        for (var i in hcs.Programmable.Furniture.prototype) {
             if (typeof Dressing.prototype[i] == 'undefined') {
-                Dressing.prototype[i] = wnp.Programmable.Furniture.prototype[i];
+                Dressing.prototype[i] = hcs.Programmable.Furniture.prototype[i];
             }
         }
     }
@@ -48,8 +48,8 @@ wnp.Programmable.Furniture.Dressing = (function() {
     }
 
     Dressing.prototype.getDefaultMaterials = function(scene) {
-        var materials = wnp.Programmable.Furniture.prototype.getDefaultMaterials(scene);
-        materials['rob'] = new wnp.WhiteMaterial("rob", scene);
+        var materials = hcs.Programmable.Furniture.prototype.getDefaultMaterials(scene);
+        materials['rob'] = new hcs.WhiteMaterial("rob", scene);
 
         return materials;
     }
@@ -73,7 +73,7 @@ wnp.Programmable.Furniture.Dressing = (function() {
     }
 
     Dressing.prototype.localizeAndSortParams = function() {
-        var params = wnp.Programmable.Furniture.prototype.localizeAndSortParams();
+        var params = hcs.Programmable.Furniture.prototype.localizeAndSortParams();
             
         params.advanced["robs"] = _("rods");
         params.advanced["robs.nb"] = _("nb");
@@ -91,7 +91,7 @@ wnp.Programmable.Furniture.Dressing = (function() {
                     intList:true,
                 }
         }
-        return wnp.Programmable.Furniture.prototype.getParamType.call( this , name );
+        return hcs.Programmable.Furniture.prototype.getParamType.call( this , name );
     }
 
     Dressing.prototype.getCadre = function(object, scene) {
@@ -120,7 +120,7 @@ wnp.Programmable.Furniture.Dressing = (function() {
     }
 
     Dressing.prototype.getDefaultParams = function() {
-        var params = wnp.Programmable.Furniture.prototype.getDefaultParams();
+        var params = hcs.Programmable.Furniture.prototype.getDefaultParams();
         params.shelfs.nb = 1;
         params.shelfs.elevations = 70;
         params.doors.nb = 0;

@@ -1,54 +1,54 @@
 var AnalyticsComponent = function() {
     var t, e = {
-            "wnp.contextChanged": {
+            "hcs.contextChanged": {
                 action: "contextChanged",
                 label: "fromContext",
                 value: "{previousContext}"
             },
-            "wnp.request.toggleFullscreen": {
+            "hcs.request.toggleFullscreen": {
                 action: "toggleFullscreen"
             },
-            "wnp.request.print": {
+            "hcs.request.print": {
                 action: "requestPrint"
             },
-            "wnp.engine2d.onAddBackground": {
+            "hcs.engine2d.onAddBackground": {
                 action: "addBackgroundClick"
             },
-            "wnp.component.lock": {
+            "hcs.component.lock": {
                 action: "onLockObject"
             },
-            "wnp.request.undo": {
+            "hcs.request.undo": {
                 action: "history",
                 label: "undo"
             },
-            "wnp.request.redo": {
+            "hcs.request.redo": {
                 action: "history",
                 label: "redo"
             },
-            "wnp.request.switch-transparency": {
+            "hcs.request.switch-transparency": {
                 action: "switchTransparency"
             },
-            "wnp.engine3D.addObject": {
+            "hcs.engine3D.addObject": {
                 action: "addObject"
             },
-            "wnp.engine3D.addProgrammable": {
+            "hcs.engine3D.addProgrammable": {
                 action: "addObject"
             },
-            "wnp.engine3D.addGroup": {
+            "hcs.engine3D.addGroup": {
                 action: "addObject"
             },
-            "wnp.request.object.remove": {
+            "hcs.request.object.remove": {
                 action: "removeObject"
             },
-            "wnp.engine3D.info": {
+            "hcs.engine3D.info": {
                 action: "infoObject"
             },
-            "wnp.contextMenu.propertyChanged": {
+            "hcs.contextMenu.propertyChanged": {
                 action: "objectParamsModified",
                 label: "{property}",
                 value: "{value}"
             },
-            "wnp.engine3D.decorate": {
+            "hcs.engine3D.decorate": {
                 action: "decorate"
             }
         },
@@ -57,14 +57,14 @@ var AnalyticsComponent = function() {
         };
     return n.prototype = Object.create(BaseComponent2D.prototype), n.prototype.initialize = function() {
         ga("send", "pageview", {
-            dimension1: wanaplan.api.apiKey,
-            dimension2: wanaplan.mode
+            dimension1: hcsdesign.api.apiKey,
+            dimension2: hcsdesign.mode
         });
         for (var i in e)
             ! function(e, i) {
                 var o = e.split(".").join("_");
                 n.prototype[o] = function(e) {
-                    var n = wanaplan.getSelectedEngine() == wanaplan.ENGINE_2D ? "2D" : "3D",
+                    var n = hcsdesign.getSelectedEngine() == hcsdesign.ENGINE_2D ? "2D" : "3D",
                         o = t.cleanValue(i.action, e),
                         r = t.cleanValue(i.label, e),
                         s = t.cleanValue(i.value, e);

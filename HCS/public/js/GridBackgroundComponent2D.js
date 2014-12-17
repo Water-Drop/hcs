@@ -3,17 +3,17 @@ var GridBackgroundComponent2D = function() {
         BaseComponent2D.call(this, t, "GridBackgroundComponent2D"), this.priority = 1e3, this.background = !1, this.visibility = !0, this.scale = 1, this.translation = new BABYLON.Vector3(0, 0, 0)
     };
     return t.prototype = new BaseComponent2D, t.prototype.startListening = function() {
-        this.onBackgroundChange = this.onBackgroundChange.bind(this), this.onAddBackground = this.onAddBackground.bind(this), this.onEndBackground = this.onEndBackground.bind(this), document.addEventListener("wnp.engine2d.backgroundChange", this.onBackgroundChange), document.addEventListener("wnp.engine2d.onAddBackground", this.onAddBackground), document.addEventListener("wnp.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.registerEventCb("GridBackgroundComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null)
+        this.onBackgroundChange = this.onBackgroundChange.bind(this), this.onAddBackground = this.onAddBackground.bind(this), this.onEndBackground = this.onEndBackground.bind(this), document.addEventListener("hcs.engine2d.backgroundChange", this.onBackgroundChange), document.addEventListener("hcs.engine2d.onAddBackground", this.onAddBackground), document.addEventListener("hcs.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.registerEventCb("GridBackgroundComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.backgroundChange", this.onBackgroundChange), document.removeEventListener("wnp.engine2d.onAddBackground", this.onAddBackground), document.removeEventListener("wnp.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.unregisterEventCb("GridBackgroundComponent2D.static-draw")
+        document.removeEventListener("hcs.engine2d.backgroundChange", this.onBackgroundChange), document.removeEventListener("hcs.engine2d.onAddBackground", this.onAddBackground), document.removeEventListener("hcs.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.unregisterEventCb("GridBackgroundComponent2D.static-draw")
     }, t.prototype.initialize = function() {
         var t = {
             id: "gridBackgroundMenu",
             title: _("添加背景"),
-            action: "wnp.engine2d.onAddBackground",
-            cancelAction: "wnp.engine2d.onEndBackground"
+            action: "hcs.engine2d.onAddBackground",
+            cancelAction: "hcs.engine2d.onEndBackground"
         };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 0
@@ -28,10 +28,10 @@ var GridBackgroundComponent2D = function() {
             scale: t.measure,
             translation: this.translation.asArray(),
             points: [t.points[0].asArray(), t.points[1].asArray()]
-        }, ujs.notify("wnp.request.saveHistory", {})
+        }, ujs.notify("hcs.request.saveHistory", {})
     }, t.prototype.onEndBackground = function() {
-        wnp.UI.BackgroundPopup.close(void 0, void 0, !0)
+        hcs.UI.BackgroundPopup.close(void 0, void 0, !0)
     }, t.prototype.onAddBackground = function() {
-        wnp.UI.BackgroundPopup.show()
+        hcs.UI.BackgroundPopup.show()
     }, t
 }();

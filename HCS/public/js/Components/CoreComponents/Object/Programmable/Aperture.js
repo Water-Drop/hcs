@@ -1,26 +1,26 @@
-﻿/**
- * @module Wanaplan
- * @namespace wnp
+/**
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Aperture = (function () {
+hcs.Programmable.Aperture = (function () {
     /**
      * Define a basic 3D object (draw dynamically)
      *
      * @constructor
      * @class Overture
-     * @param {wnp.Core} Le moteur principal.
+     * @param {hcs.Core} Le moteur principal.
      * @param {Object} Des paramètres de configuration.
      */
 
     var isWindow = 1; 
 
     var overture = function (engine, structure, params) {
-        wnp.Programmable.call(this, engine, structure, params);
+        hcs.Programmable.call(this, engine, structure, params);
         for (var i in params) {
             this[i] = params[i];
         }
@@ -30,8 +30,8 @@ wnp.Programmable.Aperture = (function () {
         this.invertSide = false;
     };
                              
-    for (var i in wnp.Programmable.prototype) {
-        overture.prototype[i] = wnp.Programmable.prototype[i];
+    for (var i in hcs.Programmable.prototype) {
+        overture.prototype[i] = hcs.Programmable.prototype[i];
     }
 
     overture.prototype.getObject3D = function(scene) {
@@ -192,7 +192,7 @@ wnp.Programmable.Aperture = (function () {
 
         var interval = setInterval(function(){
 
-            wanaplan.engine3D.scene.getMeshByName("FloorMesh_0").markAsDirty();
+            hcsdesign.engine3D.scene.getMeshByName("FloorMesh_0").markAsDirty();
             iteration += pas;
             if(that.sliding == true){
                 if (iteration < casements.length * that.params.height) {
@@ -306,7 +306,7 @@ wnp.Programmable.Aperture = (function () {
                 cast: "int",
                 value: "inverser",
                 eventParams: {
-                    eventName: "wnp.contextMenu.propertyChanged",
+                    eventName: "hcs.contextMenu.propertyChanged",
                     property : "hinge",
                     cast: "int"
                 }
@@ -321,7 +321,7 @@ wnp.Programmable.Aperture = (function () {
                 cast: "int",
                 value: "inverser",
                 eventParams: {
-                    eventName: "wnp.contextMenu.propertyChanged",
+                    eventName: "hcs.contextMenu.propertyChanged",
                     property : "side",
                     cast: "int"
                 }

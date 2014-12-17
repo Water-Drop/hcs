@@ -20,13 +20,13 @@ var DimensionReshaperComponent3D = function() {
             })();
         return this
     }, t.prototype.initialize = function() {
-        var t = wanaplan.getComponentByName("MasterReshaperComponent3D");
+        var t = hcsdesign.getComponentByName("MasterReshaperComponent3D");
         if (!t)
             return console.warn("MasterReshaperComponent3D not found, the configurator " + this.name + " components will be disabled.");
         this.master = t, this._options || this.setOptions();
-        var e = wanaplan.getComponentByName("HandlesDisplayerForDimensionReshaperFactoryComponent3D"),
-            n = wanaplan.getComponentByName("BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D"),
-            i = wanaplan.getComponentByName("MesureDisplayerForDimensionReshaperFactoryComponent3D");
+        var e = hcsdesign.getComponentByName("HandlesDisplayerForDimensionReshaperFactoryComponent3D"),
+            n = hcsdesign.getComponentByName("BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D"),
+            i = hcsdesign.getComponentByName("MesureDisplayerForDimensionReshaperFactoryComponent3D");
         this.displayer = {}, n && (this.displayer.boundingLimit = n.create(this.camera, this.scene, "green")), n && this._options.displayNewBoundingLimit && (this.displayer.boundingLimitNew = n.create(this.camera, this.scene, "yellow")), e && (this.displayer.handles = e.create(this.camera, this.scene)), i && (this.displayer.mesure = i.create(this.camera, this.scene)), this.initBindForThisInstance(), t.on("editionStart", this.myBind.onEditionStart), t.on("editionEnd", this.myBind.onEditionEnd), t.on("dragStart", this.myBind.onDragStart), t.on("dragging", this.myBind.onDragging), t.on("dragEnd", this.myBind.onDragEnd), t.on("refresh", this.myBind.onAfterRefresh), this.displayer.boundingLimit && this._options.displayBoundingLimitOnHover && (t.on("hover", this.myBind.onHover), t.on("leave", this.myBind.onLeave))
     };
     var e = {
@@ -81,7 +81,7 @@ var DimensionReshaperComponent3D = function() {
         return n
     }, t.prototype.getbestAxis = function(t, e, n) {
         n = n || this._direction, e = e || this._pickedPoint || t.position;
-        var i = wanaplan.engine3D,
+        var i = hcsdesign.engine3D,
             o = i.scene.activeCamera,
             r = o.position.subtract(e),
             s = this.computeDimension(t).rotationMatrix.clone();
@@ -103,7 +103,7 @@ var DimensionReshaperComponent3D = function() {
             o = i.getTopLevelObject(!0),
             r = this.computeDimension(o);
         n.position = r.position, n.scaling = r.dimension, n.rotationQuaternion = r.rotationQuat;
-        var s = wanaplan.engine3D,
+        var s = hcsdesign.engine3D,
             a = s.scene.createPickingRay(e.mstate.pos.x, e.mstate.pos.y),
             l = a.intersectMeshes([n], !0, !0);
         if (this._options.debug || (n.isVisible = !1), !l || !l.hit)
@@ -132,7 +132,7 @@ var DimensionReshaperComponent3D = function() {
         a.multiplyInPlace(a), a.scaleInPlace(-s + .1);
         var l = new BABYLON.Vector3(s, s, s);
         l.addInPlace(a), o.scaling = l, o.markAsDirty();
-        var h = wanaplan.engine3D,
+        var h = hcsdesign.engine3D,
             c = h.scene.createPickingRay(i.mstate.pos.x, i.mstate.pos.y),
             u = c.intersectMeshes([o], !0, !0);
         if (this._options.debug || (o.isVisible = !1), !u || !u.pickedPoint)
@@ -228,7 +228,7 @@ var DimensionReshaperComponent3D = function() {
     }, t.prototype._enlargeYourObject = function(t, e, n) {
         if (!(Math.abs(n) < 1e-4)) {
             var i = t.structure,
-                o = wanaplan.getComponentByName("EditionComponent3D"),
+                o = hcsdesign.getComponentByName("EditionComponent3D"),
                 r = {},
                 s = this._getPropertyName(t, e),
                 a = this._roundL(this._computePropertyValue(t, e, n));
@@ -243,7 +243,7 @@ var DimensionReshaperComponent3D = function() {
                 exValue: t.position.clone()
             }, t.position.copyFrom(h), o.refreshObject(t, {
                 modifiedProperties: r
-            }), ujs.notify("wnp.request.saveHistory")
+            }), ujs.notify("hcs.request.saveHistory")
         }
     }, t.prototype.handlers = {
         onDragStart: function(t) {

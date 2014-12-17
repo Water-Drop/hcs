@@ -1,30 +1,30 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
-wnp.Programmable.Bed = (function () {
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
+hcs.Programmable.Bed = (function () {
     /**
      * Define a basic 3D object (draw dynamically)
      *
      * @constructor
      * @class Bed
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var bed = function (engine, structure, params) {
-        wnp.Programmable.call(this, engine, structure, params);
+        hcs.Programmable.call(this, engine, structure, params);
         this.objectName = "Bed";
 
-        structure.magnetismCollider = wnp.Constants.MAGNETISM.DEFAULT;
+        structure.magnetismCollider = hcs.Constants.MAGNETISM.DEFAULT;
         structure.preferredYAngle = Math.PI;
     }
 
-    for (var i in wnp.Programmable.prototype) {
-        bed.prototype[i] = wnp.Programmable.prototype[i];
+    for (var i in hcs.Programmable.prototype) {
+        bed.prototype[i] = hcs.Programmable.prototype[i];
     }
 
     bed.prototype.localizeAndSortParams = function() {
@@ -91,15 +91,15 @@ wnp.Programmable.Bed = (function () {
 
     bed.prototype.getDefaultMaterials = function (scene) {
         var materials = {};
-        materials['structure'] = new wnp.WhiteMaterial("foots", scene, {factor : 0.6});
-        materials['foots'] =  new wnp.MetalMaterial("structure", scene);
-        materials['mattress'] = new wnp.MattMaterial("mattress", scene, {
-            diffuseTexture : wnp.Assets.bedSheetsTextures["diffuse"],
-            bumpTexture : wnp.Assets.bedSheetsTextures["normal"],
-            specularTexture : wnp.Assets.bedSheetsTextures["specular"]
+        materials['structure'] = new hcs.WhiteMaterial("foots", scene, {factor : 0.6});
+        materials['foots'] =  new hcs.MetalMaterial("structure", scene);
+        materials['mattress'] = new hcs.MattMaterial("mattress", scene, {
+            diffuseTexture : hcs.Assets.bedSheetsTextures["diffuse"],
+            bumpTexture : hcs.Assets.bedSheetsTextures["normal"],
+            specularTexture : hcs.Assets.bedSheetsTextures["specular"]
         });
    
-        materials['cushion'] = new wnp.MattMaterial("cushion", scene, { diffuseTexture : wnp.Assets.cushionTexture });
+        materials['cushion'] = new hcs.MattMaterial("cushion", scene, { diffuseTexture : hcs.Assets.cushionTexture });
 
         return materials;
     };

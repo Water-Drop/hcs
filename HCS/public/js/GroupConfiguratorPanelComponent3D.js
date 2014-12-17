@@ -1,6 +1,6 @@
 var GroupConfiguratorPanelComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "GroupConfiguratorPanelComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.hec = wanaplan.getComponentByName("HistoryEditionComponent"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D"), this.camF = wanaplan.engine3D.cameraFeatures
+        BaseComponent3D.call(this, t, "GroupConfiguratorPanelComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.hec = hcsdesign.getComponentByName("HistoryEditionComponent"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D"), this.camF = hcsdesign.engine3D.cameraFeatures
     };
     t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._options || this.setOptions()
@@ -12,9 +12,9 @@ var GroupConfiguratorPanelComponent3D = function() {
             this._options[n] = "undefined" == typeof t[n] ? e[n] : t[n];
         return this
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("wnp.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("wnp.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("hcs.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("hcs.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.addEventListener("wnp.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("wnp.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.addEventListener("hcs.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("hcs.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -29,24 +29,24 @@ var GroupConfiguratorPanelComponent3D = function() {
             })();
         return this
     }, t.prototype.closeEditBox = function() {
-        wnp.UI.ContextMenu.close()
+        hcs.UI.ContextMenu.close()
     }, t.prototype.openEditBox = function(t) {
         if (t) {
             this._enabled = !0;
             var e = [{
                 label: _("Remove"),
-                action: "wnp.request.object.remove",
+                action: "hcs.request.object.remove",
                 "class": "remove"
             }, {
                 label: _("Duplicate"),
-                action: "wnp.request.object.clone"
+                action: "hcs.request.object.clone"
             }, {
                 label: _("Submit"),
-                action: "wnp.widget.contextMenu.FurnitureEditorForGroup.closed"
+                action: "hcs.widget.contextMenu.FurnitureEditorForGroup.closed"
             }];
-            wanaplan.isPublisher() && e.push({
+            hcsdesign.isPublisher() && e.push({
                 label: _("Add to products"),
-                action: "wnp.request.object.addToProducts"
+                action: "hcs.request.object.addToProducts"
             });
             var n = [{
                 content: [{
@@ -54,11 +54,11 @@ var GroupConfiguratorPanelComponent3D = function() {
                     type: "checkbox",
                     value: -1 == t.name.indexOf("group_virtual") ? !0 : !1,
                     eventParams: {
-                        eventName: "wnp.engine3D.contextMenu.group"
+                        eventName: "hcs.engine3D.contextMenu.group"
                     }
                 }]
             }];
-            wnp.UI.ContextMenu.show({
+            hcs.UI.ContextMenu.show({
                 menuName: "FurnitureEditorForGroup",
                 title: _("Group info"),
                 width: 450,
@@ -77,7 +77,7 @@ var GroupConfiguratorPanelComponent3D = function() {
             this.closeEditBox()
         },
         onEditBoxClosed: function() {
-            this._enabled = !1, ujs.notify("wnp.request.groupConfigurator.stop")
+            this._enabled = !1, ujs.notify("hcs.request.groupConfigurator.stop")
         }
     }, t
 }();

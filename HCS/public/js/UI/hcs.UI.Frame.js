@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.Frame = function() {
     function t(t) {
         if (t.touches && t.touches.length) {
             t.preventDefault();
@@ -17,7 +17,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
         return n && i.setAttribute("id", n), e && i.setAttribute("class", e), i
     }
     var i = function(t, e, n) {
-        this.activeTab = 0, this.eventStarted = !1, this.config = t || {}, this.content = e || {}, this.parentNode = n || document.getElementById("modalWidgets") || document.body, this.domElement = null, this.mouseState = {x: 0,y: 0,prevX: 0,prevY: 0,deltaX: 0,deltaY: 0,click: !1}, this.windowPosition = {x: 0,y: 0}, this.menuDOM = document.getElementById("mainMenu"), this.windowSize = {width: this.config.width || 640,height: this.config.height || 480,maxWidth: this.config.maxWidth || 1980,maxHeight: this.config.maxHeight || 1080,minWidth: this.config.minWidth || 320,minHeight: this.config.minHeight || 240}, this.formBuilder = new wnp.UI.FormBuilder, this.initialized = !1
+        this.activeTab = 0, this.eventStarted = !1, this.config = t || {}, this.content = e || {}, this.parentNode = n || document.getElementById("modalWidgets") || document.body, this.domElement = null, this.mouseState = {x: 0,y: 0,prevX: 0,prevY: 0,deltaX: 0,deltaY: 0,click: !1}, this.windowPosition = {x: 0,y: 0}, this.menuDOM = document.getElementById("mainMenu"), this.windowSize = {width: this.config.width || 640,height: this.config.height || 480,maxWidth: this.config.maxWidth || 1980,maxHeight: this.config.maxHeight || 1080,minWidth: this.config.minWidth || 320,minHeight: this.config.minHeight || 240}, this.formBuilder = new hcs.UI.FormBuilder, this.initialized = !1
     };
     return i.prototype.initialize = function() {
         this.initialized || (this.buildHTML(), this.adapteSize(), this.initializeEvents(), this.parentNode.appendChild(this.domElement), this.initialized = !0)
@@ -82,7 +82,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
     }, i.prototype.show = function(t, e) {
         this.initialize(), this.domElement.style.display = "block", this.tabs.children.length < 2 ? this.tabsContainer.classList.add("notab") : this.tabsContainer.classList.remove("notab"), this.showContent(this.activeTab), "undefined" != typeof t && "undefined" != typeof e ? (t + this.domElement.offsetWidth > window.innerWidth && (t = window.innerWidth - this.domElement.offsetWidth - 5, 0 > t && (t = 0)), e + this.domElement.offsetHeight > window.innerHeight && (e = window.innerHeight - this.domElement.offsetHeight - 5, 0 > e && (e = 0)), this.setPosition(t, e)) : this.centerWindow()
     }, i.prototype.close = function() {
-        ujs.notify("wnp.ui.frame.close"), this.domElement.style.display = "none"
+        ujs.notify("hcs.ui.frame.close"), this.domElement.style.display = "none"
     }, i.prototype.centerWindow = function() {
         this.windowPosition.x = (window.innerWidth - this.menuDOM.offsetWidth) / 2 - this.windowSize.width / 2, this.windowPosition.y = window.innerHeight / 2 - this.windowSize.height / 2, this.domElement.style.position = "absolute", this.config.autoSize || (this.domElement.style.width = this.windowSize.width + "px", this.domElement.style.height = this.windowSize.height + "px"), this.domElement.style.top = this.windowPosition.y + "px", this.domElement.style.left = this.windowPosition.x + "px"
     }, i.prototype.setPosition = function(t, e) {
@@ -96,7 +96,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
     }, i.prototype.onHeaderMouseMove = function(e) {
         this.mouseState.click && (t(e), this.mouseState.prevX = this.mouseState.x, this.mouseState.prevY = this.mouseState.y, this.mouseState.x = e.x || e.screenX || this.mouseState.prevX, this.mouseState.y = e.y || e.screenY || this.mouseState.prevY, this.mouseState.deltaX = this.mouseState.x - this.mouseState.prevX, this.mouseState.deltaY = this.mouseState.y - this.mouseState.prevY, this.windowPosition.x += this.mouseState.deltaX, this.windowPosition.y += this.mouseState.deltaY, this.domElement.style.top = this.windowPosition.y + "px", this.domElement.style.left = this.windowPosition.x + "px")
     }, i.prototype.initializeEvents = function() {
-        this.eventStated || (this.closeWindow.addEventListener("click", this.close.bind(this), !1), this.closeWindow.addEventListener("touchstart", this.close.bind(this), !1), this.header.addEventListener("mousedown", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("mouseup", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("mousemove", this.onHeaderMouseMove.bind(this), !1), this.header.addEventListener("touchstart", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("touchmove", this.onHeaderMouseMove.bind(this), !1), document.body.addEventListener("touchend", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("touchcancel", this.onHeaderMouseUp.bind(this), !1), document.addEventListener("wnp.request.closePopup", this.close.bind(this), !1), this.eventStated = !0)
+        this.eventStated || (this.closeWindow.addEventListener("click", this.close.bind(this), !1), this.closeWindow.addEventListener("touchstart", this.close.bind(this), !1), this.header.addEventListener("mousedown", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("mouseup", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("mousemove", this.onHeaderMouseMove.bind(this), !1), this.header.addEventListener("touchstart", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("touchmove", this.onHeaderMouseMove.bind(this), !1), document.body.addEventListener("touchend", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("touchcancel", this.onHeaderMouseUp.bind(this), !1), document.addEventListener("hcs.request.closePopup", this.close.bind(this), !1), this.eventStated = !0)
     }, i.prototype.onTabClick = function(t) {
         var e = t.target.parentNode;
         t.target.classList.contains("counter") ? e = t.target.parentNode.parentNode : "LI" == t.target.nodeName && (e = t.target);

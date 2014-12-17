@@ -8,16 +8,16 @@ var BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D = function() {
     };
     var e = function() {};
     return e.prototype.initialize = function(t, e, n) {
-        if (this.scene = e, this.camera = t, this.dimensionConfigurator = wanaplan.getComponentByName("DimensionReshaperComponent3D"), "undefined" == typeof n && (n = "green"), "string" == typeof n) {
+        if (this.scene = e, this.camera = t, this.dimensionConfigurator = hcsdesign.getComponentByName("DimensionReshaperComponent3D"), "undefined" == typeof n && (n = "green"), "string" == typeof n) {
             var i, o = new BABYLON.StandardMaterial("texture_dimension_configurator_placeholder", e);
             switch (n) {
                 case "yellow":
-                    i = (new BABYLON.Color3).fromHex(wnp.Assets.complementaryUIColor);
+                    i = (new BABYLON.Color3).fromHex(hcs.Assets.complementaryUIColor);
                     break;
                 default:
-                    i = (new BABYLON.Color3).fromHex(wnp.Assets.mainUIColor)
+                    i = (new BABYLON.Color3).fromHex(hcs.Assets.mainUIColor)
             }
-            wnp.MaterialFactory.MakeBasicColor(o, i), o.backFaceCulling = !1, o.alpha = .6, n = o
+            hcs.MaterialFactory.MakeBasicColor(o, i), o.backFaceCulling = !1, o.alpha = .6, n = o
         }
         return this.mat = n, this
     }, e.prototype._getBoundingLimitGhost = function() {

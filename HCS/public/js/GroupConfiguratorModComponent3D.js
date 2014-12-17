@@ -1,6 +1,6 @@
 var GroupConfiguratorModComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "GroupConfiguratorModComponent3D"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D")
+        BaseComponent3D.call(this, t, "GroupConfiguratorModComponent3D"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D")
     };
     return t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._state = "idle", this._currentObject = null
@@ -19,13 +19,13 @@ var GroupConfiguratorModComponent3D = function() {
                 this.edcmp.widgets[t].addInfo && this.edcmp.widgets[t].addInfo();
         return !0
     }, t.prototype.requestStart = function() {
-        return "ready" == this.getState() ? !1 : this.getCurrentObject() ? (this.lockUnrelatedActions(), this._state = "ready", void ujs.notify("wnp.engine3d.groupConfigurator.start")) : !1
+        return "ready" == this.getState() ? !1 : this.getCurrentObject() ? (this.lockUnrelatedActions(), this._state = "ready", void ujs.notify("hcs.engine3d.groupConfigurator.start")) : !1
     }, t.prototype.requestStop = function() {
-        return "idle" == this.getState() ? !1 : (this._state = "idle", ujs.notify("wnp.engine3d.groupConfigurator.stop"), void this.unlockUnrelatedActions())
+        return "idle" == this.getState() ? !1 : (this._state = "idle", ujs.notify("hcs.engine3d.groupConfigurator.stop"), void this.unlockUnrelatedActions())
     }, t.prototype.startListening = function() {
-        this.initBindForThisInstance(), this.stopListening(), document.addEventListener("wnp.request.groupConfigurator.start", this.myBind.onRequestStart), document.addEventListener("wnp.request.groupConfigurator.stop", this.myBind.onRequestStop), document.addEventListener("wnp.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.addEventListener("wnp.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.addEventListener("wnp.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.addEventListener("wnp.contextChanged ", this.myBind.onSwapEngine)
+        this.initBindForThisInstance(), this.stopListening(), document.addEventListener("hcs.request.groupConfigurator.start", this.myBind.onRequestStart), document.addEventListener("hcs.request.groupConfigurator.stop", this.myBind.onRequestStop), document.addEventListener("hcs.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.addEventListener("hcs.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.addEventListener("hcs.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.addEventListener("hcs.contextChanged ", this.myBind.onSwapEngine)
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.request.groupConfigurator.start", this.myBind.onRequestStart), document.removeEventListener("wnp.request.groupConfigurator.stop", this.myBind.onRequestStop), document.removeEventListener("wnp.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.removeEventListener("wnp.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.removeEventListener("wnp.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.removeEventListener("wnp.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.removeEventListener("wnp.contextChanged ", this.myBind.onSwapEngine)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.request.groupConfigurator.start", this.myBind.onRequestStart), document.removeEventListener("hcs.request.groupConfigurator.stop", this.myBind.onRequestStop), document.removeEventListener("hcs.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.removeEventListener("hcs.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.removeEventListener("hcs.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.removeEventListener("hcs.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.removeEventListener("hcs.contextChanged ", this.myBind.onSwapEngine)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -50,7 +50,7 @@ var GroupConfiguratorModComponent3D = function() {
             this.cancel()
         },
         onSwapEngine: function(t) {
-            "2D" == t.engine && ujs.notify("wnp.request.groupConfigurator.cancel")
+            "2D" == t.engine && ujs.notify("hcs.request.groupConfigurator.cancel")
         },
         onFloorChanged: function() {},
         onDisposeObject: function() {}

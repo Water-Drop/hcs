@@ -1,7 +1,7 @@
 var GlobalHelper = function() {
     function t() {
-        if (wanaplan && wanaplan.engine3D)
-            return wanaplan.engine3D.engine._gl;
+        if (hcsdesign && hcsdesign.engine3D)
+            return hcsdesign.engine3D.engine._gl;
         var t = document.createElement("canvas");
         return t.getContext("webgl") || t.getContext("experimental-webgl")
     }

@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.AnimationHandler = function() {
+var hcs = window.hcs || {};
+hcs.AnimationHandler = function() {
     var t = function() {
     };
     t.LINEAR = 0, t.SMOOTH = 1;

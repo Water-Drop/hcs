@@ -1,6 +1,6 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
@@ -8,10 +8,10 @@
 
 // TODO : ROBINET MARCHE PAS
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Bath.IlotCarmel = (function() {
+hcs.Programmable.Bath.IlotCarmel = (function() {
     var that;
 
     /**
@@ -19,19 +19,19 @@ wnp.Programmable.Bath.IlotCarmel = (function() {
      *
      * @constructor
      * @class Ilot
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var Ilot = function (engine, structure, params) {
-        wnp.Programmable.Bath.call(this, engine, structure, params);
+        hcs.Programmable.Bath.call(this, engine, structure, params);
         structure.preferredYAngle = -Math.PI/2;
         that = this;
     }
 
-    if (typeof wnp.Programmable.Bath != "undefined") {
-        for (var i in wnp.Programmable.Bath.prototype) {
+    if (typeof hcs.Programmable.Bath != "undefined") {
+        for (var i in hcs.Programmable.Bath.prototype) {
             if (typeof Ilot.prototype[i] == 'undefined') {
-                Ilot.prototype[i] = wnp.Programmable.Bath.prototype[i];
+                Ilot.prototype[i] = hcs.Programmable.Bath.prototype[i];
             }
         }
     }
@@ -39,12 +39,12 @@ wnp.Programmable.Bath.IlotCarmel = (function() {
     Ilot.prototype.getDefaultMaterials = function (scene) {
         var materials = {};
                 
-        materials["tap"] = new wnp.MetalMaterial("tap", scene, {brillance : 0.1});/*{color:0xeeeeee}*/
-        materials["frames"] = new wnp.MetalMaterial("frames", scene, {brillance : 0.1});
-        materials["Model"] = new wnp.MetalMaterial("Model", scene, {brillance : 0.1});
-        materials["pied"] = new wnp.MetalMaterial("pied", scene, {brillance : 0.1});
-        materials["global"] = new wnp.WhiteMaterial("global", scene, {factor : 0.9});
-        materials["robinet"] = new wnp.MetalMaterial("robinet", scene, {brillance : 0.1});
+        materials["tap"] = new hcs.MetalMaterial("tap", scene, {brillance : 0.1});/*{color:0xeeeeee}*/
+        materials["frames"] = new hcs.MetalMaterial("frames", scene, {brillance : 0.1});
+        materials["Model"] = new hcs.MetalMaterial("Model", scene, {brillance : 0.1});
+        materials["pied"] = new hcs.MetalMaterial("pied", scene, {brillance : 0.1});
+        materials["global"] = new hcs.WhiteMaterial("global", scene, {factor : 0.9});
+        materials["robinet"] = new hcs.MetalMaterial("robinet", scene, {brillance : 0.1});
         //materials["global"].side = THREE.DoubleSide;
 
         return materials;
@@ -215,8 +215,8 @@ wnp.Programmable.Bath.IlotCarmel = (function() {
                 that.engine3D.refreshRenderer();
             }
         };
-        this.importBabylon(wnp.Assets.robinet5DAE, fRobinet.bind(that, 0) );
-        //var robinet = this.importDAE(wnp.Assets.robinet5DAE, fRobinet.bind(that, 0) );
+        this.importBabylon(hcs.Assets.robinet5DAE, fRobinet.bind(that, 0) );
+        //var robinet = this.importDAE(hcs.Assets.robinet5DAE, fRobinet.bind(that, 0) );
     }
 
     Ilot.prototype.getObject3D = function(scene) {

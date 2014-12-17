@@ -15,9 +15,9 @@ var Stats = function() {
     var g = document.createElement("div");
     g.id = "ms", g.style.cssText = "padding:0 0 3px 3px;text-align:left;background-color:#020;display:none", c.appendChild(g);
     var f = document.createElement("div");
-    f.id = "msText", f.style.cssText = "color:#0f0;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px", f.innerHTML = "MS", g.appendChild(f);
+    f.id = "msText", f.style.cssText = "color:#897364;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px", f.innerHTML = "MS", g.appendChild(f);
     var y = document.createElement("div");
-    for (y.id = "msGraph", y.style.cssText = "position:relative;width:74px;height:30px;background-color:#0f0", g.appendChild(y); 74 > y.children.length; )
+    for (y.id = "msGraph", y.style.cssText = "position:relative;width:74px;height:30px;background-color:#897364", g.appendChild(y); 74 > y.children.length; )
         m = document.createElement("span"), m.style.cssText = "width:1px;height:30px;float:left;background-color:#131", y.appendChild(m);
     var _ = function(t) {
         switch (h = t) {
@@ -144,7 +144,7 @@ var Stats = function() {
             t.keyCode > 36 && t.keyCode < 41 && (s.call(this), x = !0, this.value = L + (38 == t.keyCode || 39 == t.keyCode ? T : -T))
         }
         function s() {
-            C || (this.style.boxShadow = l ? "inset 0 0 20px rgba(0,127,255,.1), 0 0 1px rgba(0,127,255,.4)" : "0 0 0 2px #fb0")
+            C || (this.style.boxShadow = l ? "inset 0 0 20px rgba(137,115,100,.1), 0 0 1px rgba(137,115,100,.4)" : "0 0 0 2px #DDD")
         }
         function g() {
             this.style.boxShadow = ""

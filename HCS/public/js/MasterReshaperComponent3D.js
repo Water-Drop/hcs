@@ -1,11 +1,11 @@
 var MasterReshaperComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "MasterReshaperComponent3D"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this._listeners = []
+        BaseComponent3D.call(this, t, "MasterReshaperComponent3D"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this._listeners = []
     };
     return t.prototype = new BaseComponent3D, t.prototype.initialize = function() {}, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.addEventListener("wnp.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.addEventListener("wnp.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.addEventListener("hcs.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.addEventListener("hcs.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1)
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.removeEventListener("wnp.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.removeEventListener("wnp.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.onDragging, !1), document.removeEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.removeEventListener("hcs.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.removeEventListener("hcs.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.onDragging, !1), document.removeEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -37,9 +37,9 @@ var MasterReshaperComponent3D = function() {
             n = e.getLocker();
         e.unlock(n, 1), e.lock(n, 2)
     }, t.prototype.start = function(t) {
-        this.furniture = t.furniture, this.notify("editionStart", t), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onMouseMove, !1), document.addEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.addEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.addEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1)
+        this.furniture = t.furniture, this.notify("editionStart", t), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onMouseMove, !1), document.addEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.addEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.addEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1)
     }, t.prototype.cancel = t.prototype.stop = function(t) {
-        this.notify("editionEnd", t), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.nDragging, !1), document.removeEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1)
+        this.notify("editionEnd", t), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.nDragging, !1), document.removeEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1)
     }, t.prototype.handlers = {
         onConfiguratorStart: function(t) {
             this.start(t)
@@ -55,7 +55,7 @@ var MasterReshaperComponent3D = function() {
             var e = this.furniture;
             if (t.collided = this.scene.pick(t.mstate.pos.x, t.mstate.pos.y, function(t) {
                     return t.getTopLevelObject(!0) == e
-                }), this.notify("dragStart", t), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.onDragging, !1), this.dragging = !1, document.addEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.addEventListener("wnp.engine3D.dragging", this.myBind.onDragging, !1), this._currentConfigurator) {
+                }), this.notify("dragStart", t), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.onDragging, !1), this.dragging = !1, document.addEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.addEventListener("hcs.engine3D.dragging", this.myBind.onDragging, !1), this._currentConfigurator) {
                 this.dragging = !0;
                 var n = this.edcmp;
                 n.lock(n.getLocker(), 1)
@@ -72,7 +72,7 @@ var MasterReshaperComponent3D = function() {
             if (this.notify("dragEnd", t), this.dragging = !1, this._currentConfigurator) {
                 var e = this.edcmp,
                     n = e.getLocker();
-                e.unlock(n, 1), e.lock(n, 2), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.nDragging, !1)
+                e.unlock(n, 1), e.lock(n, 2), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.nDragging, !1)
             }
         },
         onMouseMove: function(t) {

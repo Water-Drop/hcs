@@ -1,9 +1,9 @@
-﻿var wnp = window.wnp || {};
-wnp.Engine2D = function() {
+var hcs = window.hcs || {};
+hcs.Engine2D = function() {
     var t = function(t, e, n) {
         this.MODE_NORMAL = 1, this.MODE_DRAG = 2, this.MODE_DRAW = 4, this.MODE_CONTEXTMENU = 8, this.MODE_SUBSLOPE = 16, this._container = t, this.isViewer = "undefined" != typeof n ? n : !1, this.getContainer = function() {
             return this._container
-        }, this.canvas = document.createElement("canvas"), this.canvas.id = "canvas2d", this._container.appendChild(this.canvas), this.dynamicCanvas = document.createElement("canvas"), this.dynamicCanvas.id = "dynamiccanvas2d", this._container.appendChild(this.dynamicCanvas), this.symbols2D = new wnp.Symbols2D, this._core = e, this._components = new wnp.ComponentCollection(wanaplan), this._initialized = !1, this._enabled = !1, this._zoom = 1, this._translation = new BABYLON.Vector2, this._cursorIconCb = null, this._pointerManager = null, this._mode = this.MODE_NORMAL, this._lastMode = this.MODE_NORMAL, this._enableAutoScroll = !1, this._eventsCb = {
+        }, this.canvas = document.createElement("canvas"), this.canvas.id = "canvas2d", this._container.appendChild(this.canvas), this.dynamicCanvas = document.createElement("canvas"), this.dynamicCanvas.id = "dynamiccanvas2d", this._container.appendChild(this.dynamicCanvas), this.symbols2D = new hcs.Symbols2D, this._core = e, this._components = new hcs.ComponentCollection(hcsdesign), this._initialized = !1, this._enabled = !1, this._zoom = 1, this._translation = new BABYLON.Vector2, this._cursorIconCb = null, this._pointerManager = null, this._mode = this.MODE_NORMAL, this._lastMode = this.MODE_NORMAL, this._enableAutoScroll = !1, this._eventsCb = {
             click: [],
             "double-click": [],
             hover: [],
@@ -22,18 +22,18 @@ wnp.Engine2D = function() {
             "subslope-end": [],
             "enter-draw-zone": [],
             "leave-draw-zone": []
-        }, this._lastTargeted = null, this._isHover = !1, this._needStaticDraw = !0, this._needDynamicDraw = !0, this._menuIsVisible = !0, this._contextMenuCallback = null, this._contextMenuRmCallback = null, this._contextMenuTarget = null, document.addEventListener("wnp.engine2D.contextMenu.propertyChanged", this.onContextMenuPropertyChanged.bind(this), !1), document.addEventListener("wnp.engine2D.contextMenu.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("wnp.ui.frame.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("wnp.engine2D.contextMenu.remove", this.onContextMenuRemove.bind(this), !1), document.addEventListener("wnp.engine2D.contextMenu.debug", this.onContextMenuDebug.bind(this), !1)
+        }, this._lastTargeted = null, this._isHover = !1, this._needStaticDraw = !0, this._needDynamicDraw = !0, this._menuIsVisible = !0, this._contextMenuCallback = null, this._contextMenuRmCallback = null, this._contextMenuTarget = null, document.addEventListener("hcs.engine2D.contextMenu.propertyChanged", this.onContextMenuPropertyChanged.bind(this), !1), document.addEventListener("hcs.engine2D.contextMenu.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("hcs.ui.frame.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("hcs.engine2D.contextMenu.remove", this.onContextMenuRemove.bind(this), !1), document.addEventListener("hcs.engine2D.contextMenu.debug", this.onContextMenuDebug.bind(this), !1)
     };
     return t.prototype.isEnabled = function() {
         return this._enabled
     }, t.prototype.setEnabled = function(t) {
         this._enabled = t;
         var e = "none";
-        t && (e = "block"), this.setMode(this.MODE_NORMAL), this._container.setAttribute("style", "display:" + e), this.requestStaticDraw(), ujs.notify("wnp.core.hideLoader")
+        t && (e = "block"), this.setMode(this.MODE_NORMAL), this._container.setAttribute("style", "display:" + e), this.requestStaticDraw(), ujs.notify("hcs.core.hideLoader")
     }, t.prototype.getZoom = function() {
         return this._zoom
     }, t.prototype.setZoom = function(t) {
-        this._zoom = t, this._zoom = this._zoom < .1 ? .1 : this._zoom, this._zoom = this._zoom > 5 ? 5 : this._zoom, this.requestStaticDraw(), ujs.notify("wnp.request.zoomUpdated")
+        this._zoom = t, this._zoom = this._zoom < .1 ? .1 : this._zoom, this._zoom = this._zoom > 5 ? 5 : this._zoom, this.requestStaticDraw(), ujs.notify("hcs.request.zoomUpdated")
     }, t.prototype.getTranslation = function() {
         return this._translation.clone()
     }, t.prototype.setTranslation = function(t) {
@@ -76,14 +76,14 @@ wnp.Engine2D = function() {
     }, t.prototype.setCursorIcon = function(t) {
         this._cursorIconCb = t, this.requestDynamicDraw()
     }, t.prototype.initialize = function() {
-        this._pointerManager = new wnp.PointerManager(this._core, this.onMouseEvent.bind(this), this.dynamicCanvas), this.dynamicCanvas.addEventListener("mouseout", function(t) {
+        this._pointerManager = new hcs.PointerManager(this._core, this.onMouseEvent.bind(this), this.dynamicCanvas), this.dynamicCanvas.addEventListener("mouseout", function(t) {
             this._callInOutDrawZoneCb("leave-draw-zone", t)
         }.bind(this), !1), this.dynamicCanvas.addEventListener("mousein", function(t) {
             this._callInOutDrawZoneCb("enter-draw-zone", t)
-        }.bind(this), !1), this.setTranslation(new BABYLON.Vector2((this._core.getWidth() - 260) / 2, this._core.getHeight() / 2)), this.resize(), this.initializeComponents(), this._initialized = !0, document.addEventListener("wnp.engine2D.requestCompute", function() {
+        }.bind(this), !1), this.setTranslation(new BABYLON.Vector2((this._core.getWidth() - 260) / 2, this._core.getHeight() / 2)), this.resize(), this.initializeComponents(), this._initialized = !0, document.addEventListener("hcs.engine2D.requestCompute", function() {
             this.requestCompute()
         }.bind(this), !1), window.setTimeout(function() {
-            this._core.helpBubbleManager.display("wnp.2d.wall-basics")
+            /*this._core.helpBubbleManager.display("hcs.2d.wall-basics")*/
         }.bind(this), 2e3)
     }, t.prototype.bestZoom = function(t, e) {
         var n = this.getBestZoomAttributes(t, e);
@@ -126,14 +126,14 @@ wnp.Engine2D = function() {
         var t = t === !0 ? !0 : !1;
         if (t)
             for (var e = 0; e < this._components.size(); e++)
-                for (var n = 0; n < wanaplan.structure.members.length; n++) {
-                    var i = wanaplan.structure.members[n];
+                for (var n = 0; n < hcsdesign.structure.members.length; n++) {
+                    var i = hcsdesign.structure.members[n];
                     this._components[e].update(i), i.tidy()
                 } else
-            this._components.update(), wanaplan.getSelectedStructure().tidy();
+            this._components.update(), hcsdesign.getSelectedStructure().tidy();
         this._autoScroll()
     }, t.prototype.draw = function() {
-        this.update(), wnp.AnimationHandler.Process(), this._needStaticDraw && (this._needStaticDraw = !1, this._callStaticDrawCb()), this._needDynamicDraw && (this._needDynamicDraw = !1, this._callDynamicDrawCb())
+        this.update(), hcs.AnimationHandler.Process(), this._needStaticDraw && (this._needStaticDraw = !1, this._callStaticDrawCb()), this._needDynamicDraw && (this._needDynamicDraw = !1, this._callDynamicDrawCb())
     }, t.prototype.registerEventCb = function(t, e, n, i, o, r, s) {
         var s = s || null;
         this.unregisterEventCb(t), this._eventsCb[n].push({
@@ -187,7 +187,7 @@ wnp.Engine2D = function() {
             a.eventParams = {
                 cast: a.cast || a.type,
                 property: a.name,
-                eventName: "wnp.engine2D.contextMenu.propertyChanged"
+                eventName: "hcs.engine2D.contextMenu.propertyChanged"
             }, r.push(a)
         }
         var l = [{
@@ -197,19 +197,19 @@ wnp.Engine2D = function() {
             h = [];
         window.WNP_DEBUG && h.push({
             label: "Debug",
-            action: "wnp.engine2D.contextMenu.debug"
+            action: "hcs.engine2D.contextMenu.debug"
         }), null != i && h.push({
             label: _("删除"),
-            action: "wnp.engine2D.contextMenu.remove",
+            action: "hcs.engine2D.contextMenu.remove",
             "class": "remove"
         }), h.push({
             label: _("确定"),
-            action: "wnp.engine2D.contextMenu.close"
+            action: "hcs.engine2D.contextMenu.close"
         }), this._callMouseEventCb("leave", e, {}, o), this.requestStaticDraw(), this.setMode(this.MODE_CONTEXTMENU);
         var c = (o.prevButtons & o.BUTTON_LEFT) > 0 ? 200 : 0,
             u = this._enabled ? o.pos.x + 2 : this._core.getWidth() / 2,
             p = this._enabled ? o.pos.y + 2 : 100;
-        wnp.UI.ContextMenu.show({
+        hcs.UI.ContextMenu.show({
             title: _("设置"),
             x: u,
             y: p
@@ -228,7 +228,7 @@ wnp.Engine2D = function() {
         e != i && (h = !0);
         var c = !1;
         if (null != r && (c = !0), h)
-            if ((e & this.MODE_DRAW) > 0 && 0 == (i & this.MODE_DRAG) ? this._callDrawEndCb() : (n & this.MODE_DRAW) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_DRAW | this.MODE_DRAG)) && this._callDrawEndCb(), (e & this.MODE_SUBSLOPE) > 0 && 0 == (i & this.MODE_DRAG) ? this._callSubslopeEndCb() : (n & this.MODE_SUBSLOPE) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_SUBSLOPE | this.MODE_DRAG | this.MODE_CONTEXTMENU)) && this._callSubslopeEndCb(), (e & this.MODE_CONTEXTMENU) > 0 && 0 == (i & this.MODE_CONTEXTMENU) ? (wnp.UI.ContextMenu.close(), this.requestCompute(), this._core.keyboardManager.preventDefault = !0) : (i & this.MODE_CONTEXTMENU) > 0 && (this._core.keyboardManager.preventDefault = !1), (e & this.MODE_DRAG) > 0 && 0 == (i & this.MODE_DRAG))
+            if ((e & this.MODE_DRAW) > 0 && 0 == (i & this.MODE_DRAG) ? this._callDrawEndCb() : (n & this.MODE_DRAW) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_DRAW | this.MODE_DRAG)) && this._callDrawEndCb(), (e & this.MODE_SUBSLOPE) > 0 && 0 == (i & this.MODE_DRAG) ? this._callSubslopeEndCb() : (n & this.MODE_SUBSLOPE) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_SUBSLOPE | this.MODE_DRAG | this.MODE_CONTEXTMENU)) && this._callSubslopeEndCb(), (e & this.MODE_CONTEXTMENU) > 0 && 0 == (i & this.MODE_CONTEXTMENU) ? (hcs.UI.ContextMenu.close(), this.requestCompute(), this._core.keyboardManager.preventDefault = !0) : (i & this.MODE_CONTEXTMENU) > 0 && (this._core.keyboardManager.preventDefault = !1), (e & this.MODE_DRAG) > 0 && 0 == (i & this.MODE_DRAG))
                 (o.actions & o.ACTION_DRAGGING) > 0 && (this._pointerManager.reset(), this._callMouseEventCb("drag-end", a, s, o, this.MODE_DRAG)), this._eventsCb.dragging.length = 0, this._eventsCb["drag-end"].length = 0;
             else if ((e & this.MODE_DRAW) > 0 && 0 == (i & (this.MODE_DRAG | this.MODE_DRAW)))
             for (var u in this._eventsCb)
@@ -263,7 +263,7 @@ wnp.Engine2D = function() {
                 default:
                     this._callMouseEventCb(r, a, s, o, e)
             }
-            (e & (this.MODE_NORMAL | this.MODE_CONTEXTMENU)) > 0 && this.setEnableAutoScroll(!1), c && (e & this.MODE_CONTEXTMENU) > 0 && ("click" == r || "double-click" == r ? (i = n, this.setMode(i)) : "drag-start" == r && (i = n, this.setMode(i), t.evName = "drag-start", t.target = this.getTarget(o), this._stateMachine(t))), a != l && 0 == (e & this.MODE_CONTEXTMENU) ? (null != l && this._callMouseEventCb("leave", l, s, o, e), null != a && this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (e & this.MODE_CONTEXTMENU) ? null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (i & this.MODE_CONTEXTMENU) && null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)), e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_SUBSLOPE) > 1 ? this._core.helpBubbleManager.display("wnp.2d.subslope") : e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_DRAW) > 1 || e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && 0 == (i & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && this._core.helpBubbleManager.helpBubble.hide()
+            (e & (this.MODE_NORMAL | this.MODE_CONTEXTMENU)) > 0 && this.setEnableAutoScroll(!1), c && (e & this.MODE_CONTEXTMENU) > 0 && ("click" == r || "double-click" == r ? (i = n, this.setMode(i)) : "drag-start" == r && (i = n, this.setMode(i), t.evName = "drag-start", t.target = this.getTarget(o), this._stateMachine(t))), a != l && 0 == (e & this.MODE_CONTEXTMENU) ? (null != l && this._callMouseEventCb("leave", l, s, o, e), null != a && this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (e & this.MODE_CONTEXTMENU) ? null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (i & this.MODE_CONTEXTMENU) && null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)), e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_SUBSLOPE) > 1 &&/*? *this._core.helpBubbleManager.display("hcs.2d.subslope") :*/ e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_DRAW) > 1 || e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && 0 == (i & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) /*&& this._core.helpBubbleManager.helpBubble.hide()*/
     }, t.prototype._callMouseEventCb = function(t, e, n, i, o) {
         if (void 0 != t) {
             var e = e;

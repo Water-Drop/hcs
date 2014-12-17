@@ -6,7 +6,7 @@
         r = [],
         s = [],
         a = function(e) {
-            BaseComponent3D.call(this, e, "PerformanceComponent3D"), this.waiter = document.getElementById("waiter"), this.waiter.innerHTML = _("正在计算中..."), this.waitSince = !1, this.stats = this.core.engine3D.stats, this.priority = 0, this.hasBeenAlreadyNotified = wnpLocalStorage.getItem(o), this.targetMaxLowFPSTime = n, this.hasFocus = !0, document.addEventListener("wnp.engine2D.contextMenuPerformance.close", this.onContextMenuPerformanceClose, !1), document.addEventListener("wnp.request.changePerformancesProperty", this.onContextMenuPropertyChanged, !1), document.addEventListener("wnp.request.changePerformances", this.onChangePerformance, !1), document.addEventListener("wnp.request.changeEngine", this.onChangeEngine, !1), t = this;
+            BaseComponent3D.call(this, e, "PerformanceComponent3D"), this.waiter = document.getElementById("waiter"), this.waiter.innerHTML = _("正在计算中..."), this.waitSince = !1, this.stats = this.core.engine3D.stats, this.priority = 0, this.hasBeenAlreadyNotified = hcsLocalStorage.getItem(o), this.targetMaxLowFPSTime = n, this.hasFocus = !0, document.addEventListener("hcs.engine2D.contextMenuPerformance.close", this.onContextMenuPerformanceClose, !1), document.addEventListener("hcs.request.changePerformancesProperty", this.onContextMenuPropertyChanged, !1), document.addEventListener("hcs.request.changePerformances", this.onChangePerformance, !1), document.addEventListener("hcs.request.changeEngine", this.onChangeEngine, !1), t = this;
             var a = null,
                 l = function(e) {
                     null !== a && (clearTimeout(a), a = null), "focus" === e.type ? a = setTimeout(function() {
@@ -24,7 +24,7 @@
                     eventParams: {
                         cast: "bool",
                         property: "useAntialiasing",
-                        eventName: "wnp.request.changePerformancesProperty"
+                        eventName: "hcs.request.changePerformancesProperty"
                     }
                 }, {
                     type: "checkbox",
@@ -33,7 +33,7 @@
                     eventParams: {
                         cast: "bool",
                         property: "useShadow",
-                        eventName: "wnp.request.changePerformancesProperty"
+                        eventName: "hcs.request.changePerformancesProperty"
                     }
                 }, {
                     type: "checkbox",
@@ -42,21 +42,21 @@
                     eventParams: {
                         cast: "bool",
                         property: "useMultiTexturing",
-                        eventName: "wnp.request.changePerformancesProperty"
+                        eventName: "hcs.request.changePerformancesProperty"
                     }
                 }]
             }], s = [{
                 label: _("Apply and reload"),
-                action: "wnp.engine2D.contextMenuPerformance.close"
+                action: "hcs.engine2D.contextMenuPerformance.close"
             }], window.addEventListener("focus", l, !1), window.addEventListener("blur", l, !1)
         };
     return a.prototype = Object.create(BaseComponent3D.prototype), a.prototype.initialize = function() {
         var t = {
             title: _("Increase performances"),
-            action: "wnp.request.changePerformances",
+            action: "hcs.request.changePerformances",
             index: 1
         };
-        ujs.notify("wnp.menu.top.add", {
+        ujs.notify("hcs.menu.top.add", {
             item: t,
             menuPath: "toolbarOption"
         })
@@ -66,16 +66,16 @@
         var e = "number" == typeof item ? t : r[0].content.indexOf(t);
         return e > -1 && r[0].content.splice(e, 1), e > -1
     }, a.prototype.onChangePerformance = function() {
-        ujs.notify("wnp.menu.top.deselect");
+        ujs.notify("hcs.menu.top.deselect");
         var t = {
             id: "performancesWindow",
             title: _("Settings"),
-            x: wanaplan.getWidth() / 2 - 100,
+            x: hcsdesign.getWidth() / 2 - 100,
             y: 100
         };
-        wnp.UI.ContextMenu.show(t, r, s)
+        hcs.UI.ContextMenu.show(t, r, s)
     }, a.prototype.onContextMenuPerformanceClose = function() {
-        ujs.notify("wnp.engine2D.contextMenu.close"), ujs.notify("wnp.engine3D.refreshGL")
+        ujs.notify("hcs.engine2D.contextMenu.close"), ujs.notify("hcs.engine3D.refreshGL")
     }, a.prototype.onContextMenuPropertyChanged = function(e) {
         var n = e.property,
             i = e.value;
@@ -96,8 +96,8 @@
                 if (this.waitSince === !1)
                     this.waitSince = i;
                 else if (i - this.waitSince > n && !this.hasBeenAlreadyNotified) {
-                    var r = wanaplan.engine2D.searchComponent("PedagoComponent");
-                    this.hasBeenAlreadyNotified = !0, wnpLocalStorage.setItem(o, !0), wnp.UI.IFrame.show(document.body, {
+                    var r = hcsdesign.engine2D.searchComponent("PedagoComponent");
+                    this.hasBeenAlreadyNotified = !0, hcsLocalStorage.setItem(o, !0), hcs.UI.IFrame.show(document.body, {
                         width: 720,
                         height: 240,
                         src: r.getPageURL("graphics")

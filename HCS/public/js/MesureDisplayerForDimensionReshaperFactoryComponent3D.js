@@ -8,7 +8,7 @@ var MesureDisplayerForDimensionReshaperFactoryComponent3D = function() {
     };
     var e = function() {};
     return e.prototype.initialize = function(t, e) {
-        return this.camera = t, this.scene = e, this.dimensionConfigurator = wanaplan.getComponentByName("DimensionReshaperComponent3D"), this
+        return this.camera = t, this.scene = e, this.dimensionConfigurator = hcsdesign.getComponentByName("DimensionReshaperComponent3D"), this
     }, e.prototype.hide = function() {
         this._cote && (this._cote.plan.isVisible = !1)
     }, e.prototype.dispose = function() {
@@ -20,7 +20,7 @@ var MesureDisplayerForDimensionReshaperFactoryComponent3D = function() {
             s = this.dimensionConfigurator.getbestAxis(t, n, e),
             a = e.clone(),
             l = BABYLON.Vector3.Cross(s, a),
-            h = wanaplan.engine3D,
+            h = hcsdesign.engine3D,
             c = h.scene.activeCamera,
             u = c.target.subtract(c.position),
             p = BABYLON.Vector3.TransformCoordinates(l, r.rotationMatrix);
@@ -54,7 +54,7 @@ var MesureDisplayerForDimensionReshaperFactoryComponent3D = function() {
             e = BABYLON.Mesh.CreatePlane("cote_plan", 1, t);
         e.scaling.x = 1e3, e.scaling.y = 1e3;
         var n = new BABYLON.StandardMaterial("cote_texture", t);
-        wanaplan.engine3D.scene.getEngine().getCaps().maxAnisotropy = 128;
+        hcsdesign.engine3D.scene.getEngine().getCaps().maxAnisotropy = 128;
         var i = new BABYLON.DynamicTexture("cote_texture", {
             width: 512,
             height: 256

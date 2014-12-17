@@ -1,6 +1,6 @@
 var ConfiguratorXrayComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "ConfiguratorXrayComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.hec = wanaplan.getComponentByName("TransparencyComponent"), this.camF = wanaplan.engine3D.cameraFeatures
+        BaseComponent3D.call(this, t, "ConfiguratorXrayComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.hec = hcsdesign.getComponentByName("TransparencyComponent"), this.camF = hcsdesign.engine3D.cameraFeatures
     };
     t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._options || this.setOptions(), this._savedMaterials = {}, this._clonedMaterials = {}, e = new BABYLON.StandardMaterial("xrayTransparentDefaultMaterial", this.scene)
@@ -28,9 +28,9 @@ var ConfiguratorXrayComponent3D = function() {
             this._options[e] = "undefined" == typeof t[e] ? s[e] : t[e];
         return this._setHideStrategy(), this
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.removeEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1), document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.removeEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1), document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1)
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.addEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.addEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -45,9 +45,9 @@ var ConfiguratorXrayComponent3D = function() {
             })();
         return this
     }, t.prototype.start = function() {
-        document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1), this._stopSharingMaterial(this.confm.getCurrentObject()), this._flagMeshes(), this._changeOnCameraMove && document.addEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1), this._options.wallTransparency && this._startWallTransparency()
+        document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1), this._stopSharingMaterial(this.confm.getCurrentObject()), this._flagMeshes(), this._changeOnCameraMove && document.addEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1), this._options.wallTransparency && this._startWallTransparency()
     }, t.prototype.stop = function() {
-        if (document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1), this._continueSharingMaterial(this.confm.getCurrentObject()), this._restoreMeshes(), this._options.wallTransparency)
+        if (document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1), this._continueSharingMaterial(this.confm.getCurrentObject()), this._restoreMeshes(), this._options.wallTransparency)
             try {
                 this._stopWallTransparency()
             } catch (t) {
@@ -70,10 +70,10 @@ var ConfiguratorXrayComponent3D = function() {
             e = this.confm.getCurrentObject(),
             n = this._options.partialTransparency ? o : i;
         this._hideStrategyInit || this._hideStrategyInit(e, t);
-        for (var s, a = wanaplan.engine3D.scene.meshes, l = a.length; l--;)
+        for (var s, a = hcsdesign.engine3D.scene.meshes, l = a.length; l--;)
             s = a[l], s.name && "Object" == s.name.substr(0, 6) && s != e && s.traverse(this._hideStrategyAccept(s, e, t) ? n : r)
     }, t.prototype._restoreMeshes = function() {
-        for (var t, e = this.confm.getCurrentObject(), n = wanaplan.engine3D.scene.meshes, i = n.length; i--;)
+        for (var t, e = this.confm.getCurrentObject(), n = hcsdesign.engine3D.scene.meshes, i = n.length; i--;)
             t = n[i], t.name && "Object" == t.name.substr(0, 6) && t != e && t.traverse(r)
     }, t.prototype._startWallTransparency = function() {
         var t = this.hec,

@@ -1,25 +1,25 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Aperture.Door = (function() {
+hcs.Programmable.Aperture.Door = (function() {
     var that;
     /**
      * Define a basic 3D object (draw dynamically)
      *
      * @constructor
      * @class Door
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var door = function (engine, structure, params) {
-        wnp.Programmable.Aperture.call(this, engine, structure, params);
+        hcs.Programmable.Aperture.call(this, engine, structure, params);
         for (var i in params) {
             this[i] = params[i];
         }
@@ -30,10 +30,10 @@ wnp.Programmable.Aperture.Door = (function() {
 
     door.prototype.loaded = false;
 
-    if (typeof wnp.Programmable.Aperture != "undefined") {
-        for (var i in wnp.Programmable.Aperture.prototype) {
+    if (typeof hcs.Programmable.Aperture != "undefined") {
+        for (var i in hcs.Programmable.Aperture.prototype) {
             if (typeof door.prototype[i] == 'undefined') {
-                door.prototype[i] = wnp.Programmable.Aperture.prototype[i];
+                door.prototype[i] = hcs.Programmable.Aperture.prototype[i];
             }
         }
         door.prototype.loaded = true;
@@ -41,15 +41,15 @@ wnp.Programmable.Aperture.Door = (function() {
 
     door.prototype.getDefaultMaterials = function(scene) {
         var materials = {};
-        // materials['bati'] = new wnp.WoodMaterial("bati", scene);
-        //materials['cadre'] = new wnp.WoodMaterial("cadre", scene); //cadre
-        materials['serrure'] = new wnp.MetalMaterial("serrure", scene, {brillance : 0.2});//{ color : 0xffffff, ambient : 0xFFFFFF, specular : 0xFFFFFF },true);
-        materials['poigneeB1'] = new wnp.MetalMaterial("poigneeB1", scene, {brillance : 0.2});//{ color : 0xffffff, ambient : 0xFFFFFF, specular : 0xFFFFFF },true);
-        materials['poigneeB2'] = new wnp.MetalMaterial("poigneeB2", scene, {brillance : 0.2});//{ color : 0xffffff, ambient : 0xFFFFFF, specular : 0xFFFFFF },true);
-        materials['porteFront'] = new wnp.WoodMaterial("porteFront", scene);
-        materials['porteBack'] = new wnp.WoodMaterial("porteBack", scene);
-        materials['plinte'] = new wnp.WhiteMaterial("plinte", scene, {factor : 0.8}); //plinte
-        materials['hinge'] = new wnp.MetalMaterial("hinge", scene, {brillance : 0.2});
+        // materials['bati'] = new hcs.WoodMaterial("bati", scene);
+        //materials['cadre'] = new hcs.WoodMaterial("cadre", scene); //cadre
+        materials['serrure'] = new hcs.MetalMaterial("serrure", scene, {brillance : 0.2});//{ color : 0xffffff, ambient : 0xFFFFFF, specular : 0xFFFFFF },true);
+        materials['poigneeB1'] = new hcs.MetalMaterial("poigneeB1", scene, {brillance : 0.2});//{ color : 0xffffff, ambient : 0xFFFFFF, specular : 0xFFFFFF },true);
+        materials['poigneeB2'] = new hcs.MetalMaterial("poigneeB2", scene, {brillance : 0.2});//{ color : 0xffffff, ambient : 0xFFFFFF, specular : 0xFFFFFF },true);
+        materials['porteFront'] = new hcs.WoodMaterial("porteFront", scene);
+        materials['porteBack'] = new hcs.WoodMaterial("porteBack", scene);
+        materials['plinte'] = new hcs.WhiteMaterial("plinte", scene, {factor : 0.8}); //plinte
+        materials['hinge'] = new hcs.MetalMaterial("hinge", scene, {brillance : 0.2});
 
         return materials;
     };

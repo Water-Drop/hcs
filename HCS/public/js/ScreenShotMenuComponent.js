@@ -3,7 +3,7 @@ var ScreenshotMenuComponent = function() {
         BaseTopMenuComponent2D.call(this, t, "ScreenshotMenuComponent"), this.isMainMenuItem = !1, this._item = {
             title: "Capture",
             icon: "fa fa-camera",
-            action: "wnp.request.takeScreenshot",
+            action: "hcs.request.takeScreenshot",
             id: "toolbarScreenshot",
             items: [],
             index: 500

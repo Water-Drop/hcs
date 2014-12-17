@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.DragControls = function(t, e, n, i) {
+var hcs = window.hcs || {};
+hcs.DragControls = function(t, e, n, i) {
     function o(e) {
         if (m.enabled) {
             e.preventDefault();
@@ -10,9 +10,9 @@ wnp.DragControls = function(t, e, n, i) {
                 var r = a.pickedMesh.parent ? a.pickedMesh.parent.getWorldMatrix().clone() : BABYLON.Matrix.Identity();
                 r.invert(), i = BABYLON.Vector3.TransformCoordinates(i, r), h.copyFrom(a.pickedMesh.position), w && (a.pickedMesh.position.x = i.x), x && (a.pickedMesh.position.y = i.y), C && (a.pickedMesh.position.z = i.z), a.pickedMesh.computeWorldMatrix(!0);
                 var s = a.pickedMesh.getFloor();
-                return s && s.markAsDirty(), ujs.notify("wnp.engine3d.dragcontrols.start", {selected: a}), M("drag", a), void (u === !1 ? u = 0 : 0 === u && (u = !0))
+                return s && s.markAsDirty(), ujs.notify("hcs.engine3d.dragcontrols.start", {selected: a}), M("drag", a), void (u === !1 ? u = 0 : 0 === u && (u = !0))
             }
-            ujs.notify("wnp.engine3d.dragcontrols.move"), u = !1
+            ujs.notify("hcs.engine3d.dragcontrols.move"), u = !1
         }
     }
     function r(i) {
@@ -34,7 +34,7 @@ wnp.DragControls = function(t, e, n, i) {
         if (m.enabled) {
             t.preventDefault();
             var n = !1;
-            ujs.notify("wnp.engine3d.dragcontrols.end", {selected: a}), a && 1 == u ? (u = !1, n = !0, M("dragend", a), a = null) : a && (a = null), e.style.cursor = "auto", M("mouseup", {dragged: n})
+            ujs.notify("hcs.engine3d.dragcontrols.end", {selected: a}), a && 1 == u ? (u = !1, n = !0, M("dragend", a), a = null) : a && (a = null), e.style.cursor = "auto", M("mouseup", {dragged: n})
         }
     }
     var a, n = n || [], l = new BABYLON.Vector3, h = new BABYLON.Vector3, c = (new BABYLON.Vector2, new BABYLON.Vector2), u = !1, p = 1;

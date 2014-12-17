@@ -3,9 +3,9 @@ var BaseComponent3D = function() {
         if (this.core = t, this.engine3D = null, this.name = e || "Component3D", this.structure = null, this.keyboardManager = null, this.materialFactory = null, this.scene = null, this.draggableObjects = null, this.cameraController = null, this.cubeCameras = null, this.configuration = null, this.camera = null, this.enabled = !0, this.initialized = !1, "undefined" != typeof t) {
             this.name = e, this.engine3D = this.core.engine3D, this.structure = this.core.structure, this.keyboardManager = this.core.keyboardManager, this.configuration = this.core.configuration, this.scene = this.core.engine3D.scene, this.camera = this.core.engine3D.camera, this.cubeCameras = this.core.engine3D.cubeCameras, this.cameraController = this.core.engine3D.cameraController, this.materialFactory = this.core.engine3D.materialFactory;
             var n = this;
-            document.addEventListener("wnp.contextChanged", function(t) {
+            document.addEventListener("hcs.contextChanged", function(t) {
                 n.enabled && t.context != t.previousContext && n.onContextChanged(t.context)
-            }, !1), document.addEventListener("wnp.engine3D.forceReload", this.reloadConfiguration, !1)
+            }, !1), document.addEventListener("hcs.engine3D.forceReload", this.reloadConfiguration, !1)
         }
     };
     return t.prototype.initialize = function() {}, t.prototype.startListening = function() {}, t.prototype.stopListening = function() {}, t.prototype.onContextChanged = function(t) {
@@ -16,10 +16,10 @@ var BaseComponent3D = function() {
         this.enabled = !0
     }, t.prototype.update = function() {}, t.prototype.compute = function() {}, t.prototype.reloadConfiguration = function() {}, t.prototype.getFloor = function(t) {
         var e = this.core.getComponentByName("FloorComponent3D"),
-            t = t || wanaplan.getSelectedStructure();
+            t = t || hcsdesign.getSelectedStructure();
         return e.getFloor(t)
     }, t.prototype.getObjectStructure = function(t) {
-        return Logger.warning("[BaseComponent3D] getObjectStructure - Fonction d¨¦preci¨¦e"), t.structure
+        return Logger.warning("[BaseComponent3D] getObjectStructure - Fonction dï¿½ï¿½preciï¿½ï¿½e"), t.structure
     }, t.prototype.getParentRelativeToScene = function(t) {
         var e = t.parent;
         if ("structure" != e.name && "undefined" != typeof e.parent) {

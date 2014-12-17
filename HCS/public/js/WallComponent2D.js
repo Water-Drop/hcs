@@ -1,15 +1,15 @@
 ﻿var WallComponent2D = function() {
     var t = function(t) {
         BaseComponent2D.call(this, t, "WallComponent2D"), this.TYPE_NORMAL = 1, this.TYPE_SEPARATOR = 2, this._COLORS = ["#333333", "#616161", "#BEBEBE", "#EEEEEE"], this._PATTERNS = [null, null, null, null], this._PATTERN_IMGS = [new Image, new Image, null, null], this._PATTERN_IMGS[0].addEventListener("load", function() {
-            this._PATTERNS[0] = wanaplan.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[0], "repeat"), wanaplan.engine2D.requestStaticDraw()
+            this._PATTERNS[0] = hcsdesign.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[0], "repeat"), hcsdesign.engine2D.requestStaticDraw()
         }.bind(this), !1), this._PATTERN_IMGS[1].addEventListener("load", function() {
-            this._PATTERNS[1] = wanaplan.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[1], "repeat"), wanaplan.engine2D.requestStaticDraw()
-        }.bind(this), !1), this._PATTERN_IMGS[0].src = wnp.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern.png", this._PATTERN_IMGS[1].src = wnp.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern_tmp.png", this.priority = 10, this._tmpWall = null, this._tmpThickness = 20, this._tmpType = this.TYPE_NORMAL, this._tmpDragStartPt = null, this._lastPlanPos = new BABYLON.Vector3, this._updateList = [], this._applyHeightToAll = !1, this._minWallLengthRatio = .01, this._draggingMinWallLengthRatio = .5, this.displayMesure = !0
+            this._PATTERNS[1] = hcsdesign.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[1], "repeat"), hcsdesign.engine2D.requestStaticDraw()
+        }.bind(this), !1), this._PATTERN_IMGS[0].src = hcs.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern.png", this._PATTERN_IMGS[1].src = hcs.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern_tmp.png", this.priority = 10, this._tmpWall = null, this._tmpThickness = 20, this._tmpType = this.TYPE_NORMAL, this._tmpDragStartPt = null, this._lastPlanPos = new BABYLON.Vector3, this._updateList = [], this._applyHeightToAll = !1, this._minWallLengthRatio = .01, this._draggingMinWallLengthRatio = .5, this.displayMesure = !0
     };
     return t.prototype = new BaseComponent2D, t.WALL_OFFSET = 10, t.prototype.startListening = function() {
-        this.onAddWall = this.onAddWall.bind(this), this.onAddWallEnd = this.onAddWallEnd.bind(this), document.addEventListener("wnp.engine2d.onAddWall", this.onAddWall, !1), document.addEventListener("wnp.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.registerEventCb("WallComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onHover.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onLeave.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.double-click", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onDoubleClick.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.context-menu", this.priority, "click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onContextMenu.bind(this), null), GlobalHelper.isMobileDevice() && wanaplan.engine2D.registerEventCb("WallComponent2D.mobile-drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, null, this.onMobileDragStart.bind(this), null)
+        this.onAddWall = this.onAddWall.bind(this), this.onAddWallEnd = this.onAddWallEnd.bind(this), document.addEventListener("hcs.engine2d.onAddWall", this.onAddWall, !1), document.addEventListener("hcs.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.registerEventCb("WallComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onHover.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onLeave.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.double-click", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onDoubleClick.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.context-menu", this.priority, "click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onContextMenu.bind(this), null), GlobalHelper.isMobileDevice() && hcsdesign.engine2D.registerEventCb("WallComponent2D.mobile-drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, null, this.onMobileDragStart.bind(this), null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddWall", this.onAddWall, !1), document.removeEventListener("wnp.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.unregisterEventCb("WallComponent2D.static-draw"), this.core.engine2D.unregisterEventCb("WallComponent2D.hover"), this.core.engine2D.unregisterEventCb("WallComponent2D.leave"), this.core.engine2D.unregisterEventCb("WallComponent2D.double-click"), this.core.engine2D.unregisterEventCb("WallComponent2D.context-menu"), GlobalHelper.isMobileDevice() && wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag-start")
+        document.removeEventListener("hcs.engine2d.onAddWall", this.onAddWall, !1), document.removeEventListener("hcs.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.unregisterEventCb("WallComponent2D.static-draw"), this.core.engine2D.unregisterEventCb("WallComponent2D.hover"), this.core.engine2D.unregisterEventCb("WallComponent2D.leave"), this.core.engine2D.unregisterEventCb("WallComponent2D.double-click"), this.core.engine2D.unregisterEventCb("WallComponent2D.context-menu"), GlobalHelper.isMobileDevice() && hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag-start")
     }, t.prototype.initialize = function() {
         this.startListening();
         var t = {
@@ -18,8 +18,8 @@
             items: [
                 {
                     title: _("承重墙"),
-                    action: "wnp.engine2d.onAddWall",
-                    cancelAction: "wnp.engine2d.onAddWallEnd",
+                    action: "hcs.engine2d.onAddWall",
+                    cancelAction: "hcs.engine2d.onAddWallEnd",
                     params: {
                         wallType: this.TYPE_NORMAL,
                         thickness: 30,
@@ -28,8 +28,8 @@
                 },
                 {
                     title: _("墙"),
-                    action: "wnp.engine2d.onAddWall",
-                    cancelAction: "wnp.engine2d.onAddWallEnd",
+                    action: "hcs.engine2d.onAddWall",
+                    cancelAction: "hcs.engine2d.onAddWallEnd",
                     params: {
                         wallType: this.TYPE_NORMAL,
                         thickness: 7,
@@ -38,8 +38,8 @@
                 }/*,
                 {
                     title: _("房间分割线"),
-                    cancelAction: "wnp.engine2d.onAddWallEnd",
-                    action: "wnp.engine2d.onAddWall",
+                    cancelAction: "hcs.engine2d.onAddWallEnd",
+                    action: "hcs.engine2d.onAddWall",
                     params: {
                         wallType: this.TYPE_SEPARATOR,
                         thickness: .2,
@@ -47,7 +47,7 @@
                     }
                 }*/
             ]};
-        ujs.notify("wnp.menu.main.add", {item: t,menuPath: "draw2D",position: .5})
+        ujs.notify("hcs.menu.main.add", {item: t,menuPath: "draw2D",position: .5})
     }, t.prototype.update = function(t) {
         var e, n = t || this.structure.getCurrentStructure(),
             i = n.getElements("walls");
@@ -86,19 +86,19 @@
             r = (o.measureDisplayed === !1 ? !1 : !0, o.styleId || 0);
         t.fillStyle = this._PATTERNS[r] || this._COLORS[r], t.strokeStyle = this._COLORS[r], t.save(), t.translate(e.x, e.y), t.scale(n, n), i.draw(t), t.restore()
     }, t.prototype._drawMeasures = function(t, e, n) {
-        wanaplan.getComponentByName("MeasureComponent").draw(t, e, n)
+        hcsdesign.getComponentByName("MeasureComponent").draw(t, e, n)
     }, t.prototype._addWallFirstPoint = function(t, e) {
-        var n = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D),
-            i = (wanaplan.getComponentByName("PointComponent2D", wanaplan.ENGINE_2D), wanaplan.getSelectedStructure());
+        var n = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D),
+            i = (hcsdesign.getComponentByName("PointComponent2D", hcsdesign.ENGINE_2D), hcsdesign.getSelectedStructure());
         this._tmpWall = new PolygonWall, this._tmpWall.height = i.height, this._tmpWall.thickness = this._tmpThickness, this._tmpWall.type = this._tmpType || this._tmpWall.TYPE_NORMAL;
         var o = e || new PointStructure,
             r = new PointStructure;
-        e || (o.position = t.planPos.clone()), r.position = t.planPos.clone(), e || (n && n.addVirtualPoint(this.name, o), wanaplan.engine2D.setEnableAutoScroll(!0)), n && n.onWallDrawStart(o), this._tmpWall.setPoints([o, r]), wanaplan.engine2D.requestStaticDraw()
+        e || (o.position = t.planPos.clone()), r.position = t.planPos.clone(), e || (n && n.addVirtualPoint(this.name, o), hcsdesign.engine2D.setEnableAutoScroll(!0)), n && n.onWallDrawStart(o), this._tmpWall.setPoints([o, r]), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype._addWallNewPoint = function(t) {
         {
-            var e = wanaplan.getSelectedStructure(),
-                n = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D);
-            wanaplan.getComponentByName("PointComponent2D", wanaplan.ENGINE_2D)
+            var e = hcsdesign.getSelectedStructure(),
+                n = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D);
+            hcsdesign.getComponentByName("PointComponent2D", hcsdesign.ENGINE_2D)
         }
         n.removeVirtualPoint(this.name, null), this._tmpWall.getPoints(1).position = t.planPos.clone(), this._tmpWall.addToStructure(e);
         var i = !1,
@@ -111,7 +111,7 @@
         return o.splitAtIntersections(e), i
     }, t.prototype._addWallUpdate = function(t) {
         var e = this._tmpWall.getPoints(1);
-        e.position = t.planPos.clone(), this._tmpWall.setPoints(e, 1), this._tmpWall.needsUpdate = !0, wanaplan.engine2D.requestDynamicDraw()
+        e.position = t.planPos.clone(), this._tmpWall.setPoints(e, 1), this._tmpWall.needsUpdate = !0, hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onStaticDraw = function(t, e, n) {
         var i = !1;
         if (i = this.structure.getElement(+this.structure.getCurrentStructure().id - 1))
@@ -130,16 +130,16 @@
             };
             this._drawWall(t, e, n, a[r], s)
         }
-        this.displayMesure && (wanaplan.getComponentByName("MeasureComponent").buildFromRooms(wanaplan.getSelectedStructure().internalRooms, wanaplan.getSelectedStructure().externalRooms), this._drawMeasures(t, e, n))
+        this.displayMesure && (hcsdesign.getComponentByName("MeasureComponent").buildFromRooms(hcsdesign.getSelectedStructure().internalRooms, hcsdesign.getSelectedStructure().externalRooms), this._drawMeasures(t, e, n))
     }, t.prototype.onDragStart = function(t, e, n) {
-        return e.targeted = e && e.isTargeted(n.planPos) instanceof BABYLON.Vector3 ? e.cp : !1, this._lastPlanPos.copyFrom(n.planPos), wanaplan.engine2D.registerEventCb("WallComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag.hover", this.priority, "hover", wanaplan.engine2D.MODE_DRAG, WallStructure, this.onHover.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag.leave", this.priority, "leave", wanaplan.engine2D.MODE_DRAG, WallStructure, this.onLeave.bind(this), e), !1
+        return e.targeted = e && e.isTargeted(n.planPos) instanceof BABYLON.Vector3 ? e.cp : !1, this._lastPlanPos.copyFrom(n.planPos), hcsdesign.engine2D.registerEventCb("WallComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag.hover", this.priority, "hover", hcsdesign.engine2D.MODE_DRAG, WallStructure, this.onHover.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag.leave", this.priority, "leave", hcsdesign.engine2D.MODE_DRAG, WallStructure, this.onLeave.bind(this), e), !1
     }, t.prototype.onDragging = function(t, e, n, i) {
         var o;
         if (o = n.forcePosition ? n.forcePosition.clone().subtractInPlace(i.getPoints(0).position) : n.planPos.clone().subtractInPlace(this._lastPlanPos), this._lastPlanPos.copyFrom(n.planPos), i.needsUpdate = !0, i.targeted)
-            return i.cp.addInPlace(mouseVector), wanaplan.engine2D.requestStaticDraw(), !1;
+            return i.cp.addInPlace(mouseVector), hcsdesign.engine2D.requestStaticDraw(), !1;
         var r = o.clone().projectOnVector(i.getWallVector()),
             s = o.subtractInPlace(r);
-        return i.translate(s, this.structure.getCurrentStructure()), i.getLength() < this._draggingMinWallLengthRatio * i.thickness && (i.remove(this.structure.getCurrentStructure()), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), this.simplifyWalls(), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw")), wanaplan.engine2D.requestStaticDraw(), !1
+        return i.translate(s, this.structure.getCurrentStructure()), i.getLength() < this._draggingMinWallLengthRatio * i.thickness && (i.remove(this.structure.getCurrentStructure()), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), this.simplifyWalls(), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw")), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDragEnd = function(t, e, n, i) {
         var o = this.structure.getCurrentStructure(),
             r = o.getElements("walls");
@@ -156,12 +156,12 @@
         h && h.tryMerge(o), c && c.tryMerge(o);
         for (var u = 0, p = s.attachedPoints.length; p > u; u++)
             s.attachedPoints[u].parents[0] && s.attachedPoints[u].parents[0].tryMerge(o);
-        this.update(), this.simplifyWalls(), wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag.hover"), wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag.leave"), this.update()
+        this.update(), this.simplifyWalls(), hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag.hover"), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag.leave"), this.update()
     }, t.prototype.onHover = function(t, e, n, i) {
         var e = i || e;
-        return wanaplan.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, WallStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, WallStructure, this.onDragStart.bind(this), null), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onLeave = function(t, e, n, i) {
-        wanaplan.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag-start"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag-start"), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onMobileDragStart = function(t, e, n, i) {
         return e ? this.onDragStart(t, e, n, i) : void 0
     }, t.prototype.onSelectionDynamicDraw = function(t, e, n, i) {
@@ -180,47 +180,47 @@
                     x: a.x * n + e.x,
                     y: a.y * n + e.y
                 };
-            wanaplan.engine2D.symbols2D.drawPoint(t, l), wanaplan.engine2D.symbols2D.drawMeasure(t, r, l), wanaplan.engine2D.symbols2D.drawMeasure(t, s, l), wanaplan.engine2D.symbols2D.drawArc(t, r, l, s)
+            hcsdesign.engine2D.symbols2D.drawPoint(t, l), hcsdesign.engine2D.symbols2D.drawMeasure(t, r, l), hcsdesign.engine2D.symbols2D.drawMeasure(t, s, l), hcsdesign.engine2D.symbols2D.drawArc(t, r, l, s)
         } else
-            wanaplan.engine2D.symbols2D.drawSegment(t, r, s)
+            hcsdesign.engine2D.symbols2D.drawSegment(t, r, s)
     }, t.prototype.onDoubleClick = function(t, e, n) {
-        var i = wanaplan.getSelectedStructure(),
+        var i = hcsdesign.getSelectedStructure(),
             o = new PointStructure;
         o.position = e.getNearestPoint(n.planPos);
         var r = new PolygonWall;
-        r.height = e.height, r.type = e.type, r.thickness = e.thickness, r.points = [o, e.getPoints(1)], e.points[1] = o, o.parents = [r, e], r.getPoints(1).parents.splice(r.getPoints(1).parents.indexOf(e), 1), r.getPoints(1).parents.push(r), r.reorganizeOnSplit(i, [r, e]), i.insertElement("points", o), i.insertElement("walls", r), wanaplan.engine2D.requestStaticDraw()
+        r.height = e.height, r.type = e.type, r.thickness = e.thickness, r.points = [o, e.getPoints(1)], e.points[1] = o, o.parents = [r, e], r.getPoints(1).parents.splice(r.getPoints(1).parents.indexOf(e), 1), r.getPoints(1).parents.push(r), r.reorganizeOnSplit(i, [r, e]), i.insertElement("points", o), i.insertElement("walls", r), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onAddWall = function(t) {
-        if (wanaplan.helpBubbleManager.display("wnp.2d.draw-wall"), this._tmpThickness = t.thickness, this._tmpType = t.wallType, this._tmpRounded = t.rounded || !1, wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_DRAW), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallDynamicDraw.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.click", this.priority, "click", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallClick.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallMouseMove.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.draw-end", this.priority, "draw-end", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallDrawEnd.bind(this), null), 1 == t.putPoint) {
-            var e = wanaplan.engine2D.getMouseState(),
-                n = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D);
+        if (/*hcsdesign.helpBubbleManager.display("hcs.2d.draw-wall"), */this._tmpThickness = t.thickness, this._tmpType = t.wallType, this._tmpRounded = t.rounded || !1, hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallDynamicDraw.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.click", this.priority, "click", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallClick.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallDragStart.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallMouseMove.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.draw-end", this.priority, "draw-end", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallDrawEnd.bind(this), null), 1 == t.putPoint) {
+            var e = hcsdesign.engine2D.getMouseState(),
+                n = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D);
             n.applyPointMag(e), this.onAddWallClick(t, null, e, null)
         }
     }, t.prototype.onAddWallEnd = function() {
-        wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL)
+        hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL)
     }, t.prototype.onAddWallClick = function(t, e, n, i) {
-        var o = wanaplan.getComponentByName("MagnetismComponent2D");
-        if ("touchUp" == t.type && null != this._tmpWall && this.onAddWallMouseMove(t, e, n, i), wanaplan.getSelectedStructure().dirty(), !i && null != this._tmpWall && this._tmpWall.getLength() <= 10)
-            return wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), o && o.onWallDrawEnd(), void wanaplan.engine2D.requestStaticDraw();
+        var o = hcsdesign.getComponentByName("MagnetismComponent2D");
+        if ("touchUp" == t.type && null != this._tmpWall && this.onAddWallMouseMove(t, e, n, i), hcsdesign.getSelectedStructure().dirty(), !i && null != this._tmpWall && this._tmpWall.getLength() <= 10)
+            return hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), o && o.onWallDrawEnd(), void hcsdesign.engine2D.requestStaticDraw();
         var r = !1;
         if (!i && null != this._tmpWall && (e instanceof WallStructure || e instanceof PointStructure) && (r = !0), null == this._tmpWall)
             this._addWallFirstPoint(n);
         else {
             var s = this._addWallNewPoint(n);
-            r || s ? (this._tmpWall = null, wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.getSelectedStructure().update(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), o && o.onWallDrawEnd(), wanaplan.engine2D.requestStaticDraw()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
+            r || s ? (this._tmpWall = null, hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.getSelectedStructure().update(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), o && o.onWallDrawEnd(), hcsdesign.engine2D.requestStaticDraw()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
         }
     }, t.prototype.onAddWallDragStart = function(t, e, n) {
-        return 0 == (n.buttons & n.BUTTON_LEFT) ? !0 : (this._tmpDragStartPt = n.planPos.clone(), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onAddWallDragEnd.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onAddWallMouseMove.bind(this), null), !1)
+        return 0 == (n.buttons & n.BUTTON_LEFT) ? !0 : (this._tmpDragStartPt = n.planPos.clone(), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onAddWallDragEnd.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onAddWallMouseMove.bind(this), null), !1)
     }, t.prototype.onAddWallDragEnd = function(t, e, n, i) {
-        wanaplan.getSelectedStructure().dirty();
-        var o = wanaplan.getComponentByName("MagnetismComponent2D");
+        hcsdesign.getSelectedStructure().dirty();
+        var o = hcsdesign.getComponentByName("MagnetismComponent2D");
         if (!i && null != this._tmpWall && this._tmpWall.getLength() <= 10)
-            return wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), void(o && o.onWallDrawEnd());
+            return hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), void(o && o.onWallDrawEnd());
         var r = !1;
         if (null != this._tmpWall && (e instanceof WallStructure || e instanceof PointStructure) && (r = !0), null == this._tmpWall)
             this._addWallFirstPoint(n);
         else {
             var s = this._addWallNewPoint(n);
-            r || s ? (this._tmpWall = null, wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), o && o.onWallDrawEnd()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
+            r || s ? (this._tmpWall = null, hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), o && o.onWallDrawEnd()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
         }
     }, t.prototype.onAddWallMouseMove = function(t, e, n) {
         if (null != this._tmpWall && null == this._tmpDragStartPt)
@@ -233,19 +233,19 @@
         if (null != this._tmpWall) {
             this._tmpWall.getLength() > 5 && (this._tmpWall.computeCp && this._tmpWall.computeCp(!0), this._tmpWall.computeDefault(0), this._tmpWall.computeDefault(1), this._drawWall(t, e, n, this._tmpWall, {
                 styleId: 1
-            }), this.displayMesure && wanaplan.getComponentByName("MeasureComponent").drawTmpWallMesure(t, e, n));
+            }), this.displayMesure && hcsdesign.getComponentByName("MeasureComponent").drawTmpWallMesure(t, e, n));
             var i = {
                 x: this._tmpWall.points[0].position.x,
                 y: this._tmpWall.points[0].position.y
             };
-            i.x = i.x * n + e.x, i.y = i.y * n + e.y, 1 == this._tmpWall.points[0].parents.length ? wanaplan.engine2D.symbols2D.drawCancelGrip(t, i, [!1, !1, !1, !1], 0) : wanaplan.engine2D.symbols2D.drawCheckGrip(t, i, [!1, !1, !1, !1], 0);
-            var o = wanaplan.engine2D.getTarget();
-            (o instanceof WallStructure || o instanceof PointStructure) && wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D))
+            i.x = i.x * n + e.x, i.y = i.y * n + e.y, 1 == this._tmpWall.points[0].parents.length ? hcsdesign.engine2D.symbols2D.drawCancelGrip(t, i, [!1, !1, !1, !1], 0) : hcsdesign.engine2D.symbols2D.drawCheckGrip(t, i, [!1, !1, !1, !1], 0);
+            var o = hcsdesign.engine2D.getTarget();
+            (o instanceof WallStructure || o instanceof PointStructure) && hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D))
         }
     }, t.prototype.onAddWallDrawEnd = function() {
         null != this._tmpWall && this._tmpWall.remove(), this._tmpWall = null, this._tmpDragStartPt = null;
-        var t = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D);
-        t.removeVirtualPoint(this.name, null), wanaplan.engine2D.requestStaticDraw()
+        var t = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D);
+        t.removeVirtualPoint(this.name, null), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenu = function(t, e) {
         var n = [];
         e.type != e.TYPE_SEPARATOR && (n.push({
@@ -296,10 +296,10 @@
             type: "checkbox",
             cast: "bool",
             value: e.measureDisplayed
-        }), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        }), hcsdesign.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         "_applyHeightToAll" == e ? this._applyHeightToAll = n : t[e] = n;
-        var i = wanaplan.getSelectedStructure(),
+        var i = hcsdesign.getSelectedStructure(),
             o = i.getElements("walls");
         if ("height" != e && "_applyHeightToAll" != e || !this._applyHeightToAll) {
             for (var r = 0, s = 1; s < o.length; s++)
@@ -310,9 +310,9 @@
                 o[s].height = t.height;
             i.height = t.height
         }
-        wanaplan.structure.updateFloorElevations(), t.needsUpdate = !0, wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.structure.updateFloorElevations(), t.needsUpdate = !0, hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
+        var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, t
 }();

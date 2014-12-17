@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Dummy = {Engine3D: function(t) {
+var hcs = window.hcs || {};
+hcs.Dummy = {Engine3D: function(t) {
     var e = function() {
         return null
     };

@@ -1,14 +1,14 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Furniture.Angle = (function() {
+hcs.Programmable.Furniture.Angle = (function() {
     var that;
 
     /**
@@ -16,21 +16,21 @@ wnp.Programmable.Furniture.Angle = (function() {
      *
      * @constructor
      * @class Angle
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var Angle = function (engine, structure, params) {
-        wnp.Programmable.Furniture.call(this, engine, structure, params);
+        hcs.Programmable.Furniture.call(this, engine, structure, params);
         that = this;
-        structure.magnetismCollider = wnp.Constants.MAGNETISM.WALL;
+        structure.magnetismCollider = hcs.Constants.MAGNETISM.WALL;
         structure.preferredYAngle = Math.PI;
     }
 
     /*h¨¦ritage*/
-    if (typeof wnp.Programmable.Furniture != "undefined") {
-        for (var i in wnp.Programmable.Furniture.prototype) {
+    if (typeof hcs.Programmable.Furniture != "undefined") {
+        for (var i in hcs.Programmable.Furniture.prototype) {
             if (typeof Angle.prototype[i] == 'undefined') {
-                Angle.prototype[i] = wnp.Programmable.Furniture.prototype[i];
+                Angle.prototype[i] = hcs.Programmable.Furniture.prototype[i];
             }
         }
     }
@@ -129,7 +129,7 @@ wnp.Programmable.Furniture.Angle = (function() {
 
         // object.getBoundingBox = function() {
             
-        //     return  new wnp.Box3(
+        //     return  new hcs.Box3(
         //          new BABYLON.Vector3(
         //                 -that.params.width/2,
         //                 0,
@@ -181,7 +181,7 @@ wnp.Programmable.Furniture.Angle = (function() {
     }
 
     Angle.prototype.getDefaultParams = function() {
-        var params = wnp.Programmable.Furniture.prototype.getDefaultParams();
+        var params = hcs.Programmable.Furniture.prototype.getDefaultParams();
         params.width = 140;
         params.height = 70;
         params.depth = 60;
@@ -202,7 +202,7 @@ wnp.Programmable.Furniture.Angle = (function() {
     }
 
     Angle.prototype.localizeAndSortParams = function() {
-        var params = wnp.Programmable.Furniture.prototype.localizeAndSortParams();
+        var params = hcs.Programmable.Furniture.prototype.localizeAndSortParams();
             
         params.advanced["elbow"] = _("elbow");
         params.advanced["elbow.width"] = _("width");
@@ -213,9 +213,9 @@ wnp.Programmable.Furniture.Angle = (function() {
     }
 
     Angle.prototype.getDefaultMaterials = function(scene) {
-        var materials = wnp.Programmable.Furniture.prototype.getDefaultMaterials(scene);
+        var materials = hcs.Programmable.Furniture.prototype.getDefaultMaterials(scene);
 
-        materials["door"] = new wnp.WhiteMaterial("door", scene, {factor : 0.8});
+        materials["door"] = new hcs.WhiteMaterial("door", scene, {factor : 0.8});
         //materials["sink"].side = THREE.DoubleSide; 
         //TODO : Z Fighting
 

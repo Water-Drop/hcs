@@ -4,11 +4,11 @@ var SaveComponent = function() {
             BaseTopMenuComponent2D.call(this, e, "SaveComponent"), this._item = {
                 title: "Save",
                 icon: "images/save_icon.png",
-                action: "wnp.request.saveStructure",
+                action: "hcs.request.saveStructure",
                 id: "toolbarSave",
                 items: [],
                 index: "2"
-            }, document.addEventListener("wnp.request.saveStructure", this.saveStructure.bind(this), !1), window.addEventListener("message", function(e) {
+            }, document.addEventListener("hcs.request.saveStructure", this.saveStructure.bind(this), !1), window.addEventListener("message", function(e) {
                 var n = JSON.parse(e.data);
                 "save-plan" == n.action ? t.saveStructure(e) : "update-urls" == n.action && (n.planUrl && (t.core.api.planUrl = n.planUrl), n.newUrl && (t.core.api.newUrl = n.newUrl), n.screenshotUrl && (t.core.api.screenshotUrl = n.screenshotUrl), n.saveUrl && (t.core.api.saveUrl = n.saveUrl))
             }), t = this
@@ -45,7 +45,7 @@ var SaveComponent = function() {
                         onClickB: l,
                         onClickA: function() {}
                     };
-                wnp.UI.MessageBox.close(), wnp.UI.MessageBox.show(h)
+                hcs.UI.MessageBox.close(), hcs.UI.MessageBox.show(h)
             }
         }
     }, n.prototype.onError = function() {
@@ -62,10 +62,10 @@ var SaveComponent = function() {
                         type: "downloadFile",
                         name: "plan",
                         content: "data:text/html;base64," + btoa(e)
-                    }, n), wnp.UI.MessageBox.close(), t.endProcess()
+                    }, n), hcs.UI.MessageBox.close(), t.endProcess()
                 }
             };
-        wnp.UI.MessageBox.show(n)
+        hcs.UI.MessageBox.show(n)
     }, n.prototype.sendToServer = function(e, n, i, o) {
         var r = this.core.getPreviewImage(320, 240),
             s = this.core.engine2D.isEnabled() ? "2D" : "3D";
@@ -101,7 +101,7 @@ var SaveComponent = function() {
                     }
                     parent.postMessage({
                         type: "planSaved"
-                    }, t.core.getOrigin()), wnp.UI.MessageBox.show({
+                    }, t.core.getOrigin()), hcs.UI.MessageBox.show({
                         title: _("Save a Plan"),
                         message: r,
                         buttonAText: _("Close"),

@@ -6,7 +6,7 @@ var __extends = this.__extends || function (t, e) {
         e.hasOwnProperty(i) && (t[i] = e[i]);
     n.prototype = e.prototype, t.prototype = new n
 },
-    wnp;
+    hcs;
 !function (t) {
     var e = function (t) {
         function e(e, n) {
@@ -136,11 +136,11 @@ var __extends = this.__extends || function (t, e) {
         }, e
     } (BABYLON.Material);
     t.StandardMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
-            t.call(this, e, n), this.params = i || {}, this.params.diffuseTexture && (this.diffuseTexture = this.params.diffuseTexture instanceof BABYLON.Texture ? this.params.diffuseTexture : new BABYLON.Texture(this.params.diffuseTexture, wanaplan.engine3D.scene), this.bumpTexture = null), this.params.bumpTexture && (this.bumpTexture = this.params.bumpTexture instanceof BABYLON.Texture ? this.params.bumpTexture : new BABYLON.Texture(this.params.bumpTexture, wanaplan.engine3D.scene)), this.category = -1, this._shaderName = "textured"
+            t.call(this, e, n), this.params = i || {}, this.params.diffuseTexture && (this.diffuseTexture = this.params.diffuseTexture instanceof BABYLON.Texture ? this.params.diffuseTexture : new BABYLON.Texture(this.params.diffuseTexture, hcsdesign.engine3D.scene), this.bumpTexture = null), this.params.bumpTexture && (this.bumpTexture = this.params.bumpTexture instanceof BABYLON.Texture ? this.params.bumpTexture : new BABYLON.Texture(this.params.bumpTexture, hcsdesign.engine3D.scene)), this.category = -1, this._shaderName = "textured"
         }
         return __extends(e, t), e.prototype.build = function () {
             this.uv(), this.normal(), this.diffuse(), this.light(), this.setAlpha()
@@ -149,7 +149,7 @@ function (t) {
         }, e
     } (t.StandardMaterial);
     t.TexturedMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
@@ -166,7 +166,7 @@ function (t) {
         }, n
     } (t.StandardMaterial);
     t.MetalMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
@@ -179,16 +179,16 @@ function (t) {
         return __extends(n, e), n
     } (t.MetalMaterial);
     t.GlassMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
-            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.woodTextures.diffuse, wanaplan.engine3D.scene)), this.category = 1, this.setCustomDefines(["#define WOOD"])
+            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.woodTextures.diffuse, hcsdesign.engine3D.scene)), this.category = 1, this.setCustomDefines(["#define WOOD"])
         }
         return __extends(n, e), n
     } (t.TexturedMaterial);
     t.WoodMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -197,7 +197,7 @@ function (t) {
         return __extends(e, t), e
     } (t.TexturedMaterial);
     t.LeatherMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -212,7 +212,7 @@ function (t) {
         }, e
     } (t.StandardMaterial);
     t.WhiteMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -223,7 +223,7 @@ function (t) {
         }, e
     } (t.WhiteMaterial);
     t.PlasticMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -232,70 +232,70 @@ function (t) {
         return __extends(e, t), e
     } (t.TexturedMaterial);
     t.TileMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
-            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.firePlaceWood.diffuse, wanaplan.engine3D.scene)), this.category = 8, this.setCustomDefines(["#define MATT"])
+            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.firePlaceWood.diffuse, hcsdesign.engine3D.scene)), this.category = 8, this.setCustomDefines(["#define MATT"])
         }
         return __extends(n, e), n
     } (t.TexturedMaterial);
     t.MattMaterial = e
-} (wnp || (wnp = {}));
-var wnp = window.wnp || {};
+} (hcs || (hcs = {}));
+var hcs = window.hcs || {};
 !function () {
-    wnp.StandardMaterial.prototype.serialize = function (t) {
+    hcs.StandardMaterial.prototype.serialize = function (t) {
         if (this.isDefault)
             return null;
         var t = t || {};
         return t.class = {
-            name: wnp.StandardMaterial.GetClassFromCategory(this.category)
+            name: hcs.StandardMaterial.GetClassFromCategory(this.category)
         }, ujs.serializeObject(this, t, ["name", "backFaceCulling", "addColor", "params"]), t
-    }, wnp.StandardMaterial.prototype.deserialize = function (e) {
+    }, hcs.StandardMaterial.prototype.deserialize = function (e) {
         return e ? (ujs.deserializeObject(e, this, ["name", "backFaceCulling", "addColor"]), this.isDefault = !1, t(this), e.centroid && (this.centroid = e.centroid), e.side && (this.side = e.side), e.ambientColor && this.setBaseColor(ujs.deserializeObject(e.ambientColor)), e.emissiveColor && this.setBaseColor(ujs.deserializeObject(e.emissiveColor)), this) : null
-    }, wnp.StandardMaterial.Deserialize = function (t) {
+    }, hcs.StandardMaterial.Deserialize = function (t) {
         var e = {};
         ujs.deserializeObject(t.params, e);
         var n = ujs.stringToFunction(t.class.name),
-            i = new n(t.name, wanaplan.engine3D.scene, e);
+            i = new n(t.name, hcsdesign.engine3D.scene, e);
         return i.deserialize(t), i
-    }, wnp.StandardMaterial.GetClassFromCategory = function (t) {
+    }, hcs.StandardMaterial.GetClassFromCategory = function (t) {
         switch (t) {
             case -1:
-                return "wnp.StandardMaterial";
+                return "hcs.StandardMaterial";
             case 1:
-                return "wnp.WoodMaterial";
+                return "hcs.WoodMaterial";
             case 2:
-                return "wnp.MetalMaterial";
+                return "hcs.MetalMaterial";
             case 3:
-                return "wnp.GlassMaterial";
+                return "hcs.GlassMaterial";
             case 4:
-                return "wnp.LeatherMaterial";
+                return "hcs.LeatherMaterial";
             case 5:
-                return "wnp.WhiteMaterial";
+                return "hcs.WhiteMaterial";
             case 6:
-                return "wnp.PlasticMaterial";
+                return "hcs.PlasticMaterial";
             case 7:
-                return "wnp.TileMaterial";
+                return "hcs.TileMaterial";
             case 8:
-                return "wnp.MattMaterial";
+                return "hcs.MattMaterial";
             default:
-                return Logger.warning("Category Error (wnp.StandardMaterial)"), null
+                return Logger.warning("Category Error (hcs.StandardMaterial)"), null
         }
-    }, wnp.WoodMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.MetalMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.GlassMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.LeatherMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.WhiteMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.PlasticMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.TileMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.MattMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.TexturedMaterial.prototype.serialize = function () {
+    }, hcs.WoodMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.MetalMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.GlassMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.LeatherMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.WhiteMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.PlasticMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.TileMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.MattMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.TexturedMaterial.prototype.serialize = function () {
         if (1 == this.isDefault)
             return null;
         var t = {};
-        return wnp.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["diffuseTexture", "bumpTexture"]), t
-    }, wnp.TexturedMaterial.prototype.deserialize = function (t) {
-        return ujs.deserializeObject(t, this, ["diffuseTexture", "bumpTexture"]), wnp.StandardMaterial.prototype.deserialize.call(this, t), this
-    }, wnp.GlassMaterial.prototype.serialize = function () {
+        return hcs.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["diffuseTexture", "bumpTexture"]), t
+    }, hcs.TexturedMaterial.prototype.deserialize = function (t) {
+        return ujs.deserializeObject(t, this, ["diffuseTexture", "bumpTexture"]), hcs.StandardMaterial.prototype.deserialize.call(this, t), this
+    }, hcs.GlassMaterial.prototype.serialize = function () {
         if (1 == this.isDefault)
             return null;
         var t = {};
-        return wnp.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["alpha"]), t
-    }, wnp.GlassMaterial.prototype.deserialize = function (t) {
-        return ujs.deserializeObject(t, this, ["alpha"]), wnp.StandardMaterial.prototype.deserialize.call(this, t), this
+        return hcs.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["alpha"]), t
+    }, hcs.GlassMaterial.prototype.deserialize = function (t) {
+        return ujs.deserializeObject(t, this, ["alpha"]), hcs.StandardMaterial.prototype.deserialize.call(this, t), this
     }, BABYLON.StandardMaterial.prototype.serialize = function () {
         var t = BABYLON.Material.prototype.serialize.call(this);
         return t.class = {
@@ -303,9 +303,9 @@ var wnp = window.wnp || {};
         }, ujs.serializeObject(this, t, ["diffuseTexture", "ambientTexture", "opacityTexture", "reflectionTexture", "emissiveTexture", "specularTexture", "bumpTexture", "ambientColor", "diffuseColor", "specularColor", "specularPower", "emissiveColor", "addColor"]), t
     }, BABYLON.StandardMaterial.prototype.deserialize = function (e) {
         return BABYLON.Material.prototype.deserialize.call(this, e), ujs.deserializeObject(e, this, ["diffuseTexture", "ambientTexture", "opacityTexture", "reflectionTexture", "emissiveTexture", "specularTexture", "bumpTexture", "ambientColor", "diffuseColor", "specularColor", "specularPower", "emissiveColor", "addColor"]), t(this), this
-    }, wnp.BlackMaterial = wnp.WhiteMaterial, wnp.PolishedMaterial = wnp.WoodMaterial, wnp.LuxensMaterial = wnp.PlasticMaterial, wnp.TransparentMaterial = wnp.GlassMaterial;
+    }, hcs.BlackMaterial = hcs.WhiteMaterial, hcs.PolishedMaterial = hcs.WoodMaterial, hcs.LuxensMaterial = hcs.PlasticMaterial, hcs.TransparentMaterial = hcs.GlassMaterial;
     var t = function (t) {
-        if ((t instanceof wnp.GlassMaterial || t instanceof wnp.MetalMaterial) && t.addColor && t.addColor.color)
+        if ((t instanceof hcs.GlassMaterial || t instanceof hcs.MetalMaterial) && t.addColor && t.addColor.color)
             t.setBaseColor(t.addColor.color);
         else if (t.addColor && t.addColor.color && t.diffuseTexture && t.diffuseTexture.url) {
             t.addColor.size = t.addColor.size || {
@@ -316,7 +316,7 @@ var wnp = window.wnp || {};
             e.crossOrigin = "Anonymous";
             var n = t.addColor.color;
             e.src = t.diffuseTexture.url;
-            var i = new BABYLON.DynamicTexture("canvas", t.addColor.size.width, wanaplan.engine3D.scene, !0);
+            var i = new BABYLON.DynamicTexture("canvas", t.addColor.size.width, hcsdesign.engine3D.scene, !0);
             i.url = t.diffuseTexture.url;
             var o = {
                 u: t.diffuseTexture.uScale,
@@ -324,7 +324,7 @@ var wnp = window.wnp || {};
             };
             t.diffuseTexture = i, t.diffuseColor = new BABYLON.Color3(n.r, n.g, n.b).scale(.2), e.onload = function () {
                 var r = i.getContext();
-                r.fillStyle = wnp.MaterialFactory.rgbToHex(n), r.clearRect(0, 0, t.addColor.size.width, t.addColor.size.height), r.drawImage(e, 0, 0, t.addColor.size.width, t.addColor.size.height), r.globalCompositeOperation = "soft-light", r.globalCompositeOperation = "color-burn", r.globalCompositeOperation = "multiply", r.fillRect(0, 0, t.addColor.size.width, t.addColor.size.height), i.wrapU = BABYLON.Texture.WRAP_ADDRESSMODE, i.wrapV = BABYLON.Texture.WRAP_ADDRESSMODE, i.uScale = o.u || 1, i.vScale = o.v || 1, i.update()
+                r.fillStyle = hcs.MaterialFactory.rgbToHex(n), r.clearRect(0, 0, t.addColor.size.width, t.addColor.size.height), r.drawImage(e, 0, 0, t.addColor.size.width, t.addColor.size.height), r.globalCompositeOperation = "soft-light", r.globalCompositeOperation = "color-burn", r.globalCompositeOperation = "multiply", r.fillRect(0, 0, t.addColor.size.width, t.addColor.size.height), i.wrapU = BABYLON.Texture.WRAP_ADDRESSMODE, i.wrapV = BABYLON.Texture.WRAP_ADDRESSMODE, i.uScale = o.u || 1, i.vScale = o.v || 1, i.update()
             }
         }
     }

@@ -4,7 +4,7 @@ var FloorController = function() {
             BaseComponent2D.call(this, e, "FloorController"), this._dragging = !1, this.core = e, t = this
         };
     return e.prototype = Object.create(BaseComponent2D.prototype), e.prototype.update = function() {
-        wanaplan.getSelectedStructure().isDirty() && this.updateHTML()
+        hcsdesign.getSelectedStructure().isDirty() && this.updateHTML()
     }, e.prototype.onContextChanged = function() {}, e.prototype.initialize = function() {
         this.updateHTML(), this.startListening();
         ({
@@ -13,15 +13,15 @@ var FloorController = function() {
                 type: "checkbox",
                 label: _("Display the lower floor"),
                 eventParams: {
-                    eventName: "wnp.request.object.seeBottomFloor",
+                    eventName: "hcs.request.object.seeBottomFloor",
                     cast: "int"
                 }
             }]
         })
     }, e.prototype.startListening = function() {
-        document.addEventListener("wnp.structure.locale.loaded", this.updateHTML)
+        document.addEventListener("hcs.structure.locale.loaded", this.updateHTML)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.structure.locale.loaded", this.updateHTML)
+        document.removeEventListener("hcs.structure.locale.loaded", this.updateHTML)
     }, e.prototype.updateHTML = function() {
         t.removeHTML();
         var e = t.buildHTML();
@@ -60,7 +60,7 @@ var FloorController = function() {
     }, e.prototype.insertFloorBefore = function(e, n) {
         var i = this.structure.getElement(e);
         this.structure.removeElement(i), this.structure.addMemberAtIndex(n, i);
-        for (var o = 0, r = 0; r < wanaplan.structure.getLength(); r++) {
+        for (var o = 0, r = 0; r < hcsdesign.structure.getLength(); r++) {
             var i = t.structure.getElement(r);
             i instanceof FloorStructure && (i.elevation = o, o += i.height)
         }
@@ -69,7 +69,7 @@ var FloorController = function() {
         (id = this.getAttribute("rel")) && t.selectFloor(id)
     }, e.prototype.onItemContextMenu = function(e) {
         if (id = this.getAttribute("rel")) {
-            var n = wanaplan.structure.getElement(id),
+            var n = hcsdesign.structure.getElement(id),
                 i = [{
                     name: "label",
                     label: _("Name"),
@@ -89,7 +89,7 @@ var FloorController = function() {
                         value: n.height
                     }
                 }];
-            wanaplan.engine2D.displayContextMenu(i, n, t.onContextMenuPropertyChanged.bind(t))
+            hcsdesign.engine2D.displayContextMenu(i, n, t.onContextMenuPropertyChanged.bind(t))
         }
         e.stopPropagation()
     }, e.prototype.onContextMenuPropertyChanged = function(t, e, n) {
@@ -98,7 +98,7 @@ var FloorController = function() {
             if (t[e] = n, "height" == e) {
                 for (var o = 0; o < t.walls.length; o++)
                     (t.walls[o].height > t.height || t.walls[o].height == i) && (t.walls[o].height = t.height);
-                this.core.structure.updateFloorElevations(), ujs.notify("wnp.request.floorSelected", {
+                this.core.structure.updateFloorElevations(), ujs.notify("hcs.request.floorSelected", {
                     id: this.core.getSelectedStructure().id,
                     structure: this.core.getSelectedStructure()
                 })
@@ -106,15 +106,15 @@ var FloorController = function() {
         }
         this.updateHTML(), this.core.engine2D.requestStaticDraw()
     }, e.prototype.onItemDelete = function(e) {
-        if (confirm(_("confirm the deletion")) && !(wanaplan.structure.getLength() <= 1)) {
+        if (confirm(_("confirm the deletion")) && !(hcsdesign.structure.getLength() <= 1)) {
             if (id = this.getAttribute("rel")) {
-                var n = wanaplan.structure.getElement(id);
-                wanaplan.structure.removeElement(n);
-                for (var i = 0, o = 0; o < wanaplan.structure.getLength(); o++) {
+                var n = hcsdesign.structure.getElement(id);
+                hcsdesign.structure.removeElement(n);
+                for (var i = 0, o = 0; o < hcsdesign.structure.getLength(); o++) {
                     var r = t.structure.getElement(o);
                     r instanceof FloorStructure && (r.elevation = i, i += r.height)
                 }
-                ujs.notify("wnp.request.floorDeleted", {
+                ujs.notify("hcs.request.floorDeleted", {
                     id: id
                 }, !0), t.selectFloor(0 == id ? id : id - 1)
             }
@@ -128,25 +128,25 @@ var FloorController = function() {
                 n[o].checked && i.push(n[o].value);
             return t.onAddItemConfirm(e, i), !0
         }};
-        wnp.UI.MessageBox.show(n)
+        hcs.UI.MessageBox.show(n)
     }, e.prototype.onAddItemConfirm = function(e, n) {
         var i = t.duplicateForFloor(n);
         if (i.id > 0) {
-            var o = wanaplan.structure.getElement(i.id - 1);
+            var o = hcsdesign.structure.getElement(i.id - 1);
             i.elevation = o.elevation + o.height
         }
         var r = function() {
             t.selectFloor(i.id)
         };
-        ujs.notify("wnp.request.floorAdded", {
+        ujs.notify("hcs.request.floorAdded", {
             id: i.id,
             callback: r
         }, !0)
     }, e.prototype.duplicateForFloor = function(t) {
         var t = t || [],
-            e = wanaplan.structure.getCurrentStructure(),
+            e = hcsdesign.structure.getCurrentStructure(),
             n = e.clone();
-        wanaplan.structure.addElement(n), n.updateReferences(wanaplan.structure), n.hoppers = [];
+        hcsdesign.structure.addElement(n), n.updateReferences(hcsdesign.structure), n.hoppers = [];
         for (var i = 0, o = n.walls.length; o > i; i++)
             n.walls[i].materials = {}, n.walls[i].subSlopes = [];
         for (var r = n.internalRooms.concat(n.externalRooms), i = 0, o = r.length; o > i; i++)
@@ -176,11 +176,11 @@ var FloorController = function() {
     }, e.prototype.onSelectFloor = function(e) {
         e.id > -1 && t.selectFloor(e.id)
     }, e.prototype.selectFloor = function(e) {
-        wanaplan.structure.setCurrentStructureIndex(e), wanaplan.structure.members[e].dirty(), wanaplan.engine2D.update(!0), wanaplan.engine2D.requestStaticDraw(), t.updateHTML();
-        var n = wanaplan.getComponentByName("HistoryComponent");
-        n && n.reset(), ujs.notify("wnp.request.floorSelected", {
+        hcsdesign.structure.setCurrentStructureIndex(e), hcsdesign.structure.members[e].dirty(), hcsdesign.engine2D.update(!0), hcsdesign.engine2D.requestStaticDraw(), t.updateHTML();
+        var n = hcsdesign.getComponentByName("HistoryComponent");
+        n && n.reset(), ujs.notify("hcs.request.floorSelected", {
             id: e,
-            structure: wanaplan.structure.getCurrentStructure()
+            structure: hcsdesign.structure.getCurrentStructure()
         }, !0)
     }, e
 }();

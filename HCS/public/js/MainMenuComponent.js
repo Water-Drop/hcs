@@ -3,7 +3,7 @@ var MainMenuComponent = function() {
             title: "房型设计",
             index: 1,
             icon: "",
-            action: "wnp.request.changeEngine",
+            action: "hcs.request.changeEngine",
             id: "draw2D",
             params: {
                 engine: "2D"
@@ -15,7 +15,7 @@ var MainMenuComponent = function() {
             title: "家具设计",
             index: 2,
             icon: "",
-            action: "wnp.request.changeEngine",
+            action: "hcs.request.changeEngine",
             id: "furnishing3D",
             context: "3D",
             params: {
@@ -27,7 +27,7 @@ var MainMenuComponent = function() {
             title: "装饰设计",
             index: 3,
             icon: "",
-            action: "wnp.request.changeEngine",
+            action: "hcs.request.changeEngine",
             id: "decorate3D",
             context: "3D",
             params: {
@@ -37,10 +37,10 @@ var MainMenuComponent = function() {
             items: []
         }*/],
         e = function(e) {
-            BaseComponent2D.call(this, e, "MainMenuComponent"), this.menu = new wnp.UI.Menu(t, "mainMenuTabs", {
+            BaseComponent2D.call(this, e, "MainMenuComponent"), this.menu = new hcs.UI.Menu(t, "mainMenuTabs", {
                 selected: t[0],
                 inception: !1
-            }), this.menu.initialize(), this.menuTitleDom = document.getElementById("mainMenuTitle"), this.menuTitleDom.innerHTML = _(this.menu.selected.title), this.submenu = new wnp.UI.Menu(t[0].items, "mainMenuContentList"), document.addEventListener("wnp.menu.main.add", this.addItem.bind(this), !1), document.addEventListener("wnp.menu.main.replace", this.replaceItem.bind(this), !1), document.addEventListener("wnp.menu.main.deselect", this.deselectItem.bind(this), !1), document.addEventListener("wnp.menu.main.remove", this.removeItem.bind(this), !1), document.addEventListener("wnp.request.changeEngine", this.onChangeEngine.bind(this), !1), document.addEventListener("wnp.menu.main.remove", this.removeItem.bind(this), !1)
+            }), this.menu.initialize(), this.menuTitleDom = document.getElementById("mainMenuTitle"), this.menuTitleDom.innerHTML = _(this.menu.selected.title), this.submenu = new hcs.UI.Menu(t[0].items, "mainMenuContentList"), document.addEventListener("hcs.menu.main.add", this.addItem.bind(this), !1), document.addEventListener("hcs.menu.main.replace", this.replaceItem.bind(this), !1), document.addEventListener("hcs.menu.main.deselect", this.deselectItem.bind(this), !1), document.addEventListener("hcs.menu.main.remove", this.removeItem.bind(this), !1), document.addEventListener("hcs.request.changeEngine", this.onChangeEngine.bind(this), !1), document.addEventListener("hcs.menu.main.remove", this.removeItem.bind(this), !1)
         };
     return e.prototype = new BaseComponent2D, e.prototype.onChangeEngine = function() {
         this.menuTitleDom.innerHTML = _(this.menu.selected.title), this.updateSubMenu()
@@ -57,7 +57,7 @@ var MainMenuComponent = function() {
             n = t.itemId || !1;
         this.submenu.selected.items && 0 != this.submenu.selected.items.length && this.submenu.selected.items != {} || this.submenu.deselect(e, n)
     }, e.prototype.updateSubMenu = function() {
-        this.menu.selected.items && (this.submenu = new wnp.UI.Menu(this.menu.selected.items, "mainMenuContentList"), this.submenu.initialize())
+        this.menu.selected.items && (this.submenu = new hcs.UI.Menu(this.menu.selected.items, "mainMenuContentList"), this.submenu.initialize())
     }, e.prototype.addItem = function(t) {
         if (t.item && t.menuPath) {
             var e = t.item,

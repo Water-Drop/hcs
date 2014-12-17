@@ -157,7 +157,7 @@ PolygonWall = function() {
                 } else
                     s.unAttach(t), s.needsUpdate = !0
             } else
-                Logger.warning("Un point attach¨¦ n'a plus de parent !"), Logger.warning(this)
+                Logger.warning("Un point attachï¿½ï¿½ n'a plus de parent !"), Logger.warning(this)
         }
     }, t.prototype.getNearestPointOnRect = function(t, e) {
         for (var e = e || 0, n = this.getPolygon(), i = [], o = this.getWallVector().normalize(), r = 0, s = n.length; s > r; r++)

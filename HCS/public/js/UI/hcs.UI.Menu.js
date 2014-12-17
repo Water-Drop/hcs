@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.Menu = function() {
     function t(t) {
         var e = [];
         return e.push("background-color:rgb("), e.push(Math.floor(255 * t.r)), e.push(", "), e.push(Math.floor(255 * t.g)), e.push(", "), e.push(Math.floor(255 * t.b)), e.push(")"), e.join("")
@@ -35,7 +35,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
             if (n.colorable) {
                 var h = document.createElement("div");
                 h.setAttribute("class", "colorChooser");
-                var c = t(n.params.addColor && n.params.addColor.color ? n.params.addColor.color : {r: 137 / 255,g: 184 / 255,b: 8 / 255});
+                var c = t(n.params.addColor && n.params.addColor.color ? n.params.addColor.color : {r: 137 / 255,g: 115 / 255,b: 100 / 255});
                 h.setAttribute("style", c), r.appendChild(h), r.classList.add("colorable"), h.item = n, h.addEventListener("click", this.onColorChooserClick.bind(this), !1)
             }
         } else if (n.icon) {
@@ -57,7 +57,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
             o.appendChild(g)
         }
         return o.addEventListener("click", function(t) {
-                                  "UL" != t.target.tagName && (this.selected == n || o.classList.contains("opened") ? (this.deselect(), this.deselectElement(o)) : (ujs.notify("wnp.menu.click", this.buildEventItem(n)), (this.oneClick === !1 || n.selectionnable === !0) && (this.selected = n, this.selectElement(o)), n.action && ujs.notify(n.action, this.buildEventItem(n))), t.stopPropagation())
+                                  "UL" != t.target.tagName && (this.selected == n || o.classList.contains("opened") ? (this.deselect(), this.deselectElement(o)) : (ujs.notify("hcs.menu.click", this.buildEventItem(n)), (this.oneClick === !1 || n.selectionnable === !0) && (this.selected = n, this.selectElement(o)), n.action && ujs.notify(n.action, this.buildEventItem(n))), t.stopPropagation())
                                   }.bind(this), !1), o
     }, n.prototype.selectElement = function(t) {
         for (var e = this.domElement.querySelectorAll(".selected"), n = 0; n < e.length; n++)
@@ -71,7 +71,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
             var o = n.params;
             o.addColor = {color: i}, n.colorId = t, this.selected = n, n.action && ujs.notify(n.action, this.buildEventItem(n))
         };
-        wnp.UI.ColorPopup.show(i.bind(this), n.colorId), t.stopPropagation()
+        hcs.UI.ColorPopup.show(i.bind(this), n.colorId), t.stopPropagation()
     }, n.prototype.buildEventItem = function(t) {
         var e = {};
         for (var n in t)

@@ -2,7 +2,7 @@ var DebugComponent2D = function(t) {
     BaseComponent2D.call(this, t, "DebugComponent2D")
 };
 DebugComponent2D.prototype = Object.create(BaseComponent2D.prototype), DebugComponent2D.prototype.dumpStructureToFile = function() {
-    var t = wanaplan.structure.serialize(),
+    var t = hcsdesign.structure.serialize(),
         e = new Blob([t], {
             type: "text/plain;charset=utf-8"
         });
@@ -13,7 +13,7 @@ DebugComponent2D.prototype = Object.create(BaseComponent2D.prototype), DebugComp
         e = t.getElements("walls"),
         n = t.getElements("points");
     for (var i in e) {
-        Logger.message("Mur " + i + " :"), Logger.message("	" + e[i].points[0].position.x + "," + e[i].points[0].position.y + " ->" + e[i].points[1].position.x + "," + e[i].points[1].position.y), Logger.message("	Points rattach¨¦s : ");
+        Logger.message("Mur " + i + " :"), Logger.message("	" + e[i].points[0].position.x + "," + e[i].points[0].position.y + " ->" + e[i].points[1].position.x + "," + e[i].points[1].position.y), Logger.message("	Points rattachï¿½ï¿½s : ");
         for (var o in e[i].attachedPoints)
             Logger.message("		Point " + n.indexOf(e[i].attachedPoints[o]) + " : " + e[i].attachedPoints[o].position.x + "," + e[i].attachedPoints[o].position.y)
     }
@@ -27,7 +27,7 @@ DebugComponent2D.prototype = Object.create(BaseComponent2D.prototype), DebugComp
 }, DebugComponent2D.prototype.roomState = function(t) {
     Logger.message("ETAT DES PIECES :");
     for (var e in t.rooms)
-        Logger.message("Pi¨¨ce " + e + " :"), Logger.message("	Aire : " + t.rooms[e].area), t.rooms[e].path.debug()
+        Logger.message("Piï¿½ï¿½ce " + e + " :"), Logger.message("	Aire : " + t.rooms[e].area), t.rooms[e].path.debug()
 }, DebugComponent2D.prototype.ints = function(t) {
     Logger.message("Intersections :");
     var e = this.structure.getCurrentStructure(),

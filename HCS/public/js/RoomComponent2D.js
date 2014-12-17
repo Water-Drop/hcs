@@ -3,7 +3,7 @@
         BaseComponent2D.call(this, t, "RoomComponent2D"), this.priority = 9, this.rooms = [], this._remainings = 0, this.internalRooms = [], this.externalRooms = [], this.useCache = !1, this.displayRoomName = !0, this.core.engine2D.registerEventCb("RoomComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), this.core.engine2D.registerEventCb("RoomComponent2D.room.click", this.priority, "click", this.core.engine2D.MODE_NORMAL, RoomStructure, this.onContextMenu.bind(this), {})
     };
     return t.prototype = new BaseComponent2D, t.prototype.update = function(t) {
-        return !t && !wanaplan.getSelectedStructure().isDirty() || wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_CONTEXTMENU ? void 0 : (t = t || wanaplan.getSelectedStructure(), this.useCache ? (this.useCache = !1, this.computeRooms(t, PolygonMerger.getCachedCycles())) : this.computeRooms(t))
+        return !t && !hcsdesign.getSelectedStructure().isDirty() || hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_CONTEXTMENU ? void 0 : (t = t || hcsdesign.getSelectedStructure(), this.useCache ? (this.useCache = !1, this.computeRooms(t, PolygonMerger.getCachedCycles())) : this.computeRooms(t))
     }, t.prototype.removeBiggestArea = function() {
         for (var t, e = 0, n = 0, i = this.rooms.length; i > n; n++)
             this.rooms[n].getRoomArea() > e && (t = n, e = this.rooms[n].getRoomArea());
@@ -11,7 +11,7 @@
     }, t.prototype.getExternalWalls = function(t) {
         return Logger.warning("getExternalWalls is deprecated"), null
     }, t.prototype.getAllSubSlopes = function(t) {
-        var t = t || wanaplan.getSelectedStructure(),
+        var t = t || hcsdesign.getSelectedStructure(),
             e = t.getElements("internalRooms");
         0 != e.length && e[0].cycle || (this.update(t), e = t.getElements("internalRooms"));
         for (var n = [], i = function(t, e) {
@@ -85,7 +85,7 @@
         for (var e = this.structure.getCurrentStructure().getElements("internalRooms"), n = this.core.engine2D.getZoom(), i = 0, o = e.length; o > i; i++) {
             var r = e[i].areaPosition;
             if (!e[i].textWidth) {
-                var s = wanaplan.engine2D.canvas.getContext("2d");
+                var s = hcsdesign.engine2D.canvas.getContext("2d");
                 e[i].textWidth = s.measureText(e[i].label).width
             }
             var a = r.x - e[i].textWidth / 2 / n,
@@ -139,7 +139,7 @@
     }, t.prototype.onStaticDraw = function(t, e, n) {
         this.drawRooms(t, e, n)
     }, t.prototype.drawRooms = function(t, e, n) {
-        var i = wanaplan.getSelectedStructure();
+        var i = hcsdesign.getSelectedStructure();
         for (var o in i.internalRooms)
             i.internalRooms[o].area > 250 && this.drawRoom(i.internalRooms[o], t, e, n)
     }, t.prototype.isPointInRooms = function(t) {

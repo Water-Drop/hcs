@@ -2,7 +2,7 @@ var DebugComponent3D = function(t) {
     BaseComponent3D.call(this, t, "DebugComponent3D")
 };
 DebugComponent3D.prototype = Object.create(BaseComponent3D.prototype), DebugComponent3D.prototype.dumpSceneToFile = function() {
-    var t = BABYLON.SceneSerializer.Serialize(wanaplan.engine3D.scene),
+    var t = BABYLON.SceneSerializer.Serialize(hcsdesign.engine3D.scene),
         e = JSON.stringify(t),
         n = new Blob([e], {
             type: "text/plain;charset=utf-8"
@@ -16,14 +16,14 @@ DebugComponent3D.prototype = Object.create(BaseComponent3D.prototype), DebugComp
             color: i
         }),
         a = new THREE.Mesh(r, s);
-    return this.scene.add(a), this.marks.push(a), a.position.set(t, e, n), wanaplan.engine3D.refreshRenderer(), this.marks.length - 1
+    return this.scene.add(a), this.marks.push(a), a.position.set(t, e, n), hcsdesign.engine3D.refreshRenderer(), this.marks.length - 1
 }, DebugComponent3D.prototype.marklights = function() {
     Logger.message(this);
     for (var t = 0; t < this.scene.__lights.length; t++) {
         var e = this.scene.__lights[t].position;
         this.mark(e.x, e.y, e.z, 16776960)
     }
-    return wanaplan.engine3D.refreshRenderer(), this.scene.__lights
+    return hcsdesign.engine3D.refreshRenderer(), this.scene.__lights
 }, DebugComponent3D.prototype.removemark = function(t) {
     return this.scene.remove(this.marks[t]), this.marks.splice(t, 1), t
 }, DebugComponent3D.prototype.removemarks = function() {
@@ -53,7 +53,7 @@ DebugComponent3D.prototype.concatGeom = function(t) {
                         }
             Logger.message(i), o.materials = i;
             var h = new THREE.Mesh(n, o);
-            Logger.message(h.material), t.add(h), Logger.message(wanaplan.engine3D.renderer.autoUpdateObjects), wanaplan.engine3D.renderer.autoUpdateObjects = !1
+            Logger.message(h.material), t.add(h), Logger.message(hcsdesign.engine3D.renderer.autoUpdateObjects), hcsdesign.engine3D.renderer.autoUpdateObjects = !1
         };
     s()
 };

@@ -1,27 +1,27 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Tv = (function () {
+hcs.Programmable.Tv = (function () {
     /**
      * Define a basic 3D object (draw dynamically)
      *
      * @constructor
      * @class Tv
-     * @param {wnp.Core} Le moteur principal.
+     * @param {hcs.Core} Le moteur principal.
      * @param {Object} Des paramètres de configuration.
      */
 
     var Tv = function (engine, structure, params) {
-        wnp.Programmable.call(this, engine, structure, params);
+        hcs.Programmable.call(this, engine, structure, params);
         this.objectName = 'Tv';
         this._videoId = Tv.videoId++;
-        structure.magnetismCollider = wnp.Constants.MAGNETISM.WALL | wnp.Constants.MAGNETISM.VERTICAL;
+        structure.magnetismCollider = hcs.Constants.MAGNETISM.WALL | hcs.Constants.MAGNETISM.VERTICAL;
         structure.easeMagnetism = true;
         structure.preferredYAngle = Math.PI;
     };
@@ -29,8 +29,8 @@ wnp.Programmable.Tv = (function () {
     Tv.videoId = 0;
 
     // heritage
-    for (var i in wnp.Programmable.prototype) {
-        Tv.prototype[i] = wnp.Programmable.prototype[i];
+    for (var i in hcs.Programmable.prototype) {
+        Tv.prototype[i] = hcs.Programmable.prototype[i];
     }
 
 
@@ -86,7 +86,7 @@ wnp.Programmable.Tv = (function () {
                     min:0,
                 }
         }
-        return wnp.Programmable.prototype.getParamType.call( this , name );
+        return hcs.Programmable.prototype.getParamType.call( this , name );
     }
 
     Tv.prototype._getVideoMaterial = function( scene ){

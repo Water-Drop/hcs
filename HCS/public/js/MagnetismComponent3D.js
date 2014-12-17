@@ -1,7 +1,7 @@
 var MagnetismComponent3D = function() {
     var t, e, n = !1,
         i = function(n) {
-            BaseComponent3D.call(this, n, "MagnetismComponent3D"), this._lastPosition = new BABYLON.Vector3, this._lastFictivePosition = new BABYLON.Vector3, this._speedVector = new BABYLON.Vector3, this._physicSpeedVector = new BABYLON.Vector3, this._correctedSpeedVector = new BABYLON.Vector3, this._tmpVector = new BABYLON.Vector3, e = wanaplan.engine3D.searchComponent("EditionComponent3D"), t = this, this.collisionList = [], this.currentCollisionBox = null
+            BaseComponent3D.call(this, n, "MagnetismComponent3D"), this._lastPosition = new BABYLON.Vector3, this._lastFictivePosition = new BABYLON.Vector3, this._speedVector = new BABYLON.Vector3, this._physicSpeedVector = new BABYLON.Vector3, this._correctedSpeedVector = new BABYLON.Vector3, this._tmpVector = new BABYLON.Vector3, e = hcsdesign.engine3D.searchComponent("EditionComponent3D"), t = this, this.collisionList = [], this.currentCollisionBox = null
         },
         o = .1,
         r = function(t, e) {
@@ -19,7 +19,7 @@ var MagnetismComponent3D = function() {
         s = [];
     r.prototype.showBox = function() {
         if (!this._debugCube) {
-            var t = wanaplan.engine3D.scene;
+            var t = hcsdesign.engine3D.scene;
             this._debugCube = BABYLON.Mesh.CreateBox("boundingboxConfigurator.boundingLimitGhost", 1, t), this._debugCube.material = new BABYLON.StandardMaterial("BB_debug", t), this._debugCube.material.wireframe = !0, this._debugCube.material.alpha = .29, s.push(this._debugCube)
         }
         for (var e = this._debugCube, n = new BABYLON.Vector3(0, 0, 0), i = 4; i--;)
@@ -92,7 +92,7 @@ var MagnetismComponent3D = function() {
         this.update()
     };
     a.prototype.overlaps1Way = r.prototype.overlaps1Way, a.prototype.worstOverlap = r.prototype.worstOverlap, a.prototype.overlaps = r.prototype.overlaps, a.prototype.showBox = r.prototype.showBox, a.prototype.update = r.prototype.update, i.prototype = Object.create(BaseComponent3D.prototype), i.prototype.initialize = function() {
-        e || (e = wanaplan.engine3D.searchComponent("EditionComponent3D"))
+        e || (e = hcsdesign.engine3D.searchComponent("EditionComponent3D"))
     }, i.prototype.buildCollisionList = function(e) {
         var i = t.getFloor();
         if (n)
@@ -100,9 +100,9 @@ var MagnetismComponent3D = function() {
                 s.shift().dispose();
         this.collisionList.length = 0;
         for (var o = function(t) {
-                if (t.structure && (t.magnetismCollider = t.structure.magnetismCollider), t.magnetismCollider & (wnp.Constants.MAGNETISM.OBJECT | wnp.Constants.MAGNETISM.VERTICAL))
+                if (t.structure && (t.magnetismCollider = t.structure.magnetismCollider), t.magnetismCollider & (hcs.Constants.MAGNETISM.OBJECT | hcs.Constants.MAGNETISM.VERTICAL))
                     t.getBoundingBox(!0), this.collisionList.push(new r(t));
-                else if (-1 != t.name.indexOf("WallMesh_") && e.magnetismCollider & wnp.Constants.MAGNETISM.WALL)
+                else if (-1 != t.name.indexOf("WallMesh_") && e.magnetismCollider & hcs.Constants.MAGNETISM.WALL)
                     for (var n in t.boundingBoxes)
                         "OvertureStructure" !== t.objectInstances[n].name && "SubSlopeStructure" !== t.objectInstances[n].name && this.collisionList.push(new r(t, t.boundingBoxes[n]))
             }.bind(this), l = i.getChildren(), h = 0, c = l.length; c > h; h++)
@@ -121,8 +121,8 @@ var MagnetismComponent3D = function() {
         "3D" == t ? this.initialized || (e.on("selectObject", this.onDragStart.bind(this)), e.on("dragstart", this.onDragStart.bind(this)), e.on("dragging", this.onDragging.bind(this)), e.on("objectMoves", this.onDragging.bind(this))) : this.initialized && (e.off("selectObject", this.onDragStart.bind(this)), e.off("dragstart", this.onDragStart.bind(this)), e.off("dragging", this.onDragging.bind(this)), e.off("objectMoves", this.onDragging.bind(this)))
     }, i.prototype.onDragStart = function(e) {
         var n = -1 != e.object.name.indexOf("group_");
-        if (n && (e.object.magnetismCollider = wnp.Constants.MAGNETISM.WALL), e.object.structure && (e.object.magnetismCollider = e.object.structure.magnetismCollider), e.object.magnetismCollider) {
-            if (t.buildCollisionList(e.object), !n && e.object.magnetismCollider & (wnp.Constants.MAGNETISM.OBJECT | wnp.Constants.MAGNETISM.VERTICAL)) {
+        if (n && (e.object.magnetismCollider = hcs.Constants.MAGNETISM.WALL), e.object.structure && (e.object.magnetismCollider = e.object.structure.magnetismCollider), e.object.magnetismCollider) {
+            if (t.buildCollisionList(e.object), !n && e.object.magnetismCollider & (hcs.Constants.MAGNETISM.OBJECT | hcs.Constants.MAGNETISM.VERTICAL)) {
                 t.currentCollisionBox = null;
                 for (var i = 0; !t.currentCollisionBox && i < t.collisionList.length;)
                     t.collisionList[i].object == e.object && (t.currentCollisionBox = t.collisionList[i]), i++;
@@ -132,13 +132,13 @@ var MagnetismComponent3D = function() {
             t._lastPosition.copyFrom(e.object.position), t._lastFictivePosition.copyFrom(e.object.position)
         }
     }, i.prototype.lateralCollisionCandidate = function(e) {
-        return t.currentCollisionBox.object.magnetismCollider & wnp.Constants.MAGNETISM.OBJECT && -1 == e.object.name.indexOf("WallMesh_") && e.object.magnetismCollider & wnp.Constants.MAGNETISM.OBJECT || t.currentCollisionBox.object.magnetismCollider & wnp.Constants.MAGNETISM.WALL && -1 != e.object.name.indexOf("WallMesh_")
+        return t.currentCollisionBox.object.magnetismCollider & hcs.Constants.MAGNETISM.OBJECT && -1 == e.object.name.indexOf("WallMesh_") && e.object.magnetismCollider & hcs.Constants.MAGNETISM.OBJECT || t.currentCollisionBox.object.magnetismCollider & hcs.Constants.MAGNETISM.WALL && -1 != e.object.name.indexOf("WallMesh_")
     }, i.prototype.onDragging = function(n) {
         if (n.object.magnetismCollider) {
             var i = 1,
                 o = 10;
             if (!t.currentCollisionBox)
-                return void Logger.warning("L'¨¦v¨¦nement DragStart n'a pas ¨¦t¨¦ correctement trait¨¦ par le magn¨¦tisme 3D");
+                return void Logger.warning("L'ï¿½ï¿½vï¿½ï¿½nement DragStart n'a pas ï¿½ï¿½tï¿½ï¿½ correctement traitï¿½ï¿½ par le magnï¿½ï¿½tisme 3D");
             t.currentCollisionBox.update();
             var r = -1,
                 s = !1,
@@ -149,7 +149,7 @@ var MagnetismComponent3D = function() {
                 r = 0;
                 for (var h = 0, c = t.collisionList.length; c > h; h++)
                     if (!(t.collisionList[h].yRange[1] <= t.currentCollisionBox.yRange[0] || t.collisionList[h].yRange[0] >= t.currentCollisionBox.yRange[1]) && t.collisionList[h].overlaps(t.currentCollisionBox)) {
-                        if (l && (t.currentCollisionBox.object.magnetismCollider & wnp.Constants.MAGNETISM.VERTICAL || "room" == t.collisionList[h].object.name)) {
+                        if (l && (t.currentCollisionBox.object.magnetismCollider & hcs.Constants.MAGNETISM.VERTICAL || "room" == t.collisionList[h].object.name)) {
                             if (t._lastFictivePosition.copyFrom(t.currentCollisionBox.object.position), t.solveCollision(t.collisionList[h], !0) < 5)
                                 continue;
                             t._speedVector.y = Math.abs(t.currentCollisionBox.yRange[1] - t.collisionList[h].yRange[0]) <= Math.abs(t.currentCollisionBox.yRange[0] - t.collisionList[h].yRange[1]) ? t.collisionList[h].yRange[0] - t.currentCollisionBox.yRange[1] : t.collisionList[h].yRange[1] - t.currentCollisionBox.yRange[0], t.currentCollisionBox.object.position.addInPlace(t._speedVector);
