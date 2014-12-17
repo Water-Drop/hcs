@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Clone = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Clone = function() {
     var t, e, n = !1, i = function(n) {
         t = n, this.icon = "fa fa-copy", this.button = this.buildHTML(), this.buttonSelected = !1, e = this, n.on("selectObject", this.onSelectObject), n.on("deselectObject", this.onDeselectObject)
     };
@@ -15,7 +15,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Clone = function() {
     }, i.prototype.onDeselectObject = function() {
         e.button.removeEventListener("pointerdown", e.onButtonMouseDown), document.removeEventListener("pointerup", e.onMouseUp), document.removeEventListener("pointercancel", e.onMouseUp), n = !1
     }, i.prototype.onButtonMouseDown = function(t) {
-        t.preventDefault(), e.buttonSelected || (e.buttonSelected = !0, ujs.notify("wnp.request.object.clone"))
+        t.preventDefault(), e.buttonSelected || (e.buttonSelected = !0, ujs.notify("hcs.request.object.clone"))
     }, i.prototype.onMouseUp = function() {
         e.buttonSelected && (e.buttonSelected = !1)
     }, i.prototype.isActive = function() {

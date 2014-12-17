@@ -3,24 +3,24 @@ var ExitComponent = function() {
         BaseTopMenuComponent2D.call(this, e, "ExitComponent"), this._item = {
             title: "Exit",
             icon: "fa fa-sign-out",
-            action: "wnp.request.exit",
+            action: "hcs.request.exit",
             id: "toolbarExit",
             items: []
-        }, t = this, document.addEventListener("wnp.request.exit", function() {
+        }, t = this, document.addEventListener("hcs.request.exit", function() {
             t.exit()
         }, !1)
     };
     return e.prototype = Object.create(BaseTopMenuComponent2D.prototype), e.prototype.doExit = function() {
-        if (wanaplan.api.params.exitUrl) {
+        if (hcsdesign.api.params.exitUrl) {
             var e = t.core.getOrigin();
             parent.postMessage({
                 type: "refresh",
-                url: wanaplan.api.params.exitUrl
+                url: hcsdesign.api.params.exitUrl
             }, e)
         }
         parent.postMessage({
             type: "planExit"
-        }, t.core.getOrigin()), ujs.notify("wnp.request.exited")
+        }, t.core.getOrigin()), ujs.notify("hcs.request.exited")
     }, e.prototype.exit = function() {
         var e = {
             title: _("Exit"),
@@ -33,6 +33,6 @@ var ExitComponent = function() {
                 return t.doExit(e), !0
             }
         };
-        wnp.UI.MessageBox.show(e)
+        hcs.UI.MessageBox.show(e)
     }, e
 }();

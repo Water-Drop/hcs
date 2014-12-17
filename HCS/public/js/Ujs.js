@@ -157,7 +157,13 @@ var ujs = function() {
                                                 return t.replace(e, "")
                                             }, t.stringToFunction = function(t) {
                                                 for (var e = t.split("."), n = window || this, i = 0, o = e.length; o > i; i++)
-                                                    n = n[e[i]];
+                                                    {//if(e[i]=="wnp")e[i]="hcs";
+//                                                        console.log(t);
+//                                                        console.log(n[e[i]]);
+                                                        n = n[e[i]];
+													//console.log(n);
+													//console.log(e[i]);
+													}
                                                 if ("function" != typeof n)
                                                     throw new Error("function not found");
                                                 return n

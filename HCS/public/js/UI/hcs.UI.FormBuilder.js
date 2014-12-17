@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.FormBuilder = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.FormBuilder = function() {
     function t(t) {
         t.target.parentNode.children[1].value = this.value
     }

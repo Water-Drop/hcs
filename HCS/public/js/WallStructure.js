@@ -55,7 +55,7 @@ WallStructure = function() {
             l = s.parents[(a + 1) % 2],
             h = l.points.indexOf(s);
         if (!l)
-            return void Logger.warning("Point avec un seul parent ne devrait pas ¨ºtre appel¨¦ par computeStrong");
+            return void Logger.warning("Point avec un seul parent ne devrait pas ï¿½ï¿½tre appelï¿½ï¿½ par computeStrong");
         i = l.getAxis(h);
         var c, u, p, d, m = i[0],
             g = i[1];
@@ -76,7 +76,7 @@ WallStructure = function() {
             this.attachedPoints[n].attachedTo = this;
         delete this._pointsIds, delete this._attachedPointsIds, delete this._overturesIds
     }, t.Deserialize = function(t) {
-        return Logger.warning("Deserialize is virtual"), console.warn("Impossible de deserialiser un mur virtuel, l'instance par d¨¦faut choisie est polygonWall"), PolygonWall.Deserialize(t)
+        return Logger.warning("Deserialize is virtual"), console.warn("Impossible de deserialiser un mur virtuel, l'instance par dï¿½ï¿½faut choisie est polygonWall"), PolygonWall.Deserialize(t)
     }, t.prototype.getPoints = function(t) {
         return 0 != t && 1 != t ? [this.points[0], this.points[1]] : this.points[t]
     }, t.prototype.isTargeted = function(t) {
@@ -165,7 +165,7 @@ WallStructure = function() {
         }
     }, t.prototype.weakToStrong = function(t, e) {
         if (t.attachedTo != this)
-            return Logger.warning("weakToStrong doit ¨ºtre appel¨¦ sur un point attach¨¦ du mur"), !1;
+            return Logger.warning("weakToStrong doit ï¿½ï¿½tre appelï¿½ï¿½ sur un point attachï¿½ï¿½ du mur"), !1;
         var n = this.getPoints(t.position.distanceTo(this.getPoints(0).position) < t.position.distanceTo(this.getPoints(1).position) ? 0 : 1);
         return n.attachedTo ? (n.unAttach(), t.unAttach(), t.forceMerge(n, e)) : (t.unAttach(), this.points[this.points.indexOf(n)] = t, t.parents.push(this), n.attachedTo = this, this.attachedPoints.push(n), n.parents.splice(n.parents.indexOf(this), 1), 0 == n.parents.length ? n.remove(e) : n.parents[0].needsUpdate = !0), t.parents[0].needsUpdate = !0, t.parents[1].needsUpdate = !0, !0
     }, t.prototype.tryMerge = function() {
@@ -195,7 +195,7 @@ WallStructure = function() {
             return t.clone();
         var e = this.getPolygon();
         if (!e[0])
-            return Logger.warning("getNearestPointOnPolygon a ¨¦t¨¦ appel¨¦ sur un mur au polygone vide"), null;
+            return Logger.warning("getNearestPointOnPolygon a ï¿½ï¿½tï¿½ï¿½ appelï¿½ï¿½ sur un mur au polygone vide"), null;
         for (var n, i, o = +1 / 0, r = null, s = 0, a = e.length; a > s; s++)
             i = t.projectOnSegment(e[s], e[(s + 1) % a]), n = i.distanceTo(t), o > n && (r = i, o = n);
         return r

@@ -28,13 +28,13 @@ var MeasureComponent = function() {
                 o !== i && e.tryMerge(t[o]) && (t.splice(o, 1), n--, i--, o = 0)
         }
     }, n.prototype.drawTmpWallMesure = function(t, e, n) {
-        var i = wanaplan.getComponentByName("WallComponent2D")._tmpWall;
+        var i = hcsdesign.getComponentByName("WallComponent2D")._tmpWall;
         if (i) {
             var o = new BABYLON.Vector2(i.points[1].position.y - i.points[0].position.y, i.points[0].position.x - i.points[1].position.x).normalize().scaleInPlace(40);
             this._drawMeasureSlice(t, e, n, i.points[0].position.add(o), i.points[1].position.add(o))
         }
     }, n.prototype.draw = function(n, i, o) {
-        for (var r, s, a = wanaplan.getComponentByName("OvertureComponent2D") && wanaplan.getComponentByName("OvertureComponent2D").overtureDragged, l = new BABYLON.Vector2, h = [], c = t.concat(e), u = 0, p = c.length; p > u; u++) {
+        for (var r, s, a = hcsdesign.getComponentByName("OvertureComponent2D") && hcsdesign.getComponentByName("OvertureComponent2D").overtureDragged, l = new BABYLON.Vector2, h = [], c = t.concat(e), u = 0, p = c.length; p > u; u++) {
             h.push([]);
             for (var d = 0, m = c[u].length; m > d; d++)
                 c[u][d].parent.measureDisplayed && (r = [], l.copyFrom(c[u][d].offsetVector).normalize().scaleInPlace(c[u][d].parent.measureDist), r.push(c[u][d].points[0].clone(), c[u][d].points[1].clone()), a && this._addOvertureIntersections(c[u][d].parent, r), s = new MeasureStructure(r, c[u][d].parent, l.clone()), h[u].push(s));
@@ -45,11 +45,11 @@ var MeasureComponent = function() {
                 for (var g = 0, f = h[u][d].points.length - 1; f > g; g++)
                     this._drawMeasureSlice(n, i, o, h[u][d].points[g].add(h[u][d].offsetVector), h[u][d].points[g + 1].add(h[u][d].offsetVector))
     }, n.prototype._drawMeasureSlice = function(t, e, n, i, o) {
-        var r = wanaplan.engine2D.toRealCoord(i, e, n),
-            s = wanaplan.engine2D.toRealCoord(o, e, n),
+        var r = hcsdesign.engine2D.toRealCoord(i, e, n),
+            s = hcsdesign.engine2D.toRealCoord(o, e, n),
             a = i.distanceTo(o),
             l = Math.round(a) / 100;
-        return wanaplan.engine2D.symbols2D.drawMeasure(t, r, s, l + "m"), l
+        return hcsdesign.engine2D.symbols2D.drawMeasure(t, r, s, l + "m"), l
     }, n.prototype._addOvertureIntersections = function(t, e) {
         for (var n = function(t, n) {
                 return t.distanceToSquared(e[0]) - n.distanceToSquared(e[0])

@@ -14,14 +14,14 @@ var MobileInputComponent = function() {
     }, i.prototype._onInputChanged = function(i) {
         return "onpointerdown" in window ? void(0 === n ? (n++, e = "mousemove" === i.type) : t.removeInputSupport("mousemove" === i.type ? "touch" : "mouse")) : void t.removeInputSupport("touchstart" === i.type || "touch" === i.pointerType ? "mouse" : "touch")
     }, i.prototype.removeInputSupport = function(t) {
-        var e = wanaplan.engine2D._pointerManager,
-            n = wanaplan.engine3D.pointerManager;
+        var e = hcsdesign.engine2D._pointerManager,
+            n = hcsdesign.engine3D.pointerManager;
         if ("mouse" === t) {
             e.removeMouseSupport(), n && n.removeMouseSupport();
-            var i = wanaplan.engine2D.searchComponent("MobileComponent");
-            i || (console.log("create new"), i = new MobileComponent(wanaplan, !0), wanaplan.engine2D.addInstancedComponent(i), i.onCoreInitialized()), i.addPointerCallback(), GlobalHelper.__forceMobileDevice(!0)
+            var i = hcsdesign.engine2D.searchComponent("MobileComponent");
+            i || (console.log("create new"), i = new MobileComponent(hcsdesign, !0), hcsdesign.engine2D.addInstancedComponent(i), i.onCoreInitialized()), i.addPointerCallback(), GlobalHelper.__forceMobileDevice(!0)
         } else
         //            e.removeTouchSupport(), n && n.removeTouchSupport();
-            this._unbindListeners(), wanaplan.engine2D.removeComponent(this, !0)
+            this._unbindListeners(), hcsdesign.engine2D.removeComponent(this, !0)
     }, i
 }();

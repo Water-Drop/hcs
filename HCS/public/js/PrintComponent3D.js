@@ -3,14 +3,14 @@ var PrintComponent3D = function() {
         BaseComponent3D.call(this, t, "PrintComponent3D")
     };
     return t.prototype = Object.create(BaseComponent3D.prototype), t.prototype.startListening = function() {
-        document.addEventListener("wnp.request.print", this.onPrint, !1)
+        document.addEventListener("hcs.request.print", this.onPrint, !1)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.print", this.onPrint, !1)
+        document.removeEventListener("hcs.request.print", this.onPrint, !1)
     }, t.prototype.onPrint = function() {
         var t = 842,
             e = 596,
-            n = wanaplan.getOrigin();
-        GlobalHelper.createScreenshot3D(wanaplan.engine3D.engine, void 0, function(i) {
+            n = hcsdesign.getOrigin();
+        GlobalHelper.createScreenshot3D(hcsdesign.engine3D.engine, void 0, function(i) {
             var o = i.toDataURL("image/png"),
                 r = setTimeout(function() {
                     clearTimeout(r);

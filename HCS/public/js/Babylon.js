@@ -8708,12 +8708,12 @@ BABYLON.Vector2.prototype.isPointInPolygon = function(t) {
                         }, BABYLON.StandardMaterial.Deserialize = function(t) {
                             if (!t)
                                 return null;
-                            var e = new BABYLON.StandardMaterial(t.name, wanaplan.engine3D.scene);
+                            var e = new BABYLON.StandardMaterial(t.name, hcsdesign.engine3D.scene);
                             return e.deserialize(t), e
                         }, BABYLON.MultiMaterial.Deserialize = function(t) {
                             if (!t)
                                 return null;
-                            var e = new BABYLON.MultiMaterial(t.name, wanaplan.engine3D.scene);
+                            var e = new BABYLON.MultiMaterial(t.name, hcsdesign.engine3D.scene);
                             return e.deserialize(t), e
                         }, BABYLON.Vector2.prototype.serialize = function() {
                             var t = {"class": {name: "BABYLON.Vector2"},x: this.x,y: this.y};
@@ -8751,24 +8751,24 @@ BABYLON.Vector2.prototype.isPointInPolygon = function(t) {
                             var e = new BABYLON.Color4(t.r, t.g, t.b, t.a);
                             return e
                         }, BABYLON.BaseTexture.prototype.serialize = function() {
-                            this.url = GlobalHelper.stripDomainUrl(this.url, "wanaplan.");
+                            this.url = GlobalHelper.stripDomainUrl(this.url, "hcsdesign.");
                             var t = {"class": {name: "BABYLON.BaseTexture"},uScale: this.uScale,vScale: this.vScale,url: this.url};
                             return t
                         }, BABYLON.BaseTexture.Deserialize = function(t) {
-                            var e = new BABYLON.BaseTexture(t.url, wanaplan.engine3D.scene);
+                            var e = new BABYLON.BaseTexture(t.url, hcsdesign.engine3D.scene);
                             return e.uScale = t.uScale || 1, e.vScale = t.vScale || 1, e
                         }, BABYLON.Texture.prototype.serialize = function() {
                             var t = BABYLON.BaseTexture.prototype.serialize.call(this);
                             return t.class.name = "BABYLON.Texture", t
                         }, BABYLON.Texture.Deserialize = function(t) {
-                            t.url = GlobalHelper.stripDomainUrl(t.url, "wanaplan.");
-                            var e = new BABYLON.Texture(t.url, wanaplan.engine3D.scene);
+                            t.url = GlobalHelper.stripDomainUrl(t.url, "hcsdesign.");
+                            var e = new BABYLON.Texture(t.url, hcsdesign.engine3D.scene);
                             return e.uScale = t.uScale || 1, e.vScale = t.vScale || 1, e
                         }, BABYLON.CubeTexture.prototype.serialize = function() {
                             var t = BABYLON.BaseTexture.prototype.serialize.call(this);
                             return t.class.name = "BABYLON.CubeTexture", t
                         }, BABYLON.CubeTexture.Deserialize = function(t) {
-                            var e = new BABYLON.CubeTexture(t.url, wanaplan.engine3D.scene);
+                            var e = new BABYLON.CubeTexture(t.url, hcsdesign.engine3D.scene);
                             return e
                         }, BABYLON.Mesh.prototype._lastCollidedFaceIndex = -1, BABYLON.Mesh.prototype.getFloor = function() {
                             return this.parent ? -1 != this.parent.name.indexOf("FloorMesh") ? this.parent : this.parent.getFloor() : null

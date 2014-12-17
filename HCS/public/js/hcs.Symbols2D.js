@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Symbols2D = function() {
+var hcs = window.hcs || {};
+hcs.Symbols2D = function() {
     var t = function() {
         this.COLOR_ACTIVE_STROKE = "#897364", this.COLOR_ACTIVE_STROKE_DARKER = "#A99384", this.COLOR_ACTIVE_FILL = "rgba(137, 115, 100, 0.2)", this.COLOR_ACTIVE_LARGEZONE_FILL = "rgba(137, 137, 137, 0.5)", this.COLOR_INACTIVE_STROKE = "#777777", this.COLOR_INACTIVE_FILL = "rgba(137, 115, 100, 0.1)", this.COLOR_BACKGROUND = "#FAFAFA", this.COLOR_ANNOTATION = "#888"
     };

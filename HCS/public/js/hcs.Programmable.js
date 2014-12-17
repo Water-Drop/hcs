@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Programmable = function() {
+var hcs = window.hcs || {};
+hcs.Programmable = function() {
     var t, e = function(e, n, i) {
         this.params = {}, this.mergeParams(i), this.materials = null, this.structure = n, n && (this.magnetismCollider = this.structure.magnetismCollider), this.id = 0, this.async = !1, this.objectName = "Programmable", t = this
     };
@@ -18,11 +18,11 @@ wnp.Programmable = function() {
         var n = t.split("/"),
             i = n[n.length - 1],
             o = i.split(".")[0];
-        delete n[n.length - 1], n = n.join("/"), -1 === n.indexOf("http://") && -1 == n.indexOf("https://") && (n = wnp.Assets.globalPath + n);
-        var r = new BABYLON.Mesh(o, wanaplan.engine3D.scene);
-        return r.isVisible = !1, BABYLON.SceneLoader.ImportMesh("", n, i, wanaplan.engine3D.scene, function(t) {
+        delete n[n.length - 1], n = n.join("/"), -1 === n.indexOf("http://") && -1 == n.indexOf("https://") && (n = hcs.Assets.globalPath + n);
+        var r = new BABYLON.Mesh(o, hcsdesign.engine3D.scene);
+        return r.isVisible = !1, BABYLON.SceneLoader.ImportMesh("", n, i, hcsdesign.engine3D.scene, function(t) {
             for (var n = 0, i = t.length; i > n; n++)
-                t[n].parent = r, t[n].receiveShadows = !0, wanaplan.engine3D.castShadows(t[n]);
+                t[n].parent = r, t[n].receiveShadows = !0, hcsdesign.engine3D.castShadows(t[n]);
             e && e(r)
         }), r
     }, e.prototype.importOBJ = function() {
@@ -99,10 +99,10 @@ wnp.Programmable = function() {
         a.length = a.length - 1;
         var e = e || {},
             l = function() {
-                var t = ujs.getProperty(wnp.Programmable, a.join(".")),
+                var t = ujs.getProperty(hcs.Programmable, a.join(".")),
                     r = e.params || e,
                     l = new t(s, i, r);
-                l.materials = n || l.getDefaultMaterials(wanaplan.engine3D.scene);
+                l.materials = n || l.getDefaultMaterials(hcsdesign.engine3D.scene);
                 e.id;
                 o(l)
             },
@@ -110,7 +110,7 @@ wnp.Programmable = function() {
             c = function(t, e, n) {
                 if (t >= h)
                     return void l();
-                var i = n || wnp.Constants.PROGRAMMABLE_PATH;
+                var i = n || hcs.Constants.PROGRAMMABLE_PATH;
                 HTMLHelper.addScript([i, "/", e, ".js"].join(""), void 0, function() {
                     var i = e + "/" + a[t + 1];
                     c(t + 1, i, n)
@@ -120,14 +120,14 @@ wnp.Programmable = function() {
     }, e.prototype.serialize = function() {
         var t = {
             "class": {
-                name: "wnp.Programmable"
+                name: "hcs.Programmable"
             }
         };
         return ujs.serializeObject(this, t, ["objectName", "id", "params", "materials"]), t
     }, e.prototype.deserialize = function(t) {
         return ujs.deserializeObject(t, this, ["objectName", "id", "params", "materials"]), this
     }, e.Deserialize = function(t) {
-        var n = new e(wanaplan.engine3D, null, t.params);
+        var n = new e(hcsdesign.engine3D, null, t.params);
         return n.deserialize(t), n
     }, e.prototype.getAvailableProperties = function() {
         var t = this.generateFormForObject("params", this);
@@ -139,7 +139,7 @@ wnp.Programmable = function() {
             }
 //            Object.keys(e.advanced).length > 0 && t.push({
 //                type: "html",
-//                html: "<a href='' onclick='wnp.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
+//                html: "<a href='' onclick='hcs.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
 //            })
         }
         return t
@@ -186,7 +186,7 @@ wnp.Programmable = function() {
                 type: h,
                 value: c,
                 eventParams: {
-                    eventName: "wnp.contextMenu.propertyChanged",
+                    eventName: "hcs.contextMenu.propertyChanged",
                     property: a
                 },
                 id: a.split(".").join("-")
@@ -204,7 +204,7 @@ wnp.Programmable = function() {
     }, e.prototype.generateMissingFacesUvs = function() {
         return console.warn("Can't use it with BABYLON"), null
     }, e
-}(), wnp.Programmable.toggleVisible = function() {
+}(), hcs.Programmable.toggleVisible = function() {
     for (var t = document.querySelectorAll(".advancedParams"), e = 0; e < t.length; e++)
         t[e].classList.toggle("hidden")
 };

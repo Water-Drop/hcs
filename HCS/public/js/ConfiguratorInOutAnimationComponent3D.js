@@ -1,6 +1,6 @@
 var ConfiguratorInOutAnimationComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "ConfiguratorInOutAnimationComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.camComp = wanaplan.getComponentByName("CameraComponent"), this.avatarComp = wanaplan.getComponentByName("AvatarComponent3D"), this.camF = wanaplan.engine3D.cameraFeatures, this.setOptions({
+        BaseComponent3D.call(this, t, "ConfiguratorInOutAnimationComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.camComp = hcsdesign.getComponentByName("CameraComponent"), this.avatarComp = hcsdesign.getComponentByName("AvatarComponent3D"), this.camF = hcsdesign.engine3D.cameraFeatures, this.setOptions({
             alpha: !1,
             beta: !0,
             goBack: !0,
@@ -31,7 +31,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             this._options[n] = "undefined" == typeof t[n] ? e[n] : t[n];
         return this
     }, t.prototype.replaceCameraTarget = function(t) {
-        var e = wanaplan.engine3D.scene.activeCamera,
+        var e = hcsdesign.engine3D.scene.activeCamera,
             n = this.camF,
             i = n.computeCameraStateLooking(t, e);
         i = {
@@ -48,7 +48,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             smooth: "ease"
         })
     }, t.prototype.focusObject = function(t) {
-        var e = wanaplan.engine3D.camera,
+        var e = hcsdesign.engine3D.camera,
             n = this.camF;
         if ("In" != this._currentAnimation && !this._focus) {
             this._previous.cameraState = {
@@ -72,7 +72,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
                 name: "cameraFocusOn_" + t.name,
                 isACamera: !0,
                 smooth: "ease"
-            }), this._currentAnimation = "In", ujs.notify("wnp.engine3d.configurator.animationIn.begin")
+            }), this._currentAnimation = "In", ujs.notify("hcs.engine3d.configurator.animationIn.begin")
         }
     }, t.prototype.stopCurrentAnimation = function() {
         if (this._cancelor) {
@@ -81,13 +81,13 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             switch (this._cancelor = null, this._currentAnimation = null, t) {
                 case "In":
                 case "Out":
-                    ujs.notify("wnp.engine3d.configurator.animation" + t + ".end")
+                    ujs.notify("hcs.engine3d.configurator.animation" + t + ".end")
             }
         }
     }, t.prototype.cancel = function() {
         this.stopCurrentAnimation()
     }, t.prototype.restoreCameraState = function() {
-        var t = wanaplan.engine3D.camera,
+        var t = hcsdesign.engine3D.camera,
             e = this.camF;
         if ("Out" != this._currentAnimation && this._focus) {
             var n = {
@@ -105,12 +105,12 @@ var ConfiguratorInOutAnimationComponent3D = function() {
                 name: "cameraFocusOff",
                 isACamera: !0,
                 smooth: "ease"
-            }), this._currentAnimation = "Out", this._previous.cameraState = !1, ujs.notify("wnp.engine3d.configurator.animationOut.begin"), this._listenBreakEvent(!0)
+            }), this._currentAnimation = "Out", this._previous.cameraState = !1, ujs.notify("hcs.engine3d.configurator.animationOut.begin"), this._listenBreakEvent(!0)
         }
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.addEventListener("wnp.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.addEventListener("wnp.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.addEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.addEventListener("wnp.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.addEventListener("wnp.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.addEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.addEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh), document.addEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh), document.addEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !0
+        this.stopListening(), document.addEventListener("hcs.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.addEventListener("hcs.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.addEventListener("hcs.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.addEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.addEventListener("hcs.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.addEventListener("hcs.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.addEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.addEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh), document.addEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh), document.addEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !0
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.removeEventListener("wnp.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.removeEventListener("wnp.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.removeEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.removeEventListener("wnp.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.removeEventListener("wnp.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.removeEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !1
+        this.initBindForThisInstance(), document.removeEventListener("hcs.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.removeEventListener("hcs.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.removeEventListener("hcs.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.removeEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.removeEventListener("hcs.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.removeEventListener("hcs.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.removeEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !1
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -126,11 +126,11 @@ var ConfiguratorInOutAnimationComponent3D = function() {
         return this
     }, t.prototype.avatarUnbind = function() {
         var t = this.camComp,
-            e = wanaplan.engine3D.camera;
+            e = hcsdesign.engine3D.camera;
         this._previous.lookAtObject = t.lookAt, this._previous.lookAtY = e.target.y, t.bindLookAt(null)
     }, t.prototype.avatarRebind = function() {
         var t = this.camComp,
-            e = wanaplan.engine3D.camera;
+            e = hcsdesign.engine3D.camera;
         t.cameraActiveId ? t.camera[0].target.y = this.avatarComp.avatar.position.y + 170 : (e.target.y = this._previous.lookAtY, e.target.y = this.avatarComp.avatar.position.y + 170, t.bindLookAt(this._previous.lookAtObject))
     }, t.prototype._listenBreakEvent = function(t) {
         for (var e = n.length; e--;)
@@ -184,7 +184,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             this.avatarRebind()
         },
         onRequestAnimationOut: function() {
-            this._options.goBack ? this.restoreCameraState() : (ujs.notify("wnp.engine3d.configurator.animationOut.begin"), ujs.notify("wnp.engine3d.configurator.animationOut.end"))
+            this._options.goBack ? this.restoreCameraState() : (ujs.notify("hcs.engine3d.configurator.animationOut.begin"), ujs.notify("hcs.engine3d.configurator.animationOut.end"))
         },
         onRequestAnimationIn: function() {
             this.confm.getCurrentObject() && this.focusObject(this.confm.getCurrentObject())
@@ -196,6 +196,6 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             (this._focus || this._currentAnimation) && t.object == this.confm.getCurrentObject() && this.replaceCameraTarget(t.object)
         }
     };
-    var n = ["wnp.engine3D.dragging", "wnp.engine3D.camera.zoom", "wnp.engine3D.click"];
+    var n = ["hcs.engine3D.dragging", "hcs.engine3D.camera.zoom", "hcs.engine3D.click"];
     return t
 }();

@@ -53,9 +53,9 @@ SpiralStairwayStructure = function() {
         this.orientation ? 1 : -1;
         this.orientation ? t.arc(n.x, n.y, r, s, a, !1) : t.arc(n.x, n.y, r, a, s, !1), t.moveTo(n.x, n.y), t.lineTo(i.x, i.y), t.moveTo(n.x, n.y), t.lineTo(o.x, o.y), t.stroke();
         var l = [0, 0, 1, 0];
-        this.orientation || (l = [1, 0, 0, 0]), wanaplan.engine2D.symbols2D.drawArrows(t, n.clone().lerp(i, .5), l, 0, s, !1, {
+        this.orientation || (l = [1, 0, 0, 0]), hcsdesign.engine2D.symbols2D.drawArrows(t, n.clone().lerp(i, .5), l, 0, s, !1, {
             size: 10
-        }), wanaplan.engine2D.symbols2D.drawArrows(t, n.clone().lerp(o, .5), l, -10, a, !1, {
+        }), hcsdesign.engine2D.symbols2D.drawArrows(t, n.clone().lerp(o, .5), l, -10, a, !1, {
             size: 10
         }), t.save(), t.beginPath(), this.orientation ? t.arc(n.x, n.y, r, a, s, !1) : t.arc(n.x, n.y, r, s, a, !1), t.strokeStyle = "#eeeeee";
         for (var h, c = 0; 10 >= c; c++)

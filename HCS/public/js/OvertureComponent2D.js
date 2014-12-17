@@ -3,9 +3,9 @@
         BaseComponent2D.call(this, t, "OvertureComponent2D"), this.COLOR = "#888", this.MINSIZE = 30, this.priority = 60, this.overtureDragged = !1, this._applyToAll = !1
     };
     return t.prototype = new BaseComponent2D, t.prototype.startListening = function() {
-        this.onAddOverture = this.onAddOverture.bind(this), this.onAddOvertureEnd = this.onAddOvertureEnd.bind(this), this.onStaticDraw = this.onStaticDraw.bind(this), this.onHover = this.onHover.bind(this), this.onLeave = this.onLeave.bind(this), this.onContextMenu = this.onContextMenu.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("wnp.engine2d.onAddOverture", this.onAddOverture, !1), document.addEventListener("wnp.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), wanaplan.engine2D.registerEventCb("OvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, OvertureStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.hover", this.priority, "hover", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_DRAG | wanaplan.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onHover, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.leave", this.priority, "leave", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onLeave, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.context-menu", this.priority, "click", wanaplan.engine2D.MODE_NORMAL, OvertureStructure, this.onContextMenu, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.double-click", this.priority, "double-click", wanaplan.engine2D.MODE_NORMAL, OvertureStructure, this.onDoubleClick, null)
+        this.onAddOverture = this.onAddOverture.bind(this), this.onAddOvertureEnd = this.onAddOvertureEnd.bind(this), this.onStaticDraw = this.onStaticDraw.bind(this), this.onHover = this.onHover.bind(this), this.onLeave = this.onLeave.bind(this), this.onContextMenu = this.onContextMenu.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("hcs.engine2d.onAddOverture", this.onAddOverture, !1), document.addEventListener("hcs.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, OvertureStructure, this.onDragStart.bind(this), null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.hover", this.priority, "hover", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_DRAG | hcsdesign.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onHover, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.leave", this.priority, "leave", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onLeave, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.context-menu", this.priority, "click", hcsdesign.engine2D.MODE_NORMAL, OvertureStructure, this.onContextMenu, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.double-click", this.priority, "double-click", hcsdesign.engine2D.MODE_NORMAL, OvertureStructure, this.onDoubleClick, null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddOverture", this.onAddOverture, !1), document.removeEventListener("wnp.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.drag-start"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.leave"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.context-menu"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.double-click")
+        document.removeEventListener("hcs.engine2d.onAddOverture", this.onAddOverture, !1), document.removeEventListener("hcs.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.static-draw"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.drag-start"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.hover"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.leave"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.context-menu"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.double-click")
     }, t.prototype.initialize = function() {
         var t, e = [
             ["doors", _("门洞"), "Door", 0, 90, 204, 0, !1, !1],
@@ -27,7 +27,7 @@
             title: _("门"),
             id: "doors",
             items: []
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 1
@@ -35,7 +35,7 @@
             title: _("凸窗"),
             id: "bay_windows",
             items: []
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 2
@@ -43,7 +43,7 @@
             title: _("窗"),
             id: "windows",
             items: []
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 2
@@ -51,8 +51,8 @@
         for (var n in e)
             t = {
                 title: e[n][1],
-                action: "wnp.engine2d.onAddOverture",
-                cancelAction: "wnp.engine2d.onAddOvertureEnd",
+                action: "hcs.engine2d.onAddOverture",
+                cancelAction: "hcs.engine2d.onAddOvertureEnd",
                 params: {
                     overtureType: e[n][2],
                     elevation: e[n][3],
@@ -62,7 +62,7 @@
                     sliding: e[n][7],
                     galandage: e[n][8]
                 }
-            }, "Door" === e[n][2] && (t.params.stretched_texture = !0), ujs.notify("wnp.menu.main.add", {
+            }, "Door" === e[n][2] && (t.params.stretched_texture = !0), ujs.notify("hcs.menu.main.add", {
                 item: t,
                 menuPath: "draw2D." + e[n][0],
                 position: n
@@ -84,7 +84,7 @@
                         return o[l].overtures[a];
         return null
     }, t.prototype._drawOverture = function(t, e, n, i) {
-        if (i.getParentWall() || i.remove(wanaplan.getSelectedStructure()), t.save(), t.strokeStyle = this.COLOR, t.translate(Math.round(i.getParentWall().getPoints(0).position.x * n) + e.x, Math.round(i.getParentWall().getPoints(0).position.y * n) + e.y), t.rotate(Math.atan2(-i.getParentWall().getWallVector().x, i.getParentWall().getWallVector().y) + Math.PI / 2), t.translate(Math.round(i.position.x * n), 0), t.fillStyle = "#fff", t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n) - 1, Math.round(i.width * n), Math.round(i.getParentWall().thickness * n) + 2), t.fillStyle = this.COLOR, t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n), Math.round(i.width * n), Math.round(i.getParentWall().thickness * n)), i.sliding) {
+        if (i.getParentWall() || i.remove(hcsdesign.getSelectedStructure()), t.save(), t.strokeStyle = this.COLOR, t.translate(Math.round(i.getParentWall().getPoints(0).position.x * n) + e.x, Math.round(i.getParentWall().getPoints(0).position.y * n) + e.y), t.rotate(Math.atan2(-i.getParentWall().getWallVector().x, i.getParentWall().getWallVector().y) + Math.PI / 2), t.translate(Math.round(i.position.x * n), 0), t.fillStyle = "#fff", t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n) - 1, Math.round(i.width * n), Math.round(i.getParentWall().thickness * n) + 2), t.fillStyle = this.COLOR, t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n), Math.round(i.width * n), Math.round(i.getParentWall().thickness * n)), i.sliding) {
             t.strokeStyle = "rgba(255, 255, 255, .8)", t.fillStyle = "rgba(255, 255, 255, .4)", t.beginPath();
             var o = Math.round((i.getParentWall().thickness / 2 - 4) * n) + .5,
                 r = Math.round(i.width / 2 * n);
@@ -113,25 +113,25 @@
         var i = e.getAbsolutePos(),
             o = i.position.subtract(i.vector.clone().scaleInPlace(e.width / 2)),
             r = i.position.add(i.vector.clone().scaleInPlace(e.width / 2));
-        return wanaplan.engine2D.registerEventCb("overtureComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), wanaplan.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), n.planPos.distanceTo(o) <= 13 || n.planPos.distanceTo(r) <= 13 ? wanaplan.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDraggingResize.bind(this), e) : wanaplan.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), this.overtureDragged = !0, !1
+        return hcsdesign.engine2D.registerEventCb("overtureComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), hcsdesign.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), n.planPos.distanceTo(o) <= 13 || n.planPos.distanceTo(r) <= 13 ? hcsdesign.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDraggingResize.bind(this), e) : hcsdesign.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), this.overtureDragged = !0, !1
     }, t.prototype.onDraggingMove = function(t, e, n, i) {
         var o = this.structure.getCurrentStructure(),
             r = n.planPos.clone(),
             s = WallStructure.prototype.getNearestWall(r, o),
             a = s.getNearestPoint(r),
             l = a.distanceTo(s.getPoints(0).position);
-        return i.position.x = l, i.setParentWall(s), i.projectOnWall(), wanaplan.engine2D.requestStaticDraw(), !1
+        return i.position.x = l, i.setParentWall(s), i.projectOnWall(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDraggingResize = function(t, e, n, i) {
         var o = n.planPos.clone(),
             r = i.parentWall.getNearestPoint(o),
             s = i.getAbsolutePos();
-        return i.width = 2 * r.distanceTo(s.position) + 10, i.clampSize(), wanaplan.engine2D.requestStaticDraw(), !1
+        return i.width = 2 * r.distanceTo(s.position) + 10, i.clampSize(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDragEnd = function(t, e, n, i) {
-        wanaplan.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), this.overtureDragged = !1, i.width = Math.round(i.width), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), this.overtureDragged = !1, i.width = Math.round(i.width), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onHover = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_NORMAL, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_NORMAL, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onLeave = function() {
-        wanaplan.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onSelectionDynamicDraw = function(t, e, n, i) {
         if (!i.parentWall)
             return !1;
@@ -147,21 +147,21 @@
                 x: a.x * n + e.x,
                 y: a.y * n + e.y
             };
-        wanaplan.engine2D.symbols2D.drawGripSegment(t, l, h, [!1, !1, !1, !0], [!1, !0, !1, !1], i.getAngle())
+        hcsdesign.engine2D.symbols2D.drawGripSegment(t, l, h, [!1, !1, !1, !0], [!1, !0, !1, !1], i.getAngle())
     }, t.prototype.onAddOverture = function(t) {
-        overture = new OvertureStructure, overture.type = t.overtureType, overture.elevation = t.elevation, overture.width = t.width, overture.height = t.height, overture.nbCasement = t.nbCasement, overture.sliding = t.sliding, overture.galandage = t.galandage, void 0 != t.hinge && (overture.hinge = t.hinge), void 0 != t.side && (overture.side = t.side), void 0 != t.batiThickness && (overture.batiThickness = t.batiThickness), void 0 != t.stretched_texture && (overture.stretched_texture = t.stretched_texture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.wall.hover", this.priority, "hover", wanaplan.engine2D.MODE_DRAW, WallStructure, this.onAddOvertureUpdate.bind(this), overture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.move", this.priority, "mouse-move", wanaplan.engine2D.MODE_DRAW, null, this.onAddOvertureUpdate.bind(this), overture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.click", this.priority, "click", wanaplan.engine2D.MODE_DRAW, null, this.onAddOvertureEnd.bind(this), overture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_DRAW, null, this.onAddOvertureDragStart.bind(this), overture), this.core.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.leave-draw-zone", this.priority, "leave-draw-zone", this.core.engine2D.MODE_DRAW, null, this.onAddOvertureLeaveZone.bind(this), overture), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_DRAW)
+        overture = new OvertureStructure, overture.type = t.overtureType, overture.elevation = t.elevation, overture.width = t.width, overture.height = t.height, overture.nbCasement = t.nbCasement, overture.sliding = t.sliding, overture.galandage = t.galandage, void 0 != t.hinge && (overture.hinge = t.hinge), void 0 != t.side && (overture.side = t.side), void 0 != t.batiThickness && (overture.batiThickness = t.batiThickness), void 0 != t.stretched_texture && (overture.stretched_texture = t.stretched_texture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.wall.hover", this.priority, "hover", hcsdesign.engine2D.MODE_DRAW, WallStructure, this.onAddOvertureUpdate.bind(this), overture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_DRAW, null, this.onAddOvertureUpdate.bind(this), overture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.click", this.priority, "click", hcsdesign.engine2D.MODE_DRAW, null, this.onAddOvertureEnd.bind(this), overture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_DRAW, null, this.onAddOvertureDragStart.bind(this), overture), this.core.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.leave-draw-zone", this.priority, "leave-draw-zone", this.core.engine2D.MODE_DRAW, null, this.onAddOvertureLeaveZone.bind(this), overture), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW)
     }, t.prototype.onAddOvertureDragStart = function(t, e, n, i) {
-        return 0 != (n.buttons & n.BUTTON_LEFT) ? (wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onAddOvertureUpdate.bind(this), i), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onAddOvertureEnd.bind(this), i), !1) : void 0
+        return 0 != (n.buttons & n.BUTTON_LEFT) ? (hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onAddOvertureUpdate.bind(this), i), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onAddOvertureEnd.bind(this), i), !1) : void 0
     }, t.prototype.onAddOvertureUpdate = function(t, e, n, i) {
-        wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D));
+        hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D));
         var o = this.structure.getCurrentStructure();
-        return e instanceof WallStructure && i.setParentWall(e), o.insertElement("overtures", i), this.onDraggingMove(t, e, n, i), wanaplan.engine2D.requestStaticDraw(), !1
+        return e instanceof WallStructure && i.setParentWall(e), o.insertElement("overtures", i), this.onDraggingMove(t, e, n, i), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onAddOvertureEnd = function(t, e, n, i) {
-        return "deselect" != t.from && ujs.notify("wnp.menu.main.deselect"), "touchUp" == t.type && this.onAddOvertureUpdate(t, e, n, i), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), wanaplan.helpBubbleManager.display("wnp.2d.properties"), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), !1
+        return "deselect" != t.from && ujs.notify("hcs.menu.main.deselect"), "touchUp" == t.type && this.onAddOvertureUpdate(t, e, n, i), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), /*hcsdesign.helpBubbleManager.display("hcs.2d.properties"), */hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onAddOvertureLeaveZone = function(t, e) {
         this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.wall.hover"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.click"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.move"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.drag-start"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.leave-draw-zone");
         var n = this.core.getSelectedStructure();
-        return e.remove(n), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), !1
+        return e.remove(n), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onContextMenu = function(t, e) {
         var n = [];
         if (n.push({
@@ -261,7 +261,7 @@
             type: "button",
             cast: "int",
             value: _("切换")
-        }), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        }), hcsdesign.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         switch (e) {
             case "hinge":
@@ -277,14 +277,14 @@
                 t[e] = n
         }
         if (this._applyToAll && ("elevation" == e || "height" == e || "width" == e))
-            for (var i = wanaplan.getSelectedStructure(), o = i.getElements("overtures"), r = 0; r < o.length; r++)
+            for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("overtures"), r = 0; r < o.length; r++)
                 o[r].type == t.type && (o[r][e] = n);
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
+        var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, t.prototype.onDoubleClick = function(t, e) {
-        return wanaplan.helpBubbleManager.display("wnp.2d.dup-overture"), this.onAddOverture({
+        return /*hcsdesign.helpBubbleManager.display("hcs.2d.dup-overture"),*/ this.onAddOverture({
             overtureType: e.type,
             elevation: e.elevation,
             width: e.width,

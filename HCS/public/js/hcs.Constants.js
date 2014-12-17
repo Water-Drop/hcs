@@ -1,5 +1,5 @@
-﻿var wnp = window.wnp || {};
-wnp.Constants = {
+﻿var hcs = window.hcs || {};
+hcs.Constants = {
     VERSION: "1.2.0.0",
     BACK_URL: "",
     WNP_URL: "",
@@ -28,4 +28,4 @@ wnp.Constants = {
     },
     PRODUCTS_FILE: "data/products.json",
     PRODUCTS_PREVIEWS: "models/previews/"
-}, wnp.Constants.MAGNETISM.DEFAULT = wnp.Constants.MAGNETISM.WALL | wnp.Constants.MAGNETISM.OBJECT | wnp.Constants.MAGNETISM.VERTICAL;
+}, hcs.Constants.MAGNETISM.DEFAULT = hcs.Constants.MAGNETISM.WALL | hcs.Constants.MAGNETISM.OBJECT | hcs.Constants.MAGNETISM.VERTICAL;

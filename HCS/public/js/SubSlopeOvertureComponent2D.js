@@ -3,17 +3,17 @@ SubSlopeOvertureComponent2D = function() {
         BaseComponent2D.call(this, t, "SubSlopeOvertureComponent2D"), this.priority = 99, this._tmpOverture = null, this._addState = 0, this._targetedAt = null, this._targetedAtSide = null, this._overture1Magnetism = null, this._overture2Magnetism = null
     };
     return t.prototype = new BaseComponent2D, t.prototype.getTargeted = function(t) {
-        if (0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE)) {
+        if (0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE)) {
             var e = this.structure.getCurrentStructure(),
                 n = e.getElements("walls");
-            if (!(wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_DRAG))
+            if (!(hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_DRAG))
                 for (var i = 0, o = n.length; o > i; i++)
                     for (var r = 0, s = n[i].subSlopes.length; s > r; r++)
                         for (var a = 0, l = n[i].subSlopes[r].overtures.length; l > a; a++)
                             for (var h = 0; h < n[i].subSlopes[r].overtures[a].polygon.length; h++) {
                                 var c = this.isPointInOvertureSide(t, n[i].subSlopes[r].overtures[a]);
                                 if (ov = n[i].subSlopes[r].overtures[a], c !== !1)
-                                    return this._targetedAtSide = c, wanaplan.engine2D.requestDynamicDraw(), n[i].subSlopes[r].overtures[a];
+                                    return this._targetedAtSide = c, hcsdesign.engine2D.requestDynamicDraw(), n[i].subSlopes[r].overtures[a];
                                 if (this._targetedAtSide = null, ov.isTargeted(t))
                                     return ov
                             }
@@ -24,29 +24,29 @@ SubSlopeOvertureComponent2D = function() {
                 title: _("天窗"),
                 index: 90,
                 id: "Velux",
-                action: "wnp.engine2d.onAddSubSlopeOverture"
+                action: "hcs.engine2d.onAddSubSlopeOverture"
             },
             e = {
                 title: _("屋顶窗"),
                 index: 91,
                 id: "Dormer",
-                action: "wnp.engine2d.onAddSubSlopeOverture"
+                action: "hcs.engine2d.onAddSubSlopeOverture"
             };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D.subslopes",
             position: 90
-        }), ujs.notify("wnp.menu.main.add", {
+        }), ujs.notify("hcs.menu.main.add", {
             item: e,
             menuPath: "draw2D.subslopes",
             position: 91
         })*/
     }, t.prototype.startListening = function() {
-        this.onAddSubSlopeOverture = this.onAddSubSlopeOverture.bind(this), this.onDragEndSubSlope = this.onDragEndSubSlope.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("wnp.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.addEventListener("wnp.subslope.drag-end", this.onDragEndSubSlope, !1), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hover", this.priority, "hover", null, SubSlopeOvertureStructure, this.onHover.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.leave", this.priority, "leave", null, SubSlopeOvertureStructure, this.onLeave.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.context-menu", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onContextMenu.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, SubSlopeOvertureStructure, this.onDragDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("SubSlopeOvertureComponent2D.double-click", this.priority, "double-click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDoubleClick, null)
+        this.onAddSubSlopeOverture = this.onAddSubSlopeOverture.bind(this), this.onDragEndSubSlope = this.onDragEndSubSlope.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("hcs.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.addEventListener("hcs.subslope.drag-end", this.onDragEndSubSlope, !1), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hover", this.priority, "hover", null, SubSlopeOvertureStructure, this.onHover.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.leave", this.priority, "leave", null, SubSlopeOvertureStructure, this.onLeave.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDragStart.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.context-menu", this.priority, "click", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onContextMenu.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, SubSlopeOvertureStructure, this.onDragDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("SubSlopeOvertureComponent2D.double-click", this.priority, "double-click", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDoubleClick, null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.removeEventListener("wnp.subslope.drag-end", this.onDragEndSubSlope, !1), wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.leave"), this.core.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.double-click")
+        document.removeEventListener("hcs.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.removeEventListener("hcs.subslope.drag-end", this.onDragEndSubSlope, !1), hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.static-draw"), hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.hover"), hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.leave"), this.core.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.double-click")
     }, t.prototype.onHover = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, SubSlopeOvertureStructure, this.onDragStart.bind(this), {}), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, SubSlopeOvertureStructure, this.onHoverSubSlopeOverture.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, SubSlopeOvertureStructure, this.onDragStart.bind(this), {}), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, SubSlopeOvertureStructure, this.onHoverSubSlopeOverture.bind(this), e), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onHoverSubSlopeOverture = function(t, e, n, i) {
         this.drawTarget(i, t, n)
     }, t.prototype.onDragEndSubSlope = function() {
@@ -56,14 +56,14 @@ SubSlopeOvertureComponent2D = function() {
             for (var o = 0; o < e[n].overtures.length; o++)
                 for (var r = 0; 4 > r; r++)
                     if (!e[n].overtures[o].polygon[r].isPointInPolygon(i)) {
-                        e[n].overtures[o].remove(), wanaplan.engine2D.requestStaticDraw();
+                        e[n].overtures[o].remove(), hcsdesign.engine2D.requestStaticDraw();
                         break
                     }
         }
     }, t.prototype.onLeave = function() {
-        wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onDragDynamicDraw = function(t, e, n) {
-        if (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE)
+        if (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE)
             for (var i = this.structure.getCurrentStructure(), o = i.getElements("subslopes"), r = 0; r < o.length; r++) {
                 var s = new Array,
                     a = o[r].wall,
@@ -146,28 +146,28 @@ SubSlopeOvertureComponent2D = function() {
                 x: r.x * n + e.x,
                 y: r.y * n + e.y
             };
-        wanaplan.engine2D.symbols2D.drawGrip(t, s, [!0, !0, !0, !0], 0)
+        hcsdesign.engine2D.symbols2D.drawGrip(t, s, [!0, !0, !0, !0], 0)
     }, t.prototype.changeAddStateVelux = function() {
-        this._addState = 1, wanaplan.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onAddVeluxClick.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), wanaplan.engine2D.requestStaticDraw()
+        this._addState = 1, hcsdesign.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onAddVeluxClick.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.changeAddStateSubSlopeOverture = function() {
-        this._addState = 1, wanaplan.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onAddSubSlopeOvertureClick.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), wanaplan.engine2D.requestStaticDraw()
+        this._addState = 1, hcsdesign.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onAddSubSlopeOvertureClick.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onAddVelux = function() {
         this._tmpOverture = new SubSlopeOvertureStructure, this._tmpOverture.type = "Velux", this.changeAddStateVelux()
     }, t.prototype.onAddSubSlopeOverture = function(t) {
         this._tmpOverture = new SubSlopeOvertureStructure, this._tmpOverture.type = t.id, t.width && (this._tmpOverture.width = t.width), t.height && (this._tmpOverture.height = t.height), this.changeAddStateSubSlopeOverture()
     }, t.prototype.onAddSubSlopeOvertureClick = function() {
-        wanaplan.helpBubbleManager.display("wnp.2d.subslopeOverture-menu"), 1 == this._addState && (this._tmpOverture.parent.overtures.push(this._tmpOverture), wanaplan.engine2D.requestStaticDraw(), ujs.notify("wnp.menu.main.deselect"), this._addState = 0, this._tmpOverture = null, wanaplan.engine2D.requestDynamicDraw())
+        hcsdesign.helpBubbleManager.display("hcs.2d.subslopeOverture-menu"), 1 == this._addState && (this._tmpOverture.parent.overtures.push(this._tmpOverture), hcsdesign.engine2D.requestStaticDraw(), ujs.notify("hcs.menu.main.deselect"), this._addState = 0, this._tmpOverture = null, hcsdesign.engine2D.requestDynamicDraw())
     }, t.prototype.onMouseMove = function(t, e, n) {
         if (this._tmpOverture) {
             this._tmpOverture._tmpPos = n.planPos;
-            for (var i = wanaplan.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
+            for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
                 for (var s = 0; s < o[r].subSlopes.length; s++)
                     if (o[r].subSlopes[s].isPointIn(n.planPos)) {
                         this._tmpOverture.parent = o[r].subSlopes[s];
                         var a = o[r].subSlopes[s].wall,
                             l = a.getWallVector().normalize(),
                             h = new BABYLON.Vector2(l.y, -l.x);
-                        return this._tmpOverture.position.copyFrom(this._tmpOverture._tmpPos).subtractInPlace(a.points[0].position.clone().lerp(a.points[1].position, .5)), this.appliedMagnetism(this._tmpOverture, o[r].subSlopes[s], h, l), void wanaplan.engine2D.requestStaticDraw()
+                        return this._tmpOverture.position.copyFrom(this._tmpOverture._tmpPos).subtractInPlace(a.points[0].position.clone().lerp(a.points[1].position, .5)), this.appliedMagnetism(this._tmpOverture, o[r].subSlopes[s], h, l), void hcsdesign.engine2D.requestStaticDraw()
                     }
         }
     }, t.prototype.onContextMenu = function(t, e) {
@@ -236,7 +236,7 @@ SubSlopeOvertureComponent2D = function() {
             label: _("深度"),
             type: "html",
             html: "<label>" + _("深度") + '</label><span class="field">' + Math.round(e.height * Math.cos(o)) + " cm</span>"
-        })), wanaplan.engine2D.displayContextMenu(i, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        })), hcsdesign.engine2D.displayContextMenu(i, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         var i = Math.atan((t.parent.hiHeight - t.parent.lowHeight) / t.parent.offset);
         if (-1 != e.indexOf("sticks_")) {
@@ -255,25 +255,25 @@ SubSlopeOvertureComponent2D = function() {
                 t.sticks[l] = !1;
         else
             "dormerRoofHeight" == e ? t.dormerRoof.height = n : t[e] = "height" == e ? n / Math.sin(i) : "width" == e && "Dormer" == t.type ? n - 2 * t.wallThickness : n;
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
-        t.remove(e), wanaplan.engine2D.requestDynamicDraw()
+        var e = hcsdesign.getSelectedStructure();
+        t.remove(e), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onStaticDraw = function(t, e, n) {
-        if (0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE))
-            for (var i = wanaplan.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
+        if (0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE))
+            for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
                 for (var s = 0; s < o[r].subSlopes.length; s++)
                     for (var a = 0; a < o[r].subSlopes[s].overtures.length; a++)
                         this.draw(o[r].subSlopes[s].overtures[a], t, e, n)
     }, t.prototype.onDynamicDraw = function(t, e, n) {
-        1 == this._addState && (wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D)), this.draw(this._tmpOverture, t, e, n, !1)), this.drawMagnetism(this._overture1Magnetism, this._overture2Magnetism, t, e, n)
+        1 == this._addState && (hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D)), this.draw(this._tmpOverture, t, e, n, !1)), this.drawMagnetism(this._overture1Magnetism, this._overture2Magnetism, t, e, n)
     }, t.prototype.onDragStart = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), !1
+        return hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), !1
     }, t.prototype.onDraggingMove = function(t, e, n, i) {
         for (var o = i.parent.wall, r = o.getWallVector().normalize(), s = new BABYLON.Vector2(r.y, -r.x), a = this.structure.getCurrentStructure(), l = a.getElements("subslopes"), h = 0; h < l.length; h++)
             l[h].isPointIn(n.planPos) && (i.wall = l[h].wall);
         var o = i.wall,
-            c = (o.getWallVector().normalize(), o.points[0].position.clone().lerp(o.points[1].position, .5), n.posDelta.scale(1 / wanaplan.engine2D.getZoom())),
+            c = (o.getWallVector().normalize(), o.points[0].position.clone().lerp(o.points[1].position, .5), n.posDelta.scale(1 / hcsdesign.engine2D.getZoom())),
             u = new BABYLON.Vector2(c.x, c.y),
             p = new BABYLON.Vector2(c.x, c.y);
         if (u.projectOnVector(r), p.projectOnVector(s), null === this._targetedAtSide) {
@@ -303,9 +303,9 @@ SubSlopeOvertureComponent2D = function() {
                 i.height += 1 / f * C * x * p.length()
             }
         }
-        return i.modified = !0, wanaplan.engine2D.requestStaticDraw(), !1
+        return i.modified = !0, hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDoubleClick = function(t, e) {
-        return this.core.helpBubbleManager.display("wnp.2d.dup-overture"), this.onAddSubSlopeOverture({
+        return this.core.helpBubbleManager.display("hcs.2d.dup-overture"), this.onAddSubSlopeOverture({
             id: e.type,
             width: e.width,
             height: e.height
@@ -364,7 +364,7 @@ SubSlopeOvertureComponent2D = function() {
             o[p] = c, t[p] = u
         }
     }, t.prototype.onDragEnd = function(t, e, n, i) {
-        wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), wanaplan.engine2D.requestStaticDraw(), this.checkCoherence(i), this._overture1Magnetism = null, this._overture2Magnetism = null
+        hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), hcsdesign.engine2D.requestStaticDraw(), this.checkCoherence(i), this._overture1Magnetism = null, this._overture2Magnetism = null
     }, t.prototype.checkCoherence = function(t) {
         t.width < 0 && (t.width = -t.width), t.height < 0 && (t.height = -t.height)
     }, t.prototype.isPointInOvertureSide = function(t, e) {
@@ -378,15 +378,15 @@ SubSlopeOvertureComponent2D = function() {
         return !1
     }, t.prototype.drawTarget = function(t, e, n) {
         if (null !== this._targetedAt) {
-            var i = wanaplan.engine2D.toRealCoord(t.polygon[this._targetedAt]);
-            wanaplan.engine2D.symbols2D.drawPointHover(e, i, n)
+            var i = hcsdesign.engine2D.toRealCoord(t.polygon[this._targetedAt]);
+            hcsdesign.engine2D.symbols2D.drawPointHover(e, i, n)
         } else if (null !== this._targetedAtSide) {
-            var o = wanaplan.engine2D.toRealCoord(t.polygon[this._targetedAtSide]),
-                r = wanaplan.engine2D.toRealCoord(this._targetedAtSide + 1 < t.polygon.length ? t.polygon[this._targetedAtSide + 1] : t.polygon[0]);
-            wanaplan.engine2D.symbols2D.drawSegment(e, o, r)
+            var o = hcsdesign.engine2D.toRealCoord(t.polygon[this._targetedAtSide]),
+                r = hcsdesign.engine2D.toRealCoord(this._targetedAtSide + 1 < t.polygon.length ? t.polygon[this._targetedAtSide + 1] : t.polygon[0]);
+            hcsdesign.engine2D.symbols2D.drawSegment(e, o, r)
         }
     }, t.prototype.draw = function(t, e, n, i, o) {
-        if (e.save(), e.beginPath(), o ? (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE), null !== t.position && null !== t.parent) {
+        if (e.save(), e.beginPath(), o ? (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE), null !== t.position && null !== t.parent) {
             var r = t.parent.wall,
                 s = r.getWallVector().normalize(),
                 a = new BABYLON.Vector2(s.y, -s.x),
@@ -402,20 +402,20 @@ SubSlopeOvertureComponent2D = function() {
             "Dormer" == t.type ? (t.polygon[0] = c.add(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))).add(s.scale(t.wallThickness)), t.polygon[1] = c.add(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))).subtract(a.scale(t.wallThickness)).add(s.scale(t.wallThickness)), t.polygon[2] = c.subtract(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))).subtract(a.scale(t.wallThickness)).subtract(s.scale(t.wallThickness)), t.polygon[3] = c.subtract(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))).subtract(s.scale(t.wallThickness))) : (t.polygon[0] = c.add(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))), t.polygon[1] = c.add(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))), t.polygon[2] = c.subtract(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))), t.polygon[3] = c.subtract(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))));
             var m = c.add(a.scale(t.height / (2 / d) + u)),
                 g = c.subtract(a.scale(t.height / (2 / d))),
-                f = wanaplan.engine2D.toRealCoord(t.polygon[0], n, i),
-                y = wanaplan.engine2D.toRealCoord(t.polygon[1], n, i),
-                _ = wanaplan.engine2D.toRealCoord(t.polygon[2], n, i),
-                v = wanaplan.engine2D.toRealCoord(t.polygon[3], n, i),
-                b = wanaplan.engine2D.toRealCoord(m, n, i),
-                w = wanaplan.engine2D.toRealCoord(g, n, i);
+                f = hcsdesign.engine2D.toRealCoord(t.polygon[0], n, i),
+                y = hcsdesign.engine2D.toRealCoord(t.polygon[1], n, i),
+                _ = hcsdesign.engine2D.toRealCoord(t.polygon[2], n, i),
+                v = hcsdesign.engine2D.toRealCoord(t.polygon[3], n, i),
+                b = hcsdesign.engine2D.toRealCoord(m, n, i),
+                w = hcsdesign.engine2D.toRealCoord(g, n, i);
             "Velux" == t.type ? (e.moveTo(Math.round(f.x) + .5, Math.round(f.y) + .5), e.lineTo(Math.round(y.x) + .5, Math.round(y.y) + .5), e.lineTo(Math.round(_.x) + .5, Math.round(_.y) + .5), e.lineTo(Math.round(v.x) + .5, Math.round(v.y) + .5)) : (e.moveTo(Math.round(b.x) + .5, Math.round(b.y) + .5), e.lineTo(Math.round(v.x) + .5, Math.round(v.y) + .5), e.lineTo(Math.round(_.x) + .5, Math.round(_.y) + .5), e.lineTo(Math.round(y.x) + .5, Math.round(y.y) + .5), e.lineTo(Math.round(f.x) + .5, Math.round(f.y) + .5), e.lineTo(Math.round(b.x) + .5, Math.round(b.y) + .5), e.lineTo(Math.round(w.x) + .5, Math.round(w.y) + .5)), e.closePath(), e.fill(), e.stroke(), e.restore()
         }
     }, t.prototype.drawMagnetism = function(t, e, n, i, o) {
-        if (n.save(), n.beginPath(), n.fillStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_FILL, n.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_STROKE, null !== t) {
+        if (n.save(), n.beginPath(), n.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_FILL, n.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_STROKE, null !== t) {
             var r = t.getAbsolutePosition().position,
                 s = e.getAbsolutePosition().position,
-                a = wanaplan.engine2D.toRealCoord(r, i, o),
-                l = wanaplan.engine2D.toRealCoord(s, i, o),
+                a = hcsdesign.engine2D.toRealCoord(r, i, o),
+                l = hcsdesign.engine2D.toRealCoord(s, i, o),
                 h = t.parent.wall,
                 c = h.getWallVector().normalize(),
                 u = Math.abs(c.x * (r.y - s.y)),
@@ -424,7 +424,7 @@ SubSlopeOvertureComponent2D = function() {
         }
         n.closePath(), n.fill(), n.stroke(), n.restore()
     }, t.prototype.drawCotes = function(t, e, n, i, o, r) {
-        n.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
+        n.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
         var s = t.parent.wall,
             a = s.getWallVector().normalize(),
             l = new BABYLON.Vector2(a.y, -a.x),
@@ -443,12 +443,12 @@ SubSlopeOvertureComponent2D = function() {
         var y = u.dot(d),
             _ = new BABYLON.Vector2(p.x * m + d.x * y, p.y * m + d.y * y),
             v = new BABYLON.Vector2(p.x * g + d.x * y, p.y * g + d.y * y),
-            b = wanaplan.engine2D.toRealCoord(_, i, o),
-            w = wanaplan.engine2D.toRealCoord(v, i, o),
+            b = hcsdesign.engine2D.toRealCoord(_, i, o),
+            w = hcsdesign.engine2D.toRealCoord(v, i, o),
             x = Math.round(r) / 100;
-        wanaplan.engine2D.symbols2D.drawMeasure(n, b, w, x + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
+        hcsdesign.engine2D.symbols2D.drawMeasure(n, b, w, x + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
     }, t.prototype.drawCotesSS = function(t, e, n, i, o, r, s) {
-        n.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
+        n.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
         var a = t.parent.wall,
             l = a.getWallVector().normalize(),
             h = new BABYLON.Vector2(l.y, -l.x),
@@ -473,8 +473,8 @@ SubSlopeOvertureComponent2D = function() {
         }
         var f = Math.sqrt((r.x - c.x) * (r.x - c.x) + (r.y - c.y) * (r.y - c.y)) / Math.cos(g);
         f = Math.round(f) / 100;
-        var y = wanaplan.engine2D.toRealCoord(c, i, o),
-            _ = wanaplan.engine2D.toRealCoord(u, i, o);
-        wanaplan.engine2D.symbols2D.drawMeasure(n, y, _, f + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
+        var y = hcsdesign.engine2D.toRealCoord(c, i, o),
+            _ = hcsdesign.engine2D.toRealCoord(u, i, o);
+        hcsdesign.engine2D.symbols2D.drawMeasure(n, y, _, f + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
     }, t
 }();

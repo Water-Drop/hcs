@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Structure = function () {
+var hcs = window.hcs || {};
+hcs.Structure = function () {
     function t(t) {
         var e = {};
         for (var n in t)
@@ -14,10 +14,10 @@ wnp.Structure = function () {
         }
     }
     var n = function (t) {
-        this.uuid = wnp.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.name = "planStructure", this.members = [], this.currentStructureIndex = 0, this.version = t, this.lastMaterialsUsed = [], this.structureVersion = t, this.params = {}, this.customData = {}
+        this.uuid = hcs.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.name = "planStructure", this.members = [], this.currentStructureIndex = 0, this.version = t, this.lastMaterialsUsed = [], this.structureVersion = t, this.params = {}, this.customData = {}
     };
     return n.prototype.clear = function () {
-        this.members.length = 0, this.currentStructureIndex = 0, this.uuid = wnp.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.params = {}
+        this.members.length = 0, this.currentStructureIndex = 0, this.uuid = hcs.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.params = {}
     }, n.prototype.getVersion = function () {
         return this.version
     }, n.prototype.getLength = function () {
@@ -50,7 +50,7 @@ wnp.Structure = function () {
         return e(i), JSON.stringify(i)
     }, n.prototype.deserialize = function (t) {
         var n = JSON.parse(t);
-        return this.currentStructureIndex = 0 | +n.current, this.name = n.name, this.version = n.version, this.structureVersion = n.structureVersion, this.uuid = n.uuid || wnp.uuid.uuid4(), this.lastModified = n.lastModified || 0, this.lastMaterialsUsed = n.lastMaterialsUsed || [], this.params = n.params || {}, this.customData = ujs.deserializeObject(n.customData) || {}, e(n.members, this.members), this.reindexMembers(), !0
+        return this.currentStructureIndex = 0 | +n.current, this.name = n.name, this.version = n.version, this.structureVersion = n.structureVersion, this.uuid = n.uuid || hcs.uuid.uuid4(), this.lastModified = n.lastModified || 0, this.lastMaterialsUsed = n.lastMaterialsUsed || [], this.params = n.params || {}, this.customData = ujs.deserializeObject(n.customData) || {}, e(n.members, this.members), this.reindexMembers(), !0
     }, n.prototype.addMemberAtIndex = function (t, e) {
         this.members.splice(t, 0, e), this.reindexMembers()
     }, n.prototype.reindexMembers = function () {

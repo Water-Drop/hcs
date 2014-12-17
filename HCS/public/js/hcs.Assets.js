@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Assets = {
+var hcs = window.hcs || {};
+hcs.Assets = {
     globalPath: "",
     metalTextures: {
     diffuse: "textures/metal/metal_DIFFUSE.png",

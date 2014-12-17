@@ -1,5 +1,5 @@
-var Keys = { up: 38, down: 40, left: 37, right: 39, space: 32, escape: 27, shift: 16, ctrl: 17, alt: 18, tab: 9, a: 65, z: 90, e: 69, q: 81, s: 83, d: 68, r: 82, cmd: 91 },wnp = window.wnp || {};
-wnp.KeyboardManager = function () {
+var Keys = { up: 38, down: 40, left: 37, right: 39, space: 32, escape: 27, shift: 16, ctrl: 17, alt: 18, tab: 9, a: 65, z: 90, e: 69, q: 81, s: 83, d: 68, r: 82, cmd: 91 },hcs = window.hcs || {};
+hcs.KeyboardManager = function () {
     function t(t) {
         for (var e = 0; 110 > e; e++)
             t[e] = !1
@@ -22,7 +22,7 @@ wnp.KeyboardManager = function () {
         for (var t = 0; t < e.keys.length; t++)
             e.keys[t] = !1
     }, i.prototype.onKeyStateChange = function (t) {
-        var i = "keydown" == t.type ? !0 : !1, o = "keydown" == t.type ? "wnp.keyboardManager.keyDown" : "wnp.keyboardManager.keyUp";
+        var i = "keydown" == t.type ? !0 : !1, o = "keydown" == t.type ? "hcs.keyboardManager.keyDown" : "hcs.keyboardManager.keyUp";
         if (ujs.notify(o, t), "INPUT" == document.activeElement.nodeName || "TEXTAREA" == document.activeElement.nodeName)
             ;
         else if (e.preventDefault === !0)

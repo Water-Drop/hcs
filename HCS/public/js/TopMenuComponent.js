@@ -2,11 +2,11 @@ var TopMenuComponent = function(t) {
     var e = [],
         n = [],
         i = function() {
-            BaseComponent2D.call(this, t, "TopMenuComponent"), this.menu = new wnp.UI.Menu(e, "toolbarMenu", {
+            BaseComponent2D.call(this, t, "TopMenuComponent"), this.menu = new hcs.UI.Menu(e, "toolbarMenu", {
                 oneClick: !0
-            }), this.submenu = new wnp.UI.Menu(n, "subMenuList", {
+            }), this.submenu = new hcs.UI.Menu(n, "subMenuList", {
                 oneClick: !0
-            }), document.addEventListener("wnp.menu.top.add", this.addItem.bind(this), !1), document.addEventListener("wnp.menu.top.delete", this.removeItem.bind(this), !1), document.addEventListener("wnp.menu.top.replace", this.replaceItem.bind(this), !1), document.addEventListener("wnp.menu.top.sub.add", this.addSubItem.bind(this), !1), document.addEventListener("wnp.menu.top.sub.delete", this.removeSubItem.bind(this), !1), document.addEventListener("wnp.menu.top.sub.replace", this.replaceSubItem.bind(this), !1), document.addEventListener("wnp.menu.top.deselect", this.deselectItem.bind(this), !1)
+            }), document.addEventListener("hcs.menu.top.add", this.addItem.bind(this), !1), document.addEventListener("hcs.menu.top.delete", this.removeItem.bind(this), !1), document.addEventListener("hcs.menu.top.replace", this.replaceItem.bind(this), !1), document.addEventListener("hcs.menu.top.sub.add", this.addSubItem.bind(this), !1), document.addEventListener("hcs.menu.top.sub.delete", this.removeSubItem.bind(this), !1), document.addEventListener("hcs.menu.top.sub.replace", this.replaceSubItem.bind(this), !1), document.addEventListener("hcs.menu.top.deselect", this.deselectItem.bind(this), !1)
         };
     return i.prototype = Object.create(BaseComponent2D.prototype), i.prototype._addItem = function(t, e) {
         if (e.item && e.menuPath) {

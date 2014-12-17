@@ -1,14 +1,14 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Sofa.Base = (function() {
+hcs.Programmable.Sofa.Base = (function() {
     var that;
 
     /**
@@ -16,20 +16,20 @@ wnp.Programmable.Sofa.Base = (function() {
      *
      * @constructor
      * @class Base
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var Base = function (engine, structure, params) {
-        wnp.Programmable.Sofa.call(this, engine, structure, params);
+        hcs.Programmable.Sofa.call(this, engine, structure, params);
         that = this;
-        structure.magnetismCollider = wnp.Constants.MAGNETISM.DEFAULT;
+        structure.magnetismCollider = hcs.Constants.MAGNETISM.DEFAULT;
         structure.preferredYAngle = Math.PI;
     }
 
-    if (typeof wnp.Programmable.Sofa != "undefined") {
-        for (var i in wnp.Programmable.Sofa.prototype) {
+    if (typeof hcs.Programmable.Sofa != "undefined") {
+        for (var i in hcs.Programmable.Sofa.prototype) {
             if (typeof Base.prototype[i] == 'undefined') {
-                Base.prototype[i] = wnp.Programmable.Sofa.prototype[i];
+                Base.prototype[i] = hcs.Programmable.Sofa.prototype[i];
             }
         }
     }
@@ -115,7 +115,7 @@ wnp.Programmable.Sofa.Base = (function() {
                     round:1
                 } 
         }
-        return wnp.Programmable.prototype.getParamType.call( this , name );
+        return hcs.Programmable.prototype.getParamType.call( this , name );
     }
 
     Base.prototype.getDefaultParams = function() {

@@ -4,26 +4,26 @@ HopperComponent2D = function() {
             BaseComponent2D.call(this, e, "HopperComponent2D"), this.priority = 80, this._tmpHopper = new HopperStructure, this._targetedAt = null, this._targetedAtSide = null, t = this
         };
     return e.prototype = new BaseComponent2D, e.prototype.startListening = function() {
-        this.onAddHopper = this.onAddHopper.bind(this), document.addEventListener("wnp.engine2d.onAddHopper", this.onAddHopper, !1), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.hover", this.priority, "hover", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_DRAG | wanaplan.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onHover.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.leave", this.priority, "leave", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onLeave.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.click", this.priority, "click", wanaplan.engine2D.MODE_NORMAL, HopperStructure, this.onContextMenu.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.dblclick", this.priority, "double-click", wanaplan.engine2D.MODE_NORMAL, HopperStructure, this.onDblClick.bind(this), {})
+        this.onAddHopper = this.onAddHopper.bind(this), document.addEventListener("hcs.engine2d.onAddHopper", this.onAddHopper, !1), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.hover", this.priority, "hover", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_DRAG | hcsdesign.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onHover.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.leave", this.priority, "leave", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onLeave.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_NORMAL, HopperStructure, this.onContextMenu.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.dblclick", this.priority, "double-click", hcsdesign.engine2D.MODE_NORMAL, HopperStructure, this.onDblClick.bind(this), {})
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddHopper", this.onAddHopper, !1), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.static-draw"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.hover"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.leave"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.click"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.dblclick")
+        document.removeEventListener("hcs.engine2d.onAddHopper", this.onAddHopper, !1), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.static-draw"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.hover"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.leave"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.click"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.dblclick")
     }, e.prototype.getTargeted = function(t) {
-        for (var e = wanaplan.getSelectedStructure(), n = e.getElements("hoppers"), i = (wanaplan.engine2D.getZoom(), 0); i < n.length; i++) {
-            if (!(wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_DRAG))
+        for (var e = hcsdesign.getSelectedStructure(), n = e.getElements("hoppers"), i = (hcsdesign.engine2D.getZoom(), 0); i < n.length; i++) {
+            if (!(hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_DRAG))
                 for (var o = 0; o < n[i].points.length; o++) {
                     if (n[i].points[o].distanceTo(t) < 13)
-                        return this._targetedAt = o, this._targetedAtSide = null, wanaplan.engine2D.requestDynamicDraw(), n[i];
+                        return this._targetedAt = o, this._targetedAtSide = null, hcsdesign.engine2D.requestDynamicDraw(), n[i];
                     var r = this.isPointInHopperSide(t, n[i]);
                     if (r !== !1)
-                        return this._targetedAtSide = r, this._targetedAt = null, wanaplan.engine2D.requestDynamicDraw(), n[i]
+                        return this._targetedAtSide = r, this._targetedAt = null, hcsdesign.engine2D.requestDynamicDraw(), n[i]
                 }
             if (this.isPointInHopper(t, n[i]))
-                return wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_DRAG || (this._targetedAt = null, this._targetedAtSide = null, wanaplan.engine2D.requestDynamicDraw()), n[i]
+                return hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_DRAG || (this._targetedAt = null, this._targetedAtSide = null, hcsdesign.engine2D.requestDynamicDraw()), n[i]
         }
     }, e.prototype.onLeave = function() {
-        wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper-hover.dynamic-draw"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.drag-start"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper-hover.dynamic-draw"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.drag-start"), hcsdesign.engine2D.requestDynamicDraw()
     }, e.prototype.onHover = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, HopperStructure, this.onHoverHopper.bind(this), e), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, HopperStructure, this.onDragStart.bind(this), {}), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, HopperStructure, this.onHoverHopper.bind(this), e), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, HopperStructure, this.onDragStart.bind(this), {}), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, e.prototype.onHoverHopper = function(t, e, n, i) {
         this.draw(i, t, e, n, !0), this.drawTarget(i, t, n)
     }, e.prototype.onDblClick = function(t, e, n) {
@@ -33,7 +33,7 @@ HopperComponent2D = function() {
                 var o = e.points[i],
                     r = i + 1 < e.points.length ? e.points[i + 1] : e.points[0],
                     s = n.planPos.projectOnSegment(o, r);
-                e.insertPointAt(i + 1, s), this._targetedAtSide = null, this._targetedAt = i + 1, wanaplan.engine2D.requestDynamicDraw()
+                e.insertPointAt(i + 1, s), this._targetedAtSide = null, this._targetedAt = i + 1, hcsdesign.engine2D.requestDynamicDraw()
             }
         }
     }, e.prototype.onDrag = function(t, e, n, i) {
@@ -42,35 +42,35 @@ HopperComponent2D = function() {
                 r != this._targetedAt && (Math.abs(o.x - i.points[r].x) < 10 && (o.x = i.points[r].x), Math.abs(o.y - i.points[r].y) < 10 && (o.y = i.points[r].y));
             this.getRoom(i).isPointIn(o) && (i.points[this._targetedAt] = o)
         } else if (null !== this._targetedAtSide) {
-            var s = n.posDelta.scale(1 / wanaplan.engine2D.getZoom()),
+            var s = n.posDelta.scale(1 / hcsdesign.engine2D.getZoom()),
                 a = i.points[this._targetedAtSide],
                 l = this._targetedAtSide + 1 < i.points.length ? this._targetedAtSide + 1 : 0,
                 h = i.points[l],
                 c = new BABYLON.Vector2(a.y - h.y, h.x - a.x);
             s.projectOnVector(c), this.getRoom(i).isPointIn(i.points[this._targetedAtSide].add(s)) && this.getRoom(i).isPointIn(i.points[l].add(s)) && (i.points[this._targetedAtSide].addInPlace(s), i.points[l].addInPlace(s))
         } else {
-            var s = n.posDelta.scale(1 / wanaplan.engine2D.getZoom());
+            var s = n.posDelta.scale(1 / hcsdesign.engine2D.getZoom());
             i.move(s)
         }
-        return i.modified = !0, wanaplan.engine2D.requestStaticDraw(), !1
+        return i.modified = !0, hcsdesign.engine2D.requestStaticDraw(), !1
     }, e.prototype.compute = function() {
-        for (var t = wanaplan.getSelectedStructure(), e = 0; e < t.getElements("hoppers").length; e++)
+        for (var t = hcsdesign.getSelectedStructure(), e = 0; e < t.getElements("hoppers").length; e++)
             this.computeHopper(t.getElements("hoppers")[e])
     }, e.prototype.computeHopper = function(t) {
         for (var e = t.points.length - 1; e >= 0; e--) {
             var n = e - 1 >= 0 ? e - 1 : t.points.length - 1;
             t.points[e].distanceTo(t.points[n]) < 2 && t.points.splice(e, 1)
         }
-        t.points.length < 3 && (t.remove(wanaplan.getSelectedStructure()), wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.requestDynamicDraw(), this._targetedAt = null, this._targetedAtSide = null)
+        t.points.length < 3 && (t.remove(hcsdesign.getSelectedStructure()), hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.requestDynamicDraw(), this._targetedAt = null, this._targetedAtSide = null)
     }, e.prototype.onDragEnd = function(t, e, n, i) {
         this.computeHopper(i)
     }, e.prototype.onDragStart = function(t, e) {
-        this.getRoom(e, !0), wanaplan.engine2D.registerEventCb("hopperComponent2D.hopper.drag", this.priority, "dragging", null, null, this.onDrag.bind(this), e), wanaplan.engine2D.registerEventCb("hopperComponent2D.stair-hover.drag-end", this.priority, "drag-end", null, null, this.onDragEnd.bind(this), e)
+        this.getRoom(e, !0), hcsdesign.engine2D.registerEventCb("hopperComponent2D.hopper.drag", this.priority, "dragging", null, null, this.onDrag.bind(this), e), hcsdesign.engine2D.registerEventCb("hopperComponent2D.stair-hover.drag-end", this.priority, "drag-end", null, null, this.onDragEnd.bind(this), e)
     }, e.prototype.onAddHopper = function() {
-        wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_DRAW), wanaplan.engine2D.registerEventCb("hopperComponent2D.add-hopper.click", this.priority, "click", wanaplan.engine2D.MODE_DRAW, null, this.onAddHopperClick.bind(this), {}), wanaplan.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), wanaplan.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {})
+        hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW), hcsdesign.engine2D.registerEventCb("hopperComponent2D.add-hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_DRAW, null, this.onAddHopperClick.bind(this), {}), hcsdesign.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), hcsdesign.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {})
     }, e.prototype.onAddHopperClick = function() {
-        var t = wanaplan.getSelectedStructure();
-        t.insertElement("hoppers", this._tmpHopper), this._tmpHopper = new HopperStructure, wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect")
+        var t = hcsdesign.getSelectedStructure();
+        t.insertElement("hoppers", this._tmpHopper), this._tmpHopper = new HopperStructure, hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect")
     }, e.prototype.onMouseMove = function(t, e, n) {
         var i = n.planPos.subtract(this._tmpHopper.points[0].clone());
         i.x -= 50, i.y -= 50, this._tmpHopper.move(i)
@@ -97,7 +97,7 @@ HopperComponent2D = function() {
             label: _("四周没有护栏"),
             type: "button",
             value: _("选择")
-        })), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        })), hcsdesign.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, e.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         if (-1 != e.indexOf("sticks_")) {
             var i = e.split("_");
@@ -115,47 +115,47 @@ HopperComponent2D = function() {
                 t.sticks[a] = !1;
         else
             t[e] = n;
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, e.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
+        var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, e.prototype.onStaticDraw = function(t, e, n) {
-        for (var i = wanaplan.getSelectedStructure(), o = i.getElements("hoppers"), r = 0; r < o.length; r++)
+        for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("hoppers"), r = 0; r < o.length; r++)
             this.draw(o[r], t, e, n)
     }, e.prototype.onDynamicDraw = function(t, e, n) {
-        wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D)), this.draw(this._tmpHopper, t, e, n)
+        hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D)), this.draw(this._tmpHopper, t, e, n)
     }, e.prototype.initialize = function() {
         var t = {
             title: _("储料仓"),
             index: 80,
-            action: "wnp.engine2d.onAddHopper"
+            action: "hcs.engine2d.onAddHopper"
         };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 80
         })
     }, e.prototype.drawTarget = function(t, e, n) {
         if (null !== this._targetedAt) {
-            var i = wanaplan.engine2D.toRealCoord(t.points[this._targetedAt]);
-            wanaplan.engine2D.symbols2D.drawPointHover(e, i, n)
+            var i = hcsdesign.engine2D.toRealCoord(t.points[this._targetedAt]);
+            hcsdesign.engine2D.symbols2D.drawPointHover(e, i, n)
         } else if (null !== this._targetedAtSide) {
-            var o = wanaplan.engine2D.toRealCoord(t.points[this._targetedAtSide]),
-                r = wanaplan.engine2D.toRealCoord(this._targetedAtSide + 1 < t.points.length ? t.points[this._targetedAtSide + 1] : t.points[0]);
-            wanaplan.engine2D.symbols2D.drawSegment(e, o, r)
+            var o = hcsdesign.engine2D.toRealCoord(t.points[this._targetedAtSide]),
+                r = hcsdesign.engine2D.toRealCoord(this._targetedAtSide + 1 < t.points.length ? t.points[this._targetedAtSide + 1] : t.points[0]);
+            hcsdesign.engine2D.symbols2D.drawSegment(e, o, r)
         }
     }, e.prototype.draw = function(t, e, n, i, o) {
-        e.save(), e.beginPath(), o ? (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE);
+        e.save(), e.beginPath(), o ? (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE);
         for (var r = 0; r < t.points.length; r++) {
-            var s = wanaplan.engine2D.toRealCoord(t.points[r], n, i);
+            var s = hcsdesign.engine2D.toRealCoord(t.points[r], n, i);
             0 == r ? e.moveTo(Math.round(s.x) + .5, Math.round(s.y) + .5) : e.lineTo(Math.round(s.x) + .5, Math.round(s.y) + .5)
         }
         e.closePath(), e.fill(), e.stroke(), e.beginPath();
         for (var r = 0; r < t.points.length; r++)
             if (t.sticks[r]) {
-                var a = wanaplan.engine2D.toRealCoord(t.points[r], n, i),
+                var a = hcsdesign.engine2D.toRealCoord(t.points[r], n, i),
                     l = r + 1 < t.points.length ? r + 1 : 0,
-                    h = wanaplan.engine2D.toRealCoord(t.points[l], n, i);
+                    h = hcsdesign.engine2D.toRealCoord(t.points[l], n, i);
                 e.lineWidth = 4, e.beginPath(), e.moveTo(Math.round(a.x), Math.round(a.y)), e.lineTo(Math.round(h.x), Math.round(h.y)), e.stroke()
             }
         e.restore()
@@ -163,7 +163,7 @@ HopperComponent2D = function() {
         var e = e || !1;
         if (t.room && e === !1)
             return t.room;
-        var n = wanaplan.getComponentByName("RoomComponent2D"),
+        var n = hcsdesign.getComponentByName("RoomComponent2D"),
             i = n.isPointInRooms(t.points[0]);
         return i !== !1 ? (t.room = i, t.room) : !1
     }, e.prototype.isPointInHopperSide = function(t, e) {

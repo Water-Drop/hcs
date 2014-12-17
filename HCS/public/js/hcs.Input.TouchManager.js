@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Input = wnp.Input || {}, wnp.Input.TouchManager = function (t) {
+var hcs = window.hcs || {};
+hcs.Input = hcs.Input || {}, hcs.Input.TouchManager = function (t) {
     var e = [{ x: 0, y: 0 }, { x: 0, y: 0}], n = [{ x: 0, y: 0 }, { x: 0, y: 0}], i = { x: 0, y: 0, reset: function () {
         this.x = 0, this.y = 0
     }, update: function () {

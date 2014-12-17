@@ -1,7 +1,7 @@
-var wnp = window.wnp || {};
-wnp.CameraFeatures = function() {
+var hcs = window.hcs || {};
+hcs.CameraFeatures = function() {
     var t = null, e = function() {
-        this.camera = void 0, this.wallTransparency = !1, document.addEventListener("wnp.engine3D.camera.move", this.onCameraMove.bind(this), !1), document.addEventListener("wnp.engine3D.camera.zoom", this.onCameraZoom.bind(this), !1), document.addEventListener("wnp.engine3d.subslopeOverturesReady", this.onWallsReady.bind(this), !1), document.addEventListener("wnp.contextChanged", this.onContextChanged.bind(this), !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.onGlobaleFloorReady.bind(this), !1)
+        this.camera = void 0, this.wallTransparency = !1, document.addEventListener("hcs.engine3D.camera.move", this.onCameraMove.bind(this), !1), document.addEventListener("hcs.engine3D.camera.zoom", this.onCameraZoom.bind(this), !1), document.addEventListener("hcs.engine3d.subslopeOverturesReady", this.onWallsReady.bind(this), !1), document.addEventListener("hcs.contextChanged", this.onContextChanged.bind(this), !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.onGlobaleFloorReady.bind(this), !1)
     };
     e.prototype.setCamera = function(t) {
         this.camera = t
@@ -10,10 +10,10 @@ wnp.CameraFeatures = function() {
     }, e.prototype.onCameraZoom = function() {
         this.wallTransparency && this.dynamicWallTransparency()
     }, e.prototype.onWallsReady = function() {
-        wanaplan.getSelectedEngine() === wanaplan.ENGINE_3D && this.wallTransparency && this.dynamicWallTransparency()
+        hcsdesign.getSelectedEngine() === hcsdesign.ENGINE_3D && this.wallTransparency && this.dynamicWallTransparency()
     }, e.prototype.stopTransparency = function() {
-        t = t || wanaplan.getComponentByName("WallComponent3D");
-        for (var e, i = wanaplan.getSelectedStructure(), o = t.get3DWallFrom2D(i), r = 0, s = o.material.subMaterials.length; s > r; r++)
+        t = t || hcsdesign.getComponentByName("WallComponent3D");
+        for (var e, i = hcsdesign.getSelectedStructure(), o = t.get3DWallFrom2D(i), r = 0, s = o.material.subMaterials.length; s > r; r++)
             if (e = o.material.subMaterials[r], e.opacitySwitched) {
                 if (o.objectInstances[r] && ("OvertureStructure" == o.objectInstances[r].name || "SubSlopeOvertureStructure" == o.objectInstances[r].name) && o.objectInstances[r].programmableInstance)
                     for (var a in o.objectInstances[r].programmableInstance.materials)
@@ -41,8 +41,8 @@ wnp.CameraFeatures = function() {
         t.alternativeOpacity = t.alpha, t.alpha = n, t.opacitySwitched = !t.opacitySwitched, t.transparent = 1 != t.alpha
     };
     e.prototype.dynamicWallTransparency = function() {
-        t = t || wanaplan.getComponentByName("WallComponent3D");
-        var e = wanaplan.getSelectedStructure(), i = t.get3DWallFrom2D(e);
+        t = t || hcsdesign.getComponentByName("WallComponent3D");
+        var e = hcsdesign.getSelectedStructure(), i = t.get3DWallFrom2D(e);
         if (i)
             for (var o, r = this.fillByZIndex(i), s = 0, a = i.subMeshes.length; a > s; s++)
                 if (o = i.material.subMaterials[i.subMeshes[s].materialIndex], o.opacitySwitched && !r[i.subMeshes[s].materialIndex] || !o.opacitySwitched && r[i.subMeshes[s].materialIndex])
@@ -56,8 +56,8 @@ wnp.CameraFeatures = function() {
                     }
     }, e.prototype.makeWallsOpaque = function(e) {
         if (this.wallTransparency) {
-            t = t || wanaplan.getComponentByName("WallComponent3D");
-            var i, e = e || wanaplan.getSelectedStructure(), o = t.get3DWallFrom2D(e);
+            t = t || hcsdesign.getComponentByName("WallComponent3D");
+            var i, e = e || hcsdesign.getSelectedStructure(), o = t.get3DWallFrom2D(e);
             if (!o)
                 return;
             for (var r = 0, s = o.subMeshes.length; s > r; r++)
@@ -71,8 +71,8 @@ wnp.CameraFeatures = function() {
     }, e.prototype.onContextChanged = function(t) {
         "3D" !== t.context && this.makeWallsOpaque()
     }, e.prototype.onGlobaleFloorReady = function(t) {
-        for (var e = 0; e < wanaplan.structure.getLength(); e++) {
-            var n = wanaplan.structure.getElement(e);
+        for (var e = 0; e < hcsdesign.structure.getLength(); e++) {
+            var n = hcsdesign.structure.getElement(e);
             e !== t.maxFloorId && this.makeWallsOpaque(n)
         }
     }, e.prototype.getBestFocusRadius = function(t, e, n) {
@@ -151,7 +151,7 @@ wnp.CameraFeatures = function() {
         var w = 100 / 60 / (r / 1e3);
         if (t.getScene().beginAnimation(t, 0, 100, !1, w, b._onAnimationEnd.bind(b)), h) {
             var x = function() {
-                ujs.notify("wnp.engine3D.camera.move")
+                ujs.notify("hcs.engine3D.camera.move")
             }, C = t.getScene();
             C.registerBeforeRender(x), b._moreCleanUp = function() {
                 C.unregisterBeforeRender(x), x = null

@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.LoopTimer = function() {
+var hcs = window.hcs || {};
+hcs.LoopTimer = function() {
     var t = function() {
         var t = 0,
             e = 0;

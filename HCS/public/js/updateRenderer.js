@@ -1,3 +1,3 @@
 var updateRenderer = function() {
-    wanaplan.engine3D.renderer.initWebGLObjects(wanaplan.engine3D.scene)
+    hcsdesign.engine3D.renderer.initWebGLObjects(hcsdesign.engine3D.scene)
 };

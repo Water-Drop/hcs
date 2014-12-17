@@ -8995,12 +8995,12 @@ BABYLON.Vector2.prototype.isPointInPolygon = function(t) {
                         }, BABYLON.StandardMaterial.Deserialize = function(t) {
                             if (!t)
                                 return null;
-                            var e = new BABYLON.StandardMaterial(t.name, wanaplan.engine3D.scene);
+                            var e = new BABYLON.StandardMaterial(t.name, hcsdesign.engine3D.scene);
                             return e.deserialize(t), e
                         }, BABYLON.MultiMaterial.Deserialize = function(t) {
                             if (!t)
                                 return null;
-                            var e = new BABYLON.MultiMaterial(t.name, wanaplan.engine3D.scene);
+                            var e = new BABYLON.MultiMaterial(t.name, hcsdesign.engine3D.scene);
                             return e.deserialize(t), e
                         }, BABYLON.Vector2.prototype.serialize = function() {
                             var t = {"class": {name: "BABYLON.Vector2"},x: this.x,y: this.y};
@@ -9038,24 +9038,24 @@ BABYLON.Vector2.prototype.isPointInPolygon = function(t) {
                             var e = new BABYLON.Color4(t.r, t.g, t.b, t.a);
                             return e
                         }, BABYLON.BaseTexture.prototype.serialize = function() {
-                            this.url = GlobalHelper.stripDomainUrl(this.url, "wanaplan.");
+                            this.url = GlobalHelper.stripDomainUrl(this.url, "hcsdesign.");
                             var t = {"class": {name: "BABYLON.BaseTexture"},uScale: this.uScale,vScale: this.vScale,url: this.url};
                             return t
                         }, BABYLON.BaseTexture.Deserialize = function(t) {
-                            var e = new BABYLON.BaseTexture(t.url, wanaplan.engine3D.scene);
+                            var e = new BABYLON.BaseTexture(t.url, hcsdesign.engine3D.scene);
                             return e.uScale = t.uScale || 1, e.vScale = t.vScale || 1, e
                         }, BABYLON.Texture.prototype.serialize = function() {
                             var t = BABYLON.BaseTexture.prototype.serialize.call(this);
                             return t.class.name = "BABYLON.Texture", t
                         }, BABYLON.Texture.Deserialize = function(t) {
-                            t.url = GlobalHelper.stripDomainUrl(t.url, "wanaplan.");
-                            var e = new BABYLON.Texture(t.url, wanaplan.engine3D.scene);
+                            t.url = GlobalHelper.stripDomainUrl(t.url, "hcsdesign.");
+                            var e = new BABYLON.Texture(t.url, hcsdesign.engine3D.scene);
                             return e.uScale = t.uScale || 1, e.vScale = t.vScale || 1, e
                         }, BABYLON.CubeTexture.prototype.serialize = function() {
                             var t = BABYLON.BaseTexture.prototype.serialize.call(this);
                             return t.class.name = "BABYLON.CubeTexture", t
                         }, BABYLON.CubeTexture.Deserialize = function(t) {
-                            var e = new BABYLON.CubeTexture(t.url, wanaplan.engine3D.scene);
+                            var e = new BABYLON.CubeTexture(t.url, hcsdesign.engine3D.scene);
                             return e
                         }, BABYLON.Mesh.prototype._lastCollidedFaceIndex = -1, BABYLON.Mesh.prototype.getFloor = function() {
                             return this.parent ? -1 != this.parent.name.indexOf("FloorMesh") ? this.parent : this.parent.getFloor() : null
@@ -9156,8 +9156,8 @@ BABYLON.Vector2.prototype.isPointInPolygon = function(t) {
                                                              },enumerable: !0,configurable: !0})
                                 }();
 
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Rotator = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Rotator = function() {
     var t, e, n = null, i = null, o = null, r = new BABYLON.Plane(0, 1, 0, 0), s = !1, a = 0, l = function(n) {
         t = n, e = this, n.on("click", this.onClick), n.on("refresh", this.onRefreshObject), n.on("selectObject", this.onSelectObject), n.on("deselectObject", this.onDeselectObject), n.on("mousedown", this.onMouseDown), n.on("mouseup", this.onMouseUp), n.on("mousemove", this.onMouseMove), this.setupHistory()
     };
@@ -9172,14 +9172,14 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Rotator = function() {
     }, l.prototype.onClick = function() {
     }, l.prototype.onMouseMove = function() {
         if (s) {
-            var e = wanaplan.engine3D.projectMouseOnPlane(r), a = n.position, l = i.subtract(a), h = e.subtract(a), c = Math.atan2(l.x, l.z), u = Math.atan2(h.x, h.z), p = o + u - c, d = Math.PI / 2, m = Math.round(p / d), g = p - m * d;
+            var e = hcsdesign.engine3D.projectMouseOnPlane(r), a = n.position, l = i.subtract(a), h = e.subtract(a), c = Math.atan2(l.x, l.z), u = Math.atan2(h.x, h.z), p = o + u - c, d = Math.PI / 2, m = Math.round(p / d), g = p - m * d;
             return Math.abs(g) < .3 && (p -= g), t.getSelectedObject().rotation.y = p, t.getSelectedObject().computeWorldMatrix(!0), t.getSelectedObject().getFloor().markAsDirty(), !1
         }
     }, l.prototype.onMouseDown = function(n) {
         if (!t.getLocker() || t.getLocker() === e) {
             var a = n.collided;
             if (a && "rotator" == a.pickedMesh.name) {
-                ujs.notify("wnp.engine3d.dragcontrols.start");
+                ujs.notify("hcs.engine3d.dragcontrols.start");
                 {
                     t.getSelectedObject().position
                 }
@@ -9187,9 +9187,9 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Rotator = function() {
             }
         }
     }, l.prototype.onMouseUp = function() {
-        t.getLocker() && t.getLocker() !== e || (t.getSelectedObject() && null !== o && null !== t.getSelectedObject().rotation.y && o !== t.getSelectedObject().rotation.y && ujs.notify("wnp.request.historyAction", {component: e,object: t.getSelectedObject(),params: {oldAngle: o,newAngle: t.getSelectedObject().rotation.y},action: a}), ujs.notify("wnp.engine3d.dragcontrols.end"), r.d = 0, i = null, o = null, t.unlock(e), s = !1)
+        t.getLocker() && t.getLocker() !== e || (t.getSelectedObject() && null !== o && null !== t.getSelectedObject().rotation.y && o !== t.getSelectedObject().rotation.y && ujs.notify("hcs.request.historyAction", {component: e,object: t.getSelectedObject(),params: {oldAngle: o,newAngle: t.getSelectedObject().rotation.y},action: a}), ujs.notify("hcs.engine3d.dragcontrols.end"), r.d = 0, i = null, o = null, t.unlock(e), s = !1)
     }, l.prototype.setupHistory = function() {
-        this.historycmp = wanaplan.getComponentByName("HistoryComponent"), this.historycmp && this.historycmp.registerAction(a, this.undoRotate, this.redoRotate, this)
+        this.historycmp = hcsdesign.getComponentByName("HistoryComponent"), this.historycmp && this.historycmp.registerAction(a, this.undoRotate, this.redoRotate, this)
     }, l.prototype.addHistory = function(t, e, n) {
         this.historycmp && this.historycmp.actionDone(t, e, n, this)
     }, l.prototype.undoRotate = function(t, n) {
@@ -9197,33 +9197,33 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Rotator = function() {
     }, l.prototype.redoRotate = function(t, n) {
         e.historyRotate(t, n.newAngle)
     }, l.prototype.historyRotate = function(t, e) {
-        t.rotation.y = e, ujs.notify("wnp.request.saveHistory")
+        t.rotation.y = e, ujs.notify("hcs.request.saveHistory")
     }, l.prototype.getRotationMesh = function(t, e) {
-        var n = BABYLON.Mesh.CreateCylinder("rotator", 10, 2 * t + 10, 2 * t, 32, 1, !1, wanaplan.engine3D.scene);
-        return n.material = new BABYLON.StandardMaterial("rotator", wanaplan.engine3D.scene), wnp.MaterialFactory.MakeBasicColor(n.material, e), n.material.backFaceCulling = !1, n
+        var n = BABYLON.Mesh.CreateCylinder("rotator", 10, 2 * t + 10, 2 * t, 32, 1, !1, hcsdesign.engine3D.scene);
+        return n.material = new BABYLON.StandardMaterial("rotator", hcsdesign.engine3D.scene), hcs.MaterialFactory.MakeBasicColor(n.material, e), n.material.backFaceCulling = !1, n
     }, l.prototype.addSelectionBox = function(t) {
         n && n.dispose();
         var e = t.getBoundingBox(!0), i = Math.sqrt((e.maximum.x - e.minimum.x) * (e.maximum.x - e.minimum.x) / 4 + (e.maximum.z - e.minimum.z) * (e.maximum.z - e.minimum.z) / 4);
-        n = new BABYLON.Mesh("selector", wanaplan.engine3D.scene), n.isVisible = !1;
+        n = new BABYLON.Mesh("selector", hcsdesign.engine3D.scene), n.isVisible = !1;
         var o = new BABYLON.Color3;
-        o.fromHex(-1 !== t.name.indexOf("group_") ? wnp.Assets.groupColor : wnp.Assets.mainUIColor);
+        o.fromHex(-1 !== t.name.indexOf("group_") ? hcs.Assets.groupColor : hcs.Assets.mainUIColor);
         var r = this.getRotationMesh(i, o);
         r.position.y = e.minimum.y + 10, r.position.x = e.center.x, r.position.z = e.center.z, r.selectorOf = t, r.parent = n;
-        var s = new BABYLON.Mesh.CreatePlan("rotator", 28, 14, wanaplan.engine3D.scene);
-        s.material = new BABYLON.StandardMaterial("buttons", wanaplan.engine3D.scene), s.material.diffuseTexture = new BABYLON.Texture(wnp.Assets.toolbarTextures.rotateTexture, wanaplan.engine3D.scene), s.material.diffuseTexture.hasAlpha = !0, s.material.backFaceCulling = !1, wnp.MaterialFactory.MakeBasicMaterial(s.material), s.material.emissiveColor.copyFromFloats(1, 1, 1), s.position.z = -i - 6, s.position.y = Math.PI, s.rotation.x = Math.PI / 4, s.selectorOf = t, s.parent = r, n.position = t.getAbsolutePosition(), n.rotation = t.rotation
+        var s = new BABYLON.Mesh.CreatePlan("rotator", 28, 14, hcsdesign.engine3D.scene);
+        s.material = new BABYLON.StandardMaterial("buttons", hcsdesign.engine3D.scene), s.material.diffuseTexture = new BABYLON.Texture(hcs.Assets.toolbarTextures.rotateTexture, hcsdesign.engine3D.scene), s.material.diffuseTexture.hasAlpha = !0, s.material.backFaceCulling = !1, hcs.MaterialFactory.MakeBasicMaterial(s.material), s.material.emissiveColor.copyFromFloats(1, 1, 1), s.position.z = -i - 6, s.position.y = Math.PI, s.rotation.x = Math.PI / 4, s.selectorOf = t, s.parent = r, n.position = t.getAbsolutePosition(), n.rotation = t.rotation
     }, l
 }();
 
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Info = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Info = function() {
     var t, e, n, i, o, r = null, s = !1, a = function() {
     }, l = function(i) {
-        n = i, o = this, t = new BABYLON.SpriteManager("objectMgr", wnp.Assets.toolbarTextures.infoTexture, 2, 128, wanaplan.engine3D.scene), e = new BABYLON.SpriteManager("groupMgr", wnp.Assets.toolbarTextures.infoTextureGroup, 2, 128, wanaplan.engine3D.scene), i.on("click", this.onClick), i.on("special", this.onSpecial), i.on("selectObject", this.onSelectObject), i.on("deselectObject", this.onDeselectObject)
+        n = i, o = this, t = new BABYLON.SpriteManager("objectMgr", hcs.Assets.toolbarTextures.infoTexture, 2, 128, hcsdesign.engine3D.scene), e = new BABYLON.SpriteManager("groupMgr", hcs.Assets.toolbarTextures.infoTextureGroup, 2, 128, hcsdesign.engine3D.scene), i.on("click", this.onClick), i.on("special", this.onSpecial), i.on("selectObject", this.onSelectObject), i.on("deselectObject", this.onDeselectObject)
     };
     return l.prototype.setClickCallback = function(t) {
         a = t
     }, l.prototype.onClick = function(t) {
-        t.collided && "_sprite_info" == t.collided.pickedMesh.name && (a(n.getSelectedObject()), ujs.notify("wnp.engine3D.info", {}))
+        t.collided && "_sprite_info" == t.collided.pickedMesh.name && (a(n.getSelectedObject()), ujs.notify("hcs.engine3D.info", {}))
     }, l.prototype.onSpecial = function() {
         a(n.getSelectedObject())
     }, l.prototype.onSelectObject = function() {
@@ -9233,8 +9233,8 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Info = function() {
     }, l.prototype.addInfo = function() {
         r && this.removeInfo();
         var o = n.getSelectedObject().getBoundingBox(), s = new BABYLON.Vector3((o.minimum.x + o.maximum.x) / 2, o.maximum.y, (o.minimum.z + o.maximum.z) / 2);
-        r = n.isGroup(n.getSelectedObject()) ? new BABYLON.Sprite("info", e) : new BABYLON.Sprite("info", t), r.size = 30, i = new BABYLON.Mesh("info", wanaplan.engine3D.scene), i.isVisible = !1, i.position = n.getSelectedObject().getAbsolutePosition();
-        var a = new BABYLON.Mesh("info", wanaplan.engine3D.scene);
+        r = n.isGroup(n.getSelectedObject()) ? new BABYLON.Sprite("info", e) : new BABYLON.Sprite("info", t), r.size = 30, i = new BABYLON.Mesh("info", hcsdesign.engine3D.scene), i.isVisible = !1, i.position = n.getSelectedObject().getAbsolutePosition();
+        var a = new BABYLON.Mesh("info", hcsdesign.engine3D.scene);
         return a.parent = i, a.isVisible = !1, a.position = s, a.position.y += 35, r.position = a.getAbsolutePosition(), toolbar
     }, l.prototype.removeInfo = function() {
         r && (r.dispose(), i.dispose()), i = null, r = null
@@ -9243,8 +9243,8 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Info = function() {
     }, l
 }();
 
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Elevation = function() {
     var t, e, n, i = document.getElementById("modalWidgets"), o = !1, r = 38, s = 287, a = function(e) {
         i = document.getElementById("modalWidgets"), t = e, this.imagePath = "images/remote-controller/", this.domElement = this.buildHTML(), this.defaultDomStyle = "top: " + r + "px;right: " + s + "px;", this.domElement.setAttribute("style", this.defaultDomStyle), i.appendChild(this.domElement), this.slider = document.getElementById("edition-slider"), this.sliderContainer = document.getElementById("edition-slider-content"), this.globalSliderContainer = document.getElementById("edition-slider-bar"), this.globalSliderContainerHeight = this.globalSliderContainer.scrollHeight, this.sliderMin = 12, this.sliderMax = 114, this.sliderPos = this.sliderMin, this.sliderSelected = !1, n = this, this.buttonState = null, this.running = !0, this.updateSliderPos(0), this.hide(), e.on("selectObject", this.onSelectObject), e.on("deselectObject", this.onDeselectObject)
     };
@@ -9262,7 +9262,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
     }, a.prototype.updateDomPosition = function(t, e) {
         this.defaultDomStyle = "top: " + e + "px;right: " + t + "px;", this.domElement.setAttribute("style", this.defaultDomStyle)
     }, a.prototype.movePanel = function() {
-        var t = wanaplan.engine3D.canvas.height, e = Math.round(r + (t - r) / 2 - document.getElementById("edition-panel").offsetHeight / 2);
+        var t = hcsdesign.engine3D.canvas.height, e = Math.round(r + (t - r) / 2 - document.getElementById("edition-panel").offsetHeight / 2);
         n.updateDomPosition(s, e)
     }, a.prototype.show = function() {
         document.getElementById("edition-panel").style.display = "block"
@@ -9287,7 +9287,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
             var i = t.getSelectedObject().position.clone(), o = i.clone();
             i.y = e;
             var r = t.getSelectedObject().rotation;
-            ujs.notify("wnp.request.historyAction", {component: t,object: t.getSelectedObject(),params: {oldPosition: i,newPosition: o,oldRotation: r,newRotation: r},action: t.MOVEACTION})
+            ujs.notify("hcs.request.historyAction", {component: t,object: t.getSelectedObject(),params: {oldPosition: i,newPosition: o,oldRotation: r,newRotation: r},action: t.MOVEACTION})
         }
     }, a.prototype.setElevationVelocity = function(e) {
         t.moveObject(t.getSelectedObject(), new BABYLON.Vector3(0, e, 0))
@@ -9312,8 +9312,8 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
     }, a
 }();
 
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Clone = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Clone = function() {
     var t, e, n = !1, i = function(n) {
         t = n, this.icon = "fa fa-copy", this.button = this.buildHTML(), this.buttonSelected = !1, e = this, n.on("selectObject", this.onSelectObject), n.on("deselectObject", this.onDeselectObject)
     };
@@ -9329,7 +9329,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Clone = function() {
     }, i.prototype.onDeselectObject = function() {
         e.button.removeEventListener("pointerdown", e.onButtonMouseDown), document.removeEventListener("pointerup", e.onMouseUp), document.removeEventListener("pointercancel", e.onMouseUp), n = !1
     }, i.prototype.onButtonMouseDown = function(t) {
-        t.preventDefault(), e.buttonSelected || (e.buttonSelected = !0, ujs.notify("wnp.request.object.clone"))
+        t.preventDefault(), e.buttonSelected || (e.buttonSelected = !0, ujs.notify("hcs.request.object.clone"))
     }, i.prototype.onMouseUp = function() {
         e.buttonSelected && (e.buttonSelected = !1)
     }, i.prototype.isActive = function() {
@@ -9337,8 +9337,8 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Clone = function() {
     }, i
 }();
 
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Remove = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Remove = function() {
     var t, e, n = !1, i = function(n) {
         t = n, this.icon = "fa fa-trash-o", this.button = this.buildHTML(), this.buttonSelected = !1, e = this, n.on("selectObject", this.onSelectObject), n.on("deselectObject", this.onDeselectObject)
     };
@@ -9354,15 +9354,15 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Remove = function() {
     }, i.prototype.onDeselectObject = function() {
         e.button.removeEventListener("pointerdown", e.onButtonMouseDown), document.removeEventListener("pointerup", e.onMouseUp), document.removeEventListener("pointercancel", e.onMouseUp), n = !1
     }, i.prototype.onButtonMouseDown = function(t) {
-        t.preventDefault(), e.buttonSelected || (e.buttonSelected = !0, ujs.notify("wnp.request.object.remove"))
+        t.preventDefault(), e.buttonSelected || (e.buttonSelected = !0, ujs.notify("hcs.request.object.remove"))
     }, i.prototype.onMouseUp = function() {
         e.buttonSelected && (e.buttonSelected = !1)
     }, i.prototype.isActive = function() {
         return n
     }, i
 }();
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Group = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Group = function() {
     var t, e, n = !1, i = function(n) {
         t = n, this.imageGroup = "fa fa-link", this.imageUngroup = "fa fa-chain-broken", this.img = null, this.button = this.buildHTML(), this.selectedObject = null, this.buttonSelected = !1, e = this, this.hide(), n.on("selectObject", this.onSelectObject), n.on("deselectObject", this.onDeselectObject)
     };
@@ -9375,7 +9375,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Group = function() {
         return i.setAttribute("id", "edition-group-img"), i.setAttribute("class", this.imageUngroup), n.appendChild(i), e.appendChild(n), t.appendChild(e), e
     }, i.prototype.updatePanelColor = function(e) {
         var n = document.getElementById("edition-panel");
-        t.isGroup(e) ? (n.style.backgroundColor = "#d08c00", n.style.borderColor = "#af6b00") : (n.style.backgroundColor = "#89B808", n.style.borderColor = "#769b10")
+        t.isGroup(e) ? (n.style.backgroundColor = "#a99384", n.style.borderColor = "#a99384") : (n.style.backgroundColor = "#897364", n.style.borderColor = "#897364")
     }, i.prototype.updateGroupImg = function() {
         this.img = t.isVirtualGroup(e.selectedObject) ? this.imageUngroup : this.imageGroup, document.getElementById("edition-group-img").setAttribute("class", this.img)
     }, i.prototype.show = function() {
@@ -9394,69 +9394,69 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Group = function() {
         return n
     }, i
 }();
-var wanaplan = wanaplan || {}, API = function() {
+var hcsdesign = hcsdesign || {}, API = function() {
     var t = {};
-    t.CONTEXT_2D = wanaplan.ENGINE_2D || 1, t.CONTEXT_3D = wanaplan.ENGINE_3D || 2, t.MODE_2D_NORMAL = 1, t.MODE_2D_DRAG = 2, t.MODE_2D_DRAW = 4, t.MODE_2D_CONTEXTMENU = 8, t.MODE_2D_SUBSLOPE = 16, t.ORBITCAMERA = 0, t.FPSCAMERA = 1, t.e2D = {}, t.e3D = {}, t.material = {}, t.UI = {}, t.HTML = {}, t.Utils = {}, t.setContext = function(t) {
-        wanaplan.setSelectedEngine(t)
+    t.CONTEXT_2D = hcsdesign.ENGINE_2D || 1, t.CONTEXT_3D = hcsdesign.ENGINE_3D || 2, t.MODE_2D_NORMAL = 1, t.MODE_2D_DRAG = 2, t.MODE_2D_DRAW = 4, t.MODE_2D_CONTEXTMENU = 8, t.MODE_2D_SUBSLOPE = 16, t.ORBITCAMERA = 0, t.FPSCAMERA = 1, t.e2D = {}, t.e3D = {}, t.material = {}, t.UI = {}, t.HTML = {}, t.Utils = {}, t.setContext = function(t) {
+        hcsdesign.setSelectedEngine(t)
     }, t.getContext = function() {
-        wanaplan.getSelectedEngine()
+        hcsdesign.getSelectedEngine()
     }, t.getMode = function(e) {
-        var n = e || wanaplan.getSelectedEngine();
-        return n == t.CONTEXT_2D ? wanaplan.engine2D.getMode(name) : void (n == t.CONTEXT_3D)
+        var n = e || hcsdesign.getSelectedEngine();
+        return n == t.CONTEXT_2D ? hcsdesign.engine2D.getMode(name) : void (n == t.CONTEXT_3D)
     }, t.getComponent = function(t) {
-        var e = wanaplan.getComponentByName(t);
+        var e = hcsdesign.getComponentByName(t);
         return e || Logger.warning("[WnpAPI] getComponent : The component " + t + " has not been found."), e
     }, t.setMode = function(e, n) {
-        var i = n || wanaplan.getSelectedEngine();
-        i == t.CONTEXT_2D ? (wanaplan.engine2D.setMode(e), wanaplan.engine2D.requestStaticDraw()) : i == t.CONTEXT_3D && wanaplan.engine2D.setMode(e)
+        var i = n || hcsdesign.getSelectedEngine();
+        i == t.CONTEXT_2D ? (hcsdesign.engine2D.setMode(e), hcsdesign.engine2D.requestStaticDraw()) : i == t.CONTEXT_3D && hcsdesign.engine2D.setMode(e)
     }, t.setCameraById = function(t) {
-        var e = wanaplan.getComponentByName("CameraComponent");
+        var e = hcsdesign.getComponentByName("CameraComponent");
         e && e.getActiveCameraId() !== t && this.e3D.switchCamera()
     }, t.getCameraId = function() {
-        return wanaplan.getComponentByName("CameraComponent").getActiveCameraId()
+        return hcsdesign.getComponentByName("CameraComponent").getActiveCameraId()
     }, t.getData = function(t) {
-        return wanaplan.structure.customData[t]
+        return hcsdesign.structure.customData[t]
     }, t.setData = function(t, e) {
-        wanaplan.structure.customData[t] = e
+        hcsdesign.structure.customData[t] = e
     }, t.getCurrentFloor = function() {
-        return wanaplan.getSelectedStructure()
+        return hcsdesign.getSelectedStructure()
     }, t.getFloor = function(t) {
-        var e = wanaplan.structure.members[t];
+        var e = hcsdesign.structure.members[t];
         return e || Logger.warning("[WnpAPI] getFloor : Requested floor id was not found"), e
     }, t.getWalls = function(t) {
-        var e = t || wanaplan.getSelectedStructure();
+        var e = t || hcsdesign.getSelectedStructure();
         return e.walls
     }, t.getSubSlopes = function(t) {
-        var e = t || wanaplan.getSelectedStructure();
+        var e = t || hcsdesign.getSelectedStructure();
         return e.subslopes
     }, t.getRooms = function(t, e) {
-        var n = e || wanaplan.getSelectedStructure(), i = t || !0;
+        var n = e || hcsdesign.getSelectedStructure(), i = t || !0;
         return i ? n.internalRooms : n.externalRooms
     }, t.getObjects = function(t) {
-        var e = t || wanaplan.getSelectedStructure();
+        var e = t || hcsdesign.getSelectedStructure();
         return e.objects
     }, t.registerAction = function(t, e, n, i) {
-        wanaplan.getComponentByName("HistoryComponent").registerAction(t, e, n, i)
+        hcsdesign.getComponentByName("HistoryComponent").registerAction(t, e, n, i)
     }, t.addHistory = function(t, e, n, i) {
-        wanaplan.getComponentByName("HistoryComponent").actionDone(t, e, n, i)
+        hcsdesign.getComponentByName("HistoryComponent").actionDone(t, e, n, i)
     }, t.material.TexturedMaterial = function(t, e) {
-        return new wnp.TexturedMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.TexturedMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.WhiteMaterial = function(t, e) {
-        return new wnp.WhiteMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.WhiteMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.LeatherMaterial = function(t, e) {
-        return new wnp.LeatherMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.LeatherMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.MetalMaterial = function(t, e) {
-        return new wnp.MetalMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.MetalMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.WoodMaterial = function(t, e) {
-        return new wnp.WoodMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.WoodMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.MattMaterial = function(t, e) {
-        return new wnp.MattMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.MattMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.GlassMaterial = function(t, e) {
-        return new wnp.GlassMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.GlassMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.PlasticMaterial = function(t, e) {
-        return new wnp.PlasticMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.PlasticMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.material.TileMaterial = function(t, e) {
-        return new wnp.TileMaterial(t, wanaplan.engine3D.scene, e)
+        return new hcs.TileMaterial(t, hcsdesign.engine3D.scene, e)
     }, t.UI.getWidgetContainer = function() {
         return document.getElementById("modalWidgets")
     }, t.HTML.addHTML = function(t, e, n, i) {
@@ -9480,7 +9480,7 @@ var wanaplan = wanaplan || {}, API = function() {
     }, t.getListeners = function(t) {
         return e[t]
     }, t.getFloorAsPolygon = function(t) {
-        var e = wanaplan.getComponentByName("FloorComponent3D");
+        var e = hcsdesign.getComponentByName("FloorComponent3D");
         if (t = 0, !(t >= e.structure.members.length)) {
             for (var n = e.structure.members[t], i = [], o = n.points.length; o--; ) {
                 var r = new BABYLON.Vector2;
@@ -9489,63 +9489,63 @@ var wanaplan = wanaplan || {}, API = function() {
             return i
         }
     }, t.e2D.getMousePos = function() {
-        return wanaplan.engine2D._pointerManager.getStatus().planPos.clone()
+        return hcsdesign.engine2D._pointerManager.getStatus().planPos.clone()
     }, t.e2D.requestStaticDraw = function() {
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, t.e2D.requestDynamicDraw = function() {
-        wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.requestDynamicDraw()
     }, t.e3D.getCanvas = function() {
-        return wanaplan.engine3D.canvas
+        return hcsdesign.engine3D.canvas
     }, t.e3D.getScene = function() {
-        return wanaplan.engine3D.scene
+        return hcsdesign.engine3D.scene
     }, t.e3D.getCamera = function() {
-        return wanaplan.engine3D.scene.activeCamera
+        return hcsdesign.engine3D.scene.activeCamera
     }, t.e3D.switchCamera = function() {
-        ujs.notify("wnp.request.cameraChanged", {activeCameraId: this.cameraActiveId,activeCamera: this.cameraActiveId ? "fpsCamera" : "orbitCamera"})
+        ujs.notify("hcs.request.cameraChanged", {activeCameraId: this.cameraActiveId,activeCamera: this.cameraActiveId ? "fpsCamera" : "orbitCamera"})
     }, t.e3D.getCameraFeatures = function() {
-        return wanaplan.engine3D.cameraFeatures
+        return hcsdesign.engine3D.cameraFeatures
     }, t.e3D.getMeshes = function() {
-        return wanaplan.engine3D.scene.meshes
+        return hcsdesign.engine3D.scene.meshes
     }, t.e3D.getRoomMesh = function() {
-        return wanaplan.engine3D.searchComponent("RoomComponent3D").mesh
+        return hcsdesign.engine3D.searchComponent("RoomComponent3D").mesh
     }, t.e3D.setRoomFloorMaterial = function(t) {
-        t instanceof wnp.StandardMaterial && wanaplan.engine3D.searchComponent("RoomComponent3D").setSideMaterial(t)
+        t instanceof hcs.StandardMaterial && hcsdesign.engine3D.searchComponent("RoomComponent3D").setSideMaterial(t)
     }, t.e3D.setRoomCeilingMaterial = function(t) {
-        t instanceof wnp.StandardMaterial && wanaplan.engine3D.searchComponent("RoomComponent3D").setCeilingMaterial(t)
+        t instanceof hcs.StandardMaterial && hcsdesign.engine3D.searchComponent("RoomComponent3D").setCeilingMaterial(t)
     }, t.e3D.getTopLevelMeshes = function() {
-        for (var t = wanaplan.engine3D.scene, e = [], n = null, i = 0, o = t.meshes.length; o > i; i++)
+        for (var t = hcsdesign.engine3D.scene, e = [], n = null, i = 0, o = t.meshes.length; o > i; i++)
             n = t.meshes[i].getTopLevelObject(), n.parent && -1 === e.indexOf(n) && e.push(n);
         return e
     }, t.e3D.getObjects = function() {
-        for (var t, e = wanaplan.engine3D.scene, n = [], i = 0, o = e.meshes.length; o > i; i++)
+        for (var t, e = hcsdesign.engine3D.scene, n = [], i = 0, o = e.meshes.length; o > i; i++)
             t = e.meshes[i], -1 !== t.name.indexOf("Object_") && n.push(t);
         return n
     }, t.e3D.getSunlight = function() {
-        return wanaplan.engine3D.scene.lights.dir
+        return hcsdesign.engine3D.scene.lights.dir
     }, t.e3D.getSkySphere = function() {
-        return wanaplan.engine3D.scene.getMeshByName("skysphere")
+        return hcsdesign.engine3D.scene.getMeshByName("skysphere")
     }, t.e3D.getGround = function() {
-        return wanaplan.engine3D.scene.getMeshByName("ground")
+        return hcsdesign.engine3D.scene.getMeshByName("ground")
     }, t.e3D.projectOnPlane = function(t, e, n) {
-        return wanaplan.engine3D.projectMouseOnPlane(t, e, n)
+        return hcsdesign.engine3D.projectMouseOnPlane(t, e, n)
     }, t.e3D.castShadows = function(t) {
-        wanaplan.engine3D.castShadows(t)
+        hcsdesign.engine3D.castShadows(t)
     }, t.e3D.uncastShadows = function(t) {
-        wanaplan.engine3D.uncastShadows(t)
+        hcsdesign.engine3D.uncastShadows(t)
     }, t.e3D.getSelectedObject = function() {
-        return wanaplan.getComponentByName("EditionComponent3D").getSelectedObject()
+        return hcsdesign.getComponentByName("EditionComponent3D").getSelectedObject()
     }, t.e3D.intersect = function(t, e, n) {
-        var i = n || wanaplan.engine3D.scene.meshes;
-        return wanaplan.engine3D.collideWithMeshes(t, e, i)
+        var i = n || hcsdesign.engine3D.scene.meshes;
+        return hcsdesign.engine3D.collideWithMeshes(t, e, i)
     }, t.e3D.addSelectedEvent = function(t) {
-        wanaplan.getComponentByName("EditionComponent3D").on("selectObject", t)
+        hcsdesign.getComponentByName("EditionComponent3D").on("selectObject", t)
     }, t.e3D.addDeselectedEvent = function(t) {
-        wanaplan.getComponentByName("EditionComponent3D").on("deselectObject", t)
+        hcsdesign.getComponentByName("EditionComponent3D").on("deselectObject", t)
     }, t
 }(), API = API || {};
 API.Menu = function() {
     var t = {};
-    return t.MENU_TOP = "wnp.menu.top", t.MENU_TOP_2 = "wnp.menu.top.sub", t.MENU_MAIN = "wnp.menu.main", t.add = function(t, e, n) {
+    return t.MENU_TOP = "hcs.menu.top", t.MENU_TOP_2 = "hcs.menu.top.sub", t.MENU_MAIN = "hcs.menu.main", t.add = function(t, e, n) {
         var i = n || ".";
         ujs.notify(t + ".add", {item: e,menuPath: i})
     }, t
@@ -9709,7 +9709,13 @@ var ujs = function() {
                                                 return t.replace(e, "")
                                             }, t.stringToFunction = function(t) {
                                                 for (var e = t.split("."), n = window || this, i = 0, o = e.length; o > i; i++)
-                                                    n = n[e[i]];
+                                                    {//if(e[i]=="wnp")e[i]="hcs";
+//                                                        console.log(t);
+//                                                        console.log(n[e[i]]);
+                                                        n = n[e[i]];
+													//console.log(n);
+													//console.log(e[i]);
+													}
                                                 if ("function" != typeof n)
                                                     throw new Error("function not found");
                                                 return n
@@ -10740,9 +10746,9 @@ var Stats = function() {
     var g = document.createElement("div");
     g.id = "ms", g.style.cssText = "padding:0 0 3px 3px;text-align:left;background-color:#020;display:none", c.appendChild(g);
     var f = document.createElement("div");
-    f.id = "msText", f.style.cssText = "color:#0f0;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px", f.innerHTML = "MS", g.appendChild(f);
+    f.id = "msText", f.style.cssText = "color:#897364;font-family:Helvetica,Arial,sans-serif;font-size:9px;font-weight:bold;line-height:15px", f.innerHTML = "MS", g.appendChild(f);
     var y = document.createElement("div");
-    for (y.id = "msGraph", y.style.cssText = "position:relative;width:74px;height:30px;background-color:#0f0", g.appendChild(y); 74 > y.children.length; )
+    for (y.id = "msGraph", y.style.cssText = "position:relative;width:74px;height:30px;background-color:#897364", g.appendChild(y); 74 > y.children.length; )
         m = document.createElement("span"), m.style.cssText = "width:1px;height:30px;float:left;background-color:#131", y.appendChild(m);
     var _ = function(t) {
         switch (h = t) {
@@ -10869,7 +10875,7 @@ var Stats = function() {
             t.keyCode > 36 && t.keyCode < 41 && (s.call(this), x = !0, this.value = L + (38 == t.keyCode || 39 == t.keyCode ? T : -T))
         }
         function s() {
-            C || (this.style.boxShadow = l ? "inset 0 0 20px rgba(0,127,255,.1), 0 0 1px rgba(0,127,255,.4)" : "0 0 0 2px #fb0")
+            C || (this.style.boxShadow = l ? "inset 0 0 20px rgba(137,115,100,.1), 0 0 1px rgba(137,115,100,.4)" : "0 0 0 2px #DDD")
         }
         function g() {
             this.style.boxShadow = ""
@@ -13212,8 +13218,8 @@ var GeometryHelper = new function() {
 };
 var GlobalHelper = function() {
     function t() {
-        if (wanaplan && wanaplan.engine3D)
-            return wanaplan.engine3D.engine._gl;
+        if (hcsdesign && hcsdesign.engine3D)
+            return hcsdesign.engine3D.engine._gl;
         var t = document.createElement("canvas");
         return t.getContext("webgl") || t.getContext("experimental-webgl")
     }
@@ -13321,8 +13327,8 @@ var HTMLHelper = function() {
         s.initEvent(i || "mousedown"), s.clientX = s.layerX = s.pageX = s.screenX = s.x = 0 | +e, s.clientX = s.layerY = s.pageY = s.screenY = s.y = 0 | +n, s.button = 0 | +o, s.detail = s.wheelDeltaY = s.wheelDelta = 0 | +r, t.dispatchEvent(s)
     }, t
 }();
-var wnp = window.wnp || {};
-wnp.Symbols2D = function() {
+var hcs = window.hcs || {};
+hcs.Symbols2D = function() {
     var t = function() {
         this.COLOR_ACTIVE_STROKE = "#897364", this.COLOR_ACTIVE_STROKE_DARKER = "#A99384", this.COLOR_ACTIVE_FILL = "rgba(137, 115, 100, 0.2)", this.COLOR_ACTIVE_LARGEZONE_FILL = "rgba(137, 137, 137, 0.5)", this.COLOR_INACTIVE_STROKE = "#777777", this.COLOR_INACTIVE_FILL = "rgba(137, 115, 100, 0.1)", this.COLOR_BACKGROUND = "#FAFAFA", this.COLOR_ANNOTATION = "#888"
     };
@@ -13369,8 +13375,8 @@ wnp.Symbols2D = function() {
         this.drawPoint(t, {x: 100,y: 100}), this.drawPointHover(t, {x: 150,y: 100}), this.drawPointHover(t, {x: 200,y: 100}, 1.5), this.drawSegment(t, {x: 250,y: 90}, {x: 300,y: 110}), this.drawGrip(t, {x: 350,y: 100}, [!0, !0, !0, !0]), this.drawGrip(t, {x: 400,y: 100}, [!1, !0, !1, !0], Math.PI / 4), this.drawCheckGrip(t, {x: 450,y: 100}, [!0, !0, !0, !0]), this.drawCancelGrip(t, {x: 500,y: 100}, [!1, !0, !1, !0], 3 * Math.PI / 4), this.drawGripSegment(t, {x: 550,y: 90}, {x: 600,y: 110}, [!1, !1, !1, !0], [!1, !0, !1, !1], .4), this.drawMeasure(t, {x: 650,y: 80}, {x: 750,y: 80}, "measure"), this.drawMeasure(t, {x: 650,y: 100}, {x: 715,y: 100}, "measure"), this.drawMeasure(t, {x: 650,y: 120}, {x: 706,y: 120}, "measure"), this.drawCursorCheck(t, {x: 100,y: 150})
     }, t
 }();
-var wnp = window.wnp || {};
-wnp.uuid = function() {
+var hcs = window.hcs || {};
+hcs.uuid = function() {
     function t() {
         return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(t) {
                                                               var e = 16 * Math.random() | 0, n = "x" == t ? e : 3 & e | 8;
@@ -13379,8 +13385,8 @@ wnp.uuid = function() {
     }
     return {uuid4: t}
 }();
-var wnp = window.wnp || {};
-wnp.Dummy = {Engine3D: function(t) {
+var hcs = window.hcs || {};
+hcs.Dummy = {Engine3D: function(t) {
     var e = function() {
         return null
     };
@@ -13401,8 +13407,8 @@ wnp.Dummy = {Engine3D: function(t) {
         return t
     }
 }};
-var wnp = window.wnp || {};
-wnp.Assets = {
+var hcs = window.hcs || {};
+hcs.Assets = {
     globalPath: "",
     metalTextures: {
     diffuse: "textures/metal/metal_DIFFUSE.png",
@@ -13514,8 +13520,8 @@ wnp.Assets = {
     complementaryUIColor: "#897364",
     groupColor: "#897364"
 };
-var wnp = window.wnp || {};
-wnp.AnimationHandler = function() {
+var hcs = window.hcs || {};
+hcs.AnimationHandler = function() {
     var t = function() {
     };
     t.LINEAR = 0, t.SMOOTH = 1;
@@ -13562,8 +13568,8 @@ wnp.AnimationHandler = function() {
                         }, t
 }();
 
-var wnp = window.wnp || {};
-wnp.Constants = {
+var hcs = window.hcs || {};
+hcs.Constants = {
     VERSION: "1.2.0.0",
     BACK_URL: "",
     WNP_URL: "",
@@ -13592,11 +13598,11 @@ wnp.Constants = {
     },
     PRODUCTS_FILE: "data/products.json",
     PRODUCTS_PREVIEWS: "models/previews/"
-}, wnp.Constants.MAGNETISM.DEFAULT = wnp.Constants.MAGNETISM.WALL | wnp.Constants.MAGNETISM.OBJECT | wnp.Constants.MAGNETISM.VERTICAL;
-var wnp = window.wnp || {};
-wnp.CameraFeatures = function() {
+}, hcs.Constants.MAGNETISM.DEFAULT = hcs.Constants.MAGNETISM.WALL | hcs.Constants.MAGNETISM.OBJECT | hcs.Constants.MAGNETISM.VERTICAL;
+var hcs = window.hcs || {};
+hcs.CameraFeatures = function() {
     var t = null, e = function() {
-        this.camera = void 0, this.wallTransparency = !1, document.addEventListener("wnp.engine3D.camera.move", this.onCameraMove.bind(this), !1), document.addEventListener("wnp.engine3D.camera.zoom", this.onCameraZoom.bind(this), !1), document.addEventListener("wnp.engine3d.subslopeOverturesReady", this.onWallsReady.bind(this), !1), document.addEventListener("wnp.contextChanged", this.onContextChanged.bind(this), !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.onGlobaleFloorReady.bind(this), !1)
+        this.camera = void 0, this.wallTransparency = !1, document.addEventListener("hcs.engine3D.camera.move", this.onCameraMove.bind(this), !1), document.addEventListener("hcs.engine3D.camera.zoom", this.onCameraZoom.bind(this), !1), document.addEventListener("hcs.engine3d.subslopeOverturesReady", this.onWallsReady.bind(this), !1), document.addEventListener("hcs.contextChanged", this.onContextChanged.bind(this), !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.onGlobaleFloorReady.bind(this), !1)
     };
     e.prototype.setCamera = function(t) {
         this.camera = t
@@ -13605,10 +13611,10 @@ wnp.CameraFeatures = function() {
     }, e.prototype.onCameraZoom = function() {
         this.wallTransparency && this.dynamicWallTransparency()
     }, e.prototype.onWallsReady = function() {
-        wanaplan.getSelectedEngine() === wanaplan.ENGINE_3D && this.wallTransparency && this.dynamicWallTransparency()
+        hcsdesign.getSelectedEngine() === hcsdesign.ENGINE_3D && this.wallTransparency && this.dynamicWallTransparency()
     }, e.prototype.stopTransparency = function() {
-        t = t || wanaplan.getComponentByName("WallComponent3D");
-        for (var e, i = wanaplan.getSelectedStructure(), o = t.get3DWallFrom2D(i), r = 0, s = o.material.subMaterials.length; s > r; r++)
+        t = t || hcsdesign.getComponentByName("WallComponent3D");
+        for (var e, i = hcsdesign.getSelectedStructure(), o = t.get3DWallFrom2D(i), r = 0, s = o.material.subMaterials.length; s > r; r++)
             if (e = o.material.subMaterials[r], e.opacitySwitched) {
                 if (o.objectInstances[r] && ("OvertureStructure" == o.objectInstances[r].name || "SubSlopeOvertureStructure" == o.objectInstances[r].name) && o.objectInstances[r].programmableInstance)
                     for (var a in o.objectInstances[r].programmableInstance.materials)
@@ -13636,8 +13642,8 @@ wnp.CameraFeatures = function() {
         t.alternativeOpacity = t.alpha, t.alpha = n, t.opacitySwitched = !t.opacitySwitched, t.transparent = 1 != t.alpha
     };
     e.prototype.dynamicWallTransparency = function() {
-        t = t || wanaplan.getComponentByName("WallComponent3D");
-        var e = wanaplan.getSelectedStructure(), i = t.get3DWallFrom2D(e);
+        t = t || hcsdesign.getComponentByName("WallComponent3D");
+        var e = hcsdesign.getSelectedStructure(), i = t.get3DWallFrom2D(e);
         if (i)
             for (var o, r = this.fillByZIndex(i), s = 0, a = i.subMeshes.length; a > s; s++)
                 if (o = i.material.subMaterials[i.subMeshes[s].materialIndex], o.opacitySwitched && !r[i.subMeshes[s].materialIndex] || !o.opacitySwitched && r[i.subMeshes[s].materialIndex])
@@ -13651,8 +13657,8 @@ wnp.CameraFeatures = function() {
                     }
     }, e.prototype.makeWallsOpaque = function(e) {
         if (this.wallTransparency) {
-            t = t || wanaplan.getComponentByName("WallComponent3D");
-            var i, e = e || wanaplan.getSelectedStructure(), o = t.get3DWallFrom2D(e);
+            t = t || hcsdesign.getComponentByName("WallComponent3D");
+            var i, e = e || hcsdesign.getSelectedStructure(), o = t.get3DWallFrom2D(e);
             if (!o)
                 return;
             for (var r = 0, s = o.subMeshes.length; s > r; r++)
@@ -13666,8 +13672,8 @@ wnp.CameraFeatures = function() {
     }, e.prototype.onContextChanged = function(t) {
         "3D" !== t.context && this.makeWallsOpaque()
     }, e.prototype.onGlobaleFloorReady = function(t) {
-        for (var e = 0; e < wanaplan.structure.getLength(); e++) {
-            var n = wanaplan.structure.getElement(e);
+        for (var e = 0; e < hcsdesign.structure.getLength(); e++) {
+            var n = hcsdesign.structure.getElement(e);
             e !== t.maxFloorId && this.makeWallsOpaque(n)
         }
     }, e.prototype.getBestFocusRadius = function(t, e, n) {
@@ -13746,7 +13752,7 @@ wnp.CameraFeatures = function() {
         var w = 100 / 60 / (r / 1e3);
         if (t.getScene().beginAnimation(t, 0, 100, !1, w, b._onAnimationEnd.bind(b)), h) {
             var x = function() {
-                ujs.notify("wnp.engine3D.camera.move")
+                ujs.notify("hcs.engine3D.camera.move")
             }, C = t.getScene();
             C.registerBeforeRender(x), b._moreCleanUp = function() {
                 C.unregisterBeforeRender(x), x = null
@@ -13755,8 +13761,8 @@ wnp.CameraFeatures = function() {
         return b
     }, e
 }();
-var wnp = window.wnp || {};
-wnp.DragControls = function(t, e, n, i) {
+var hcs = window.hcs || {};
+hcs.DragControls = function(t, e, n, i) {
     function o(e) {
         if (m.enabled) {
             e.preventDefault();
@@ -13767,9 +13773,9 @@ wnp.DragControls = function(t, e, n, i) {
                 var r = a.pickedMesh.parent ? a.pickedMesh.parent.getWorldMatrix().clone() : BABYLON.Matrix.Identity();
                 r.invert(), i = BABYLON.Vector3.TransformCoordinates(i, r), h.copyFrom(a.pickedMesh.position), w && (a.pickedMesh.position.x = i.x), x && (a.pickedMesh.position.y = i.y), C && (a.pickedMesh.position.z = i.z), a.pickedMesh.computeWorldMatrix(!0);
                 var s = a.pickedMesh.getFloor();
-                return s && s.markAsDirty(), ujs.notify("wnp.engine3d.dragcontrols.start", {selected: a}), M("drag", a), void (u === !1 ? u = 0 : 0 === u && (u = !0))
+                return s && s.markAsDirty(), ujs.notify("hcs.engine3d.dragcontrols.start", {selected: a}), M("drag", a), void (u === !1 ? u = 0 : 0 === u && (u = !0))
             }
-            ujs.notify("wnp.engine3d.dragcontrols.move"), u = !1
+            ujs.notify("hcs.engine3d.dragcontrols.move"), u = !1
         }
     }
     function r(i) {
@@ -13791,7 +13797,7 @@ wnp.DragControls = function(t, e, n, i) {
         if (m.enabled) {
             t.preventDefault();
             var n = !1;
-            ujs.notify("wnp.engine3d.dragcontrols.end", {selected: a}), a && 1 == u ? (u = !1, n = !0, M("dragend", a), a = null) : a && (a = null), e.style.cursor = "auto", M("mouseup", {dragged: n})
+            ujs.notify("hcs.engine3d.dragcontrols.end", {selected: a}), a && 1 == u ? (u = !1, n = !0, M("dragend", a), a = null) : a && (a = null), e.style.cursor = "auto", M("mouseup", {dragged: n})
         }
     }
     var a, n = n || [], l = new BABYLON.Vector3, h = new BABYLON.Vector3, c = (new BABYLON.Vector2, new BABYLON.Vector2), u = !1, p = 1;
@@ -13862,8 +13868,8 @@ wnp.DragControls = function(t, e, n, i) {
         a && (t = -a.pickedPoint.y), f = new BABYLON.Plane(0, 1, 0, t)
     }
 };
-var wnp = window.wnp || {};
-wnp.Box3 = function() {
+var hcs = window.hcs || {};
+hcs.Box3 = function() {
     var t = function() {
         this.min = null, this.max = null, this.angle = 0, this.customData = {}
     };
@@ -13871,7 +13877,7 @@ wnp.Box3 = function() {
         return BABYLON.Vector3.Lerp(this.min, this.max, .5)
     }, t.prototype.serialize = function() {
         var t = ujs.serializeObject(this, !0);
-        return t.class = {name: "wnp.Box3"}, t
+        return t.class = {name: "hcs.Box3"}, t
     }, t.prototype.deserialize = function(t) {
         return this.min = new BABYLON.Vector3(t.min.x, t.min.y, t.min.z), this.max = new BABYLON.Vector3(t.max.x, t.max.y, t.max.z), this.angle = t.angle, this.customData = ujs.deserializeObject(t.customData), this
     }, t.Deserialize = function(e) {
@@ -13904,8 +13910,8 @@ var MaterialInfo = function() {
         return i
     }, t
 }();
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.FormBuilder = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.FormBuilder = function() {
     function t(t) {
         t.target.parentNode.children[1].value = this.value
     }
@@ -14080,8 +14086,8 @@ wnp.UI = wnp.UI || {}, wnp.UI.FormBuilder = function() {
     }, i
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.Frame = function() {
     function t(t) {
         if (t.touches && t.touches.length) {
             t.preventDefault();
@@ -14099,7 +14105,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
         return n && i.setAttribute("id", n), e && i.setAttribute("class", e), i
     }
     var i = function(t, e, n) {
-        this.activeTab = 0, this.eventStarted = !1, this.config = t || {}, this.content = e || {}, this.parentNode = n || document.getElementById("modalWidgets") || document.body, this.domElement = null, this.mouseState = {x: 0,y: 0,prevX: 0,prevY: 0,deltaX: 0,deltaY: 0,click: !1}, this.windowPosition = {x: 0,y: 0}, this.menuDOM = document.getElementById("mainMenu"), this.windowSize = {width: this.config.width || 640,height: this.config.height || 480,maxWidth: this.config.maxWidth || 1980,maxHeight: this.config.maxHeight || 1080,minWidth: this.config.minWidth || 320,minHeight: this.config.minHeight || 240}, this.formBuilder = new wnp.UI.FormBuilder, this.initialized = !1
+        this.activeTab = 0, this.eventStarted = !1, this.config = t || {}, this.content = e || {}, this.parentNode = n || document.getElementById("modalWidgets") || document.body, this.domElement = null, this.mouseState = {x: 0,y: 0,prevX: 0,prevY: 0,deltaX: 0,deltaY: 0,click: !1}, this.windowPosition = {x: 0,y: 0}, this.menuDOM = document.getElementById("mainMenu"), this.windowSize = {width: this.config.width || 640,height: this.config.height || 480,maxWidth: this.config.maxWidth || 1980,maxHeight: this.config.maxHeight || 1080,minWidth: this.config.minWidth || 320,minHeight: this.config.minHeight || 240}, this.formBuilder = new hcs.UI.FormBuilder, this.initialized = !1
     };
     return i.prototype.initialize = function() {
         this.initialized || (this.buildHTML(), this.adapteSize(), this.initializeEvents(), this.parentNode.appendChild(this.domElement), this.initialized = !0)
@@ -14164,7 +14170,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
     }, i.prototype.show = function(t, e) {
         this.initialize(), this.domElement.style.display = "block", this.tabs.children.length < 2 ? this.tabsContainer.classList.add("notab") : this.tabsContainer.classList.remove("notab"), this.showContent(this.activeTab), "undefined" != typeof t && "undefined" != typeof e ? (t + this.domElement.offsetWidth > window.innerWidth && (t = window.innerWidth - this.domElement.offsetWidth - 5, 0 > t && (t = 0)), e + this.domElement.offsetHeight > window.innerHeight && (e = window.innerHeight - this.domElement.offsetHeight - 5, 0 > e && (e = 0)), this.setPosition(t, e)) : this.centerWindow()
     }, i.prototype.close = function() {
-        ujs.notify("wnp.ui.frame.close"), this.domElement.style.display = "none"
+        ujs.notify("hcs.ui.frame.close"), this.domElement.style.display = "none"
     }, i.prototype.centerWindow = function() {
         this.windowPosition.x = (window.innerWidth - this.menuDOM.offsetWidth) / 2 - this.windowSize.width / 2, this.windowPosition.y = window.innerHeight / 2 - this.windowSize.height / 2, this.domElement.style.position = "absolute", this.config.autoSize || (this.domElement.style.width = this.windowSize.width + "px", this.domElement.style.height = this.windowSize.height + "px"), this.domElement.style.top = this.windowPosition.y + "px", this.domElement.style.left = this.windowPosition.x + "px"
     }, i.prototype.setPosition = function(t, e) {
@@ -14178,7 +14184,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
     }, i.prototype.onHeaderMouseMove = function(e) {
         this.mouseState.click && (t(e), this.mouseState.prevX = this.mouseState.x, this.mouseState.prevY = this.mouseState.y, this.mouseState.x = e.x || e.screenX || this.mouseState.prevX, this.mouseState.y = e.y || e.screenY || this.mouseState.prevY, this.mouseState.deltaX = this.mouseState.x - this.mouseState.prevX, this.mouseState.deltaY = this.mouseState.y - this.mouseState.prevY, this.windowPosition.x += this.mouseState.deltaX, this.windowPosition.y += this.mouseState.deltaY, this.domElement.style.top = this.windowPosition.y + "px", this.domElement.style.left = this.windowPosition.x + "px")
     }, i.prototype.initializeEvents = function() {
-        this.eventStated || (this.closeWindow.addEventListener("click", this.close.bind(this), !1), this.closeWindow.addEventListener("touchstart", this.close.bind(this), !1), this.header.addEventListener("mousedown", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("mouseup", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("mousemove", this.onHeaderMouseMove.bind(this), !1), this.header.addEventListener("touchstart", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("touchmove", this.onHeaderMouseMove.bind(this), !1), document.body.addEventListener("touchend", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("touchcancel", this.onHeaderMouseUp.bind(this), !1), document.addEventListener("wnp.request.closePopup", this.close.bind(this), !1), this.eventStated = !0)
+        this.eventStated || (this.closeWindow.addEventListener("click", this.close.bind(this), !1), this.closeWindow.addEventListener("touchstart", this.close.bind(this), !1), this.header.addEventListener("mousedown", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("mouseup", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("mousemove", this.onHeaderMouseMove.bind(this), !1), this.header.addEventListener("touchstart", this.onHeaderMouseDown.bind(this), !1), document.body.addEventListener("touchmove", this.onHeaderMouseMove.bind(this), !1), document.body.addEventListener("touchend", this.onHeaderMouseUp.bind(this), !1), document.body.addEventListener("touchcancel", this.onHeaderMouseUp.bind(this), !1), document.addEventListener("hcs.request.closePopup", this.close.bind(this), !1), this.eventStated = !0)
     }, i.prototype.onTabClick = function(t) {
         var e = t.target.parentNode;
         t.target.classList.contains("counter") ? e = t.target.parentNode.parentNode : "LI" == t.target.nodeName && (e = t.target);
@@ -14190,8 +14196,8 @@ wnp.UI = wnp.UI || {}, wnp.UI.Frame = function() {
     }, i
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.ProductList = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.ProductList = function() {
     function t(e) {
         var n = {};
         for (var i in e)
@@ -14199,27 +14205,27 @@ wnp.UI = wnp.UI || {}, wnp.UI.ProductList = function() {
         return n
     }
     var e = null, n = [], i = [], o = !1, r = function(t, n) {
-        wnp.UI.Frame.call(this, {layout: "vertical",headerIcon: "images/productIconTitle.png"}, {title: _("物品列表")}), this.windowSize.maxWidth = window.innerWidth, this.windowSize.maxHeight = window.innerHeight, this.windowSize.width = (window.innerWidth - this.menuDOM.offsetWidth) / 1.5, this.windowSize.height = window.innerHeight / 1.5, _randomGET = n, this.core = t, null == e && (e = this, e.initProductList(function() {
+        hcs.UI.Frame.call(this, {layout: "vertical",headerIcon: "images/productIconTitle.png"}, {title: _("物品列表")}), this.windowSize.maxWidth = window.innerWidth, this.windowSize.maxHeight = window.innerHeight, this.windowSize.width = (window.innerWidth - this.menuDOM.offsetWidth) / 1.5, this.windowSize.height = window.innerHeight / 1.5, _randomGET = n, this.core = t, null == e && (e = this, e.initProductList(function() {
                                                                                                                                                                                                                                                                                                                                                                                                                                       o = !0
                                                                                                                                                                                                                                                                                                                                                                                                                                       }), e.initialize())
     };
-    return r.prototype = new wnp.UI.Frame, r.prototype.initialize = function() {
-        wnp.UI.Frame.prototype.initialize.call(this), this.domElement.setAttribute("id", "productList")
+    return r.prototype = new hcs.UI.Frame, r.prototype.initialize = function() {
+        hcs.UI.Frame.prototype.initialize.call(this), this.domElement.setAttribute("id", "productList")
     }, r.prototype.initProductList = function(t) {
         var t = t || function() {
         };
-        /*ujs.ajax({method: "GET",url: [wnp.Constants.PRODUCTS_FILE].join(""),success: function(i) {
+        /*ujs.ajax({method: "GET",url: [hcs.Constants.PRODUCTS_FILE].join(""),success: function(i) {
                  n = JSON.parse(i), t.call(e)
                  }})*/
 		xmlHttp = new XMLHttpRequest();
-		xmlHttp.open("GET", wnp.Constants.PRODUCTS_FILE, false);
+		xmlHttp.open("GET", hcs.Constants.PRODUCTS_FILE, false);
 		xmlHttp.send(null);
 		n = JSON.parse(xmlHttp.responseText), t.call(e)
     }, r.prototype.addProduct = function(t, e) {
         var n = document.createElement("div");
         n.setAttribute("class", "product-item"), n.setAttribute("rel", t.id);
         var i = "models/previews/productsPlaceholder.png";
-        t.preview && (i = wnp.Constants.PRODUCTS_PREVIEWS + t.preview);
+        t.preview && (i = hcs.Constants.PRODUCTS_PREVIEWS + t.preview);
         var o = document.createElement("span");
         o.setAttribute("class", "selected"), o.innerHTML = _("添加"), n.appendChild(o);
         var r = document.createElement("span");
@@ -14263,11 +14269,11 @@ wnp.UI = wnp.UI || {}, wnp.UI.ProductList = function() {
                                     n.innerHTML = _("正在加载 ..."), e.addTab("", null, "", !0), e.addTab(_("全部"), null, n, !0), e.loadProducts(t.id, n, t.filter), e.showContent(1)
                                 }, r.show = function(t, n, i) {
                                     var i = i || {};
-                                    null === e && (e = new wnp.UI.ProductList(t, n)), e.reinitContent(i), e.buildHeaderTitle(e.content.title + " > " + i.name), e.show()
+                                    null === e && (e = new hcs.UI.ProductList(t, n)), e.reinitContent(i), e.buildHeaderTitle(e.content.title + " > " + i.name), e.show()
                                 }, r.close = function() {
                                     null !== e && e.close()
                                 }, r.prototype.close = function() {
-                                    ujs.notify("wnp.ui.frame.close"), this.domElement.style.display = "none", ujs.notify("wnp.menu.main.deselect")
+                                    ujs.notify("hcs.ui.frame.close"), this.domElement.style.display = "none", ujs.notify("hcs.menu.main.deselect")
                                 }, r.prototype.onMenuItemButtonClick = function(n) {
                                     var o = e.getDivNode(n.target), r = o.getAttribute("rel"), s = i[0], a = o.children[0];
                                     a.classList.add("show");
@@ -14280,25 +14286,25 @@ wnp.UI = wnp.UI || {}, wnp.UI.ProductList = function() {
                                 }, r
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.ContextMenu = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.ContextMenu = function() {
     var t = null, e = !1, n = null, i = {x: !1,y: !1}, o = function(e) {
         var e = e || {};
-        e.autoSize = e.autoSize === !1 ? !1 : !0, wnp.UI.Frame.call(this, e), null == t && (t = this)
+        e.autoSize = e.autoSize === !1 ? !1 : !0, hcs.UI.Frame.call(this, e), null == t && (t = this)
     };
-    return o.prototype = new wnp.UI.Frame, o.prototype.initialize = function() {
-        wnp.UI.Frame.prototype.initialize.call(this), this.domElement.id = "contextMenu"
+    return o.prototype = new hcs.UI.Frame, o.prototype.initialize = function() {
+        hcs.UI.Frame.prototype.initialize.call(this), this.domElement.id = "contextMenu"
     }, o.prototype.show = function(t, n, i, o) {
-        wnp.UI.Frame.prototype.show.call(this, t, n), this.menuName = i, e = !0, ujs.notify("wnp.widget.contextMenu.opened"), ujs.notify("wnp.widget.contextMenu." + this.menuName + ".opened", o)
+        hcs.UI.Frame.prototype.show.call(this, t, n), this.menuName = i, e = !0, ujs.notify("hcs.widget.contextMenu.opened"), ujs.notify("hcs.widget.contextMenu." + this.menuName + ".opened", o)
     }, o.prototype.close = function() {
-        e && (wnp.UI.Frame.prototype.close.call(this), e = !1, null !== n && (clearInterval(n), n = null), i = {x: this.windowPosition.x,y: this.windowPosition.y}, ujs.notify("wnp.widget.contextMenu.closed"), ujs.notify("wnp.widget.contextMenu." + this.menuName + ".closed"))
+        e && (hcs.UI.Frame.prototype.close.call(this), e = !1, null !== n && (clearInterval(n), n = null), i = {x: this.windowPosition.x,y: this.windowPosition.y}, ujs.notify("hcs.widget.contextMenu.closed"), ujs.notify("hcs.widget.contextMenu." + this.menuName + ".closed"))
     }, o.isOpen = function() {
         return e
     }, o.show = function(o, r, s, a, l) {
         var o = o || {};
         o.width = o.width || 250, o.height = o.height || !1, o.x = o.x || i.x || window.innerWidth / 2 - o.width / 2, o.y = o.y || i.y || window.innerHeight / 2 - o.height / 2, o.title = o.title || "参数", o.layout = o.layout || "horizontal", o.autoSize = o.autoSize === !1 ? !1 : !0;
         var h = o.menuName || o.title.replace(/ /g, "_");
-        null == t && (t = new wnp.UI.ContextMenu(o, {title: o.title}), t.initialize()), o.id && t.domElement.setAttribute("id", o.id);
+        null == t && (t = new hcs.UI.ContextMenu(o, {title: o.title}), t.initialize()), o.id && t.domElement.setAttribute("id", o.id);
         var c = function() {
             t.clear(), t.setTitle(o.title);
             for (var e = 0, n = r.length; n > e; e++)
@@ -14337,23 +14343,23 @@ wnp.UI = wnp.UI || {}, wnp.UI.ContextMenu = function() {
     }, o
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.AboutWindow = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.AboutWindow = function() {
     var t = function() {
         var t = {minWidth: 500};
-        t.autoSize = t.autoSize === !1 ? !1 : !0, wnp.UI.Frame.call(this, t), this.initialize(), this.domElement.setAttribute("id", "aboutWindow"), this.setTitle(_("About Wanaplan")), this.close();
-        var e = '<div style="width: 432px; text-align: center;"><img src="./images/wanaplan-logo.png" alt="Wanaplan" /></div>';
-        e += '<div style="text-align: center; font-size: 16pt; font-weight: bold; margin-top: 15px; color: #333;">Wanaplan ' + wanaplan.version + "</div>", e += '<div style="text-align: center; margin-top: 30px; color: #555;">Copyright © 2012-2014 Wanadev, all rights reserved.</div>', e += '<div style="text-align: center; margin-top: 10px;"><a href="http://www.wanadev.fr/" target="_blank">www.wanadev.fr</a> / <a href="http://www.wanaplan.com/" target="_blank">www.wanaplan.com</a></div>', this.addTab(_("About"), null, e, !0), e = '<div class="scrollable-content" style="width: 410px; max-height: 300px; min-height: 100px; font-size: 9pt;"><ul>', e += '<li><strong>"seamless" textures:</strong><dl><dt>Author:</dt><dd>~hhh316 Giles</dd><dt>License:</dt><dd>cc-by 3.0</dd><dt>Downloaded from:</dt><dd><a href="http://seamless-pixels.blogspot.fr/"> http://seamless-pixels.blogspot.fr/</a></dd></dl></li>', e += '<li><strong>Babylonjs engine:</strong><dl><dt>Authors:</dt><dd>David Catuhe & David Rousset</dd><dt>Licence:</dt><dd>Apache License 2.0</dd><dt>Homepage:</dt><dd><a href="http://www.babylonjs.com">http://www.babylonjs.com</a></dd></dl></li>', e += "</ul></div>", this.addTab(_("Credits"), null, e, !0), this.setActionBar([{label: _("Close"),action: function() {
+        t.autoSize = t.autoSize === !1 ? !1 : !0, hcs.UI.Frame.call(this, t), this.initialize(), this.domElement.setAttribute("id", "aboutWindow"), this.setTitle(_("About Wanaplan")), this.close();
+        var e = '<div style="width: 432px; text-align: center;"><img src="./images/hcsdesign-logo.png" alt="Wanaplan" /></div>';
+        e += '<div style="text-align: center; font-size: 16pt; font-weight: bold; margin-top: 15px; color: #333;">Wanaplan ' + hcsdesign.version + "</div>", e += '<div style="text-align: center; margin-top: 30px; color: #555;">Copyright © 2012-2014 Wanadev, all rights reserved.</div>', e += '<div style="text-align: center; margin-top: 10px;"><a href="http://www.wanadev.fr/" target="_blank">www.wanadev.fr</a> / <a href="http://www.hcsdesign.com/" target="_blank">www.hcsdesign.com</a></div>', this.addTab(_("About"), null, e, !0), e = '<div class="scrollable-content" style="width: 410px; max-height: 300px; min-height: 100px; font-size: 9pt;"><ul>', e += '<li><strong>"seamless" textures:</strong><dl><dt>Author:</dt><dd>~hhh316 Giles</dd><dt>License:</dt><dd>cc-by 3.0</dd><dt>Downloaded from:</dt><dd><a href="http://seamless-pixels.blogspot.fr/"> http://seamless-pixels.blogspot.fr/</a></dd></dl></li>', e += '<li><strong>Babylonjs engine:</strong><dl><dt>Authors:</dt><dd>David Catuhe & David Rousset</dd><dt>Licence:</dt><dd>Apache License 2.0</dd><dt>Homepage:</dt><dd><a href="http://www.babylonjs.com">http://www.babylonjs.com</a></dd></dl></li>', e += "</ul></div>", this.addTab(_("Credits"), null, e, !0), this.setActionBar([{label: _("Close"),action: function() {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     this.close()
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }.bind(this)}]), document.addEventListener("wnp.ui.showAboutWindow", function() {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               this.show(), ujs.notify("wnp.menu.top.deselect")
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }.bind(this)}]), document.addEventListener("hcs.ui.showAboutWindow", function() {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               this.show(), ujs.notify("hcs.menu.top.deselect")
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }.bind(this), !1)
     };
-    return t.prototype = new wnp.UI.Frame, t
+    return t.prototype = new hcs.UI.Frame, t
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.BackgroundPopup = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.BackgroundPopup = function() {
     function t(t, e, n) {
         var i = document.createElement(t);
         return n && i.setAttribute("id", n), e && i.setAttribute("class", e), i
@@ -14373,19 +14379,19 @@ wnp.UI = wnp.UI || {}, wnp.UI.BackgroundPopup = function() {
     }
     var n, i = null, o = 100, r = !0, s = 560, a = 320, l = 1, h = new BABYLON.Vector2(0, 0), c = new BABYLON.Vector2(0, 0), u = !1, p = 1, d = [new BABYLON.Vector2(10, 10), new BABYLON.Vector2(100, 10)], m = function(t) {
         var t = t || {};
-        t.autoSize = t.autoSize === !1 ? !1 : !0, t.width = 600, t.height = 540, wnp.UI.Frame.call(this, t)
+        t.autoSize = t.autoSize === !1 ? !1 : !0, t.width = 600, t.height = 540, hcs.UI.Frame.call(this, t)
     };
-    return m.prototype = new wnp.UI.Frame, m.prototype.buildHTML = function() {
+    return m.prototype = new hcs.UI.Frame, m.prototype.buildHTML = function() {
         this.config.layout || "horizontal";
         this.domElement = t("div", "window", "backgroundPopup"), this.header = t("header", "window-title"), this.closeWindow = t("span", "window-close"), this.config.showCloseButton === !1 && (this.closeWindow.style.display = "none"), this.header.appendChild(this.closeWindow), this.headerTitle = t("h1");
         var e = t("span", "window-title-text");
         e.innerHTML = this.content.title || _("Choose and set background"), this.headerTitle.appendChild(e), this.header.appendChild(this.headerTitle), this.domElement.appendChild(this.header), this.mainContent = t("div", "window-content window-content-background"), this.domElement.appendChild(this.mainContent), i.setPosition((window.innerWidth - this.windowSize.width) / 2, (window.innerHeight - this.windowSize.height) / 2), this.domElement.style.width = this.windowSize.width + "px", this.domElement.style.height = this.windowSize.height + "px";
-        var n = wanaplan.structure.params.gridBackground || {};
+        var n = hcsdesign.structure.params.gridBackground || {};
         o = n.scale || o, n.translation && BABYLON.Vector2.FromArrayToRef(n.translation, 0, h), n.points && (BABYLON.Vector2.FromArrayToRef(n.points[0], 0, d[0]), BABYLON.Vector2.FromArrayToRef(n.points[1], 0, d[1])), (!d[1] || BABYLON.Vector2.Distance(d[0], d[1]) < 90) && (d[1] = d[0].add(new BABYLON.Vector2(100, 0))), this.mainCanvas = t("canvas", "window-canvas"), this.mainCanvas.style.background = "white", this.mainCanvas.width = s, this.mainCanvas.style.width = s + "px", this.mainCanvas.height = a, this.mainCanvas.style.height = a + "px", this.mainCtx = this.mainCanvas.getContext("2d");
         var r = function(t, e) {
             i.onMouseEvent(t, e)
         };
-        this.pointerManager = new wnp.PointerManager(void 0, r, this.mainCanvas)
+        this.pointerManager = new hcs.PointerManager(void 0, r, this.mainCanvas)
     }, m.prototype.onMouseEvent = function(t, e) {
         e.actions == e.ACTION_DRAGSTART ? i.onCanvasMouseDown(t) : e.actions == e.ACTION_DRAGGING ? i.onCanvasDrag(t, e) : e.actions == e.ACTION_SCROLLDOWN ? (l -= .04, l = .6 > l ? .6 : l) : e.actions == e.ACTION_SCROLLUP && (l += .04, l = l > 6 ? 6 : l), i.updateCtx()
     }, m.prototype.onCanvasDrag = function(t, e) {
@@ -14399,17 +14405,17 @@ wnp.UI = wnp.UI || {}, wnp.UI.BackgroundPopup = function() {
         e(t), c.x = t.offsetX, c.y = t.offsetY, c.subtractInPlace(h), c.scaleInPlace(1 / l), u = BABYLON.Vector2.Distance(c, d[0]) < 10 ? 0 : BABYLON.Vector2.Distance(c, d[1]) < 10 ? 1 : BABYLON.Vector2.Distance(c, d[1].clone().lerp(d[0], .5)) < 10 ? 2 : 3
     }, m.prototype.updateGrid = function() {
         var t = +o, e = 1 / p * BABYLON.Vector2.Distance(d[0], d[1]), i = t / e;
-        ujs.notify("wnp.engine2d.backgroundChange", {scale: i,measure: t,visibility: r,img: n,translation: h,points: d})
+        ujs.notify("hcs.engine2d.backgroundChange", {scale: i,measure: t,visibility: r,img: n,translation: h,points: d})
     }, m.prototype.updateCtx = function() {
         var t = i.mainCtx;
         t.clearRect(0, 0, s, a), t.save(), p = Math.min(s / n.realWidth, a / n.realHeight), t.scale(p * l, p * l), t.translate(h.x / (p * l), h.y / (p * l)), t.drawImage(n, 0, 0);
         Math.round(BABYLON.Vector2.Distance(d[0], d[1]));
-        t.restore(), t.save(), t.scale(l, l), t.translate(h.x / l, h.y / l), wanaplan.engine2D.symbols2D.drawMeasure(t, d[0], d[1], o + "cm", "#6E910F"), t.restore()
+        t.restore(), t.save(), t.scale(l, l), t.translate(h.x / l, h.y / l), hcsdesign.engine2D.symbols2D.drawMeasure(t, d[0], d[1], o + "cm", "#6E910F"), t.restore()
     }, m.close = function() {
         i && i.close()
     }, m.show = function() {
         if (null == i) {
-            i = new wnp.UI.BackgroundPopup({}, {title: _("Choose Background")}), i.initialize();
+            i = new hcs.UI.BackgroundPopup({}, {title: _("Choose Background")}), i.initialize();
             var e = t("input", "", "file");
             e.setAttribute("type", "file");
             var r = t("input", "", "scale");
@@ -14441,12 +14447,12 @@ wnp.UI = wnp.UI || {}, wnp.UI.BackgroundPopup = function() {
     }, m.prototype.show = function() {
         this.initialize(), this.domElement.style.display = "block"
     }, m.prototype.close = function() {
-        ujs.notify("wnp.ui.frame.close"), this.domElement.style.display = "none", ujs.notify("wnp.menu.main.deselect")
+        ujs.notify("hcs.ui.frame.close"), this.domElement.style.display = "none", ujs.notify("hcs.menu.main.deselect")
     }, m
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.ColorPopup = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.ColorPopup = function() {
     function t(t, e, n) {
         var i = document.createElement(t);
         return n && i.setAttribute("id", n), e && i.setAttribute("class", e), i
@@ -14454,28 +14460,28 @@ wnp.UI = wnp.UI || {}, wnp.UI.ColorPopup = function() {
     var e = null, n = {}, i = 0, o = function() {
     }, r = function(t) {
         var t = t || {};
-        t.autoSize = t.autoSize === !1 ? !1 : !0, t.width = 215, t.height = 200, wnp.UI.Frame.call(this, t)
+        t.autoSize = t.autoSize === !1 ? !1 : !0, t.width = 215, t.height = 200, hcs.UI.Frame.call(this, t)
     };
-    return r.prototype = new wnp.UI.Frame, r.prototype.addColorItems = function(e) {
+    return r.prototype = new hcs.UI.Frame, r.prototype.addColorItems = function(e) {
         for (var n, o, r = 0; r < e.length; r++)
             n = e[r].params.color, o = t("div", "luxens"), r == i && o.classList.add("selected"), o.setAttribute("rel", r), o.style.backgroundColor = "rgb(" + Math.round(255 * n.r) + "," + Math.round(255 * n.g) + "," + Math.round(255 * n.b) + ")", this.mainContent.appendChild(o), o.addEventListener("click", this.onItemClick, !1)
             }, r.prototype.onItemClick = function(t) {
-                e.close(), i = t.target.getAttribute("rel"), o && o.call(this, i, n[i].params.color), ujs.notify("wnp.core.colorSelected", {id: i,color: n[i].params.color})
+                e.close(), i = t.target.getAttribute("rel"), o && o.call(this, i, n[i].params.color), ujs.notify("hcs.core.colorSelected", {id: i,color: n[i].params.color})
             }, r.prototype.buildHTML = function() {
                 this.config.layout || "horizontal";
                 this.domElement = t("div", "window", "colorPopup"), this.header = t("header", "window-title"), this.closeWindow = t("span", "window-close"), this.config.showCloseButton === !1 && (this.closeWindow.style.display = "none"), this.header.appendChild(this.closeWindow), this.headerTitle = t("h1");
                 var i = t("span", "window-title-text");
                 i.innerHTML = this.content.title || _("Colors"), this.headerTitle.appendChild(i), this.header.appendChild(this.headerTitle), this.domElement.appendChild(this.header), this.mainContent = t("div", "window-content"), n = LuxensComponent3D.getLuxens(), this.addColorItems(n), this.domElement.appendChild(this.mainContent), e.setPosition(window.innerWidth - this.windowSize.width - 260, 0), this.domElement.style.width = this.windowSize.width + "px", this.domElement.style.height = window.innerHeight + "px"
             }, r.show = function(t, r) {
-                null == e && (e = new wnp.UI.ColorPopup({}, {title: _("colors")}), e.initialize()), i = r || i, e.mainContent.innerHTML = "", e.addColorItems(n), o = t || function() {
+                null == e && (e = new hcs.UI.ColorPopup({}, {title: _("colors")}), e.initialize()), i = r || i, e.mainContent.innerHTML = "", e.addColorItems(n), o = t || function() {
                 }, e.show()
             }, r.prototype.show = function() {
                 this.initialize(), this.domElement.style.display = "block"
             }, r
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.HelpBubble = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.HelpBubble = function() {
     var t = function() {
         this._isVisible = !1, this._e_bubble = document.getElementById("helpbubble"), this._e_image = document.getElementById("helpbubble-image"), this._e_content = document.getElementById("helpbubble-content"), this._image = "", this._content = "", document.getElementById("helpbubble-close").onclick = this.hide.bind(this)
     };
@@ -14487,32 +14493,32 @@ wnp.UI = wnp.UI || {}, wnp.UI.HelpBubble = function() {
         this._isVisible = !1, this._e_bubble.setAttribute("class", "")
     }, t
 }();
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.HelpBubbleManager = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.HelpBubbleManager = function() {
     var t = function(t) {
-        this.helpBubble = new wnp.UI.HelpBubble, this._enabled = "boolean" == typeof t ? t : !0, this._bubbles = {"wnp.2d.wall-basics": {image: "wnp.2d.wall-basics.gif",content: "<strong>" + _("Walls") + "</strong><ul><li>" + _("Move a wall with a drag &amp; drop.") + "</li><li>" + _("Cut a wall with a double-click.") + "</li></ul>",disp: !1},"wnp.2d.menu": {image: _("wnp.2d.menu-C.gif"),content: "",disp: !1},"wnp.2d.subslope": {image: "wnp.2d.subslope.gif",content: "<strong>" + _("Create Subslopes") + "</strong><ul><li>" + _("Pull the grips to create subslopes.") + "</li><li>" + _("Right-click on a grip to configure the subslope.") + "</li></ul>",disp: !1},"wnp.2d.draw-wall": {image: "wnp.2d.draw-wall.gif",content: "<strong>" + _("Draw Walls") + "</strong><ul><li>" + _("Click to add a point.") + "</li><li>" + _("Click again on your last point to terminate the wall.") + "</li></ul>",disp: !1},"wnp.2d.dup-overture": {image: "wnp.2d.dup-overture.gif",content: "<strong>" + _("Opening Duplication") + "</strong>" + _("Double-click on an opening to duplicate it."),disp: !1},"wnp.2d.draw-staires": {image: "wnp.2d.draw-staires.gif",content: "<strong>" + _("Draw Staireway") + "</strong><ul><li>" + _("Click to add a step.") + "</li><li>" + _("Double-click to terminate the stairway.") + "</li></ul>",disp: !1},"wnp.2d.properties": {image: "wnp.2d.properties.gif",content: "<strong>" + _("Items Settings") + "</strong><ul><li>" + _("You can configure any item of your plan (doors, windows, walls, etc.) by clicking on it.") + "</li><li>" + _("The setting window also allow you to remove any item from your plan.") + "</li></ul>",disp: !1},"wnp.2d.subslopeOverture-menu": {image: "wnp.2d.dormer.png",content: "<strong>" + _("Items Settings") + "</strong><ul><li>" + _("You can configure some parameters of your dormer (height, width, height of roof, etc.) by clicking on it.") + "</li><li>" + _("1: height, 2: height of roof, 3: length of the hole, 4: width") + "</li></ul>",disp: !1},"wnp.3d.paint": {image: "wnp.3d.paint.gif",content: "<strong>" + _("Decorate") + "</strong><ul><li>" + _("Click on a wall to paint it.") + "</li><li>" + _("You can paint objects too.") + "</li></ul>",disp: !1}}, this._load()
+        this.helpBubble = new hcs.UI.HelpBubble, this._enabled = "boolean" == typeof t ? t : !0, this._bubbles = {"hcs.2d.wall-basics": {image: "hcs.2d.wall-basics.gif",content: "<strong>" + _("Walls") + "</strong><ul><li>" + _("Move a wall with a drag &amp; drop.") + "</li><li>" + _("Cut a wall with a double-click.") + "</li></ul>",disp: !1},"hcs.2d.menu": {image: _("hcs.2d.menu-C.gif"),content: "",disp: !1},"hcs.2d.subslope": {image: "hcs.2d.subslope.gif",content: "<strong>" + _("Create Subslopes") + "</strong><ul><li>" + _("Pull the grips to create subslopes.") + "</li><li>" + _("Right-click on a grip to configure the subslope.") + "</li></ul>",disp: !1},"hcs.2d.draw-wall": {image: "hcs.2d.draw-wall.gif",content: "<strong>" + _("Draw Walls") + "</strong><ul><li>" + _("Click to add a point.") + "</li><li>" + _("Click again on your last point to terminate the wall.") + "</li></ul>",disp: !1},"hcs.2d.dup-overture": {image: "hcs.2d.dup-overture.gif",content: "<strong>" + _("Opening Duplication") + "</strong>" + _("Double-click on an opening to duplicate it."),disp: !1},"hcs.2d.draw-staires": {image: "hcs.2d.draw-staires.gif",content: "<strong>" + _("Draw Staireway") + "</strong><ul><li>" + _("Click to add a step.") + "</li><li>" + _("Double-click to terminate the stairway.") + "</li></ul>",disp: !1},"hcs.2d.properties": {image: "hcs.2d.properties.gif",content: "<strong>" + _("Items Settings") + "</strong><ul><li>" + _("You can configure any item of your plan (doors, windows, walls, etc.) by clicking on it.") + "</li><li>" + _("The setting window also allow you to remove any item from your plan.") + "</li></ul>",disp: !1},"hcs.2d.subslopeOverture-menu": {image: "hcs.2d.dormer.png",content: "<strong>" + _("Items Settings") + "</strong><ul><li>" + _("You can configure some parameters of your dormer (height, width, height of roof, etc.) by clicking on it.") + "</li><li>" + _("1: height, 2: height of roof, 3: length of the hole, 4: width") + "</li></ul>",disp: !1},"hcs.3d.paint": {image: "hcs.3d.paint.gif",content: "<strong>" + _("Decorate") + "</strong><ul><li>" + _("Click on a wall to paint it.") + "</li><li>" + _("You can paint objects too.") + "</li></ul>",disp: !1}}, this._load()
     };
     return t.prototype.setActive = function(t) {
         this._enabled = t
     }, t.prototype.display = function(t, e) {
-//         !this._enabled || !e && this._bubbles[t].disp || (this._bubbles[t].disp = !0, this.helpBubble.newBubble("http://v2.wanaplan.fr/images/help/" + this._bubbles[t].image, this._bubbles[t].content, !0), this._save())
+//         !this._enabled || !e && this._bubbles[t].disp || (this._bubbles[t].disp = !0, this.helpBubble.newBubble("http://v2.hcsdesign.fr/images/help/" + this._bubbles[t].image, this._bubbles[t].content, !0), this._save())
     }, t.prototype.alreadyDisplayed = function(t) {
         return this._bubbles[t].disp
     }, t.prototype._save = function() {
         var t = [];
         for (var e in this._bubbles)
             this._bubbles[e].disp && t.push(e);
-        wnpLocalStorage["wanadev.planner.helpbubble"] = JSON.stringify(t)
+        hcsLocalStorage["wanadev.planner.helpbubble"] = JSON.stringify(t)
     }, t.prototype._load = function() {
-        if (wnpLocalStorage["wanadev.planner.helpbubble"]) {
-            var t = JSON.parse(wnpLocalStorage["wanadev.planner.helpbubble"]);
+        if (hcsLocalStorage["wanadev.planner.helpbubble"]) {
+            var t = JSON.parse(hcsLocalStorage["wanadev.planner.helpbubble"]);
             for (var e in t)
                 this._bubbles[t[e]] && (this._bubbles[t[e]].disp = !0)
                 }
     }, t
 }();
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.RemoteController = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.RemoteController = function() {
     var t, e = document.getElementById("modalWidgets"), n = function(n, i) {
         function o() {
             if (++l > t.repeat) {
@@ -14576,7 +14582,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.RemoteController = function() {
                                                                             t.onSliderMouseMove(e, t)
                                                                             }, !1), document.body.addEventListener("mouseup", function(e) {
                                                                                                                    t.onMouseUp(e, t)
-                                                                                                                   }, !1), document.addEventListener("wnp.keyboardManager.keyDown", t.onKeyDown, !0), this.sliderSelected = !1, this.updateSliderPos(), this.mouse = {y: 0,lastY: 0,getDelta: function() {
+                                                                                                                   }, !1), document.addEventListener("hcs.keyboardManager.keyDown", t.onKeyDown, !0), this.sliderSelected = !1, this.updateSliderPos(), this.mouse = {y: 0,lastY: 0,getDelta: function() {
             return this.y - this.lastY
         }}, o(), this.buttonState = null, this.running = !0, this.repeat = 3;
         var l = 0;
@@ -14699,8 +14705,8 @@ wnp.UI = wnp.UI || {}, wnp.UI.RemoteController = function() {
         this.slider.style.top = this.zoom.getValue() + "px"
     }, n
 }();
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.MessageBox = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.MessageBox = function() {
     var t = document.getElementById("modalWidgets"), e = !1, n = null, i = function(e) {
         var e = e || {}, i = this;
         t = document.getElementById("modalWidgets"), e.buttonAText = e.buttonAText || _("Ok"), e.buttonBText = e.buttonBText || _("Cancel"), e.buttonCText = e.buttonCText || _("Cancel"), e.inputType = e.inputType || "text", e.inputValue = e.inputValue || "", e.inputPlaceHolder = e.inputPlaceHolder || "", e.textAreaValue = e.textAreaValue || "", e.textAreaPlaceHolder = e.textAreaPlaceHolder || "", this.showButtonA = "undefined" != typeof e.buttonA ? e.buttonA : !1, this.showButtonB = "undefined" != typeof e.buttonB ? e.buttonB : !1, this.showButtonC = "undefined" != typeof e.buttonC ? e.buttonC : !1, this.showInput = "undefined" != typeof e.input ? e.input : !1, this.showTextArea = "undefined" != typeof e.textArea ? e.textArea : !1, this.closeCallback = e.onClose || function() {
@@ -14708,7 +14714,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.MessageBox = function() {
         }, this.button2Callback = e.onClickB || function() {
         }, this.button3Callback = e.onClickC || function() {
         }, this.destroyAfterClose = "undefined" != typeof e.destroyAfterClose ? e.destroyAfterClose : !1, this.overlay = "undefined" != typeof e.overlay ? e.overlay : !1, this.opacity = e.opacity || 0, this.messageBox = document.createElement("div"), this.messageBox.setAttribute("id", "messageBox"), this.messageBox.setAttribute("class", "window"), this.header = document.createElement("header"), this.header.setAttribute("class", "window-title"), this.closeHeader = document.createElement("span"), this.closeHeader.setAttribute("class", "window-close"), this.closeHeader.addEventListener("click", function() {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              wnp.UI.MessageBox.close(), i.closeCallback.call(i)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              hcs.UI.MessageBox.close(), i.closeCallback.call(i)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               }, !1), this.header.appendChild(this.closeHeader), this.headerContent = document.createElement("h1"), this.header.appendChild(this.headerContent), this.content = document.createElement("p"), this.content.setAttribute("class", "mb-content window-content"), this.input = document.createElement("input"), this.input.setAttribute("class", "mb-input"), this.input.setAttribute("type", e.inputText), this.input.setAttribute("value", e.inputValue), this.input.setAttribute("placeholder", e.inputPlaceHolder), this.input.addEventListener("click", this.onInputClick, !1), this.showInput || this.input.setAttribute("style", "display:none;"), this.textArea = document.createElement("textarea"), this.textArea.setAttribute("class", "mb-textarea"), this.textArea.setAttribute("placeholder", e.textAreaPlaceHolder), this.textArea.style.display = "block", this.textArea.style.margin = "5px auto", this.textArea.style.width = "90%", this.textArea.style.height = "60px", this.textArea.innerHTML = e.textAreaValue, this.showTextArea || (this.textArea.style.display = "none"), this.buttonA = document.createElement("button"), this.buttonA.setAttribute("id", "mb-button-a"), this.buttonA.addEventListener("click", function(t) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                i.onClick(t, i)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }, !1), this.buttonA.innerHTML = e.buttonAText, this.showButtonA || this.buttonA.setAttribute("style", "display:none;"), this.buttonB = document.createElement("button"), this.buttonB.setAttribute("id", "mb-button-b"), this.buttonB.addEventListener("click", function(t) {
@@ -14717,7 +14723,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.MessageBox = function() {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                i.onClick(t, i)
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }, !1), this.buttonC.innerHTML = e.buttonCText, this.showButtonC || this.buttonC.setAttribute("style", "display:none;"), this.buttonsContainer = document.createElement("div"), this.buttonsContainer.setAttribute("class", "window-action-bar"), this.buttonsContainer.appendChild(this.buttonA), this.buttonsContainer.appendChild(this.buttonB), this.buttonsContainer.appendChild(this.buttonC), this.messageBox.appendChild(this.header), this.messageBox.appendChild(this.content), this.messageBox.appendChild(this.input), this.messageBox.appendChild(this.textArea), this.messageBox.appendChild(this.buttonsContainer), t.appendChild(this.messageBox), this.autoHideInterval = null, n = this;
         var i = this;
-        document.addEventListener("wnp.request.closePopup", function() {
+        document.addEventListener("hcs.request.closePopup", function() {
                                   n = n == this ? null : n, i.destroy()
                                   }, !1)
     };
@@ -14729,7 +14735,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.MessageBox = function() {
                                                                               n.onClick(t, n)
                                                                               }), this.buttonC.removeEventListener("click", function(t) {
                                                                                                                    n.onClick(t, n)
-                                                                                                                   }), this.headerContent.innerHTML = "", this.content.innerHTML = "", this.messageBox.setAttribute("style", "display:none;"), e && ujs.notify("wnp.ui.messagebox.closed"), e = !1, null !== this.messageBox.parentNode && t.removeChild(this.messageBox)
+                                                                                                                   }), this.headerContent.innerHTML = "", this.content.innerHTML = "", this.messageBox.setAttribute("style", "display:none;"), e && ujs.notify("hcs.ui.messagebox.closed"), e = !1, null !== this.messageBox.parentNode && t.removeChild(this.messageBox)
     }, i.prototype.onClick = function(t, e) {
         if (e.messageBox.setAttribute("style", "display:none;"), "undefined" != typeof t.clearInterval && t.clearInterval && clearInterval(e.autoHideInterval), null != e.closeCallback && (params = {textInput: e.input.value}, e.closeCallback(params)), "undefined" != typeof t.target) {
             t.textInput = e.input.value, t.textAreaInput = e.textArea.value;
@@ -14754,11 +14760,11 @@ wnp.UI = wnp.UI || {}, wnp.UI.MessageBox = function() {
             var d = this;
             i && (this.autoHideInterval = setInterval(function() {
                                                       d.onClick({clearInterval: !0}, d)
-                                                      }, o)), ujs.notify("wnp.ui.messagebox.opened")
+                                                      }, o)), ujs.notify("hcs.ui.messagebox.opened")
         }
     }, i.prototype.close = function() {
         var t = "";
-        this.defaultStyles && this.defaultStyles.box && (t = this.defaultStyles.box), this.messageBox.setAttribute("style", t + "display:none"), e = !1, ujs.notify("wnp.ui.messagebox.closed")
+        this.defaultStyles && this.defaultStyles.box && (t = this.defaultStyles.box), this.messageBox.setAttribute("style", t + "display:none"), e = !1, ujs.notify("hcs.ui.messagebox.closed")
     }, i.close = function() {
         null != n && (n.close(), n.destroy(), n = null)
     }, i.show = function(t) {
@@ -14767,14 +14773,14 @@ wnp.UI = wnp.UI || {}, wnp.UI.MessageBox = function() {
             var t = t || {};
             t.autoHide = t.autoHide || !1, t.hideTime = t.hideTime || 2500, t.width = t.width || null, t.height = t.height || null, t.x = t.x || null, t.y = t.y || null, t.title = t.title || "", t.message = t.message || "", t.inputValue = t.inputValue || "", t.openCallback = t.openCallback || function() {
             };
-            var i = {destroyAfterClose: !0,onClose: t.onClose || null,onClickA: t.onClickA || null,onClickB: t.onClickB || null,onClickC: t.onClickC || null,buttonA: "undefined" != typeof t.buttonA ? t.buttonA : !1,buttonAText: t.buttonAText || null,buttonB: "undefined" != typeof t.buttonB ? t.buttonB : !1,buttonBText: t.buttonBText || null,buttonC: "undefined" != typeof t.buttonC ? t.buttonC : !1,buttonCText: t.buttonCText || null,input: "undefined" != typeof t.input ? t.input : !1,inputValue: t.inputValue,inputPlaceHolder: t.inputPlaceHolder,textArea: "undefined" != typeof t.textArea ? t.textArea : !1,textAreaValue: t.textAreaValue,textAreaPlaceHolder: t.textAreaPlaceHolder,opacity: t.opacity || 0,overlay: t.overlay || !1}, o = new wnp.UI.MessageBox(i);
+            var i = {destroyAfterClose: !0,onClose: t.onClose || null,onClickA: t.onClickA || null,onClickB: t.onClickB || null,onClickC: t.onClickC || null,buttonA: "undefined" != typeof t.buttonA ? t.buttonA : !1,buttonAText: t.buttonAText || null,buttonB: "undefined" != typeof t.buttonB ? t.buttonB : !1,buttonBText: t.buttonBText || null,buttonC: "undefined" != typeof t.buttonC ? t.buttonC : !1,buttonCText: t.buttonCText || null,input: "undefined" != typeof t.input ? t.input : !1,inputValue: t.inputValue,inputPlaceHolder: t.inputPlaceHolder,textArea: "undefined" != typeof t.textArea ? t.textArea : !1,textAreaValue: t.textAreaValue,textAreaPlaceHolder: t.textAreaPlaceHolder,opacity: t.opacity || 0,overlay: t.overlay || !1}, o = new hcs.UI.MessageBox(i);
             o.open(t), t.openCallback()
         }
     }, i
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.Menu = function() {
     function t(t) {
         var e = [];
         return e.push("background-color:rgb("), e.push(Math.floor(255 * t.r)), e.push(", "), e.push(Math.floor(255 * t.g)), e.push(", "), e.push(Math.floor(255 * t.b)), e.push(")"), e.join("")
@@ -14810,7 +14816,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
             if (n.colorable) {
                 var h = document.createElement("div");
                 h.setAttribute("class", "colorChooser");
-                var c = t(n.params.addColor && n.params.addColor.color ? n.params.addColor.color : {r: 137 / 255,g: 184 / 255,b: 8 / 255});
+                var c = t(n.params.addColor && n.params.addColor.color ? n.params.addColor.color : {r: 137 / 255,g: 115 / 255,b: 100 / 255});
                 h.setAttribute("style", c), r.appendChild(h), r.classList.add("colorable"), h.item = n, h.addEventListener("click", this.onColorChooserClick.bind(this), !1)
             }
         } else if (n.icon) {
@@ -14832,7 +14838,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
             o.appendChild(g)
         }
         return o.addEventListener("click", function(t) {
-                                  "UL" != t.target.tagName && (this.selected == n || o.classList.contains("opened") ? (this.deselect(), this.deselectElement(o)) : (ujs.notify("wnp.menu.click", this.buildEventItem(n)), (this.oneClick === !1 || n.selectionnable === !0) && (this.selected = n, this.selectElement(o)), n.action && ujs.notify(n.action, this.buildEventItem(n))), t.stopPropagation())
+                                  "UL" != t.target.tagName && (this.selected == n || o.classList.contains("opened") ? (this.deselect(), this.deselectElement(o)) : (ujs.notify("hcs.menu.click", this.buildEventItem(n)), (this.oneClick === !1 || n.selectionnable === !0) && (this.selected = n, this.selectElement(o)), n.action && ujs.notify(n.action, this.buildEventItem(n))), t.stopPropagation())
                                   }.bind(this), !1), o
     }, n.prototype.selectElement = function(t) {
         for (var e = this.domElement.querySelectorAll(".selected"), n = 0; n < e.length; n++)
@@ -14846,7 +14852,7 @@ wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
             var o = n.params;
             o.addColor = {color: i}, n.colorId = t, this.selected = n, n.action && ujs.notify(n.action, this.buildEventItem(n))
         };
-        wnp.UI.ColorPopup.show(i.bind(this), n.colorId), t.stopPropagation()
+        hcs.UI.ColorPopup.show(i.bind(this), n.colorId), t.stopPropagation()
     }, n.prototype.buildEventItem = function(t) {
         var e = {};
         for (var n in t)
@@ -14951,13 +14957,13 @@ wnp.UI = wnp.UI || {}, wnp.UI.Menu = function() {
     }, n
 }();
 
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.LanguageSelector = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.LanguageSelector = function() {
     var t = null, e = "en", n = "", i = [{id: "en",label: "English (English)"}, {id: "es",label: "Spain (España)"}, {id: "fr",label: "French (Français)"}, {id: "pl",label: "Polish (Poland)"}, {id: "jp",label: "Japanese (Japan)"}], o = function() {
-        wnp.UI.Frame.call(this, {maxWidth: 200,maxHeight: 220}, {title: _("Available languages")}), this.init = !1
+        hcs.UI.Frame.call(this, {maxWidth: 200,maxHeight: 220}, {title: _("Available languages")}), this.init = !1
     };
-    return o.prototype = new wnp.UI.Frame, o.prototype.initialize = function() {
-        if (wnp.UI.Frame.prototype.initialize.call(this), !this.init) {
+    return o.prototype = new hcs.UI.Frame, o.prototype.initialize = function() {
+        if (hcs.UI.Frame.prototype.initialize.call(this), !this.init) {
             var t = [{title: _("Ok"),action: this.close.bind(this),label: _("Ok")}];
             this.setActionBar(t), this.init = !0, this.domElement.setAttribute("id", "languageSelector"), this.domElement.classList.add("language-selector");
             for (var n = document.getElementsByClassName("drawableSurface"), o = 0, r = n.length; r > o; o++)
@@ -14972,20 +14978,20 @@ wnp.UI = wnp.UI || {}, wnp.UI.LanguageSelector = function() {
     }, o.prototype.onSelected = function() {
         n = this.id.split("_")[1]
     }, o.show = function() {
-        null == t && (t = new wnp.UI.LanguageSelector, t.initialize()), t._selectedLang = "", t.show()
+        null == t && (t = new hcs.UI.LanguageSelector, t.initialize()), t._selectedLang = "", t.show()
     }, o.setLocal = function(t) {
         e = "C" == t ? "en" : t
     }, o.prototype.close = function() {
-        t.domElement.style.display = "none", "" !== n && (wnpLocalStorage.setItem(wnp.Constants.LC_LANG_KEY, n), window.location.reload())
+        t.domElement.style.display = "none", "" !== n && (hcsLocalStorage.setItem(hcs.Constants.LC_LANG_KEY, n), window.location.reload())
     }, o
 }();
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.IFrame = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.IFrame = function() {
     function t() {
         e.close(!0)
     }
     var e = null, n = function(t, n, i, o) {
-        this.domElement = document.createElement("div"), this.domElement.setAttribute("id", "wnp-iframe"), this.domElement.style.width = window.innerWidth + "px", this.domElement.style.height = window.innerHeight + "px", this.iframeContainer = document.createElement("div"), this.iframeContainer.setAttribute("class", "wnp-iframe-container"), this.iframe = document.createElement("iframe"), this.iframe.setAttribute("seamless", "seamless"), this.iframe.setAttribute("sandbox", "allow-same-origin allow-scripts allow-top-navigation allow-popups  allow-forms"), this.parentNode = t, this.added = !1, this.closeOnClick = i && "undefined" != typeof i.closeOnClick ? i.closeOnClick : !1, this.closeCallback = o || function() {
+        this.domElement = document.createElement("div"), this.domElement.setAttribute("id", "hcs-iframe"), this.domElement.style.width = window.innerWidth + "px", this.domElement.style.height = window.innerHeight + "px", this.iframeContainer = document.createElement("div"), this.iframeContainer.setAttribute("class", "hcs-iframe-container"), this.iframe = document.createElement("iframe"), this.iframe.setAttribute("seamless", "seamless"), this.iframe.setAttribute("sandbox", "allow-same-origin allow-scripts allow-top-navigation allow-popups  allow-forms"), this.parentNode = t, this.added = !1, this.closeOnClick = i && "undefined" != typeof i.closeOnClick ? i.closeOnClick : !1, this.closeCallback = o || function() {
         };
         for (var r in n)
             this.iframe[r] = n[r];
@@ -15000,16 +15006,16 @@ wnp.UI = wnp.UI || {}, wnp.UI.IFrame = function() {
     }, n.prototype.close = function(n) {
         this.added && (this.parentNode.removeChild(e.domElement), this.closeButton.removeEventListener("click", t), this.closeOnClick && this.parentNode.removeEventListener("click", t), this.added = !1, this.closeCallback()), "boolean" == typeof n && delete this
     }, n.show = function(t, n, i) {
-        wnp.UI.IFrame.close(), e = new wnp.UI.IFrame(t, n, i), e.open()
+        hcs.UI.IFrame.close(), e = new hcs.UI.IFrame(t, n, i), e.open()
     }, n.close = function(t) {
         e && (e.close(t), e = null)
     }, n.prototype.resize = function(t, n) {
         var t = t, n = n;
-        t && (t > wanaplan.getWidth() - 40 && (t = wanaplan.getWidth() - 40), e.iframeContainer.style.width = t + "px", e.iframe.setAttribute("width", t), e.iframeContainer.style.left = Math.round(+(+window.innerWidth / 2) - +parseInt(e.iframeContainer.style.width) / 2) + "px"), n && (n > wanaplan.getHeight() - 40 && (n = wanaplan.getHeight() - 40), e.iframeContainer.style.height = n + "px", e.iframe.setAttribute("height", n), e.iframeContainer.style.top = Math.round(+(+window.innerHeight / 2) - +parseInt(e.iframeContainer.style.height) / 2) + "px")
+        t && (t > hcsdesign.getWidth() - 40 && (t = hcsdesign.getWidth() - 40), e.iframeContainer.style.width = t + "px", e.iframe.setAttribute("width", t), e.iframeContainer.style.left = Math.round(+(+window.innerWidth / 2) - +parseInt(e.iframeContainer.style.width) / 2) + "px"), n && (n > hcsdesign.getHeight() - 40 && (n = hcsdesign.getHeight() - 40), e.iframeContainer.style.height = n + "px", e.iframe.setAttribute("height", n), e.iframeContainer.style.top = Math.round(+(+window.innerHeight / 2) - +parseInt(e.iframeContainer.style.height) / 2) + "px")
     }, n.resize = n.prototype.resize, n
 }();
-var wnp = window.wnp || {};
-wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
+var hcs = window.hcs || {};
+hcs.Input = hcs.Input || {}, hcs.Input.OrbitCamera = function () {
     var t = (BABYLON.Tools.GetPointerPrefix(), function (e, n, i, o, r, s) {
         BABYLON.Camera.call(this, e, BABYLON.Vector3.Zero(), s), this.alpha = n, this.beta = i, this.radius = o, this.target = r, this.enabled = !0, this.cameraTranslationenabled = !0, this._keys = [], this.keysUp = [38], this.keysDown = [40], this.keysLeft = [37], this.keysRight = [39], this._viewMatrix = new BABYLON.Matrix, t.prototype._initCache.call(this), this.getViewMatrix()
     });
@@ -15030,12 +15036,12 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
     }, t.prototype._isSynchronizedViewMatrix = function () {
         return e.prototype._isSynchronizedViewMatrix.call(this) ? this._cache.target.equals(this._getTargetPosition()) && this._cache.alpha === this.alpha && this._cache.beta === this.beta && this._cache.radius === this.radius : !1
     }, t.prototype.attachControl = function (t, e, n) {
-        1 === wanaplan.engine3D.pointerManager.mode ? this.attachControlForMobile(t, e, n) : this.attachControlForDesktop(t, e, n)
+        1 === hcsdesign.engine3D.pointerManager.mode ? this.attachControlForMobile(t, e, n) : this.attachControlForDesktop(t, e, n)
     }, t.prototype.attachControlForMobile = function (t) {
         var e, n = this._scene.getEngine(), i = .005, o = !0, r = [{ x: 0, y: 0 }, { x: 0, y: 0}], s = 0, a = 0, l = this;
-        this.angularSensibility = 1, this._attachedCanvas = t, window.ejecta && (this._attachedCanvas = document), document.addEventListener("wnp.engine3d.dragcontrols.start", function () {
+        this.angularSensibility = 1, this._attachedCanvas = t, window.ejecta && (this._attachedCanvas = document), document.addEventListener("hcs.engine3d.dragcontrols.start", function () {
             o = !1
-        }, !1), document.addEventListener("wnp.engine3d.dragcontrols.end", function () {
+        }, !1), document.addEventListener("hcs.engine3d.dragcontrols.end", function () {
             o = !0
         }, !1);
         var h = function (t) {
@@ -15051,12 +15057,12 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
                     return;
                 var n = t.touches[0].clientX * i, u = t.touches[0].clientY * i, p = n - e.x, d = u - e.y;
                 if (t.touches.length > 2) {
-                    var m = wanaplan.engine3D.projectMouseOnGround(0 | +(e.x / i), 0 | +(e.y / i)), g = wanaplan.engine3D.projectMouseOnGround(0 | +(n / i), 0 | +(u / i));
-                    null !== m && null !== g && (g.subtractInPlace(m), l._getTargetPosition().addInPlace(g.scaleInPlace(-1)), l._getTargetPosition().x = ujs.Math.clamp(l._getTargetPosition().x, wanaplan.configuration.boundingSize.min.x, wanaplan.configuration.boundingSize.max.x), l._getTargetPosition().z = ujs.Math.clamp(l._getTargetPosition().z, wanaplan.configuration.boundingSize.min.z, wanaplan.configuration.boundingSize.max.z))
+                    var m = hcsdesign.engine3D.projectMouseOnGround(0 | +(e.x / i), 0 | +(e.y / i)), g = hcsdesign.engine3D.projectMouseOnGround(0 | +(n / i), 0 | +(u / i));
+                    null !== m && null !== g && (g.subtractInPlace(m), l._getTargetPosition().addInPlace(g.scaleInPlace(-1)), l._getTargetPosition().x = ujs.Math.clamp(l._getTargetPosition().x, hcsdesign.configuration.boundingSize.min.x, hcsdesign.configuration.boundingSize.max.x), l._getTargetPosition().z = ujs.Math.clamp(l._getTargetPosition().z, hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z))
                 } else if (2 == t.touches.length) {
                     a = s, s = c(r[0], r[1]);
                     var f = +(s - a) > 0 ? 2.5 : -2.5;
-                    f *= wanaplan.loopTimer.getDeltaTime(), l.inertialRadiusOffset += f
+                    f *= hcsdesign.loopTimer.getDeltaTime(), l.inertialRadiusOffset += f
                 } else
                     l.inertialAlphaOffset -= p / l.angularSensibility, l.inertialBetaOffset -= d / l.angularSensibility;
                 e = { x: n, y: u }
@@ -15084,14 +15090,14 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
                         else if (2 === c) {
                             if (!s.cameraTranslationenabled)
                                 return;
-                            var u = wanaplan.engine3D.projectMouseOnGround(o.x, o.y), p = wanaplan.engine3D.projectMouseOnGround(n(t), i(t));
+                            var u = hcsdesign.engine3D.projectMouseOnGround(o.x, o.y), p = hcsdesign.engine3D.projectMouseOnGround(n(t), i(t));
                             if (null !== u && null !== p) {
                                 p.subtractInPlace(u);
                                 var d = p.length();
-                                d > 125 && p.scaleInPlace(125 / d), s._getTargetPosition().addInPlace(p.scaleInPlace(-1)), s._getTargetPosition().x = ujs.Math.clamp(s._getTargetPosition().x, wanaplan.configuration.boundingSize.min.x, wanaplan.configuration.boundingSize.max.x), s._getTargetPosition().z = ujs.Math.clamp(s._getTargetPosition().z, wanaplan.configuration.boundingSize.min.z, wanaplan.configuration.boundingSize.max.z)
+                                d > 125 && p.scaleInPlace(125 / d), s._getTargetPosition().addInPlace(p.scaleInPlace(-1)), s._getTargetPosition().x = ujs.Math.clamp(s._getTargetPosition().x, hcsdesign.configuration.boundingSize.min.x, hcsdesign.configuration.boundingSize.max.x), s._getTargetPosition().z = ujs.Math.clamp(s._getTargetPosition().z, hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z)
                             }
                         }
-                        ujs.notify("wnp.engine3D.camera.move"), o = { x: n(t), y: i(t) }, e || t.preventDefault()
+                        ujs.notify("hcs.engine3D.camera.move"), o = { x: n(t), y: i(t) }, e || t.preventDefault()
                     }
                 }
             }, this._onMouseMove = function (t) {
@@ -15134,7 +15140,7 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
     }, t.prototype._update = function () {
         for (var t = 0; t < this._keys.length; t++) {
             var e = this._keys[t];
-            ujs.notify("wnp.engine3D.camera.move"), -1 !== this.keysLeft.indexOf(e) ? this.inertialAlphaOffset -= .01 : -1 !== this.keysUp.indexOf(e) ? this.inertialBetaOffset -= .01 : -1 !== this.keysRight.indexOf(e) ? this.inertialAlphaOffset += .01 : -1 !== this.keysDown.indexOf(e) && (this.inertialBetaOffset += .01)
+            ujs.notify("hcs.engine3D.camera.move"), -1 !== this.keysLeft.indexOf(e) ? this.inertialAlphaOffset -= .01 : -1 !== this.keysUp.indexOf(e) ? this.inertialBetaOffset -= .01 : -1 !== this.keysRight.indexOf(e) ? this.inertialAlphaOffset += .01 : -1 !== this.keysDown.indexOf(e) && (this.inertialBetaOffset += .01)
         }
         (0 != this.inertialAlphaOffset || 0 != this.inertialBetaOffset || 0 != this.inertialRadiusOffset) && (this.alpha += this.inertialAlphaOffset, this.beta += this.inertialBetaOffset, this.radius -= this.inertialRadiusOffset, this.inertialAlphaOffset *= this.inertia, this.inertialBetaOffset *= this.inertia, this.inertialRadiusOffset *= this.inertia, Math.abs(this.inertialAlphaOffset) < BABYLON.Engine.epsilon && (this.inertialAlphaOffset = 0), Math.abs(this.inertialBetaOffset) < BABYLON.Engine.epsilon && (this.inertialBetaOffset = 0), Math.abs(this.inertialRadiusOffset) < BABYLON.Engine.epsilon && (this.inertialRadiusOffset = 0)), this.lowerAlphaLimit && this.alpha < this.lowerAlphaLimit && (this.alpha = this.lowerAlphaLimit), this.upperAlphaLimit && this.alpha > this.upperAlphaLimit && (this.alpha = this.upperAlphaLimit), this.lowerBetaLimit && this.beta < this.lowerBetaLimit && (this.beta = this.lowerBetaLimit), this.upperBetaLimit && this.beta > this.upperBetaLimit && (this.beta = this.upperBetaLimit), this.lowerRadiusLimit && this.radius < this.lowerRadiusLimit && (this.radius = this.lowerRadiusLimit), this.upperRadiusLimit && this.radius > this.upperRadiusLimit && (this.radius = this.upperRadiusLimit), this._constraintToUpScene()
     }, t.prototype.setPosition = function (t) {
@@ -15153,8 +15159,8 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
     }, t
 } ();
 
-var wnp = window.wnp || {};
-wnp.Input = wnp.Input || {}, wnp.Input.FirstPersonCamera = function () {
+var hcs = window.hcs || {};
+hcs.Input = hcs.Input || {}, hcs.Input.FirstPersonCamera = function () {
     var t = !1, e = function (t, n, i) {
         BABYLON.Camera.call(this, t, n, i), this.cameraDirection = new BABYLON.Vector3(0, 0, 0), this.cameraRotation = new BABYLON.Vector2(0, 0), this.rotation = new BABYLON.Vector3(0, 0, 0), this.ellipsoid = new BABYLON.Vector3(.5, 1, .5), this._keys = [], this.keysUp = [38, 87], this.keysDown = [40, 83], this.keysLeft = [37, 81], this.keysRight = [39, 69], this.keysStrafeLeft = [65], this.keysStrafeRight = [68], GlobalHelper.hasAzertyKeyboard && (this.keysUp[1] = 90, this.keysLeft[1] = 65, this.keysStrafeLeft[0] = 81), this._collider = new BABYLON.Collider, this._needMoveForGravity = !0, this._currentTarget = BABYLON.Vector3.Zero(), this._viewMatrix = BABYLON.Matrix.Zero(), this._camMatrix = BABYLON.Matrix.Zero(), this._cameraTransformMatrix = BABYLON.Matrix.Zero(), this._cameraRotationMatrix = BABYLON.Matrix.Zero(), this._referencePoint = BABYLON.Vector3.Zero(), this._transformedReferencePoint = BABYLON.Vector3.Zero(), this._oldPosition = BABYLON.Vector3.Zero(), this._diffPosition = BABYLON.Vector3.Zero(), this._newPosition = BABYLON.Vector3.Zero(), this._lookAtTemp = BABYLON.Matrix.Zero(), this._tempMatrix = BABYLON.Matrix.Zero(), e.prototype._initCache.call(this)
     };
@@ -15184,15 +15190,15 @@ wnp.Input = wnp.Input || {}, wnp.Input.FirstPersonCamera = function () {
         var e = t.subtract(this.position);
         this.rotation.y = e.x >= 0 ? -Math.atan(e.z / e.x) + Math.PI / 2 : -Math.atan(e.z / e.x) - Math.PI / 2, this.rotation.z = -Math.acos(BABYLON.Vector3.Dot(new BABYLON.Vector3(0, 1, 0), this.upVector)), isNaN(this.rotation.x) && (this.rotation.x = 0), isNaN(this.rotation.y) && (this.rotation.y = 0), isNaN(this.rotation.z) && (this.rotation.z = 0)
     }, e.prototype.lockUnrelatedActions = function () {
-        var t = wanaplan.getComponentByName("EditionComponent3D");
-        return t && (ujs.notify("wnp.request.configurator.cancel"), t.lock(this, 14), t.deselectObject()), !0
+        var t = hcsdesign.getComponentByName("EditionComponent3D");
+        return t && (ujs.notify("hcs.request.configurator.cancel"), t.lock(this, 14), t.deselectObject()), !0
     }, e.prototype.unlockUnrelatedActions = function () {
-        var t = wanaplan.getComponentByName("EditionComponent3D");
+        var t = hcsdesign.getComponentByName("EditionComponent3D");
         return t && t.unlock(this, 14), !0
     }, e.prototype.attachControl = function (e, n) {
         var i, o = this, r = this._scene.getEngine();
         if (!this._attachedCanvas) {
-            document.addEventListener("wnp.ui.messagebox.opened", this._onMessageBoxOpened, !1), document.addEventListener("wnp.ui.messagebox.closed", this._onMessageBoxClosed, !1), this.lockUnrelatedActions(), this._attachedCanvas = e, void 0 === this._onMouseDown && (this.onMouseDown = function (t) {
+            document.addEventListener("hcs.ui.messagebox.opened", this._onMessageBoxOpened, !1), document.addEventListener("hcs.ui.messagebox.closed", this._onMessageBoxClosed, !1), this.lockUnrelatedActions(), this._attachedCanvas = e, void 0 === this._onMouseDown && (this.onMouseDown = function (t) {
                 i = t.touches && 1 == t.touches.length ? { x: t.touches[0].pageX, y: t.touches[0].pageY} : { x: t.clientX, y: t.clientY }, n || t.preventDefault()
             }, this.onMouseUp = function (t) {
                 i = null, n || t.preventDefault()
@@ -15228,7 +15234,7 @@ wnp.Input = wnp.Input || {}, wnp.Input.FirstPersonCamera = function () {
         if (this._attachedCanvas == t) {
             this.unlockUnrelatedActions();
             var e = window.PointerEvent ? "pointer" : "mouse";
-            t.removeEventListener(e + "down", this.onMouseDown), t.removeEventListener(e + "up", this.onMouseUp), t.removeEventListener(e + "out", this.onMouseOut), t.removeEventListener(e + "move", this.onMouseMove), t.removeEventListener("mousewheel", this.onWheel), window.removeEventListener("keydown", this.onKeyDown), window.removeEventListener("keyup", this.onKeyUp), window.removeEventListener("blur", this.onLostFocus), document.removeEventListener("touchend", this.onMouseUp), document.removeEventListener("touchcancel", this.onMouseUp), document.removeEventListener("touchmove", this.onMouseMove), document.removeEventListener("touchstart", this.onMouseDown), document.removeEventListener("wnp.ui.messagebox.opened", this._onMessageBoxOpened), document.removeEventListener("wnp.ui.messagebox.closed", this._onMessageBoxClosed), this._attachedCanvas = null, this._reset && this._reset()
+            t.removeEventListener(e + "down", this.onMouseDown), t.removeEventListener(e + "up", this.onMouseUp), t.removeEventListener(e + "out", this.onMouseOut), t.removeEventListener(e + "move", this.onMouseMove), t.removeEventListener("mousewheel", this.onWheel), window.removeEventListener("keydown", this.onKeyDown), window.removeEventListener("keyup", this.onKeyUp), window.removeEventListener("blur", this.onLostFocus), document.removeEventListener("touchend", this.onMouseUp), document.removeEventListener("touchcancel", this.onMouseUp), document.removeEventListener("touchmove", this.onMouseMove), document.removeEventListener("touchstart", this.onMouseDown), document.removeEventListener("hcs.ui.messagebox.opened", this._onMessageBoxOpened), document.removeEventListener("hcs.ui.messagebox.closed", this._onMessageBoxClosed), this._attachedCanvas = null, this._reset && this._reset()
         }
     }, e.prototype._collideWithWorld = function (t) {
         this.position.subtractFromFloatsToRef(0, this.ellipsoid.y, 0, this._oldPosition), this._collider.radius = this.ellipsoid, this._scene._getNewPosition(this._oldPosition, t, this._collider, 3, this._newPosition), this._newPosition.subtractToRef(this._oldPosition, this._diffPosition), this._diffPosition.length() > BABYLON.Engine.collisionsEpsilon && (this.position.addInPlace(this._diffPosition), this.onCollide && this.onCollide(this._collider.collidedMesh))
@@ -15263,8 +15269,8 @@ wnp.Input = wnp.Input || {}, wnp.Input.FirstPersonCamera = function () {
     }, e
 } ();
 
-var wnp = window.wnp || {};
-wnp.Input = wnp.Input || {}, wnp.Input.TouchManager = function (t) {
+var hcs = window.hcs || {};
+hcs.Input = hcs.Input || {}, hcs.Input.TouchManager = function (t) {
     var e = [{ x: 0, y: 0 }, { x: 0, y: 0}], n = [{ x: 0, y: 0 }, { x: 0, y: 0}], i = { x: 0, y: 0, reset: function () {
         this.x = 0, this.y = 0
     }, update: function () {
@@ -15327,11 +15333,11 @@ wnp.Input = wnp.Input || {}, wnp.Input.TouchManager = function (t) {
     }
 };
 
-var wnp = window.wnp || {};
-wnp.PointerManager = function () {
+var hcs = window.hcs || {};
+hcs.PointerManager = function () {
     var t = function (t, e, n, i) {
         var i = i || {};
-        this.BUTTON_LEFT = 1, this.BUTTON_MIDDLE = 2, this.BUTTON_RIGHT = 4, this.ACTION_CLICK = 1, this.ACTION_DBLCLICK = 2, this.ACTION_DRAGSTART = 4, this.ACTION_DRAGGING = 8, this.ACTION_DRAGEND = 16, this.ACTION_SCROLLUP = 32, this.ACTION_SCROLLDOWN = 64, this.MODIFIER_ALT = 1, this.MODIFIER_CTRL = 2, this.MODIFIER_SHIFT = 4, this.pos = new BABYLON.Vector2, this.posDelta = new BABYLON.Vector2, this.buttons = 0, this.actions = 0, this.modifiers = 0, this._core = t || wanaplan, this._callback = e || null, this._domElement = n || document.body, this._offsets = i.offsets || new BABYLON.Vector2, this._width = i.width || this._domElement.clientWidth, this._height = i.height || this._domElement.clientHeight, this._lastState = this.getStatus(), this._initialised = !1, this.touchManager = new wnp.Input.TouchManager(this._domElement), this.setDomElement(this._domElement), this.mode = 0
+        this.BUTTON_LEFT = 1, this.BUTTON_MIDDLE = 2, this.BUTTON_RIGHT = 4, this.ACTION_CLICK = 1, this.ACTION_DBLCLICK = 2, this.ACTION_DRAGSTART = 4, this.ACTION_DRAGGING = 8, this.ACTION_DRAGEND = 16, this.ACTION_SCROLLUP = 32, this.ACTION_SCROLLDOWN = 64, this.MODIFIER_ALT = 1, this.MODIFIER_CTRL = 2, this.MODIFIER_SHIFT = 4, this.pos = new BABYLON.Vector2, this.posDelta = new BABYLON.Vector2, this.buttons = 0, this.actions = 0, this.modifiers = 0, this._core = t || hcsdesign, this._callback = e || null, this._domElement = n || document.body, this._offsets = i.offsets || new BABYLON.Vector2, this._width = i.width || this._domElement.clientWidth, this._height = i.height || this._domElement.clientHeight, this._lastState = this.getStatus(), this._initialised = !1, this.touchManager = new hcs.Input.TouchManager(this._domElement), this.setDomElement(this._domElement), this.mode = 0
     };
     return t.prototype.setDomElement = function (t) {
         this._domElement = t, this.onMouseDown = this.onMouseDown.bind(this), this.onMouseMove = this.onMouseMove.bind(this), this.onMouseUp = this.onMouseUp.bind(this), this.onMouseDoubleClick = this.onMouseDoubleClick.bind(this), this.onMouseWheel = this.onMouseWheel.bind(this), this.addTouchSupport(), this.addMouseSupport()
@@ -15374,7 +15380,7 @@ wnp.PointerManager = function () {
         var e = e || 0, i = this._getX(n), o = this._getY(n);
         i + o > 0 && this.pos.copyFromFloats(i, o), this._initialised || (this._initialised = !0, this._lastState.pos.copyFrom(this.pos)), this.posDelta = this.pos.subtract(this._lastState.pos), "tap" == n.type && (this.posDelta = new BABYLON.Vector2(0, 0)), this.actions = 0, this.actions |= e, 0 == this.buttons && this._lastState.buttons > 0 && 0 == (this._lastState.actions & this.ACTION_DRAGGING) && 0 == (this._lastState.actions & this.ACTION_DBLCLICK) ? this.actions |= this.ACTION_CLICK : this.buttons > 0 && 0 == this._lastState.actions && (0 != this.posDelta.x || 0 != this.posDelta.y) ? (this.actions |= this.ACTION_DRAGSTART, this.pos.x = this._lastState.pos.x, this.pos.y = this._lastState.pos.y) : this.buttons > 0 && ((this._lastState.actions & this.ACTION_DRAGSTART) > 0 || (this._lastState.actions & this.ACTION_DRAGGING) > 0) ? this.actions |= this.ACTION_DRAGGING : 0 == this.buttons && ((this._lastState.actions & this.ACTION_DRAGSTART) > 0 || (this._lastState.actions & this.ACTION_DRAGGING) > 0) && (this.actions |= this.ACTION_DRAGEND), this.modifiers = 0, n.altKey && (this.modifiers |= this.MODIFIER_ALT), n.ctrlKey && (this.modifiers |= this.MODIFIER_CTRL), n.shiftKey && (this.modifiers |= this.MODIFIER_SHIFT), this._notifyCb(n), this._lastState = this.getStatus()
     }, t.prototype._notifyCb = function (t) {
-        null != this._callback && (this._callback(t, this.getStatus()), ujs.notify("wnp.input.pointerchanged", { inputStatus: this.getStatus() }))
+        null != this._callback && (this._callback(t, this.getStatus()), ujs.notify("hcs.input.pointerchanged", { inputStatus: this.getStatus() }))
     }, t.prototype.onMouseDown = function (t) {
         this.buttons |= this._getButton(t), this._updateMouseState(t)
     }, t.prototype.onMouseMove = function (t) {
@@ -15389,8 +15395,8 @@ wnp.PointerManager = function () {
     }, t
 } ();
 
-var Keys = { up: 38, down: 40, left: 37, right: 39, space: 32, escape: 27, shift: 16, ctrl: 17, alt: 18, tab: 9, a: 65, z: 90, e: 69, q: 81, s: 83, d: 68, r: 82, cmd: 91 },wnp = window.wnp || {};
-wnp.KeyboardManager = function () {
+var Keys = { up: 38, down: 40, left: 37, right: 39, space: 32, escape: 27, shift: 16, ctrl: 17, alt: 18, tab: 9, a: 65, z: 90, e: 69, q: 81, s: 83, d: 68, r: 82, cmd: 91 },hcs = window.hcs || {};
+hcs.KeyboardManager = function () {
     function t(t) {
         for (var e = 0; 110 > e; e++)
             t[e] = !1
@@ -15413,7 +15419,7 @@ wnp.KeyboardManager = function () {
         for (var t = 0; t < e.keys.length; t++)
             e.keys[t] = !1
     }, i.prototype.onKeyStateChange = function (t) {
-        var i = "keydown" == t.type ? !0 : !1, o = "keydown" == t.type ? "wnp.keyboardManager.keyDown" : "wnp.keyboardManager.keyUp";
+        var i = "keydown" == t.type ? !0 : !1, o = "keydown" == t.type ? "hcs.keyboardManager.keyDown" : "hcs.keyboardManager.keyUp";
         if (ujs.notify(o, t), "INPUT" == document.activeElement.nodeName || "TEXTAREA" == document.activeElement.nodeName)
             ;
         else if (e.preventDefault === !0)
@@ -15434,8 +15440,8 @@ wnp.KeyboardManager = function () {
     }, i
 } ();
 
-var wnp = window.wnp || {};
-wnp.MaterialFactory = function () {
+var hcs = window.hcs || {};
+hcs.MaterialFactory = function () {
     var t = function (t) {
         this.configuration = t
     };
@@ -15457,18 +15463,18 @@ wnp.MaterialFactory = function () {
         if (e = e || {}, e.url && (e.diffuseTexture = e.url), e.maps)
             for (var i in e.maps)
                 "normal" == i ? e.bumpTexture = e.url.replace(".jpg", e.maps[i] + ".jpg") : e[i + "Texture"] = e.url.replace(".jpg", e.maps[i] + ".jpg");
-        n = -1 !== n.indexOf("wnp.") ? n : "wnp." + (n.charAt("0").toUpperCase() + n.slice(1)) + "Material";
+        n = -1 !== n.indexOf("hcs.") ? n : "hcs." + (n.charAt("0").toUpperCase() + n.slice(1)) + "Material";
         var o = ujs.getProperty(window, n);
-        o ? o = new o(e.name || "ImportedMaterial", wanaplan.engine3D.scene) : (o = new BABYLON.StandardMaterial(e.name || "ImportedMaterial", wanaplan.engine3D.scene), this.MakeDefaultMaterial(o)), e.color && (o.diffuseColor.copyFrom(e.color), o.params.baseColor = e.color);
+        o ? o = new o(e.name || "ImportedMaterial", hcsdesign.engine3D.scene) : (o = new BABYLON.StandardMaterial(e.name || "ImportedMaterial", hcsdesign.engine3D.scene), this.MakeDefaultMaterial(o)), e.color && (o.diffuseColor.copyFrom(e.color), o.params.baseColor = e.color);
         for (var r in e)
-            void 0 !== o[r] && null !== o[r] ? e[r] instanceof Array && o[r].fromArray ? o[r].fromArray(e[r]) : e[r] instanceof Object && o[r].copyFrom ? o[r].copyFrom(e[r]) : -1 !== r.indexOf("Texture") ? (o[r] = new BABYLON.Texture(e[r], wanaplan.engine3D.scene), o[r].vScale = e.vScale || e.scale || 1, o[r].uScale = e.uScale || e.scale || 1, o[r].hasAlpha = e.hasAlpha || !1) : o[r] = e[r] : -1 !== r.indexOf("Texture") ? (o[r] = new BABYLON.Texture(e[r], wanaplan.engine3D.scene), o[r].vScale = e.vScale || e.scale || 1, o[r].uScale = e.uScale || e.scale || 1) : o[r] = e[r];
+            void 0 !== o[r] && null !== o[r] ? e[r] instanceof Array && o[r].fromArray ? o[r].fromArray(e[r]) : e[r] instanceof Object && o[r].copyFrom ? o[r].copyFrom(e[r]) : -1 !== r.indexOf("Texture") ? (o[r] = new BABYLON.Texture(e[r], hcsdesign.engine3D.scene), o[r].vScale = e.vScale || e.scale || 1, o[r].uScale = e.uScale || e.scale || 1, o[r].hasAlpha = e.hasAlpha || !1) : o[r] = e[r] : -1 !== r.indexOf("Texture") ? (o[r] = new BABYLON.Texture(e[r], hcsdesign.engine3D.scene), o[r].vScale = e.vScale || e.scale || 1, o[r].uScale = e.uScale || e.scale || 1) : o[r] = e[r];
         if ((-1 != n.indexOf("Glass") || -1 != n.indexOf("Transparent") || -1 != n.indexOf("Metal")) && e.addColor && e.addColor.color)
             o.setBaseColor(e.addColor.color);
         else if (e.addColor && e.addColor.color && o.diffuseTexture) {
             o.addColor = e.addColor, e.addColor.size = e.addColor.size || { width: 512, height: 512 };
             var s = new Image, a = e.addColor.color;
             s.crossOrigin = "Anonymous", s.src = o.diffuseTexture.url;
-            var l = new BABYLON.DynamicTexture("canvas", e.addColor.size.width, wanaplan.engine3D.scene, !0);
+            var l = new BABYLON.DynamicTexture("canvas", e.addColor.size.width, hcsdesign.engine3D.scene, !0);
             l.url = o.diffuseTexture.url, o.diffuseTexture = l, o.diffuseColor = new BABYLON.Color3(a.r, a.g, a.b).scale(.2), s.onload = function () {
                 var n = l.getContext();
                 n.fillStyle = t.rgbToHex(a), n.clearRect(0, 0, e.addColor.size.width, e.addColor.size.height), n.drawImage(s, 0, 0, e.addColor.size.width, e.addColor.size.height), n.globalCompositeOperation = "soft-light", n.globalCompositeOperation = "color-burn", n.globalCompositeOperation = "multiply", n.fillRect(0, 0, e.addColor.size.width, e.addColor.size.height), l.wrapU = BABYLON.Texture.WRAP_ADDRESSMODE, l.wrapV = BABYLON.Texture.WRAP_ADDRESSMODE, l.vScale = e.vScale || e.scale || 1, l.uScale = e.uScale || e.scale || 1, l.update()
@@ -15485,8 +15491,8 @@ wnp.MaterialFactory = function () {
     }, t
 } ();
 
-var wnp = window.wnp || {};
-wnp.Structure = function () {
+var hcs = window.hcs || {};
+hcs.Structure = function () {
     function t(t) {
         var e = {};
         for (var n in t)
@@ -15501,10 +15507,10 @@ wnp.Structure = function () {
         }
     }
     var n = function (t) {
-        this.uuid = wnp.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.name = "planStructure", this.members = [], this.currentStructureIndex = 0, this.version = t, this.lastMaterialsUsed = [], this.structureVersion = t, this.params = {}, this.customData = {}
+        this.uuid = hcs.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.name = "planStructure", this.members = [], this.currentStructureIndex = 0, this.version = t, this.lastMaterialsUsed = [], this.structureVersion = t, this.params = {}, this.customData = {}
     };
     return n.prototype.clear = function () {
-        this.members.length = 0, this.currentStructureIndex = 0, this.uuid = wnp.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.params = {}
+        this.members.length = 0, this.currentStructureIndex = 0, this.uuid = hcs.uuid.uuid4(), this.lastModified = (new Date).getTime(), this.params = {}
     }, n.prototype.getVersion = function () {
         return this.version
     }, n.prototype.getLength = function () {
@@ -15537,7 +15543,7 @@ wnp.Structure = function () {
         return e(i), JSON.stringify(i)
     }, n.prototype.deserialize = function (t) {
         var n = JSON.parse(t);
-        return this.currentStructureIndex = 0 | +n.current, this.name = n.name, this.version = n.version, this.structureVersion = n.structureVersion, this.uuid = n.uuid || wnp.uuid.uuid4(), this.lastModified = n.lastModified || 0, this.lastMaterialsUsed = n.lastMaterialsUsed || [], this.params = n.params || {}, this.customData = ujs.deserializeObject(n.customData) || {}, e(n.members, this.members), this.reindexMembers(), !0
+        return this.currentStructureIndex = 0 | +n.current, this.name = n.name, this.version = n.version, this.structureVersion = n.structureVersion, this.uuid = n.uuid || hcs.uuid.uuid4(), this.lastModified = n.lastModified || 0, this.lastMaterialsUsed = n.lastMaterialsUsed || [], this.params = n.params || {}, this.customData = ujs.deserializeObject(n.customData) || {}, e(n.members, this.members), this.reindexMembers(), !0
     }, n.prototype.addMemberAtIndex = function (t, e) {
         this.members.splice(t, 0, e), this.reindexMembers()
     }, n.prototype.reindexMembers = function () {
@@ -15551,10 +15557,10 @@ wnp.Structure = function () {
     }, n
 } ();
 
-var wnp = window.wnp || {};
-wnp.Configuration = function () {
+var hcs = window.hcs || {};
+hcs.Configuration = function () {
     var t = null;
-    LOCAL_STORAGE_CONFIGURATION_KEY = "wnp.configuration";
+    LOCAL_STORAGE_CONFIGURATION_KEY = "hcs.configuration";
     var e = function () {
         this.boundingSize = { min: { x: -5e3, y: -5e3, z: -5e3 }, max: { x: 5e3, y: 5e3, z: 5e3 }, getSize: function () {
             return { x: this.max.x - this.min.x, y: this.max.y - this.min.y, z: this.max.z - this.min.z }
@@ -15562,7 +15568,7 @@ wnp.Configuration = function () {
         }, this.hardwareScalingLevel = 1, this.hasMobileConfig = !1, this.maxTextureSize = 1024, this.useAntialiasing = !0, this.useEnvMap = !0, this.useMultiLights = !0, this.useMultiTexturing = !0, this.useShadow = !0, this.useStats = !1, this.useAreaProcessing = !0, this.useRealtimeMeasure = !0, this.loadConfiguration(), t = this
     };
     return e.prototype.loadConfiguration = function () {
-        var t = wnpLocalStorage.getItem(LOCAL_STORAGE_CONFIGURATION_KEY);
+        var t = hcsLocalStorage.getItem(LOCAL_STORAGE_CONFIGURATION_KEY);
         if (null != t) {
             var e = JSON.parse(t);
             this.useAntialiasing = e.useAntialiasing, this.useAreaProcessing = e.useAreaProcessing, this.useRealtimeMeasure = e.useRealtimeMeasure, this.useShadow = e.useShadow, this.useEnvMap = e.useEnvMap, this.useMultiTexturing = e.useMultiTexturing, this.maxTextureSize = e.maxTextureSize, this.useMultiLights = e.useMultiLights, this.useStats = e.useStats, this.hasMobileConfig = e.hasMobileConfig, this.hardwareScalingLevel = e.hardwareScalingLevel ? e.hardwareScalingLevel : 1
@@ -15570,17 +15576,17 @@ wnp.Configuration = function () {
         return t ? !0 : !1
     }, e.prototype.saveConfiguration = function () {
         var t = this.serialize();
-        wnpLocalStorage.setItem(LOCAL_STORAGE_CONFIGURATION_KEY, t)
+        hcsLocalStorage.setItem(LOCAL_STORAGE_CONFIGURATION_KEY, t)
     }, e.prototype.serialize = function () {
         var t = { useAntialiasing: this.useAntialiasing, useAreaProcessing: this.useAreaProcessing, useRealtimeMeasure: this.useRealtimeMeasure, useShadow: this.useShadow, useEnvMap: this.useEnvMap, useMultiTexturing: this.useMultiTexturing, maxTextureSize: this.maxTextureSize, useMultiLights: this.useMultiLights, useStats: this.useStats, hasMobileConfig: this.hasMobileConfig, hardwareScalingLevel: this.hardwareScalingLevel };
         return JSON.stringify(t)
     }, e.prototype.setQuality = function (t) {
-        t === wnp.Constants.GRAPHICS_FAST ? (this.useAntialiasing = !1, this.useShadow = !1, this.useEnvMap = !1, this.useMultiTexturing = !1, this.useMultiLights = !1, this.hardwareScalingLevel = 1.5) : t === wnp.Constants.GRAPHICS_GOOD ? (this.useAntialiasing = !0, this.useShadow = !1, this.useEnvMap = !1, this.useMultiTexturing = !0, this.useMultiLights = !0, this.hardwareScalingLevel = 1) : (this.useAntialiasing = !0, this.useShadow = !0, this.useEnvMap = !0, this.useMultiTexturing = !0, this.useMultiLights = !0, this.hardwareScalingLevel = 1), this.saveConfiguration()
+        t === hcs.Constants.GRAPHICS_FAST ? (this.useAntialiasing = !1, this.useShadow = !1, this.useEnvMap = !1, this.useMultiTexturing = !1, this.useMultiLights = !1, this.hardwareScalingLevel = 1.5) : t === hcs.Constants.GRAPHICS_GOOD ? (this.useAntialiasing = !0, this.useShadow = !1, this.useEnvMap = !1, this.useMultiTexturing = !0, this.useMultiLights = !0, this.hardwareScalingLevel = 1) : (this.useAntialiasing = !0, this.useShadow = !0, this.useEnvMap = !0, this.useMultiTexturing = !0, this.useMultiLights = !0, this.hardwareScalingLevel = 1), this.saveConfiguration()
     }, e
 } ();
 
-var wnp = window.wnp || {};
-wnp.ComponentCollection = function () {
+var hcs = window.hcs || {};
+hcs.ComponentCollection = function () {
     var t = function (t) {
         Array.call(this), this._core = t, this._componentsToRemove = [], this._initialized = !1, this._size = 0
     };
@@ -15634,29 +15640,29 @@ wnp.ComponentCollection = function () {
         return this._size
     }, t
 } ();
-var wnp = window.wnp || {};
-wnp.Core = function () {
+var hcs = window.hcs || {};
+hcs.Core = function () {
 	function t() {
 		var t = n.mode == n.MODE_EDITOR ? r : 0;
 		n.setSize(window.innerWidth - t, window.innerHeight)
 	}
 	function e(t, e) {
-		return t.uuid || (t.uuid = wnp.uuid.uuid4()), t.lastModified || "wnpLocalStorage" == e ? t.lastModified || (t.lastModified = 0) : t.lastModified = (new Date).getTime(), t
+		return t.uuid || (t.uuid = hcs.uuid.uuid4()), t.lastModified || "hcsLocalStorage" == e ? t.lastModified || (t.lastModified = 0) : t.lastModified = (new Date).getTime(), t
 	}
-	var n = null, i = 640, o = 480, r = 260, s = 260, a = 1, l = null, h = null, c = {}, u = wnp.Constants.MODE_STANDALONE, p = null, d = null, m = null, g = null, f = false, y = null, v = false, b = null, w = "2D", x = null, C = function (e, _, v) {
-			if (this.version = e, this.isFullyInitialized = false, window.wanaplan = this, this.ENGINE_2D = 1, this.ENGINE_3D = 2, this.MODE_EDITOR = 1, this.MODE_VIEWER = 2, this.LOCAL_STORAGE_STRUCTURE_KEY = "wanadev.planner.structure", this.i18n = _, wnp.UI.LanguageSelector.setLocal(_.getLocale().split("_")[0]), l = document.getElementById("container2d"), h = document.getElementById("container3d"), a = this.ENGINE_2D, c = {
+	var n = null, i = 640, o = 480, r = 260, s = 260, a = 1, l = null, h = null, c = {}, u = hcs.Constants.MODE_STANDALONE, p = null, d = null, m = null, g = null, f = false, y = null, v = false, b = null, w = "2D", x = null, C = function (e, _, v) {
+			if (this.version = e, this.isFullyInitialized = false, window.hcsdesign = this, this.ENGINE_2D = 1, this.ENGINE_3D = 2, this.MODE_EDITOR = 1, this.MODE_VIEWER = 2, this.LOCAL_STORAGE_STRUCTURE_KEY = "wanadev.planner.structure", this.i18n = _, hcs.UI.LanguageSelector.setLocal(_.getLocale().split("_")[0]), l = document.getElementById("container2d"), h = document.getElementById("container3d"), a = this.ENGINE_2D, c = {
 				structure: [], limit: 50, cursor: 0, getLatest: function () {
 					return this.structure[this.cursor]
 				}
 			}, v.css && HTMLHelper.addStylesheet(v.css), this.allow3D = "undefined" != typeof v.allow3D ? v.allow3D : true, this.api = v || {}, d = this.api.saveUrl || null, m = this.api.newUrl || null, g = this.api.planUrl || null, y = this.api.screenshotUrl || null, f = this.api.publisher || false, _origin = this.api.origin || false, this.mode = "true" === this.api.isViewer ? this.MODE_VIEWER : this.MODE_EDITOR, this.api.params = this.api.params ? JSON.parse(this.api.params) : {}, this.api.components && (this.api.components = JSON.parse(this.api.components)), this.api.id > 0) {
-				p = this.api.id, u = wnp.Constants.MODE_CUSTOMER, b = this.api.params, w = this.api.screenshotMode || "2D", x = this.api.title || null;
+				p = this.api.id, u = hcs.Constants.MODE_CUSTOMER, b = this.api.params, w = this.api.screenshotMode || "2D", x = this.api.title || null;
 				var C = b.env || "";
-				wnp.Constants.PRODUCTS_CATEGORY_FILE = [wnp.Constants.WNP_URL, "data/", p, "/categories" + C + ".json"].join(""), 
-			wnp.Constants.TEXTURES_FILE = [wnp.Constants.WNP_URL, "data/", p, "/textures" + C + ".json"].join(""), 
-			wnp.Constants.PRODUCTS_FILE = [wnp.Constants.WNP_URL, "data/", p, "/products" + C + ".json"].join(""), 
-			wnp.Constants.PRODUCTS_PREVIEWS = [wnp.Constants.WNP_URL, "data/previews/"].join("")
+				hcs.Constants.PRODUCTS_CATEGORY_FILE = [hcs.Constants.hcs_URL, "data/", p, "/categories" + C + ".json"].join(""), 
+			hcs.Constants.TEXTURES_FILE = [hcs.Constants.hcs_URL, "data/", p, "/textures" + C + ".json"].join(""), 
+			hcs.Constants.PRODUCTS_FILE = [hcs.Constants.hcs_URL, "data/", p, "/products" + C + ".json"].join(""), 
+			hcs.Constants.PRODUCTS_PREVIEWS = [hcs.Constants.hcs_URL, "data/previews/"].join("")
 			}
-			i = window.innerWidth, o = window.innerHeight, this.needPageRefresh = false, this.loopTimer = new wnp.LoopTimer, this.structure = new wnp.Structure(e), this.keyboardManager = new wnp.KeyboardManager, this.configuration = new wnp.Configuration, this.engine2D = new wnp.Engine2D(l, this), this.engine3D = null, this.engine3D = GlobalHelper.hasWebGL() ? new wnp.Engine3D(h) : new wnp.Dummy.Engine3D(h), this.aboutWindow = null;
+			i = window.innerWidth, o = window.innerHeight, this.needPageRefresh = false, this.loopTimer = new hcs.LoopTimer, this.structure = new hcs.Structure(e), this.keyboardManager = new hcs.KeyboardManager, this.configuration = new hcs.Configuration, this.engine2D = new hcs.Engine2D(l, this), this.engine3D = null, this.engine3D = GlobalHelper.hasWebGL() ? new hcs.Engine3D(h) : new hcs.Dummy.Engine3D(h), this.aboutWindow = null;
 			var M = this;
 			n = this, window.addEventListener("resize", t, false);
 			var D = false;
@@ -15670,10 +15676,10 @@ wnp.Core = function () {
 				var e = JSON.parse(t.data);
 				switch (e.action) {
 					case "close-frame":
-						wnp.UI.IFrame.close();
+						hcs.UI.IFrame.close();
 						break;
 					case "resize-frame":
-						wnp.UI.IFrame.resize(e.width, e.height);
+						hcs.UI.IFrame.resize(e.width, e.height);
 						break;
 					case "take-screenshot":
 						this.takeScreenshot({})
@@ -15694,7 +15700,7 @@ wnp.Core = function () {
 			this.engine2D.bestZoom()
 		}.bind(this), 50), this.engine2D.bestZoom(), window.setTimeout(function () {
 			this.hideSplashScreen()
-		}.bind(this), 7e3), this.keyboardManager.startEventsListening(), GlobalHelper.hasWebGL() || HTMLHelper.hide3DMenus(), ujs.notify("wnp.core.initialized")
+		}.bind(this), 7e3), this.keyboardManager.startEventsListening(), GlobalHelper.hasWebGL() || HTMLHelper.hide3DMenus(), ujs.notify("hcs.core.initialized")
 	}, C.prototype.initializeViewer = function (t) {
 		var t = t || function () {
 		}, e = this, n = document.getElementById("toggleEngine");
@@ -15710,27 +15716,27 @@ wnp.Core = function () {
 			}, display: function () {
 			}
 		}, this.engine2D.isViewer = true, this.engine3D.isViewer = true, this.engine2D.initialize(), this.engine3D.initialize(), g ? this._getStructureFromUrl(g, function (e) {
-			this._loadStructure(e), this.engine2D.bestZoom(), this.hideSplashScreen(), t.call(this), ujs.notify("wnp.structure.locale.loaded")
+			this._loadStructure(e), this.engine2D.bestZoom(), this.hideSplashScreen(), t.call(this), ujs.notify("hcs.structure.locale.loaded")
 		}.bind(this)) : this._localStructureExists() ? this._loadStructure(this._getLocaleStorageStructure(), function (e) {
-			t(e), ujs.notify("wnp.structure.locale.loaded")
+			t(e), ujs.notify("hcs.structure.locale.loaded")
 		}) : t(this)
 	}, C.prototype.initializeEditor = function () {
 		var t = this;
-		this.helpBubbleManager = new wnp.UI.HelpBubbleManager(!GlobalHelper.isMobileDevice()), document.addEventListener("wnp.request.takeScreenshot", this.takeScreenshot, false), document.addEventListener("wnp.request.saveStructrure", this.saveStructure.bind(this), false), document.addEventListener("wnp.request.loadStructure", this.loadStructure.bind(this), false), this.engine2D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine2D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false);
+		this.helpBubbleManager = new hcs.UI.HelpBubbleManager(!GlobalHelper.isMobileDevice()), document.addEventListener("hcs.request.takeScreenshot", this.takeScreenshot, false), document.addEventListener("hcs.request.saveStructrure", this.saveStructure.bind(this), false), document.addEventListener("hcs.request.loadStructure", this.loadStructure.bind(this), false), this.engine2D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine2D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), false);
 		var e = window.PointerEvent ? "pointerup" : "mouseup";
-		if (e = window.MSPointerEvent ? "MSPointerUp" : e, this.engine2D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), document.addEventListener("wnp.request.saveHistory", this.saveHistory.bind(this), false), document.addEventListener("wnp.request.switchEngine", this.switchEngine.bind(this), false), document.addEventListener("wnp.request.changeEngine", function (e) {
-			ujs.notify("wnp.request.closePopup"), "undefined" != typeof e.engine && setTimeout(function () {
+		if (e = window.MSPointerEvent ? "MSPointerUp" : e, this.engine2D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), this.engine3D.getContainer().addEventListener(e, this.saveHistory.bind(this), false), document.addEventListener("hcs.request.saveHistory", this.saveHistory.bind(this), false), document.addEventListener("hcs.request.switchEngine", this.switchEngine.bind(this), false), document.addEventListener("hcs.request.changeEngine", function (e) {
+			ujs.notify("hcs.request.closePopup"), "undefined" != typeof e.engine && setTimeout(function () {
 				t.setSelectedEngine(e.engine)
 			}, 10)
-		}, false), document.addEventListener("wnp.request.changeLang", function () {
-			ujs.notify("wnp.menu.top.deselect"), wnp.UI.LanguageSelector.show()
+		}, false), document.addEventListener("hcs.request.changeLang", function () {
+			ujs.notify("hcs.menu.top.deselect"), hcs.UI.LanguageSelector.show()
 		}, false), this._createDefaultStructure(), this.engine2D.initialize(), this.engine3D.initialize(), v = true, ":new" == g) {
 			var n = false;
 			if (this._localStructureExists()) {
-				var i = this._getLocaleStorageStructure(), o = wnpLocalStorage.getItem("wanadev.planner.stack");
+				var i = this._getLocaleStorageStructure(), o = hcsLocalStorage.getItem("wanadev.planner.stack");
 				o != i.uuid && confirm(_("An unsaved plan exists, would you like to load it ?")) && (this._loadStructure(i), n = true)
 			}
-			n === false && (this._clearLocaleStructure(), this._createDefaultStructure(), ujs.notify("wnp.core.structure.loaded")), this.engine2D.bestZoom(), this.hideSplashScreen()
+			n === false && (this._clearLocaleStructure(), this._createDefaultStructure(), ujs.notify("hcs.core.structure.loaded")), this.engine2D.bestZoom(), this.hideSplashScreen()
 		} else
 			g ? this._getStructureFromUrl(g, function (t) {
 				if (!t)
@@ -15740,9 +15746,9 @@ wnp.Core = function () {
 			}.bind(this)) : (this._localStructureExists() && this._loadStructure(this._getLocaleStorageStructure()), this.structure.setCurrentStructureIndex(0), this.engine2D.bestZoom(), this.hideSplashScreen());
 		window.addEventListener("focus", function () {
 			this.saveLocalStructure(false, true)
-		}.bind(this), false), this.aboutWindow = new wnp.UI.AboutWindow, this.setSize(window.innerWidth - 260, window.innerHeight)
+		}.bind(this), false), this.aboutWindow = new hcs.UI.AboutWindow, this.setSize(window.innerWidth - 260, window.innerHeight)
 	}, C.prototype.update = function () {
-		this.loopTimer.update(), this.keyboardManager.isPressed(82) && (this.keyboardManager.isPressed(17) || this.keyboardManager.isPressed(91) || this.keyboardManager.isPressed(224)) && (this.needPageRefresh || (this.needPageRefresh = true, location.href = location.href, this.needPageRefresh = false)), this.engine2D.isEnabled() && this.keyboardManager.isPressed(Keys.escape) && (this.engine2D.setMode(this.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), this.engine2D.requestStaticDraw(), this.keyboardManager.keys[Keys.escape] = false), this.engine2D.isEnabled() ? this.engine2D.update(this.loopTimer.getDeltaTime()) : this.engine3D.update(this.loopTimer.getDeltaTime())
+		this.loopTimer.update(), this.keyboardManager.isPressed(82) && (this.keyboardManager.isPressed(17) || this.keyboardManager.isPressed(91) || this.keyboardManager.isPressed(224)) && (this.needPageRefresh || (this.needPageRefresh = true, location.href = location.href, this.needPageRefresh = false)), this.engine2D.isEnabled() && this.keyboardManager.isPressed(Keys.escape) && (this.engine2D.setMode(this.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), this.engine2D.requestStaticDraw(), this.keyboardManager.keys[Keys.escape] = false), this.engine2D.isEnabled() ? this.engine2D.update(this.loopTimer.getDeltaTime()) : this.engine3D.update(this.loopTimer.getDeltaTime())
 	}, C.prototype.draw = function () {
 		this.engine2D.isEnabled() ? this.engine2D.draw(this.loopTimer.getDeltaTime()) : this.engine3D.draw(this.loopTimer.getDeltaTime())
 	}, C.prototype.compareVersion = function (t, e) {
@@ -15771,7 +15777,7 @@ wnp.Core = function () {
 			return void (e && e.parentNode.removeChild(e))
 		}
 		var n = t == this.ENGINE_3D || "3D" == t, i = this.engine2D.isEnabled() ? "2D" : "3D", o = n ? "3D" : "2D";
-		this.engine2D.setEnabled(!n), this.engine3D.setEnabled(n), a = "3D" == t || t == this.ENGINE_3D ? this.ENGINE_3D : this.ENGINE_2D, ujs.notify("wnp.contextChanged", { context: o, previousContext: i }), this.helpBubbleManager && this.helpBubbleManager.helpBubble && this.helpBubbleManager.helpBubble.hide()
+		this.engine2D.setEnabled(!n), this.engine3D.setEnabled(n), a = "3D" == t || t == this.ENGINE_3D ? this.ENGINE_3D : this.ENGINE_2D, ujs.notify("hcs.contextChanged", { context: o, previousContext: i }), this.helpBubbleManager && this.helpBubbleManager.helpBubble && this.helpBubbleManager.helpBubble.hide()
 	}, C.prototype.getSelectedStructure = function () {
 		return this.structure.getCurrentStructure()
 	}, C.prototype.getHistory = function () {
@@ -15780,7 +15786,7 @@ wnp.Core = function () {
 		var o, r = "undefined" != typeof t.selectedEngine ? t.selectedEngine : a, s = "undefined" != typeof t.sendBlob ? t.sendBlob : false, e = e || function () {
 			}, i = i || function () {
 			};
-		if (o = r == n.ENGINE_2D ? l.children[0] : h.children[0], u == wnp.Constants.MODE_STANDALONE || null === y) {
+		if (o = r == n.ENGINE_2D ? l.children[0] : h.children[0], u == hcs.Constants.MODE_STANDALONE || null === y) {
 			if (e(), s)
 				return o.toDataURL("image/png");
 			r === n.ENGINE_2D ? o.toBlob(function (t) {
@@ -15801,17 +15807,17 @@ wnp.Core = function () {
 					method: "POST", withCredentials: true, url: y, params: t.join(""), error: i, success: function (t) {
 						var o = JSON.parse(t), r = _("An error occured. Please try later.");
 						if ("ok" === o.status)
-							r = _("Your screenshot has been saved."), n.structure.planId = true, wnp.UI.MessageBox.show({ title: _("Screenshot"), message: r, buttonAText: _("Close"), buttonA: true, autoHide: true, force: true }), o.params && (b = o.params), wnp.UI.MessageBox.show(s), e();
+							r = _("Your screenshot has been saved."), n.structure.planId = true, hcs.UI.MessageBox.show({ title: _("Screenshot"), message: r, buttonAText: _("Close"), buttonA: true, autoHide: true, force: true }), o.params && (b = o.params), hcs.UI.MessageBox.show(s), e();
 						else {
 							if (o.connectionUrl)
 								n._loginIframe(o.connectionUrl, o.frameWidth || Math.round(window.innerWidth / 2), o.frameHeight || Math.round(window.innerHeight / 2));
 							else {
 								var s = {
 									title: _("Screenshot"), message: o.message || _("Error occured during save."), buttonA: true, buttonAText: _("Ok"), onClickA: function () {
-										wnp.UI.MessageBox.close()
+										hcs.UI.MessageBox.close()
 									}
 								};
-								wnp.UI.MessageBox.show(s)
+								hcs.UI.MessageBox.show(s)
 							}
 							i()
 						}
@@ -15844,7 +15850,7 @@ wnp.Core = function () {
 	}, C.prototype.updateDeserialisation = function (t) {
 		this.engine2D.requestStaticDraw(), this.unlock(t), this.getComponentByName("RoomComponent2D", this.ENGINE_2D).needsUpdate = true, this.engine2D.requestStaticDraw(), this.engine2D.requestCompute(), this.engine2D.update(), this.engine2D.draw()
 	}, C.prototype.checkLocalPlan = function () {
-		var t = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
+		var t = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
 		null != t && this.loadLocalStructure(false)
 	}, C.prototype.saveLocalStructure = function (t, e) {
 		if (this.mode == this.MODE_VIEWER)
@@ -15853,25 +15859,25 @@ wnp.Core = function () {
             //��ǰ�ṹ
             currentStructure = n.structure.serialize(),
             //���ش洢�ṹ 
-            localStructure = wnpLocalStorage.getItem(n.LOCAL_STORAGE_STRUCTURE_KEY);
-		return localStructure !== currentStructure || e ? (wnpLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && wnp.UI.MessageBox.show({ title: _("��������"), message: _("���������Ѿ������ɹ�."), buttonAText: _("�ر�"), button: true }), currentStructure) : null
+            localStructure = hcsLocalStorage.getItem(n.LOCAL_STORAGE_STRUCTURE_KEY);
+		return localStructure !== currentStructure || e ? (n.removeLocalStructure(false), hcsLocalStorage.setItem(n.LOCAL_STORAGE_STRUCTURE_KEY, currentStructure), t && hcs.UI.MessageBox.show({ title: _("��������"), message: _("���������Ѿ������ɹ�."), buttonAText: _("�ر�"), button: true }), currentStructure) : null
 	}, C.prototype.loadLocalStructure = function (t) {
-		var t = "undefined" != typeof t ? t : false, e = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY), n = this;
+		var t = "undefined" != typeof t ? t : false, e = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY), n = this;
 		if (null != e) {
 			var i = n.lock();
-			return n.structure.deserialize(e) ? (n.structure.setCurrentStructureIndex(0), n.updateDeserialisation(i)) : (this.removeLocalStructure(false), t && wnp.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Unable to load your plan: its version is too old."), buttonAText: _("Close"), buttonA: true })), t && wnp.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Your plan has been loaded."), buttonAText: _("Close"), buttonA: true }), ujs.notify("wnp.structure.locale.loaded"), true
+			return n.structure.deserialize(e) ? (n.structure.setCurrentStructureIndex(0), n.updateDeserialisation(i)) : (this.removeLocalStructure(false), t && hcs.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Unable to load your plan: its version is too old."), buttonAText: _("Close"), buttonA: true })), t && hcs.UI.MessageBox.show({ title: _("Load a Plan"), message: _("Your plan has been loaded."), buttonAText: _("Close"), buttonA: true }), ujs.notify("hcs.structure.locale.loaded"), true
 		}
-		return t && wnp.UI.MessageBox.show({ title: _("Load a Plan"), message: _("You have no saved plan."), buttonAText: _("Close"), buttonA: true }), false
+		return t && hcs.UI.MessageBox.show({ title: _("Load a Plan"), message: _("You have no saved plan."), buttonAText: _("Close"), buttonA: true }), false
 	}, C.prototype.removeLocalStructure = function (t) {
-		var t = "undefined" != typeof t ? t : false, e = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
-		return null != e ? (wnpLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), t && wnp.UI.MessageBox.show({ title: _("Remove a Plan"), message: _("Your plan has been removed."), buttonAText: _("Close"), button: true }), true) : false
+		var t = "undefined" != typeof t ? t : false, e = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
+		return null != e ? (hcsLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), t && hcs.UI.MessageBox.show({ title: _("Remove a Plan"), message: _("Your plan has been removed."), buttonAText: _("Close"), button: true }), true) : false
 	}, C.prototype.getPreviewImage = function (t, e) {
 		var i = null, o = null, r = n.engine2D.getZoom(), s = n.engine2D.getTranslation();
 		n.setSize(t, e), this.getSelectedEngine() == this.ENGINE_2D ? (n.engine2D.bestZoom(), n.engine2D.draw(), o = n.engine2D.canvas) : (o = n.getContainer3D().getElementsByTagName("canvas")[0], n.engine3D.draw()), i = o.toDataURL("image/png");
 		var a = n.mode == n.MODE_EDITOR ? 260 : 0;
 		return n.setSize(window.innerWidth - a, window.innerHeight), this.getSelectedEngine() == this.ENGINE_2D && (n.engine2D.setZoom(r), n.engine2D.setTranslation(s)), i
 	}, C.prototype.saveStackToLocal = function () {
-		wnpLocalStorage.setItem("wanadev.planner.stack", n.structure.uuid)
+		hcsLocalStorage.setItem("wanadev.planner.stack", n.structure.uuid)
 	}, C.prototype.saveStructure = function () {
 	}, C.prototype.loadStructure = function (t, e) {
 		var e = e || function () {
@@ -15881,7 +15887,7 @@ wnp.Core = function () {
 				n.structure.deserialize(t) && n.updateDeserialisation(i), n.saveLocalStructure(false), e(1)
 			}, o = function (t) {
 				ujs.ajax({
-					url: wnp.Constants.BACK_URL + wnp.Constants.MIGRATION_PATH + t, withCredentials: true, success: function (t) {
+					url: hcs.Constants.BACK_URL + hcs.Constants.MIGRATION_PATH + t, withCredentials: true, success: function (t) {
 						t ? i(t) : e(-1)
 					}
 				})
@@ -15890,7 +15896,7 @@ wnp.Core = function () {
 			url: g, withCredentials: true, success: function (t) {
 				if (t) {
 					var n = JSON.parse(t);
-					1 == wanaplan.compareVersion(wnp.Constants.VERSION, n.version) ? i(t) : (console.log("migration"), o(g))
+					1 == hcsdesign.compareVersion(hcs.Constants.VERSION, n.version) ? i(t) : (console.log("migration"), o(g))
 				} else
 					e(-1)
 			}
@@ -15925,9 +15931,9 @@ wnp.Core = function () {
 			document.getElementById("splashscreen").style.display = "none", n.isFullyInitialized = true
 		}, t)
 	}, C.prototype._localStructureExists = function () {
-		return void 0 != wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY) ? true : false
+		return void 0 != hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY) ? true : false
 	}, C.prototype._getLocaleStorageStructure = function () {
-		return this._localStructureExists() ? e(JSON.parse(wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY)), "wnpLocalStorage") : null
+		return this._localStructureExists() ? e(JSON.parse(hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY)), "hcsLocalStorage") : null
 	}, C.prototype.isPublisher = function () {
 		return f
 	}, C.prototype.getOrigin = function () {
@@ -15936,11 +15942,11 @@ wnp.Core = function () {
 		var i = function (i) {
 			if (i) {
 				var r = JSON.parse(i);
-				1 == wanaplan.compareVersion(wnp.Constants.VERSION, r.version) ? o(t, n) : n(e(r))
+				1 == hcsdesign.compareVersion(hcs.Constants.VERSION, r.version) ? o(t, n) : n(e(r))
 			} else
 				n(null)
 		}, o = function (t, e) {
-				var n = wnp.Constants.BACK_URL + wnp.Constants.MIGRATION_PATH + t;
+				var n = hcs.Constants.BACK_URL + hcs.Constants.MIGRATION_PATH + t;
 				ujs.ajax({
 					url: n, success: i, onerror: function () {
 						r(n, e)
@@ -15959,13 +15965,13 @@ wnp.Core = function () {
 		for (var e in t.members)
 			this.engine2D.coherenceControl(t.members[e])
 	}, C.prototype._loadStructure = function (t, e) {
-		this.structure.deserialize("string" == typeof t ? t : JSON.stringify(t)), ujs.notify("wnp.core.structure.loaded");
+		this.structure.deserialize("string" == typeof t ? t : JSON.stringify(t)), ujs.notify("hcs.core.structure.loaded");
 		var e = e || function () {
 		};
 		e.call(this), this.engine2D.requestCompute()
 	}, C.prototype._clearLocaleStructure = function () {
-		var t = wnpLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
-		null != t && wnpLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), this.structure.clear()
+		var t = hcsLocalStorage.getItem(this.LOCAL_STORAGE_STRUCTURE_KEY);
+		null != t && hcsLocalStorage.removeItem(this.LOCAL_STORAGE_STRUCTURE_KEY), this.structure.clear()
 	}, C.prototype._createDefaultStructure = function () {
 		this.addStrutureElement(new FloorStructure);
 		for (var t = this.structure.getCurrentStructure(), e = [new PolygonWall, new PolygonWall, new PolygonWall, new PolygonWall], n = [new BABYLON.Vector2(-515, 0), new BABYLON.Vector2(0, 415), new BABYLON.Vector2(515, 0), new BABYLON.Vector2(0, -415)], i = 0; i < e.length; i++) {
@@ -15976,16 +15982,16 @@ wnp.Core = function () {
 			e[i].translate(n[i]), t.insertElement("walls", e[i]), t.insertElement("points", e[i].getPoints(1))
 	}, C.prototype._loginIframe = function (t, e, n) {
 		var e = e || window.innerWidth / 2, n = n || window.innerHeight / 2;
-		wnp.UI.IFrame.show(document.body, { width: e, height: n, src: t }, { showClose: true })
+		hcs.UI.IFrame.show(document.body, { width: e, height: n, src: t }, { showClose: true })
 	}, C
 }();
 
-var wnp = window.wnp || {};
-wnp.Engine2D = function() {
+var hcs = window.hcs || {};
+hcs.Engine2D = function() {
     var t = function(t, e, n) {
         this.MODE_NORMAL = 1, this.MODE_DRAG = 2, this.MODE_DRAW = 4, this.MODE_CONTEXTMENU = 8, this.MODE_SUBSLOPE = 16, this._container = t, this.isViewer = "undefined" != typeof n ? n : !1, this.getContainer = function() {
             return this._container
-        }, this.canvas = document.createElement("canvas"), this.canvas.id = "canvas2d", this._container.appendChild(this.canvas), this.dynamicCanvas = document.createElement("canvas"), this.dynamicCanvas.id = "dynamiccanvas2d", this._container.appendChild(this.dynamicCanvas), this.symbols2D = new wnp.Symbols2D, this._core = e, this._components = new wnp.ComponentCollection(wanaplan), this._initialized = !1, this._enabled = !1, this._zoom = 1, this._translation = new BABYLON.Vector2, this._cursorIconCb = null, this._pointerManager = null, this._mode = this.MODE_NORMAL, this._lastMode = this.MODE_NORMAL, this._enableAutoScroll = !1, this._eventsCb = {
+        }, this.canvas = document.createElement("canvas"), this.canvas.id = "canvas2d", this._container.appendChild(this.canvas), this.dynamicCanvas = document.createElement("canvas"), this.dynamicCanvas.id = "dynamiccanvas2d", this._container.appendChild(this.dynamicCanvas), this.symbols2D = new hcs.Symbols2D, this._core = e, this._components = new hcs.ComponentCollection(hcsdesign), this._initialized = !1, this._enabled = !1, this._zoom = 1, this._translation = new BABYLON.Vector2, this._cursorIconCb = null, this._pointerManager = null, this._mode = this.MODE_NORMAL, this._lastMode = this.MODE_NORMAL, this._enableAutoScroll = !1, this._eventsCb = {
             click: [],
             "double-click": [],
             hover: [],
@@ -16004,18 +16010,18 @@ wnp.Engine2D = function() {
             "subslope-end": [],
             "enter-draw-zone": [],
             "leave-draw-zone": []
-        }, this._lastTargeted = null, this._isHover = !1, this._needStaticDraw = !0, this._needDynamicDraw = !0, this._menuIsVisible = !0, this._contextMenuCallback = null, this._contextMenuRmCallback = null, this._contextMenuTarget = null, document.addEventListener("wnp.engine2D.contextMenu.propertyChanged", this.onContextMenuPropertyChanged.bind(this), !1), document.addEventListener("wnp.engine2D.contextMenu.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("wnp.ui.frame.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("wnp.engine2D.contextMenu.remove", this.onContextMenuRemove.bind(this), !1), document.addEventListener("wnp.engine2D.contextMenu.debug", this.onContextMenuDebug.bind(this), !1)
+        }, this._lastTargeted = null, this._isHover = !1, this._needStaticDraw = !0, this._needDynamicDraw = !0, this._menuIsVisible = !0, this._contextMenuCallback = null, this._contextMenuRmCallback = null, this._contextMenuTarget = null, document.addEventListener("hcs.engine2D.contextMenu.propertyChanged", this.onContextMenuPropertyChanged.bind(this), !1), document.addEventListener("hcs.engine2D.contextMenu.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("hcs.ui.frame.close", this.onContextMenuClose.bind(this), !1), document.addEventListener("hcs.engine2D.contextMenu.remove", this.onContextMenuRemove.bind(this), !1), document.addEventListener("hcs.engine2D.contextMenu.debug", this.onContextMenuDebug.bind(this), !1)
     };
     return t.prototype.isEnabled = function() {
         return this._enabled
     }, t.prototype.setEnabled = function(t) {
         this._enabled = t;
         var e = "none";
-        t && (e = "block"), this.setMode(this.MODE_NORMAL), this._container.setAttribute("style", "display:" + e), this.requestStaticDraw(), ujs.notify("wnp.core.hideLoader")
+        t && (e = "block"), this.setMode(this.MODE_NORMAL), this._container.setAttribute("style", "display:" + e), this.requestStaticDraw(), ujs.notify("hcs.core.hideLoader")
     }, t.prototype.getZoom = function() {
         return this._zoom
     }, t.prototype.setZoom = function(t) {
-        this._zoom = t, this._zoom = this._zoom < .1 ? .1 : this._zoom, this._zoom = this._zoom > 5 ? 5 : this._zoom, this.requestStaticDraw(), ujs.notify("wnp.request.zoomUpdated")
+        this._zoom = t, this._zoom = this._zoom < .1 ? .1 : this._zoom, this._zoom = this._zoom > 5 ? 5 : this._zoom, this.requestStaticDraw(), ujs.notify("hcs.request.zoomUpdated")
     }, t.prototype.getTranslation = function() {
         return this._translation.clone()
     }, t.prototype.setTranslation = function(t) {
@@ -16058,14 +16064,14 @@ wnp.Engine2D = function() {
     }, t.prototype.setCursorIcon = function(t) {
         this._cursorIconCb = t, this.requestDynamicDraw()
     }, t.prototype.initialize = function() {
-        this._pointerManager = new wnp.PointerManager(this._core, this.onMouseEvent.bind(this), this.dynamicCanvas), this.dynamicCanvas.addEventListener("mouseout", function(t) {
+        this._pointerManager = new hcs.PointerManager(this._core, this.onMouseEvent.bind(this), this.dynamicCanvas), this.dynamicCanvas.addEventListener("mouseout", function(t) {
             this._callInOutDrawZoneCb("leave-draw-zone", t)
         }.bind(this), !1), this.dynamicCanvas.addEventListener("mousein", function(t) {
             this._callInOutDrawZoneCb("enter-draw-zone", t)
-        }.bind(this), !1), this.setTranslation(new BABYLON.Vector2((this._core.getWidth() - 260) / 2, this._core.getHeight() / 2)), this.resize(), this.initializeComponents(), this._initialized = !0, document.addEventListener("wnp.engine2D.requestCompute", function() {
+        }.bind(this), !1), this.setTranslation(new BABYLON.Vector2((this._core.getWidth() - 260) / 2, this._core.getHeight() / 2)), this.resize(), this.initializeComponents(), this._initialized = !0, document.addEventListener("hcs.engine2D.requestCompute", function() {
             this.requestCompute()
         }.bind(this), !1), window.setTimeout(function() {
-            this._core.helpBubbleManager.display("wnp.2d.wall-basics")
+            /*this._core.helpBubbleManager.display("hcs.2d.wall-basics")*/
         }.bind(this), 2e3)
     }, t.prototype.bestZoom = function(t, e) {
         var n = this.getBestZoomAttributes(t, e);
@@ -16108,14 +16114,14 @@ wnp.Engine2D = function() {
         var t = t === !0 ? !0 : !1;
         if (t)
             for (var e = 0; e < this._components.size(); e++)
-                for (var n = 0; n < wanaplan.structure.members.length; n++) {
-                    var i = wanaplan.structure.members[n];
+                for (var n = 0; n < hcsdesign.structure.members.length; n++) {
+                    var i = hcsdesign.structure.members[n];
                     this._components[e].update(i), i.tidy()
                 } else
-            this._components.update(), wanaplan.getSelectedStructure().tidy();
+            this._components.update(), hcsdesign.getSelectedStructure().tidy();
         this._autoScroll()
     }, t.prototype.draw = function() {
-        this.update(), wnp.AnimationHandler.Process(), this._needStaticDraw && (this._needStaticDraw = !1, this._callStaticDrawCb()), this._needDynamicDraw && (this._needDynamicDraw = !1, this._callDynamicDrawCb())
+        this.update(), hcs.AnimationHandler.Process(), this._needStaticDraw && (this._needStaticDraw = !1, this._callStaticDrawCb()), this._needDynamicDraw && (this._needDynamicDraw = !1, this._callDynamicDrawCb())
     }, t.prototype.registerEventCb = function(t, e, n, i, o, r, s) {
         var s = s || null;
         this.unregisterEventCb(t), this._eventsCb[n].push({
@@ -16169,7 +16175,7 @@ wnp.Engine2D = function() {
             a.eventParams = {
                 cast: a.cast || a.type,
                 property: a.name,
-                eventName: "wnp.engine2D.contextMenu.propertyChanged"
+                eventName: "hcs.engine2D.contextMenu.propertyChanged"
             }, r.push(a)
         }
         var l = [{
@@ -16179,19 +16185,19 @@ wnp.Engine2D = function() {
             h = [];
         window.WNP_DEBUG && h.push({
             label: "Debug",
-            action: "wnp.engine2D.contextMenu.debug"
+            action: "hcs.engine2D.contextMenu.debug"
         }), null != i && h.push({
             label: _("删除"),
-            action: "wnp.engine2D.contextMenu.remove",
+            action: "hcs.engine2D.contextMenu.remove",
             "class": "remove"
         }), h.push({
             label: _("确定"),
-            action: "wnp.engine2D.contextMenu.close"
+            action: "hcs.engine2D.contextMenu.close"
         }), this._callMouseEventCb("leave", e, {}, o), this.requestStaticDraw(), this.setMode(this.MODE_CONTEXTMENU);
         var c = (o.prevButtons & o.BUTTON_LEFT) > 0 ? 200 : 0,
             u = this._enabled ? o.pos.x + 2 : this._core.getWidth() / 2,
             p = this._enabled ? o.pos.y + 2 : 100;
-        wnp.UI.ContextMenu.show({
+        hcs.UI.ContextMenu.show({
             title: _("设置"),
             x: u,
             y: p
@@ -16210,7 +16216,7 @@ wnp.Engine2D = function() {
         e != i && (h = !0);
         var c = !1;
         if (null != r && (c = !0), h)
-            if ((e & this.MODE_DRAW) > 0 && 0 == (i & this.MODE_DRAG) ? this._callDrawEndCb() : (n & this.MODE_DRAW) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_DRAW | this.MODE_DRAG)) && this._callDrawEndCb(), (e & this.MODE_SUBSLOPE) > 0 && 0 == (i & this.MODE_DRAG) ? this._callSubslopeEndCb() : (n & this.MODE_SUBSLOPE) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_SUBSLOPE | this.MODE_DRAG | this.MODE_CONTEXTMENU)) && this._callSubslopeEndCb(), (e & this.MODE_CONTEXTMENU) > 0 && 0 == (i & this.MODE_CONTEXTMENU) ? (wnp.UI.ContextMenu.close(), this.requestCompute(), this._core.keyboardManager.preventDefault = !0) : (i & this.MODE_CONTEXTMENU) > 0 && (this._core.keyboardManager.preventDefault = !1), (e & this.MODE_DRAG) > 0 && 0 == (i & this.MODE_DRAG))
+            if ((e & this.MODE_DRAW) > 0 && 0 == (i & this.MODE_DRAG) ? this._callDrawEndCb() : (n & this.MODE_DRAW) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_DRAW | this.MODE_DRAG)) && this._callDrawEndCb(), (e & this.MODE_SUBSLOPE) > 0 && 0 == (i & this.MODE_DRAG) ? this._callSubslopeEndCb() : (n & this.MODE_SUBSLOPE) > 0 && (e & this.MODE_DRAG) > 0 && 0 == (i & (this.MODE_SUBSLOPE | this.MODE_DRAG | this.MODE_CONTEXTMENU)) && this._callSubslopeEndCb(), (e & this.MODE_CONTEXTMENU) > 0 && 0 == (i & this.MODE_CONTEXTMENU) ? (hcs.UI.ContextMenu.close(), this.requestCompute(), this._core.keyboardManager.preventDefault = !0) : (i & this.MODE_CONTEXTMENU) > 0 && (this._core.keyboardManager.preventDefault = !1), (e & this.MODE_DRAG) > 0 && 0 == (i & this.MODE_DRAG))
                 (o.actions & o.ACTION_DRAGGING) > 0 && (this._pointerManager.reset(), this._callMouseEventCb("drag-end", a, s, o, this.MODE_DRAG)), this._eventsCb.dragging.length = 0, this._eventsCb["drag-end"].length = 0;
             else if ((e & this.MODE_DRAW) > 0 && 0 == (i & (this.MODE_DRAG | this.MODE_DRAW)))
             for (var u in this._eventsCb)
@@ -16245,7 +16251,7 @@ wnp.Engine2D = function() {
                 default:
                     this._callMouseEventCb(r, a, s, o, e)
             }
-            (e & (this.MODE_NORMAL | this.MODE_CONTEXTMENU)) > 0 && this.setEnableAutoScroll(!1), c && (e & this.MODE_CONTEXTMENU) > 0 && ("click" == r || "double-click" == r ? (i = n, this.setMode(i)) : "drag-start" == r && (i = n, this.setMode(i), t.evName = "drag-start", t.target = this.getTarget(o), this._stateMachine(t))), a != l && 0 == (e & this.MODE_CONTEXTMENU) ? (null != l && this._callMouseEventCb("leave", l, s, o, e), null != a && this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (e & this.MODE_CONTEXTMENU) ? null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (i & this.MODE_CONTEXTMENU) && null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)), e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_SUBSLOPE) > 1 ? this._core.helpBubbleManager.display("wnp.2d.subslope") : e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_DRAW) > 1 || e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && 0 == (i & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && this._core.helpBubbleManager.helpBubble.hide()
+            (e & (this.MODE_NORMAL | this.MODE_CONTEXTMENU)) > 0 && this.setEnableAutoScroll(!1), c && (e & this.MODE_CONTEXTMENU) > 0 && ("click" == r || "double-click" == r ? (i = n, this.setMode(i)) : "drag-start" == r && (i = n, this.setMode(i), t.evName = "drag-start", t.target = this.getTarget(o), this._stateMachine(t))), a != l && 0 == (e & this.MODE_CONTEXTMENU) ? (null != l && this._callMouseEventCb("leave", l, s, o, e), null != a && this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (e & this.MODE_CONTEXTMENU) ? null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)) : e != i && 0 == (i & this.MODE_CONTEXTMENU) && null != a && (this._callMouseEventCb("leave", a, s, o, e), this._callMouseEventCb("hover", a, s, o, i)), e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_SUBSLOPE) > 1 &&/*? *this._core.helpBubbleManager.display("hcs.2d.subslope") :*/ e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && (i & this.MODE_DRAW) > 1 || e != i && 0 == (e & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) && 0 == (i & (this.MODE_DRAG | this.MODE_CONTEXTMENU)) /*&& this._core.helpBubbleManager.helpBubble.hide()*/
     }, t.prototype._callMouseEventCb = function(t, e, n, i, o) {
         if (void 0 != t) {
             var e = e;
@@ -16323,125 +16329,218 @@ wnp.Engine2D = function() {
         console.debug(this._contextMenuTarget)
     }, t
 }();
-var wnp = window.wnp || {};
-wnp.Engine3D = function() {
-    var t, e = function(e, n, i) {
-        this._initialized = !1, this._components = new wnp.ComponentCollection(wanaplan), this.hardwareScaling = 1, this.contextLostCount = 0, this.MAX_CONTEXT_LOST = 5, this.MODE_NORMAL = 1, this.MODE_DRAG = 2, this.MODE_PAINT = 4, this.MODE_CONTEXTMENU = 8, this.mode = this.MODE_NORMAL, this.container = e, this.canvas = document.createElement("canvas"), e.appendChild(this.canvas), this.canvas.width = wanaplan.getWidth(), this.canvas.height = wanaplan.getHeight();
-        var o = wanaplan.configuration && wanaplan.configuration.useAntialiasing === !1 ? !1 : !0;
-        this.engine = new BABYLON.Engine(this.canvas, o), this.scene = new BABYLON.Scene(this.engine), this.scene.ambientColor = new BABYLON.Color3(1, 1, 1), this.scene.clearColor.copyFromFloats(.96, .96, .96), this.shadowGenerator = null, this.worldPlane = new BABYLON.Plane(0, 1, 0, 0), this.enabled = !1, this.viewInitialized = !1, this.isViewer = "undefined" != typeof i ? i : !1, this.canvas.addEventListener("webglcontextlost", this.onContextLost.bind(this), !1), this.canvas.addEventListener("webglcontextrestored", this.onContextRestored.bind(this), !1), this.canDraw = !0, t = this, n || (this.structure = wanaplan.structure, this.materialFactory = new wnp.MaterialFactory(wanaplan.configuration), this.cameraFeatures = new wnp.CameraFeatures, this.pointerManager = new wnp.PointerManager(wanaplan, this.onMouseEvent.bind(this), this.canvas), this.pointerManager.touchManager.setDeadZone(1), this.keyboardManager = wanaplan.keyboardManager, this.stats = new Stats, this.stats.domElement.style.position = "absolute", this.stats.domElement.style.bottom = "28px", this.stats.domElement.style.left = "0px", this.stats.domElement.style.zIndex = "99999", this.stats.domElement.style.display = "none", wanaplan.configuration.useStats && (this.stats.active = !0), document.body.appendChild(this.stats.domElement), document.addEventListener("wnp.engine3D.stats.activeChanged", function(e) {
-            t.stats.active = e.value, t.stats.domElement.style.display = e.value ? "block" : "none", wanaplan.configuration.useStats = e.value ? !0 : !1, wanaplan.configuration.saveConfiguration()
-        }, !1), document.addEventListener("wnp.engine3D.refreshGL", function() {
+/*
+ * Author：虞思源
+ * 
+ * 提供3D引擎接口
+ * 参数container为html元素，会创建canvas
+ * initialize后draw
+ *
+ */
+var hcs = window.hcs || {};
+hcs.Engine3D = function() {
+    var Engine3D,
+	engine = function(container, structure, viewer) {
+		this._initialized = !1, 
+		this._components = new hcs.ComponentCollection(hcsdesign), 
+		this.hardwareScaling = 1, 
+		this.contextLostCount = 0, 
+		this.MAX_CONTEXT_LOST = 5, 
+		this.MODE_NORMAL = 1, 
+		this.MODE_DRAG = 2, 
+		this.MODE_PAINT = 4, 
+		this.MODE_CONTEXTMENU = 8, 
+		this.mode = this.MODE_NORMAL, 
+		this.container = container, 
+		this.canvas = document.createElement("canvas"), 
+		//创建canvas
+		container.appendChild(this.canvas), 
+		this.canvas.width = hcsdesign.getWidth(), 
+		this.canvas.height = hcsdesign.getHeight();
+		//设置长宽高
+        var o = hcsdesign.configuration && hcsdesign.configuration.useAntialiasing === !1 ? !1 : !0;
+        this.engine = new BABYLON.Engine(this.canvas, o), 
+		this.scene = new BABYLON.Scene(this.engine), 
+		this.scene.ambientColor = new BABYLON.Color3(1, 1, 1), 
+		this.scene.clearColor.copyFromFloats(.96, .96, .96), 
+		this.shadowGenerator = null, 
+		this.worldPlane = new BABYLON.Plane(0, 1, 0, 0), 
+		//调用babylon
+		this.enabled = !1, this.viewInitialized = !1, 
+		this.isViewer = "undefined" != typeof viewer ? viewer : !1, 
+		this.canvas.addEventListener("webglcontextlost", this.onContextLost.bind(this), !1), 
+		this.canvas.addEventListener("webglcontextrestored", this.onContextRestored.bind(this), !1), 
+		this.canDraw = !0, 
+		Engine3D = this,
+		structure || (this.structure = hcsdesign.structure, 
+		this.materialFactory = new hcs.MaterialFactory(hcsdesign.configuration), 
+		//新建材质工厂
+		this.cameraFeatures = new hcs.CameraFeatures, 
+		//新建摄像头
+		this.pointerManager = new hcs.PointerManager(hcsdesign, this.onMouseEvent.bind(this), this.canvas), 
+		//新建鼠标管理
+		this.pointerManager.touchManager.setDeadZone(1), 
+		this.keyboardManager = hcsdesign.keyboardManager, 
+		this.stats = new Stats, 
+		this.stats.domElement.style.position = "absolute", 
+		this.stats.domElement.style.bottom = "28px", 
+		this.stats.domElement.style.left = "0px", 
+		this.stats.domElement.style.zIndex = "99999", 
+		this.stats.domElement.style.display = "none", 
+		hcsdesign.configuration.useStats && (this.stats.active = !0), 
+		document.body.appendChild(this.stats.domElement), 
+		document.addEventListener("hcs.engine3D.stats.activeChanged", function(container) {
+            Engine3D.stats.active = container.value, Engine3D.stats.domElement.style.display = container.value ? "block" : "none", hcsdesign.configuration.useStats = container.value ? !0 : !1, hcsdesign.configuration.saveConfiguration()
+        }, !1), 
+		document.addEventListener("hcs.engine3D.refreshGL", function() {
             var t = location.hash.replace("#", ""),
-                e = atob(t),
-                n = btoa(e.replace("&planUrl=:new", "&planUrl"));
-            location.hash = n, window.location.reload(!0)
-        }, !1), document.addEventListener("wnp.engine3D.showProducts", function(t) {
-            var e = t.translations ? _(t.categoryName, t.translations) : _(t.categoryName);
-            wnp.UI.ProductList.show(wanaplan, wanaplan.version, {
+                container = atob(t),
+                structure = btoa(container.replace("&planUrl=:new", "&planUrl"));
+            location.hash = structure, window.location.reload(!0)
+        }, !1), 
+		document.addEventListener("hcs.engine3D.showProducts", function(t) {
+            var container = t.translations ? _(t.categoryName, t.translations) : _(t.categoryName);
+            hcs.UI.ProductList.show(hcsdesign, hcsdesign.version, {
                 id: t.categoryId,
                 filter: t.categoryFilter,
-                name: e
+                name: container
             })
-        }, !1), this.isViewer || (document.addEventListener("wnp.engine3D.click", t.onClick, !1), document.addEventListener("wnp.engine3D.double-click", t.onDoubleClick, !1), document.addEventListener("pointerdown", t.onMouseDown, !1)), document.addEventListener("wnp.engine3d.wallsReady", this.onWallsReady, !1)), this.getContainer = function() {
+        }, !1), 
+		this.isViewer || (document.addEventListener("hcs.engine3D.click", Engine3D.onClick, !1),
+		document.addEventListener("hcs.engine3D.double-click", Engine3D.onDoubleClick, !1),
+		document.addEventListener("pointerdown", Engine3D.onMouseDown, !1)),
+		document.addEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1)), 
+		//绑定事件
+		this.getContainer = function() {
             return this.container
         }
     };
-    return e.prototype.collideWithMeshes = function(e, n, i) {
-        var o = t.scene.createPickingRay(e, n),
-            r = o.intersectMeshes(i, !0, !0);
+    return engine.prototype.collideWithMeshes = function(engine, scene, mesh) {
+        var o = Engine3D.scene.createPickingRay(engine, scene),
+            r = o.intersectMeshes(mesh, !0, !0);
         return r
-    }, e.prototype.castShadows = function(t) {
-        var e = this.shadowGenerator ? this.shadowGenerator.getShadowMap() : null;
-        if (e) {
-            e.renderList.push(t);
-            var n = t.onDispose;
-            t.onDispose = n ? function() {
-                n(), wanaplan.engine3D.unCastShadows(t)
+    }, //碰撞检测
+	engine.prototype.castShadows = function(model) {
+        var engine = this.shadowGenerator ? this.shadowGenerator.getShadowMap() : null;
+        if (engine) {
+            engine.renderList.push(model);
+            var tmp = model.onDispose;
+            model.onDispose = tmp ? function() {
+                tmp(), hcsdesign.engine3D.unCastShadows(model)
             } : function() {
-                wanaplan.engine3D.unCastShadows(t)
+                hcsdesign.engine3D.unCastShadows(model)
             }
         }
-    }, e.prototype.unCastShadows = function(t) {
-        this.shadowGenerator.getShadowMap().renderList.splice(this.shadowGenerator.getShadowMap().renderList.indexOf(t), 1)
-    }, e.prototype.reinitializeEngine = function() {
+    }, //设置光影效果
+	engine.prototype.unCastShadows = function(model) {
+        this.shadowGenerator.getShadowMap().renderList.splice(this.shadowGenerator.getShadowMap().renderList.indexOf(model), 1)
+    }, 
+	engine.prototype.reinitializeEngine = function() {
         if (!GlobalHelper.isMobileDevice() || "Firefox" !== BrowserDetect.browser)
             if (this.contextLostCount < this.MAX_CONTEXT_LOST)
                 this.contextLostCount++;
             else {
-                var t = wanaplan.engine2D.searchComponent("PedagoComponent"),
-                    e = GlobalHelper.isMobileDevice() ? "mobile" : "no-webgl";
-                t ? t.redirectToPage(e) : window.location.href = ["js/Components/PedagoComponent/pedago/pages/", e, ".php"].join("")
+                var t = hcsdesign.engine2D.searchComponent("PedagoComponent"),
+                    engine = GlobalHelper.isMobileDevice() ? "mobile" : "no-webgl";
+                t ? t.redirectToPage(engine) : window.location.href = ["js/Components/PedagoComponent/pedago/pages/", engine, ".php"].join("")
             }
-    }, e.prototype.setEnabled = function(t) {
+    }, 
+	engine.prototype.setEnabled = function(t) {
         this.enabled = t;
-        var e = this.enabled ? "block" : "none";
-        this.container.setAttribute("style", "display:" + e), this.isViewer || (this.stats.domElement.style.display = this.stats.active && this.enabled ? "block" : "none")
-    }, e.prototype.setInitialView = function() {
+        var engine = this.enabled ? "block" : "none";
+        this.container.setAttribute("style", "display:" + engine), this.isViewer || (this.stats.domElement.style.display = this.stats.active && this.enabled ? "block" : "none")
+    }, 
+	engine.prototype.setInitialView = function() {
         if (!this.viewInitialized) {
-            var t, e = this.scene.getMeshByName("WallMesh_0");
-            t = e ? this.cameraFeatures.getBestFocusRadius(e, wanaplan.engine3D.camera, wanaplan.engine3D.scene) : 500, wanaplan.engine3D.camera.radius = t, wanaplan.engine3D.camera.alpha = -120 / 180 * Math.PI, wanaplan.engine3D.camera.beta = 60 / 180 * Math.PI, this.viewInitialized = !0
+            var t, engine = this.scene.getMeshByName("WallMesh_0");
+            t = engine ? this.cameraFeatures.getBestFocusRadius(engine, hcsdesign.engine3D.camera, hcsdesign.engine3D.scene) : 500, hcsdesign.engine3D.camera.radius = t, hcsdesign.engine3D.camera.alpha = -120 / 180 * Math.PI, hcsdesign.engine3D.camera.beta = 60 / 180 * Math.PI, this.viewInitialized = !0
         }
-    }, e.prototype.requestCompute = function() {
+    }, 
+	engine.prototype.requestCompute = function() {
         for (var t = 0; t < this._components.size(); t++)
             this._components[t].compute()
-    }, e.prototype.addComponent = function(t) {
+    },//2D转3D
+	engine.prototype.addComponent = function(t) {
         return this._components.addComponent(t)
-    }, e.prototype.addInstancedComponent = function(t) {
+    }, 
+	engine.prototype.addInstancedComponent = function(t) {
         return this._components.addInstancedComponent(t)
-    }, e.prototype.getComponent = function(t) {
+    }, 
+	engine.prototype.getComponent = function(t) {
         return this._components.getComponent(t)
-    }, e.prototype.searchComponent = function(t) {
+    }, 
+	engine.prototype.searchComponent = function(t) {
         return this._components.getComponent(t)
-    }, e.prototype.removeComponent = function(t, e) {
-        this._components.removeComponent(t, e)
-    }, e.prototype.removeComponentByName = function(t) {
+    },
+	engine.prototype.removeComponent = function(t, engine) {
+        this._components.removeComponent(t, engine)
+    }, 
+	engine.prototype.removeComponentByName = function(t) {
         return this._components.removeComponent(t, !0)
-    }, e.prototype.clearComponents = function() {
+    }, 
+	engine.prototype.clearComponents = function() {
         this._components.clear()
-    }, e.prototype.collideWithScene = function(e, n) {
-        var i = t.scene.createPickingRay(e, n),
-            o = i.intersectMeshes(t.scene.meshes, !0, !0);
+    }, 
+	//组件的增删改查
+	engine.prototype.collideWithScene = function(engine, n) {
+        var i = Engine3D.scene.createPickingRay(engine, n),
+            o = i.intersectMeshes(Engine3D.scene.meshes, !0, !0);
         return o
-    }, e.prototype.projectMouseOnGround = function(e, n) {
+    }, 
+	engine.prototype.projectMouseOnGround = function(engine, n) {
         var i, o;
-        if (void 0 === e) {
+        if (void 0 === engine) {
             var r = this.pointerManager.getStatus();
             i = r.pos.x, o = r.pos.y
         } else
-            i = e, o = n;
-        var s = t.scene.createPickingRay(i, o);
+            i = engine, o = n;
+        var s = Engine3D.scene.createPickingRay(i, o);
         return s.intersectPlane(this.worldPlane)
-    }, e.prototype.projectMouseOnPlane = function(e, n, i) {
+    }, 
+	engine.prototype.projectMouseOnPlane = function(engine, n, i) {
         var o = this.pointerManager.getStatus(),
             n = void 0 !== n ? n : o.pos.x,
             i = void 0 !== i ? i : o.pos.y,
-            r = t.scene.createPickingRay(n, i);
-        return r.intersectPlane(e)
-    }, e.prototype.onClick = function(e) {
-        e.collided = t.collideWithScene(e.mstate.pos.x, e.mstate.pos.y), ujs.notify("wnp.engine3D.click.collided", e)
-    }, e.prototype.onDoubleClick = function(e) {
-        e.collided = t.collideWithScene(e.mstate.pos.x, e.mstate.pos.y), ujs.notify("wnp.engine3D.dblclick.collided", e)
-    }, e.prototype.onMouseEvent = function(t, e) {
+            r = Engine3D.scene.createPickingRay(n, i);
+        return r.intersectPlane(engine)
+    }, 
+	engine.prototype.onClick = function(engine) {
+        engine.collided = Engine3D.collideWithScene(engine.mstate.pos.x, engine.mstate.pos.y), ujs.notify("hcs.engine3D.click.collided", engine)
+    }, 
+	engine.prototype.onDoubleClick = function(engine) {
+        engine.collided = Engine3D.collideWithScene(engine.mstate.pos.x, engine.mstate.pos.y), ujs.notify("hcs.engine3D.dblclick.collided", engine)
+    }, 
+	engine.prototype.onMouseEvent = function(t, engine) {
         var n = !1;
-        1 != this.hardwareScaling && (e.pos.scaleInPlace(this.hardwareScaling), e.posDelta.scaleInPlace(this.hardwareScaling), e.planPos.scaleInPlace(this.hardwareScaling), e.plan3DPos.scaleInPlace(this.hardwareScaling)), e.actions > 0 ? (e.actions & e.ACTION_CLICK) > 0 ? n = "click" : (e.actions & e.ACTION_DBLCLICK) > 0 ? n = "double-click" : (e.actions & e.ACTION_DRAGSTART) > 0 && this._mode != this.MODE_DRAG ? n = "drag-start" : (e.actions & e.ACTION_DRAGGING) > 0 ? n = "dragging" : (e.actions & e.ACTION_DRAGEND) > 0 ? n = "drag-end" : (e.actions & e.ACTION_SCROLLUP) > 0 ? n = "zoom-in" : (e.actions & e.ACTION_SCROLLDOWN) > 0 && (n = "zoom-out") : (0 != e.posDelta.x || 0 != e.posDelta.y) && (n = "mouse-move"), n && (t.mstate = e, ujs.notify("wnp.engine3D." + n, t))
-    }, e.prototype.resize = function() {
-        this.canvas.width = wanaplan.getWidth() * this.hardwareScaling, this.canvas.height = wanaplan.getHeight() * this.hardwareScaling, this.engine.setViewport(this.camera.viewport, wanaplan.getWidth(), wanaplan.getHeight())
-    }, e.prototype.onContextLost = function(t) {
-        t.preventDefault(), wanaplan.setSelectedEngine(wanaplan.ENGINE_2D)
-    }, e.prototype.onContextRestored = function(t) {
+        1 != this.hardwareScaling && (engine.pos.scaleInPlace(this.hardwareScaling), engine.posDelta.scaleInPlace(this.hardwareScaling), engine.planPos.scaleInPlace(this.hardwareScaling), engine.plan3DPos.scaleInPlace(this.hardwareScaling)), engine.actions > 0 ? (engine.actions & engine.ACTION_CLICK) > 0 ? n = "click" : (engine.actions & engine.ACTION_DBLCLICK) > 0 ? n = "double-click" : (engine.actions & engine.ACTION_DRAGSTART) > 0 && this._mode != this.MODE_DRAG ? n = "drag-start" : (engine.actions & engine.ACTION_DRAGGING) > 0 ? n = "dragging" : (engine.actions & engine.ACTION_DRAGEND) > 0 ? n = "drag-end" : (engine.actions & engine.ACTION_SCROLLUP) > 0 ? n = "zoom-in" : (engine.actions & engine.ACTION_SCROLLDOWN) > 0 && (n = "zoom-out") : (0 != engine.posDelta.x || 0 != engine.posDelta.y) && (n = "mouse-move"), n && (t.mstate = engine, ujs.notify("hcs.engine3D." + n, t))
+    },
+	engine.prototype.resize = function() {
+        this.canvas.width = hcsdesign.getWidth() * this.hardwareScaling, this.canvas.height = hcsdesign.getHeight() * this.hardwareScaling, this.engine.setViewport(this.camera.viewport, hcsdesign.getWidth(), hcsdesign.getHeight())
+    }, 
+	engine.prototype.onContextLost = function(t) {
+        t.preventDefault(), hcsdesign.setSelectedEngine(hcsdesign.ENGINE_2D)
+    }, 
+	engine.prototype.onContextRestored = function(t) {
         t.preventDefault(), this.reinitializeEngine()
-    }, e.prototype.onWallsReady = function() {
-        t.setInitialView()
-    }, e.prototype.initialize = function() {
-        wanaplan.configuration.useMultiTexturing || (BABYLON.StandardMaterial.SpecularTextureEnabled = !1, BABYLON.StandardMaterial.BumpTextureEnabled = !1, BABYLON.StandardMaterial.ReflectionTextureEnabled = !1), this._components.initialize(), this._initialized = !0
-    }, e.prototype.update = function(t) {
+    }, 
+	engine.prototype.onWallsReady = function() {
+        Engine3D.setInitialView()
+    }, 
+	//相关事件的响应
+	engine.prototype.initialize = function() {
+        hcsdesign.configuration.useMultiTexturing || (BABYLON.StandardMaterial.SpecularTextureEnabled = !1, BABYLON.StandardMaterial.BumpTextureEnabled = !1, BABYLON.StandardMaterial.ReflectionTextureEnabled = !1), this._components.initialize(), this._initialized = !0
+    }, 
+	engine.prototype.update = function(t) {
         this._components.checkDirtyComponents(), this._components.checkDirtyComponents();
-        for (var e = 0; e < this._components.size(); e++)
-            this._components[e].enabled && this._components[e].update(t);
+        for (var engine = 0; engine < this._components.size(); engine++)
+            this._components[engine].enabled && this._components[engine].update(t);
         this.stats.active && this.stats.update(), this.keyboardManager.isPressed("27") && (this.mode = this.MODE_NORMAL)
-    }, e.prototype.draw = function() {
+    }, 
+	engine.prototype.draw = function() {
         this.canDraw && (this.engine.beginFrame(), this.scene.render(), this.engine.endFrame())
-    }, e
+    }, 
+	//绘制函数，要在主循环调用
+	engine
 }();
 var __extends = this.__extends || function (t, e) {
     function n() {
@@ -16451,7 +16550,7 @@ var __extends = this.__extends || function (t, e) {
         e.hasOwnProperty(i) && (t[i] = e[i]);
     n.prototype = e.prototype, t.prototype = new n
 },
-    wnp;
+    hcs;
 !function (t) {
     var e = function (t) {
         function e(e, n) {
@@ -16581,11 +16680,11 @@ var __extends = this.__extends || function (t, e) {
         }, e
     } (BABYLON.Material);
     t.StandardMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
-            t.call(this, e, n), this.params = i || {}, this.params.diffuseTexture && (this.diffuseTexture = this.params.diffuseTexture instanceof BABYLON.Texture ? this.params.diffuseTexture : new BABYLON.Texture(this.params.diffuseTexture, wanaplan.engine3D.scene), this.bumpTexture = null), this.params.bumpTexture && (this.bumpTexture = this.params.bumpTexture instanceof BABYLON.Texture ? this.params.bumpTexture : new BABYLON.Texture(this.params.bumpTexture, wanaplan.engine3D.scene)), this.category = -1, this._shaderName = "textured"
+            t.call(this, e, n), this.params = i || {}, this.params.diffuseTexture && (this.diffuseTexture = this.params.diffuseTexture instanceof BABYLON.Texture ? this.params.diffuseTexture : new BABYLON.Texture(this.params.diffuseTexture, hcsdesign.engine3D.scene), this.bumpTexture = null), this.params.bumpTexture && (this.bumpTexture = this.params.bumpTexture instanceof BABYLON.Texture ? this.params.bumpTexture : new BABYLON.Texture(this.params.bumpTexture, hcsdesign.engine3D.scene)), this.category = -1, this._shaderName = "textured"
         }
         return __extends(e, t), e.prototype.build = function () {
             this.uv(), this.normal(), this.diffuse(), this.light(), this.setAlpha()
@@ -16594,7 +16693,7 @@ function (t) {
         }, e
     } (t.StandardMaterial);
     t.TexturedMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
@@ -16611,7 +16710,7 @@ function (t) {
         }, n
     } (t.StandardMaterial);
     t.MetalMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
@@ -16624,16 +16723,16 @@ function (t) {
         return __extends(n, e), n
     } (t.MetalMaterial);
     t.GlassMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
-            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.woodTextures.diffuse, wanaplan.engine3D.scene)), this.category = 1, this.setCustomDefines(["#define WOOD"])
+            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.woodTextures.diffuse, hcsdesign.engine3D.scene)), this.category = 1, this.setCustomDefines(["#define WOOD"])
         }
         return __extends(n, e), n
     } (t.TexturedMaterial);
     t.WoodMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -16642,7 +16741,7 @@ function (t) {
         return __extends(e, t), e
     } (t.TexturedMaterial);
     t.LeatherMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -16657,7 +16756,7 @@ function (t) {
         }, e
     } (t.StandardMaterial);
     t.WhiteMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -16668,7 +16767,7 @@ function (t) {
         }, e
     } (t.WhiteMaterial);
     t.PlasticMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (t) {
         function e(e, n, i) {
@@ -16677,70 +16776,70 @@ function (t) {
         return __extends(e, t), e
     } (t.TexturedMaterial);
     t.TileMaterial = e
-} (wnp || (wnp = {})),
+} (hcs || (hcs = {})),
 function (t) {
     var e = function (e) {
         function n(n, i, o) {
-            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.firePlaceWood.diffuse, wanaplan.engine3D.scene)), this.category = 8, this.setCustomDefines(["#define MATT"])
+            e.call(this, n, i, o), this.params.diffuseTexture || (this.diffuseTexture = new BABYLON.Texture(t.Assets.firePlaceWood.diffuse, hcsdesign.engine3D.scene)), this.category = 8, this.setCustomDefines(["#define MATT"])
         }
         return __extends(n, e), n
     } (t.TexturedMaterial);
     t.MattMaterial = e
-} (wnp || (wnp = {}));
-var wnp = window.wnp || {};
+} (hcs || (hcs = {}));
+var hcs = window.hcs || {};
 !function () {
-    wnp.StandardMaterial.prototype.serialize = function (t) {
+    hcs.StandardMaterial.prototype.serialize = function (t) {
         if (this.isDefault)
             return null;
         var t = t || {};
         return t.class = {
-            name: wnp.StandardMaterial.GetClassFromCategory(this.category)
+            name: hcs.StandardMaterial.GetClassFromCategory(this.category)
         }, ujs.serializeObject(this, t, ["name", "backFaceCulling", "addColor", "params"]), t
-    }, wnp.StandardMaterial.prototype.deserialize = function (e) {
+    }, hcs.StandardMaterial.prototype.deserialize = function (e) {
         return e ? (ujs.deserializeObject(e, this, ["name", "backFaceCulling", "addColor"]), this.isDefault = !1, t(this), e.centroid && (this.centroid = e.centroid), e.side && (this.side = e.side), e.ambientColor && this.setBaseColor(ujs.deserializeObject(e.ambientColor)), e.emissiveColor && this.setBaseColor(ujs.deserializeObject(e.emissiveColor)), this) : null
-    }, wnp.StandardMaterial.Deserialize = function (t) {
+    }, hcs.StandardMaterial.Deserialize = function (t) {
         var e = {};
         ujs.deserializeObject(t.params, e);
         var n = ujs.stringToFunction(t.class.name),
-            i = new n(t.name, wanaplan.engine3D.scene, e);
+            i = new n(t.name, hcsdesign.engine3D.scene, e);
         return i.deserialize(t), i
-    }, wnp.StandardMaterial.GetClassFromCategory = function (t) {
+    }, hcs.StandardMaterial.GetClassFromCategory = function (t) {
         switch (t) {
             case -1:
-                return "wnp.StandardMaterial";
+                return "hcs.StandardMaterial";
             case 1:
-                return "wnp.WoodMaterial";
+                return "hcs.WoodMaterial";
             case 2:
-                return "wnp.MetalMaterial";
+                return "hcs.MetalMaterial";
             case 3:
-                return "wnp.GlassMaterial";
+                return "hcs.GlassMaterial";
             case 4:
-                return "wnp.LeatherMaterial";
+                return "hcs.LeatherMaterial";
             case 5:
-                return "wnp.WhiteMaterial";
+                return "hcs.WhiteMaterial";
             case 6:
-                return "wnp.PlasticMaterial";
+                return "hcs.PlasticMaterial";
             case 7:
-                return "wnp.TileMaterial";
+                return "hcs.TileMaterial";
             case 8:
-                return "wnp.MattMaterial";
+                return "hcs.MattMaterial";
             default:
-                return Logger.warning("Category Error (wnp.StandardMaterial)"), null
+                return Logger.warning("Category Error (hcs.StandardMaterial)"), null
         }
-    }, wnp.WoodMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.MetalMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.GlassMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.LeatherMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.WhiteMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.PlasticMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.TileMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.MattMaterial.Deserialize = wnp.StandardMaterial.Deserialize, wnp.TexturedMaterial.prototype.serialize = function () {
+    }, hcs.WoodMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.MetalMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.GlassMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.LeatherMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.WhiteMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.PlasticMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.TileMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.MattMaterial.Deserialize = hcs.StandardMaterial.Deserialize, hcs.TexturedMaterial.prototype.serialize = function () {
         if (1 == this.isDefault)
             return null;
         var t = {};
-        return wnp.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["diffuseTexture", "bumpTexture"]), t
-    }, wnp.TexturedMaterial.prototype.deserialize = function (t) {
-        return ujs.deserializeObject(t, this, ["diffuseTexture", "bumpTexture"]), wnp.StandardMaterial.prototype.deserialize.call(this, t), this
-    }, wnp.GlassMaterial.prototype.serialize = function () {
+        return hcs.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["diffuseTexture", "bumpTexture"]), t
+    }, hcs.TexturedMaterial.prototype.deserialize = function (t) {
+        return ujs.deserializeObject(t, this, ["diffuseTexture", "bumpTexture"]), hcs.StandardMaterial.prototype.deserialize.call(this, t), this
+    }, hcs.GlassMaterial.prototype.serialize = function () {
         if (1 == this.isDefault)
             return null;
         var t = {};
-        return wnp.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["alpha"]), t
-    }, wnp.GlassMaterial.prototype.deserialize = function (t) {
-        return ujs.deserializeObject(t, this, ["alpha"]), wnp.StandardMaterial.prototype.deserialize.call(this, t), this
+        return hcs.StandardMaterial.prototype.serialize.call(this, t), ujs.serializeObject(this, t, ["alpha"]), t
+    }, hcs.GlassMaterial.prototype.deserialize = function (t) {
+        return ujs.deserializeObject(t, this, ["alpha"]), hcs.StandardMaterial.prototype.deserialize.call(this, t), this
     }, BABYLON.StandardMaterial.prototype.serialize = function () {
         var t = BABYLON.Material.prototype.serialize.call(this);
         return t.class = {
@@ -16748,9 +16847,9 @@ var wnp = window.wnp || {};
         }, ujs.serializeObject(this, t, ["diffuseTexture", "ambientTexture", "opacityTexture", "reflectionTexture", "emissiveTexture", "specularTexture", "bumpTexture", "ambientColor", "diffuseColor", "specularColor", "specularPower", "emissiveColor", "addColor"]), t
     }, BABYLON.StandardMaterial.prototype.deserialize = function (e) {
         return BABYLON.Material.prototype.deserialize.call(this, e), ujs.deserializeObject(e, this, ["diffuseTexture", "ambientTexture", "opacityTexture", "reflectionTexture", "emissiveTexture", "specularTexture", "bumpTexture", "ambientColor", "diffuseColor", "specularColor", "specularPower", "emissiveColor", "addColor"]), t(this), this
-    }, wnp.BlackMaterial = wnp.WhiteMaterial, wnp.PolishedMaterial = wnp.WoodMaterial, wnp.LuxensMaterial = wnp.PlasticMaterial, wnp.TransparentMaterial = wnp.GlassMaterial;
+    }, hcs.BlackMaterial = hcs.WhiteMaterial, hcs.PolishedMaterial = hcs.WoodMaterial, hcs.LuxensMaterial = hcs.PlasticMaterial, hcs.TransparentMaterial = hcs.GlassMaterial;
     var t = function (t) {
-        if ((t instanceof wnp.GlassMaterial || t instanceof wnp.MetalMaterial) && t.addColor && t.addColor.color)
+        if ((t instanceof hcs.GlassMaterial || t instanceof hcs.MetalMaterial) && t.addColor && t.addColor.color)
             t.setBaseColor(t.addColor.color);
         else if (t.addColor && t.addColor.color && t.diffuseTexture && t.diffuseTexture.url) {
             t.addColor.size = t.addColor.size || {
@@ -16761,7 +16860,7 @@ var wnp = window.wnp || {};
             e.crossOrigin = "Anonymous";
             var n = t.addColor.color;
             e.src = t.diffuseTexture.url;
-            var i = new BABYLON.DynamicTexture("canvas", t.addColor.size.width, wanaplan.engine3D.scene, !0);
+            var i = new BABYLON.DynamicTexture("canvas", t.addColor.size.width, hcsdesign.engine3D.scene, !0);
             i.url = t.diffuseTexture.url;
             var o = {
                 u: t.diffuseTexture.uScale,
@@ -16769,7 +16868,7 @@ var wnp = window.wnp || {};
             };
             t.diffuseTexture = i, t.diffuseColor = new BABYLON.Color3(n.r, n.g, n.b).scale(.2), e.onload = function () {
                 var r = i.getContext();
-                r.fillStyle = wnp.MaterialFactory.rgbToHex(n), r.clearRect(0, 0, t.addColor.size.width, t.addColor.size.height), r.drawImage(e, 0, 0, t.addColor.size.width, t.addColor.size.height), r.globalCompositeOperation = "soft-light", r.globalCompositeOperation = "color-burn", r.globalCompositeOperation = "multiply", r.fillRect(0, 0, t.addColor.size.width, t.addColor.size.height), i.wrapU = BABYLON.Texture.WRAP_ADDRESSMODE, i.wrapV = BABYLON.Texture.WRAP_ADDRESSMODE, i.uScale = o.u || 1, i.vScale = o.v || 1, i.update()
+                r.fillStyle = hcs.MaterialFactory.rgbToHex(n), r.clearRect(0, 0, t.addColor.size.width, t.addColor.size.height), r.drawImage(e, 0, 0, t.addColor.size.width, t.addColor.size.height), r.globalCompositeOperation = "soft-light", r.globalCompositeOperation = "color-burn", r.globalCompositeOperation = "multiply", r.fillRect(0, 0, t.addColor.size.width, t.addColor.size.height), i.wrapU = BABYLON.Texture.WRAP_ADDRESSMODE, i.wrapV = BABYLON.Texture.WRAP_ADDRESSMODE, i.uScale = o.u || 1, i.vScale = o.v || 1, i.update()
             }
         }
     }
@@ -16812,7 +16911,7 @@ var BaseComponent2D = function() {
     var t = function(t, e) {
         this.core = t, this.name = e || "Component2D", this.structure = null, this.keyboard = null, this.priority = 42, this.enabled = !0;
         var n = this;
-        "undefined" != typeof t && (this.structure = this.core.structure, this.keyboardManager = this.core.keyboardManager, document.addEventListener("wnp.contextChanged", function(t) {
+        "undefined" != typeof t && (this.structure = this.core.structure, this.keyboardManager = this.core.keyboardManager, document.addEventListener("hcs.contextChanged", function(t) {
             n.enabled && t.context != t.previousContext && n.onContextChanged(t.context)
         }, !1))
     };
@@ -16833,9 +16932,9 @@ var BaseComponent3D = function() {
         if (this.core = t, this.engine3D = null, this.name = e || "Component3D", this.structure = null, this.keyboardManager = null, this.materialFactory = null, this.scene = null, this.draggableObjects = null, this.cameraController = null, this.cubeCameras = null, this.configuration = null, this.camera = null, this.enabled = !0, this.initialized = !1, "undefined" != typeof t) {
             this.name = e, this.engine3D = this.core.engine3D, this.structure = this.core.structure, this.keyboardManager = this.core.keyboardManager, this.configuration = this.core.configuration, this.scene = this.core.engine3D.scene, this.camera = this.core.engine3D.camera, this.cubeCameras = this.core.engine3D.cubeCameras, this.cameraController = this.core.engine3D.cameraController, this.materialFactory = this.core.engine3D.materialFactory;
             var n = this;
-            document.addEventListener("wnp.contextChanged", function(t) {
+            document.addEventListener("hcs.contextChanged", function(t) {
                 n.enabled && t.context != t.previousContext && n.onContextChanged(t.context)
-            }, !1), document.addEventListener("wnp.engine3D.forceReload", this.reloadConfiguration, !1)
+            }, !1), document.addEventListener("hcs.engine3D.forceReload", this.reloadConfiguration, !1)
         }
     };
     return t.prototype.initialize = function() {}, t.prototype.startListening = function() {}, t.prototype.stopListening = function() {}, t.prototype.onContextChanged = function(t) {
@@ -16846,7 +16945,7 @@ var BaseComponent3D = function() {
         this.enabled = !0
     }, t.prototype.update = function() {}, t.prototype.compute = function() {}, t.prototype.reloadConfiguration = function() {}, t.prototype.getFloor = function(t) {
         var e = this.core.getComponentByName("FloorComponent3D"),
-            t = t || wanaplan.getSelectedStructure();
+            t = t || hcsdesign.getSelectedStructure();
         return e.getFloor(t)
     }, t.prototype.getObjectStructure = function(t) {
         return Logger.warning("[BaseComponent3D] getObjectStructure - Fonction d��preci��e"), t.structure
@@ -16883,7 +16982,7 @@ var MainMenuComponent = function() {
             title: "房型设计",
             index: 1,
             icon: "",
-            action: "wnp.request.changeEngine",
+            action: "hcs.request.changeEngine",
             id: "draw2D",
             params: {
                 engine: "2D"
@@ -16895,7 +16994,7 @@ var MainMenuComponent = function() {
             title: "家具设计",
             index: 2,
             icon: "",
-            action: "wnp.request.changeEngine",
+            action: "hcs.request.changeEngine",
             id: "furnishing3D",
             context: "3D",
             params: {
@@ -16907,7 +17006,7 @@ var MainMenuComponent = function() {
             title: "装饰设计",
             index: 3,
             icon: "",
-            action: "wnp.request.changeEngine",
+            action: "hcs.request.changeEngine",
             id: "decorate3D",
             context: "3D",
             params: {
@@ -16917,10 +17016,10 @@ var MainMenuComponent = function() {
             items: []
         }*/],
         e = function(e) {
-            BaseComponent2D.call(this, e, "MainMenuComponent"), this.menu = new wnp.UI.Menu(t, "mainMenuTabs", {
+            BaseComponent2D.call(this, e, "MainMenuComponent"), this.menu = new hcs.UI.Menu(t, "mainMenuTabs", {
                 selected: t[0],
                 inception: !1
-            }), this.menu.initialize(), this.menuTitleDom = document.getElementById("mainMenuTitle"), this.menuTitleDom.innerHTML = _(this.menu.selected.title), this.submenu = new wnp.UI.Menu(t[0].items, "mainMenuContentList"), document.addEventListener("wnp.menu.main.add", this.addItem.bind(this), !1), document.addEventListener("wnp.menu.main.replace", this.replaceItem.bind(this), !1), document.addEventListener("wnp.menu.main.deselect", this.deselectItem.bind(this), !1), document.addEventListener("wnp.menu.main.remove", this.removeItem.bind(this), !1), document.addEventListener("wnp.request.changeEngine", this.onChangeEngine.bind(this), !1), document.addEventListener("wnp.menu.main.remove", this.removeItem.bind(this), !1)
+            }), this.menu.initialize(), this.menuTitleDom = document.getElementById("mainMenuTitle"), this.menuTitleDom.innerHTML = _(this.menu.selected.title), this.submenu = new hcs.UI.Menu(t[0].items, "mainMenuContentList"), document.addEventListener("hcs.menu.main.add", this.addItem.bind(this), !1), document.addEventListener("hcs.menu.main.replace", this.replaceItem.bind(this), !1), document.addEventListener("hcs.menu.main.deselect", this.deselectItem.bind(this), !1), document.addEventListener("hcs.menu.main.remove", this.removeItem.bind(this), !1), document.addEventListener("hcs.request.changeEngine", this.onChangeEngine.bind(this), !1), document.addEventListener("hcs.menu.main.remove", this.removeItem.bind(this), !1)
         };
     return e.prototype = new BaseComponent2D, e.prototype.onChangeEngine = function() {
         this.menuTitleDom.innerHTML = _(this.menu.selected.title), this.updateSubMenu()
@@ -16937,7 +17036,7 @@ var MainMenuComponent = function() {
             n = t.itemId || !1;
         this.submenu.selected.items && 0 != this.submenu.selected.items.length && this.submenu.selected.items != {} || this.submenu.deselect(e, n)
     }, e.prototype.updateSubMenu = function() {
-        this.menu.selected.items && (this.submenu = new wnp.UI.Menu(this.menu.selected.items, "mainMenuContentList"), this.submenu.initialize())
+        this.menu.selected.items && (this.submenu = new hcs.UI.Menu(this.menu.selected.items, "mainMenuContentList"), this.submenu.initialize())
     }, e.prototype.addItem = function(t) {
         if (t.item && t.menuPath) {
             var e = t.item,
@@ -16953,11 +17052,11 @@ var TopMenuComponent = function(t) {
     var e = [],
         n = [],
         i = function() {
-            BaseComponent2D.call(this, t, "TopMenuComponent"), this.menu = new wnp.UI.Menu(e, "toolbarMenu", {
+            BaseComponent2D.call(this, t, "TopMenuComponent"), this.menu = new hcs.UI.Menu(e, "toolbarMenu", {
                 oneClick: !0
-            }), this.submenu = new wnp.UI.Menu(n, "subMenuList", {
+            }), this.submenu = new hcs.UI.Menu(n, "subMenuList", {
                 oneClick: !0
-            }), document.addEventListener("wnp.menu.top.add", this.addItem.bind(this), !1), document.addEventListener("wnp.menu.top.delete", this.removeItem.bind(this), !1), document.addEventListener("wnp.menu.top.replace", this.replaceItem.bind(this), !1), document.addEventListener("wnp.menu.top.sub.add", this.addSubItem.bind(this), !1), document.addEventListener("wnp.menu.top.sub.delete", this.removeSubItem.bind(this), !1), document.addEventListener("wnp.menu.top.sub.replace", this.replaceSubItem.bind(this), !1), document.addEventListener("wnp.menu.top.deselect", this.deselectItem.bind(this), !1)
+            }), document.addEventListener("hcs.menu.top.add", this.addItem.bind(this), !1), document.addEventListener("hcs.menu.top.delete", this.removeItem.bind(this), !1), document.addEventListener("hcs.menu.top.replace", this.replaceItem.bind(this), !1), document.addEventListener("hcs.menu.top.sub.add", this.addSubItem.bind(this), !1), document.addEventListener("hcs.menu.top.sub.delete", this.removeSubItem.bind(this), !1), document.addEventListener("hcs.menu.top.sub.replace", this.replaceSubItem.bind(this), !1), document.addEventListener("hcs.menu.top.deselect", this.deselectItem.bind(this), !1)
         };
     return i.prototype = Object.create(BaseComponent2D.prototype), i.prototype._addItem = function(t, e) {
         if (e.item && e.menuPath) {
@@ -16995,12 +17094,12 @@ var BaseTopMenuComponent2D = function() {
         BaseComponent2D.call(this, t, e), this._topMenuComponent = null, this._item = {}, this.isMainMenuItem = !0
     };
     return t.prototype = Object.create(BaseComponent2D.prototype), t.prototype.initialize = function() {
-        BaseComponent2D.prototype.initialize.call(this), ujs.notify(this.isMainMenuItem ? "wnp.menu.top.add" : "wnp.menu.top.sub.add", {
+        BaseComponent2D.prototype.initialize.call(this), ujs.notify(this.isMainMenuItem ? "hcs.menu.top.add" : "hcs.menu.top.sub.add", {
             item: this._item,
             menuPath: "."
         })
     }, t.prototype.destroy = function() {
-        BaseComponent2D.prototype.destroy.call(this), ujs.notify(this.isMainMenuItem ? "wnp.menu.top.delete" : "wnp.menu.top.sub.delete", {
+        BaseComponent2D.prototype.destroy.call(this), ujs.notify(this.isMainMenuItem ? "hcs.menu.top.delete" : "hcs.menu.top.sub.delete", {
             id: this._item.id,
             menuPath: "."
         })
@@ -17012,11 +17111,11 @@ var SaveComponent = function() {
             BaseTopMenuComponent2D.call(this, e, "SaveComponent"), this._item = {
                 title: "Save",
                 icon: "images/save_icon.png",
-                action: "wnp.request.saveStructure",
+                action: "hcs.request.saveStructure",
                 id: "toolbarSave",
                 items: [],
                 index: "2"
-            }, document.addEventListener("wnp.request.saveStructure", this.saveStructure.bind(this), !1), window.addEventListener("message", function(e) {
+            }, document.addEventListener("hcs.request.saveStructure", this.saveStructure.bind(this), !1), window.addEventListener("message", function(e) {
                 var n = JSON.parse(e.data);
                 "save-plan" == n.action ? t.saveStructure(e) : "update-urls" == n.action && (n.planUrl && (t.core.api.planUrl = n.planUrl), n.newUrl && (t.core.api.newUrl = n.newUrl), n.screenshotUrl && (t.core.api.screenshotUrl = n.screenshotUrl), n.saveUrl && (t.core.api.saveUrl = n.saveUrl))
             }), t = this
@@ -17053,7 +17152,7 @@ var SaveComponent = function() {
                         onClickB: l,
                         onClickA: function() {}
                     };
-                wnp.UI.MessageBox.close(), wnp.UI.MessageBox.show(h)
+                hcs.UI.MessageBox.close(), hcs.UI.MessageBox.show(h)
             }
         }
     }, n.prototype.onError = function() {
@@ -17070,10 +17169,10 @@ var SaveComponent = function() {
                         type: "downloadFile",
                         name: "plan",
                         content: "data:text/html;base64," + btoa(e)
-                    }, n), wnp.UI.MessageBox.close(), t.endProcess()
+                    }, n), hcs.UI.MessageBox.close(), t.endProcess()
                 }
             };
-        wnp.UI.MessageBox.show(n)
+        hcs.UI.MessageBox.show(n)
     }, n.prototype.sendToServer = function(e, n, i, o) {
         var r = this.core.getPreviewImage(320, 240),
             s = this.core.engine2D.isEnabled() ? "2D" : "3D";
@@ -17109,7 +17208,7 @@ var SaveComponent = function() {
                     }
                     parent.postMessage({
                         type: "planSaved"
-                    }, t.core.getOrigin()), wnp.UI.MessageBox.show({
+                    }, t.core.getOrigin()), hcs.UI.MessageBox.show({
                         title: _("Save a Plan"),
                         message: r,
                         buttonAText: _("Close"),
@@ -17130,16 +17229,16 @@ var NewComponent = function() {
         BaseTopMenuComponent2D.call(this, e, "NewComponent"), this._item = {
             title: _("New"),
             icon: "fa fa-file",
-            action: "wnp.request.newPlan",
+            action: "hcs.request.newPlan",
             id: "toolbarNew",
             items: [],
             index: "0"
-        }, t = this, document.addEventListener("wnp.request.newPlan", function() {
+        }, t = this, document.addEventListener("hcs.request.newPlan", function() {
             t.launchProcess(), t.core.engine2D.bestZoom()
         }, !1)
     };
     return e.prototype = Object.create(BaseTopMenuComponent2D.prototype), e.prototype.createNewPlan = function() {
-        ujs.notify("wnp.request.closePopup"), t.core.structure.clear(), t.core._createDefaultStructure(), t.core.engine2D.reinitialize(), t.core.setSelectedEngine(t.core.ENGINE_2D), t.core.saveLocalStructure(!1), t.core.structure.planId = -1, t.core.structure.name = "planStructure", ujs.triggerEvent(document.getElementById("draw2D"), "click"), ujs.notify("wnp.request.newPlanReady"), t.core.engine2D.bestZoom()
+        ujs.notify("hcs.request.closePopup"), t.core.structure.clear(), t.core._createDefaultStructure(), t.core.engine2D.reinitialize(), t.core.setSelectedEngine(t.core.ENGINE_2D), t.core.saveLocalStructure(!1), t.core.structure.planId = -1, t.core.structure.name = "planStructure", ujs.triggerEvent(document.getElementById("draw2D"), "click"), ujs.notify("hcs.request.newPlanReady"), t.core.engine2D.bestZoom()
     }, e.prototype.launchProcess = function() {
         if (!t.core.api.newUrl || !t.core.api.saveUrl)
             return void t.createNewPlan();
@@ -17166,20 +17265,20 @@ var NewComponent = function() {
                                 buttonA: !0,
                                 buttonAText: _("Ok"),
                                 onClickA: function() {
-                                    wnp.UI.MessageBox.close()
+                                    hcs.UI.MessageBox.close()
                                 }
                             };
-                            wnp.UI.MessageBox.show(i)
+                            hcs.UI.MessageBox.show(i)
                         }
                     }
                 })
             },
             o = function() {
-                ujs.notify("wnp.request.saveStructure", {
+                ujs.notify("hcs.request.saveStructure", {
                     callback: i
                 })
             };
-        wnp.UI.MessageBox.show({
+        hcs.UI.MessageBox.show({
             title: _("New Plan"),
             message: _("Do you want to save your current plan?"),
             buttonCText: _("Yes"),
@@ -17191,7 +17290,7 @@ var NewComponent = function() {
             onClickC: o,
             onClickB: i,
             onClickA: function() {
-                wnp.UI.MessageBox.close()
+                hcs.UI.MessageBox.close()
             }
         })
     }, e
@@ -17207,7 +17306,7 @@ var OptionsComponent = function() {
             index: "3",
             items: [{
                 title: "Change language",
-                action: "wnp.request.changeLang",
+                action: "hcs.request.changeLang",
                 id: "toolbarChangeLanguage",
                 index: 100
             }, {
@@ -17215,7 +17314,7 @@ var OptionsComponent = function() {
                 index: 1e5
             }, {
                 title: "About Wanaplan",
-                action: "wnp.ui.showAboutWindow",
+                action: "hcs.ui.showAboutWindow",
                 id: "toolbarAbout",
                 index: 100001
             }]
@@ -17228,24 +17327,24 @@ var ExitComponent = function() {
         BaseTopMenuComponent2D.call(this, e, "ExitComponent"), this._item = {
             title: "Exit",
             icon: "fa fa-sign-out",
-            action: "wnp.request.exit",
+            action: "hcs.request.exit",
             id: "toolbarExit",
             items: []
-        }, t = this, document.addEventListener("wnp.request.exit", function() {
+        }, t = this, document.addEventListener("hcs.request.exit", function() {
             t.exit()
         }, !1)
     };
     return e.prototype = Object.create(BaseTopMenuComponent2D.prototype), e.prototype.doExit = function() {
-        if (wanaplan.api.params.exitUrl) {
+        if (hcsdesign.api.params.exitUrl) {
             var e = t.core.getOrigin();
             parent.postMessage({
                 type: "refresh",
-                url: wanaplan.api.params.exitUrl
+                url: hcsdesign.api.params.exitUrl
             }, e)
         }
         parent.postMessage({
             type: "planExit"
-        }, t.core.getOrigin()), ujs.notify("wnp.request.exited")
+        }, t.core.getOrigin()), ujs.notify("hcs.request.exited")
     }, e.prototype.exit = function() {
         var e = {
             title: _("Exit"),
@@ -17258,7 +17357,7 @@ var ExitComponent = function() {
                 return t.doExit(e), !0
             }
         };
-        wnp.UI.MessageBox.show(e)
+        hcs.UI.MessageBox.show(e)
     }, e
 }();
 var ScreenshotMenuComponent = function() {
@@ -17266,7 +17365,7 @@ var ScreenshotMenuComponent = function() {
         BaseTopMenuComponent2D.call(this, t, "ScreenshotMenuComponent"), this.isMainMenuItem = !1, this._item = {
             title: "Capture",
             icon: "fa fa-camera",
-            action: "wnp.request.takeScreenshot",
+            action: "hcs.request.takeScreenshot",
             id: "toolbarScreenshot",
             items: [],
             index: 500
@@ -17290,20 +17389,20 @@ var FullscreenComponent = function() {
         BaseTopMenuComponent2D.call(this, t, "FullscreenComponent"), this.isMainMenuItem = !1, this._item = {
             title: "Full Screen",
             icon: "fa fa-arrows-alt",
-            action: "wnp.request.toggleFullscreen",
+            action: "hcs.request.toggleFullscreen",
             id: "fullscreen-btn",
             items: [],
             index: 1001
         }
     };
     return n.prototype = Object.create(BaseTopMenuComponent2D.prototype), n.prototype.initialize = function() {
-        if (BaseTopMenuComponent2D.prototype.initialize.call(this), document.addEventListener("wnp.request.toggleFullscreen", this.toggleFullscreen, !1), document.addEventListener("mozfullscreenchange", this.onFullScreenChange, !1), document.addEventListener("webkitfullscreenchange", this.onFullScreenChange, !1), document.addEventListener("MSFullscreenChange", this.onFullScreenChange, !1), document.addEventListener("fullscreenchange", this.onFullScreenChange, !1), wanaplan.mode === wanaplan.MODE_VIEWER) {
+        if (BaseTopMenuComponent2D.prototype.initialize.call(this), document.addEventListener("hcs.request.toggleFullscreen", this.toggleFullscreen, !1), document.addEventListener("mozfullscreenchange", this.onFullScreenChange, !1), document.addEventListener("webkitfullscreenchange", this.onFullScreenChange, !1), document.addEventListener("MSFullscreenChange", this.onFullScreenChange, !1), document.addEventListener("fullscreenchange", this.onFullScreenChange, !1), hcsdesign.mode === hcsdesign.MODE_VIEWER) {
             var e = document.getElementById("fullscreen-btn");
             e.setAttribute("title", _("Toggle to fullscreen mode")), e.addEventListener("click", toggleFullscreen, !1)
         }
         t(document.body)
     }, n.prototype.destroy = function() {
-        BaseTopMenuComponent2D.prototype.destroy.call(this), document.removeEventListener("wnp.request.toggleFullscreen", this.toggleFullscreen), document.removeEventListener("mozfullscreenchange", this.onFullScreenChange), document.removeEventListener("webkitfullscreenchange", this.onFullScreenChange), document.removeEventListener("MSFullscreenChange", this.onFullScreenChange), document.removeEventListener("fullscreenchange", this.onFullScreenChange)
+        BaseTopMenuComponent2D.prototype.destroy.call(this), document.removeEventListener("hcs.request.toggleFullscreen", this.toggleFullscreen), document.removeEventListener("mozfullscreenchange", this.onFullScreenChange), document.removeEventListener("webkitfullscreenchange", this.onFullScreenChange), document.removeEventListener("MSFullscreenChange", this.onFullScreenChange), document.removeEventListener("fullscreenchange", this.onFullScreenChange)
     }, n.prototype.toggleFullscreen = function(n) {
         var i = document.body;
         n instanceof HTMLElement && (i = n, t(i)), e() ? document.cancelFullScreen() : i.requestFullScreen()
@@ -17320,47 +17419,47 @@ var TransparencyComponent = function() {
                 title: _("Transparency"),
                 id: "transparencyButton",
                 icon: "images/icon-transparency.png",
-                action: "wnp.request.switch-transparency",
+                action: "hcs.request.switch-transparency",
                 addClass: "hidden",
                 index: 12
             }
         };
     return n.prototype = Object.create(BaseComponent3D.prototype), n.prototype.initialize = function() {
-        BaseComponent3D.prototype.initialize.call(this), ujs.notify("wnp.menu.top.sub.add", {
+        BaseComponent3D.prototype.initialize.call(this), ujs.notify("hcs.menu.top.sub.add", {
             item: this._item,
             menuPath: "."
         })
     }, n.prototype.startListening = function() {
-        if (this.switchTransparencyMode = this.switchTransparencyMode.bind(this), wanaplan.mode === wanaplan.MODE_VIEWER) {
+        if (this.switchTransparencyMode = this.switchTransparencyMode.bind(this), hcsdesign.mode === hcsdesign.MODE_VIEWER) {
             var t = document.getElementById("switch-transparency-btn");
             t.setAttribute("title", _("Toggle transparency")), t.addEventListener("click", this.switchTransparencyMode, !1)
         }
-        document.addEventListener("wnp.request.switch-transparency", this.switchTransparencyMode, !1), document.addEventListener("wnp.engine3d.wallTransparency.on", this.onWallTransparencyOn, !1), document.addEventListener("wnp.engine3d.wallTransparency.off", this.onWallTransparencyOff, !1)
+        document.addEventListener("hcs.request.switch-transparency", this.switchTransparencyMode, !1), document.addEventListener("hcs.engine3d.wallTransparency.on", this.onWallTransparencyOn, !1), document.addEventListener("hcs.engine3d.wallTransparency.off", this.onWallTransparencyOff, !1)
     }, n.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.switch-transparency", this.switchTransparencyMode), document.removeEventListener("wnp.engine3d.wallTransparency.on", this.onWallTransparencyOn), document.removeEventListener("wnp.engine3d.wallTransparency.off", this.onWallTransparencyOff)
+        document.removeEventListener("hcs.request.switch-transparency", this.switchTransparencyMode), document.removeEventListener("hcs.engine3d.wallTransparency.on", this.onWallTransparencyOn), document.removeEventListener("hcs.engine3d.wallTransparency.off", this.onWallTransparencyOff)
     }, n.prototype.switchTransparencyMode = function() {
-        var n = wanaplan.getComponentByName("WallComponent3D"),
-            i = wanaplan.engine3D.cameraFeatures;
-        if (i.setCamera(wanaplan.engine3D.camera), e = (e + 1) % 2, e === t) {
+        var n = hcsdesign.getComponentByName("WallComponent3D"),
+            i = hcsdesign.engine3D.cameraFeatures;
+        if (i.setCamera(hcsdesign.engine3D.camera), e = (e + 1) % 2, e === t) {
             i && i.stopTransparency();
-            for (var o in wanaplan.structure.members)
-                n.switchTransparentStatusByStructure(wanaplan.structure.members[o]);
-            ujs.notify("wnp.engine3d.wallTransparency.off")
+            for (var o in hcsdesign.structure.members)
+                n.switchTransparentStatusByStructure(hcsdesign.structure.members[o]);
+            ujs.notify("hcs.engine3d.wallTransparency.off")
         } else if ("Camera" == i.camera.name) {
-            for (var o in wanaplan.structure.members)
-                n.switchTransparentStatusByStructure(wanaplan.structure.members[o]);
-            i && i.startTransparency(), ujs.notify("wnp.engine3d.wallTransparency.on")
+            for (var o in hcsdesign.structure.members)
+                n.switchTransparentStatusByStructure(hcsdesign.structure.members[o]);
+            i && i.startTransparency(), ujs.notify("hcs.engine3d.wallTransparency.on")
         }
     }, n.prototype.setTransparencyMode = function(t) {
         e != t && this.switchTransparencyMode()
     }, n.prototype.onContextChanged = function(t) {
-        BaseComponent3D.prototype.onContextChanged.call(this, t), "3D" == t ? ujs.notify("wnp.menu.top.sub.replace", {
+        BaseComponent3D.prototype.onContextChanged.call(this, t), "3D" == t ? ujs.notify("hcs.menu.top.sub.replace", {
             item: {
                 id: "transparencyButton",
                 addClass: ""
             },
             merge: !0
-        }, !0) : ujs.notify("wnp.menu.top.sub.replace", {
+        }, !0) : ujs.notify("hcs.menu.top.sub.replace", {
             item: {
                 id: "transparencyButton",
                 addClass: "hidden"
@@ -17368,7 +17467,7 @@ var TransparencyComponent = function() {
             merge: !0
         }, !0)
     }, n.prototype.onWallTransparencyOn = function() {
-        var t = wanaplan.getComponentByName("TopMenuComponent");
+        var t = hcsdesign.getComponentByName("TopMenuComponent");
         if (t) {
             var e = t.submenu;
             e.replaceMenuItem("transparencyButton", {
@@ -17376,7 +17475,7 @@ var TransparencyComponent = function() {
             }, !0), e.updateHtml()
         }
     }, n.prototype.onWallTransparencyOff = function() {
-        var t = wanaplan.getComponentByName("TopMenuComponent");
+        var t = hcsdesign.getComponentByName("TopMenuComponent");
         if (t) {
             var e = t.submenu;
             e.replaceMenuItem("transparencyButton", {
@@ -17392,32 +17491,32 @@ var CameraComponent = function() {
         n = function(n) {
             BaseComponent3D.call(this, n, "CameraComponent"), t = this, this.ORBITCAMERA = 0, this.FPSCAMERA = 1, this.scene = n.engine3D.scene, this.cameraActiveId = 0, this.lookAt = null;
             var i = function() {
-                this.bindLookAt(wanaplan.getComponentByName("AvatarComponent3D").avatar), document.removeEventListener("wnp.engine3d.globaleFloorReady", i, !1)
+                this.bindLookAt(hcsdesign.getComponentByName("AvatarComponent3D").avatar), document.removeEventListener("hcs.engine3d.globaleFloorReady", i, !1)
             }.bind(this);
-            document.addEventListener("wnp.engine3d.globaleFloorReady", i, !1), this.avatarPosition = e.clone(), this.camera = [new wnp.Input.OrbitCamera("Camera", -Math.PI / 3, Math.PI / 4, 1500, e.clone(), n.engine3D.scene), new wnp.Input.FirstPersonCamera("FPS", this.avatarPosition, n.engine3D.scene)], this.camera[0].attachControl(n.engine3D.canvas), this.camera[0].inertia = 0, this.camera[0].angularSensibility = 300, this.camera[0].radiusSpeedFactor = .005, this.camera[0].moveSpeedFactor = 5, this.camera[0].fov = .25 * Math.PI, this.camera[0].minZ = 15, this.camera[0].maxZ = 4e4, this.camera[1].minZ = 15, this.camera[1].maxZ = 4e4, this.camera[1].heightMin = 20, this.camera[1].heightMax = 240, this.camera[1].radiusSpeedFactor = .2, this.camera[1].angularSensibility = 400, this.camera[1].height = 170, this.camera[1].fov = 70 / 180 * Math.PI, n.engine3D.scene.activeCamera = this.camera[this.cameraActiveId], n.engine3D.camera = n.engine3D.scene.activeCamera
+            document.addEventListener("hcs.engine3d.globaleFloorReady", i, !1), this.avatarPosition = e.clone(), this.camera = [new hcs.Input.OrbitCamera("Camera", -Math.PI / 3, Math.PI / 4, 1500, e.clone(), n.engine3D.scene), new hcs.Input.FirstPersonCamera("FPS", this.avatarPosition, n.engine3D.scene)], this.camera[0].attachControl(n.engine3D.canvas), this.camera[0].inertia = 0, this.camera[0].angularSensibility = 300, this.camera[0].radiusSpeedFactor = .005, this.camera[0].moveSpeedFactor = 5, this.camera[0].fov = .25 * Math.PI, this.camera[0].minZ = 15, this.camera[0].maxZ = 4e4, this.camera[1].minZ = 15, this.camera[1].maxZ = 4e4, this.camera[1].heightMin = 20, this.camera[1].heightMax = 240, this.camera[1].radiusSpeedFactor = .2, this.camera[1].angularSensibility = 400, this.camera[1].height = 170, this.camera[1].fov = 70 / 180 * Math.PI, n.engine3D.scene.activeCamera = this.camera[this.cameraActiveId], n.engine3D.camera = n.engine3D.scene.activeCamera
         };
     return n.prototype = new BaseComponent3D, n.prototype.startListening = function() {
-        this.onCameraChanged = this.onCameraChanged.bind(this), this.onFloorLevelChanged = this.onFloorLevelChanged.bind(this), this.onControleEnd = this.onControleEnd.bind(this), this.onControleMove = this.onControleMove.bind(this), this.onNewPlanReady = this.onNewPlanReady.bind(this), this.onGlobaleFloorReady = this.onGlobaleFloorReady.bind(this), document.addEventListener("wnp.request.cameraChanged", this.onCameraChanged, !1), document.addEventListener("wnp.request.floorSelected", this.onFloorLevelChanged, !1), document.addEventListener("mousemove", this.onMouseMove, !1), document.addEventListener("mousewheel", this.onMouseZoom, !1), document.addEventListener("wnp.engine3d.dragcontrols.end", this.onControleEnd, !1), document.addEventListener("wnp.engine3d.dragcontrols.move", this.onControleMove, !1), document.addEventListener("wnp.request.newPlanReady", this.onNewPlanReady, !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.onGlobaleFloorReady, !1), wanaplan.engine3D.pointerManager.touchManager.on("swipe", this.onMouseZoom)
+        this.onCameraChanged = this.onCameraChanged.bind(this), this.onFloorLevelChanged = this.onFloorLevelChanged.bind(this), this.onControleEnd = this.onControleEnd.bind(this), this.onControleMove = this.onControleMove.bind(this), this.onNewPlanReady = this.onNewPlanReady.bind(this), this.onGlobaleFloorReady = this.onGlobaleFloorReady.bind(this), document.addEventListener("hcs.request.cameraChanged", this.onCameraChanged, !1), document.addEventListener("hcs.request.floorSelected", this.onFloorLevelChanged, !1), document.addEventListener("mousemove", this.onMouseMove, !1), document.addEventListener("mousewheel", this.onMouseZoom, !1), document.addEventListener("hcs.engine3d.dragcontrols.end", this.onControleEnd, !1), document.addEventListener("hcs.engine3d.dragcontrols.move", this.onControleMove, !1), document.addEventListener("hcs.request.newPlanReady", this.onNewPlanReady, !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.onGlobaleFloorReady, !1), hcsdesign.engine3D.pointerManager.touchManager.on("swipe", this.onMouseZoom)
     }, n.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.cameraChanged", this.onCameraChanged, !1), document.removeEventListener("wnp.request.floorSelected", this.onFloorLevelChanged, !1), document.removeEventListener("wnp.request.newPlanReady", this.onNewPlanReady, !1), document.removeEventListener("mousemove", this.onMouseMove), document.removeEventListener("mousewheel", this.onMouseZoom), document.removeEventListener("wnp.engine3d.dragcontrols.end", this.onControleEnd), document.removeEventListener("wnp.engine3d.dragcontrols.move", this.onControleMove), document.removeEventListener("wnp.engine3d.globaleFloorReady", this.onGlobaleFloorReady), wanaplan.engine3D.pointerManager.touchManager.off("swipe", this.onMouseZoom)
+        document.removeEventListener("hcs.request.cameraChanged", this.onCameraChanged, !1), document.removeEventListener("hcs.request.floorSelected", this.onFloorLevelChanged, !1), document.removeEventListener("hcs.request.newPlanReady", this.onNewPlanReady, !1), document.removeEventListener("mousemove", this.onMouseMove), document.removeEventListener("mousewheel", this.onMouseZoom), document.removeEventListener("hcs.engine3d.dragcontrols.end", this.onControleEnd), document.removeEventListener("hcs.engine3d.dragcontrols.move", this.onControleMove), document.removeEventListener("hcs.engine3d.globaleFloorReady", this.onGlobaleFloorReady), hcsdesign.engine3D.pointerManager.touchManager.off("swipe", this.onMouseZoom)
     }, n.prototype.toggleFXAA = function(t) {
-        var e = wanaplan.engine3D.scene.activeCamera;
-        return "number" == typeof t && (e = wanaplan.engine3D.scene.cameras[t]), e.__fxaa__cookie ? (e.__fxaa__cookie.dispose(), e.__fxaa__cookie = null) : e.__fxaa__cookie = new BABYLON.FxaaPostProcess("fxaa", 1, e), e.__fxaa__cookie ? !0 : !1
+        var e = hcsdesign.engine3D.scene.activeCamera;
+        return "number" == typeof t && (e = hcsdesign.engine3D.scene.cameras[t]), e.__fxaa__cookie ? (e.__fxaa__cookie.dispose(), e.__fxaa__cookie = null) : e.__fxaa__cookie = new BABYLON.FxaaPostProcess("fxaa", 1, e), e.__fxaa__cookie ? !0 : !1
     }, n.prototype.toggleFSAA = function(t, e) {
         var e = "number" == typeof e || BABYLON.Texture.BILINEAR_SAMPLINGMODE,
-            n = wanaplan.engine3D.scene.activeCamera;
-        return "number" == typeof t && (n = wanaplan.engine3D.scene.cameras[t]), n.__fsaa__cookie ? (n.__fsaa__cookie.dispose(), n.__fsaa__cookie = null) : (n.__fsaa__cookie = new BABYLON.PassPostProcess("fsaa", 2, n), n.__fsaa__cookie.renderTargetSamplingMode = e), n.__fsaa__cookie ? !0 : !1
+            n = hcsdesign.engine3D.scene.activeCamera;
+        return "number" == typeof t && (n = hcsdesign.engine3D.scene.cameras[t]), n.__fsaa__cookie ? (n.__fsaa__cookie.dispose(), n.__fsaa__cookie = null) : (n.__fsaa__cookie = new BABYLON.PassPostProcess("fsaa", 2, n), n.__fsaa__cookie.renderTargetSamplingMode = e), n.__fsaa__cookie ? !0 : !1
     }, n.prototype.disableAllPostProcess = function() {
         camera.__fsaa__cookie && (camera.__fsaa__cookie.dispose(), camera.__fsaa__cookie = null), camera.__fxaa__cookie && (camera.__fxaa__cookie.dispose(), camera.__fxaa__cookie = null)
     }, n.prototype.onMouseMove = function() {}, n.prototype.onMouseZoom = function() {
-        ujs.notify("wnp.engine3D.camera.zoom")
+        ujs.notify("hcs.engine3D.camera.zoom")
     }, n.prototype.onGlobaleFloorReady = function() {
         var t = this.core.structure.members[this.core.structure.currentStructureIndex].elevation;
         this.camera[0].target.y = t + 170, this.camera[1].height = t + 170, this.camera[1].heightMin = t + 20, this.camera[1].heightMax = t + 240, this.avatarPosition.y = t + 170
     }, n.prototype.onCameraChanged = function() {
-        this.cameraActiveId = (this.cameraActiveId + 1) % 2, this.scene.activeCamera = this.camera[this.cameraActiveId], wanaplan.engine3D.camera = this.camera[this.cameraActiveId];
-        var t = wanaplan.engine3D.searchComponent("AvatarComponent3D");
-        this.cameraActiveId ? (this.camera[1].rotation.copyFromFloats(0, -this.camera[0].alpha - Math.PI / 2, 0), this.camera[1].position.copyFromFloats(t.avatar.position.x, this.camera[1].height, t.avatar.position.z), this.camera[1].attachControl(wanaplan.engine3D.canvas), this.camera[0].detachControl(wanaplan.engine3D.canvas), t && t.setVisibility(!1)) : (this.lookAt && (this.lookAt.position.x = this.camera[1].position.x, this.lookAt.position.z = this.camera[1].position.z), this.camera[0].target.x = this.camera[1].position.x, this.camera[0].target.z = this.camera[1].position.z, this.camera[0].alpha = -this.camera[1].rotation.y - Math.PI / 2, this.camera[0].attachControl(wanaplan.engine3D.canvas), this.camera[1].detachControl(wanaplan.engine3D.canvas), t && t.setVisibility(!0)), ujs.notify("wnp.engine3d.cameraChanged", {
+        this.cameraActiveId = (this.cameraActiveId + 1) % 2, this.scene.activeCamera = this.camera[this.cameraActiveId], hcsdesign.engine3D.camera = this.camera[this.cameraActiveId];
+        var t = hcsdesign.engine3D.searchComponent("AvatarComponent3D");
+        this.cameraActiveId ? (this.camera[1].rotation.copyFromFloats(0, -this.camera[0].alpha - Math.PI / 2, 0), this.camera[1].position.copyFromFloats(t.avatar.position.x, this.camera[1].height, t.avatar.position.z), this.camera[1].attachControl(hcsdesign.engine3D.canvas), this.camera[0].detachControl(hcsdesign.engine3D.canvas), t && t.setVisibility(!1)) : (this.lookAt && (this.lookAt.position.x = this.camera[1].position.x, this.lookAt.position.z = this.camera[1].position.z), this.camera[0].target.x = this.camera[1].position.x, this.camera[0].target.z = this.camera[1].position.z, this.camera[0].alpha = -this.camera[1].rotation.y - Math.PI / 2, this.camera[0].attachControl(hcsdesign.engine3D.canvas), this.camera[1].detachControl(hcsdesign.engine3D.canvas), t && t.setVisibility(!0)), ujs.notify("hcs.engine3d.cameraChanged", {
             activeCameraId: this.cameraActiveId,
             activeCamera: this.cameraActiveId ? "fpsCamera" : "orbitCamera"
         })
@@ -17512,17 +17611,17 @@ var GridBackgroundComponent2D = function() {
         BaseComponent2D.call(this, t, "GridBackgroundComponent2D"), this.priority = 1e3, this.background = !1, this.visibility = !0, this.scale = 1, this.translation = new BABYLON.Vector3(0, 0, 0)
     };
     return t.prototype = new BaseComponent2D, t.prototype.startListening = function() {
-        this.onBackgroundChange = this.onBackgroundChange.bind(this), this.onAddBackground = this.onAddBackground.bind(this), this.onEndBackground = this.onEndBackground.bind(this), document.addEventListener("wnp.engine2d.backgroundChange", this.onBackgroundChange), document.addEventListener("wnp.engine2d.onAddBackground", this.onAddBackground), document.addEventListener("wnp.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.registerEventCb("GridBackgroundComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null)
+        this.onBackgroundChange = this.onBackgroundChange.bind(this), this.onAddBackground = this.onAddBackground.bind(this), this.onEndBackground = this.onEndBackground.bind(this), document.addEventListener("hcs.engine2d.backgroundChange", this.onBackgroundChange), document.addEventListener("hcs.engine2d.onAddBackground", this.onAddBackground), document.addEventListener("hcs.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.registerEventCb("GridBackgroundComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.backgroundChange", this.onBackgroundChange), document.removeEventListener("wnp.engine2d.onAddBackground", this.onAddBackground), document.removeEventListener("wnp.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.unregisterEventCb("GridBackgroundComponent2D.static-draw")
+        document.removeEventListener("hcs.engine2d.backgroundChange", this.onBackgroundChange), document.removeEventListener("hcs.engine2d.onAddBackground", this.onAddBackground), document.removeEventListener("hcs.engine2d.onEndBackground", this.onEndBackground), this.core.engine2D.unregisterEventCb("GridBackgroundComponent2D.static-draw")
     }, t.prototype.initialize = function() {
         var t = {
             id: "gridBackgroundMenu",
             title: _("添加背景"),
-            action: "wnp.engine2d.onAddBackground",
-            cancelAction: "wnp.engine2d.onEndBackground"
+            action: "hcs.engine2d.onAddBackground",
+            cancelAction: "hcs.engine2d.onEndBackground"
         };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 0
@@ -17537,51 +17636,51 @@ var GridBackgroundComponent2D = function() {
             scale: t.measure,
             translation: this.translation.asArray(),
             points: [t.points[0].asArray(), t.points[1].asArray()]
-        }, ujs.notify("wnp.request.saveHistory", {})
+        }, ujs.notify("hcs.request.saveHistory", {})
     }, t.prototype.onEndBackground = function() {
-        wnp.UI.BackgroundPopup.close(void 0, void 0, !0)
+        hcs.UI.BackgroundPopup.close(void 0, void 0, !0)
     }, t.prototype.onAddBackground = function() {
-        wnp.UI.BackgroundPopup.show()
+        hcs.UI.BackgroundPopup.show()
     }, t
 }();
 var GridComponent3D = function() {
     var t, e = function(e) {
-        BaseComponent3D.call(this, e, "GridComponent3D"), this.structure = new GridStructure, t = this, this.setupLights(), this.createGround(), this.createSky(), this.lights = [], document.addEventListener("wnp.core.structure.loaded", this.onStructureLoaded.bind(this), !1)
+        BaseComponent3D.call(this, e, "GridComponent3D"), this.structure = new GridStructure, t = this, this.setupLights(), this.createGround(), this.createSky(), this.lights = [], document.addEventListener("hcs.core.structure.loaded", this.onStructureLoaded.bind(this), !1)
     };
     return e.prototype = new BaseComponent3D, e.prototype.initialize = function() {}, e.prototype.onStructureLoaded = function() {
         var t = {},
             e = {};
         this.core.structure.params.grid && (t = this.core.structure.params.grid, this.createGround(t)), this.core.structure.params.sky && (e = this.core.structure.params.sky, this.createSky(e))
     }, e.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3D.changeGround", this.onChangeGround, !1), document.addEventListener("wnp.engine3D.changeSky", this.onChangeSky, !1)
+        document.addEventListener("hcs.engine3D.changeGround", this.onChangeGround, !1), document.addEventListener("hcs.engine3D.changeSky", this.onChangeSky, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3D.changeGround", this.onChangeGround, !1), document.removeEventListener("wnp.engine3D.changeSky", this.onChangeSky, !1)
+        document.removeEventListener("hcs.engine3D.changeGround", this.onChangeGround, !1), document.removeEventListener("hcs.engine3D.changeSky", this.onChangeSky, !1)
     }, e.prototype.createGround = function(e) {
         var e = e || {},
-            n = (e.name || "ground", e.url || wnp.Assets.globalPath + "js/Components/GridComponent/Images/grid2.jpg"),
+            n = (e.name || "ground", e.url || hcs.Assets.globalPath + "js/Components/GridComponent/Images/grid2.jpg"),
             i = function(e) {
-                var n = wanaplan.engine3D.scene.getMeshByName("ground");
+                var n = hcsdesign.engine3D.scene.getMeshByName("ground");
                 if (!n) {
                     var i = t.core.configuration.boundingSize.getSize();
-                    n = BABYLON.Mesh.CreateBloc("ground", i.x, 1, i.z, wanaplan.engine3D.scene), n.position.copyFromFloats(0, -1, 0), (window.ejecta || GlobalHelper.isMobileDevice()) && (n.position.y = -10), n.isDecorable = !1, n.receiveShadows = !0
+                    n = BABYLON.Mesh.CreateBloc("ground", i.x, 1, i.z, hcsdesign.engine3D.scene), n.position.copyFromFloats(0, -1, 0), (window.ejecta || GlobalHelper.isMobileDevice()) && (n.position.y = -10), n.isDecorable = !1, n.receiveShadows = !0
                 }
-                wnp.MaterialFactory.RepeatTextureXY(e, 16, 16), n.material = new BABYLON.StandardMaterial("ground", wanaplan.engine3D.scene), n.material.diffuseTexture = e, n.material.ambientColor = new BABYLON.Color3(.9, .9, .9), n.material.diffuseColor = new BABYLON.Color3(1, 1, 1), n.material.specularColor = new BABYLON.Color3(.01, .01, .01), wanaplan.engine3D.scene.lights.point.excludedMeshes.push(n)
+                hcs.MaterialFactory.RepeatTextureXY(e, 16, 16), n.material = new BABYLON.StandardMaterial("ground", hcsdesign.engine3D.scene), n.material.diffuseTexture = e, n.material.ambientColor = new BABYLON.Color3(.9, .9, .9), n.material.diffuseColor = new BABYLON.Color3(1, 1, 1), n.material.specularColor = new BABYLON.Color3(.01, .01, .01), hcsdesign.engine3D.scene.lights.point.excludedMeshes.push(n)
             };
-        i(new BABYLON.Texture(n, wanaplan.engine3D.scene))
+        i(new BABYLON.Texture(n, hcsdesign.engine3D.scene))
     }, e.prototype.createSky = function(e) {
         var e = e || {},
-            n = e.url || wnp.Assets.globalPath + "js/Components/GridComponent/Images/background2.jpg",
+            n = e.url || hcs.Assets.globalPath + "js/Components/GridComponent/Images/background2.jpg",
             i = function(e) {
                 var n = t.scene.getMeshByName("skysphere");
-                n || (n = BABYLON.Mesh.CreateSphere("skysphere", 16, 3e4, wanaplan.engine3D.scene), n.scaling.x *= -1, n.isDecorable = !1), n.material = new BABYLON.StandardMaterial("skysphere", wanaplan.engine3D.scene), n.material.ambientTexture = e, wnp.MaterialFactory.MakeBasicMaterial(n.material), n.material.ambientColor.copyFromFloats(1, 1, 1)
+                n || (n = BABYLON.Mesh.CreateSphere("skysphere", 16, 3e4, hcsdesign.engine3D.scene), n.scaling.x *= -1, n.isDecorable = !1), n.material = new BABYLON.StandardMaterial("skysphere", hcsdesign.engine3D.scene), n.material.ambientTexture = e, hcs.MaterialFactory.MakeBasicMaterial(n.material), n.material.ambientColor.copyFromFloats(1, 1, 1)
             };
-        i(new BABYLON.Texture(n, wanaplan.engine3D.scene))
+        i(new BABYLON.Texture(n, hcsdesign.engine3D.scene))
     }, e.prototype.setupLights = function() {
-        wanaplan.engine3D.scene.lights = [];
-        var t = new BABYLON.DirectionalLight("Dir0", new BABYLON.Vector3(-1, -2, -1), wanaplan.engine3D.scene);
+        hcsdesign.engine3D.scene.lights = [];
+        var t = new BABYLON.DirectionalLight("Dir0", new BABYLON.Vector3(-1, -2, -1), hcsdesign.engine3D.scene);
         t.specular = new BABYLON.Color3(.15, .15, .15), t.diffuse = new BABYLON.Color3(.55, .55, .55), t.intensity = 1, t.position = new BABYLON.Vector3(1e3, 2e3, 1e3);
-        var e = new BABYLON.PointLight("Point0", wanaplan.engine3D.camera.position, wanaplan.engine3D.scene);
-        e.diffuse = new BABYLON.Color3(.65, .65, .65), e.specular = new BABYLON.Color3(1, 1, 1), e.intensity = .45, wanaplan.engine3D.scene.lights.point = e, wanaplan.engine3D.shadowGenerator = new BABYLON.ShadowGenerator(2048, t), wanaplan.configuration.useShadow ? (wanaplan.engine3D.shadowGenerator.useVarianceShadowMap = !1, wanaplan.engine3D.shadowGenerator.usePoissonSampling = !0, wanaplan.engine3D.shadowGenerator.setDarkness(.8), wanaplan.engine3D.shadowGenerator.setTransparencyShadow(!0)) : wanaplan.engine3D.shadowGenerator.dispose()
+        var e = new BABYLON.PointLight("Point0", hcsdesign.engine3D.camera.position, hcsdesign.engine3D.scene);
+        e.diffuse = new BABYLON.Color3(.65, .65, .65), e.specular = new BABYLON.Color3(1, 1, 1), e.intensity = .45, hcsdesign.engine3D.scene.lights.point = e, hcsdesign.engine3D.shadowGenerator = new BABYLON.ShadowGenerator(2048, t), hcsdesign.configuration.useShadow ? (hcsdesign.engine3D.shadowGenerator.useVarianceShadowMap = !1, hcsdesign.engine3D.shadowGenerator.usePoissonSampling = !0, hcsdesign.engine3D.shadowGenerator.setDarkness(.8), hcsdesign.engine3D.shadowGenerator.setTransparencyShadow(!0)) : hcsdesign.engine3D.shadowGenerator.dispose()
     }, e.prototype.reloadConfiguration = function() {}, e.prototype.onChangeGround = function(e) {
         t.createGround({
             name: e.name,
@@ -17589,7 +17688,7 @@ var GridComponent3D = function() {
         }), t.core.structure.params.grid = {
             name: e.name,
             url: e.url
-        }, ujs.notify("wnp.request.saveHistory")
+        }, ujs.notify("hcs.request.saveHistory")
     }, e.prototype.onChangeSky = function(e) {
         t.createSky({
             name: e.name,
@@ -17597,7 +17696,7 @@ var GridComponent3D = function() {
         }), t.core.structure.params.sky = {
             name: e.name,
             url: e.url
-        }, ujs.notify("wnp.request.saveHistory")
+        }, ujs.notify("hcs.request.saveHistory")
     }, e
 }();
 var HistoryEditionComponent = function() {
@@ -17605,35 +17704,35 @@ var HistoryEditionComponent = function() {
         BaseComponent3D.call(this, t, "HistoryEditionComponent"), this.historyComponent3D = null, this.isMainMenuItem = !1, this._items = [{
             title: _("Undo"),
             icon: "fa fa-reply",
-            action: "wnp.request.undo",
+            action: "hcs.request.undo",
             index: 10
         }, {
             title: _("Redo"),
             icon: "fa fa-share",
-            action: "wnp.request.redo",
+            action: "hcs.request.redo",
             index: 11
         }], this.undo = this.undo.bind(this), this.redo = this.redo.bind(this)
     };
     return t.prototype = Object.create(BaseComponent3D.prototype), t.prototype.initialize = function() {
-        BaseComponent3D.prototype.initialize.call(this), this.historyComponent3D = wanaplan.getComponentByName("HistoryComponent");
+        BaseComponent3D.prototype.initialize.call(this), this.historyComponent3D = hcsdesign.getComponentByName("HistoryComponent");
         for (var t = 0, e = this._items.length; e > t; t++)
-            ujs.notify("wnp.menu.top.sub.add", {
+            ujs.notify("hcs.menu.top.sub.add", {
                 item: this._items[t],
                 menuPath: "."
             });
-        document.addEventListener("wnp.request.undo", this.undo, !1), document.addEventListener("wnp.request.redo", this.redo, !1)
+        document.addEventListener("hcs.request.undo", this.undo, !1), document.addEventListener("hcs.request.redo", this.redo, !1)
     }, t.prototype.destroy = function() {
         console.log("destroy");
         for (var t = 0, e = this._items.length; e > t; t++)
-            ujs.notify("wnp.menu.top.sub.delete", {
+            ujs.notify("hcs.menu.top.sub.delete", {
                 id: this._items[t].id,
                 menuPath: "."
             });
-        document.removeEventListener("wnp.request.undo", this.undo), document.removeEventListener("wnp.request.redo", this.redo)
+        document.removeEventListener("hcs.request.undo", this.undo), document.removeEventListener("hcs.request.redo", this.redo)
     }, t.prototype.undo = function() {
-        wanaplan.getSelectedEngine() == wanaplan.ENGINE_2D ? wanaplan.backFromHistory() : this.historyComponent3D.controlZ()
+        hcsdesign.getSelectedEngine() == hcsdesign.ENGINE_2D ? hcsdesign.backFromHistory() : this.historyComponent3D.controlZ()
     }, t.prototype.redo = function() {
-        wanaplan.getSelectedEngine() == wanaplan.ENGINE_2D ? wanaplan.nextFromHistory() : this.historyComponent3D.controlY()
+        hcsdesign.getSelectedEngine() == hcsdesign.ENGINE_2D ? hcsdesign.nextFromHistory() : this.historyComponent3D.controlY()
     }, t
 }();
 var HistoryComponent = function() {
@@ -17641,9 +17740,9 @@ var HistoryComponent = function() {
         BaseComponent3D.call(this, e, "HistoryComponent"), t = this, this.componentList = [], this.history = [], this.currentHistoryIndex = -1, this.currentBalance = 0, this.maxHistoryLength = 50, this.callbackMap = []
     };
     e.prototype = new BaseComponent3D, e.prototype.startListening = function() {
-        document.addEventListener("wnp.keyboardManager.keyDown", this.onKeyDown, !0), document.addEventListener("wnp.request.historyAction", this.onRotatorAction, !0)
+        document.addEventListener("hcs.keyboardManager.keyDown", this.onKeyDown, !0), document.addEventListener("hcs.request.historyAction", this.onRotatorAction, !0)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.keyboardManager.keyDown", this.onKeyDown, !0), document.removeEventListener("wnp.request.historyAction", this.onRotatorAction, !0)
+        document.removeEventListener("hcs.keyboardManager.keyDown", this.onKeyDown, !0), document.removeEventListener("hcs.request.historyAction", this.onRotatorAction, !0)
     }, e.prototype.onContextChanged = function(t) {
         "3D" == t ? this.startListening() : (this.stopListening(), this.reset())
     };
@@ -17684,15 +17783,15 @@ var PrintComponent2D = function() {
         BaseTopMenuComponent2D.call(this, e, "PrintComponent2D"), this.isMainMenuItem = !1, this._item = {
             title: _("Print"),
             icon: "fa fa-print",
-            action: "wnp.request.print",
+            action: "hcs.request.print",
             id: "print-icon-component",
             index: 20
         }, t = this
     };
     return e.prototype = Object.create(BaseTopMenuComponent2D.prototype), e.prototype.startListening = function() {
-        document.addEventListener("wnp.request.print", this.onPrint, !1)
+        document.addEventListener("hcs.request.print", this.onPrint, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.print", this.onPrint, !1)
+        document.removeEventListener("hcs.request.print", this.onPrint, !1)
     }, e.prototype.onPrint = function() {
         var e = 842,
             n = 596,
@@ -17735,14 +17834,14 @@ var PrintComponent3D = function() {
         BaseComponent3D.call(this, t, "PrintComponent3D")
     };
     return t.prototype = Object.create(BaseComponent3D.prototype), t.prototype.startListening = function() {
-        document.addEventListener("wnp.request.print", this.onPrint, !1)
+        document.addEventListener("hcs.request.print", this.onPrint, !1)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.print", this.onPrint, !1)
+        document.removeEventListener("hcs.request.print", this.onPrint, !1)
     }, t.prototype.onPrint = function() {
         var t = 842,
             e = 596,
-            n = wanaplan.getOrigin();
-        GlobalHelper.createScreenshot3D(wanaplan.engine3D.engine, void 0, function(i) {
+            n = hcsdesign.getOrigin();
+        GlobalHelper.createScreenshot3D(hcsdesign.engine3D.engine, void 0, function(i) {
             var o = i.toDataURL("image/png"),
                 r = setTimeout(function() {
                     clearTimeout(r);
@@ -17770,7 +17869,7 @@ var PerformanceComponent3D = function() {
         r = [],
         s = [],
         a = function(e) {
-            BaseComponent3D.call(this, e, "PerformanceComponent3D"), this.waiter = document.getElementById("waiter"), this.waiter.innerHTML = _("正在计算中..."), this.waitSince = !1, this.stats = this.core.engine3D.stats, this.priority = 0, this.hasBeenAlreadyNotified = wnpLocalStorage.getItem(o), this.targetMaxLowFPSTime = n, this.hasFocus = !0, document.addEventListener("wnp.engine2D.contextMenuPerformance.close", this.onContextMenuPerformanceClose, !1), document.addEventListener("wnp.request.changePerformancesProperty", this.onContextMenuPropertyChanged, !1), document.addEventListener("wnp.request.changePerformances", this.onChangePerformance, !1), document.addEventListener("wnp.request.changeEngine", this.onChangeEngine, !1), t = this;
+            BaseComponent3D.call(this, e, "PerformanceComponent3D"), this.waiter = document.getElementById("waiter"), this.waiter.innerHTML = _("正在计算中..."), this.waitSince = !1, this.stats = this.core.engine3D.stats, this.priority = 0, this.hasBeenAlreadyNotified = hcsLocalStorage.getItem(o), this.targetMaxLowFPSTime = n, this.hasFocus = !0, document.addEventListener("hcs.engine2D.contextMenuPerformance.close", this.onContextMenuPerformanceClose, !1), document.addEventListener("hcs.request.changePerformancesProperty", this.onContextMenuPropertyChanged, !1), document.addEventListener("hcs.request.changePerformances", this.onChangePerformance, !1), document.addEventListener("hcs.request.changeEngine", this.onChangeEngine, !1), t = this;
             var a = null,
                 l = function(e) {
                     null !== a && (clearTimeout(a), a = null), "focus" === e.type ? a = setTimeout(function() {
@@ -17788,7 +17887,7 @@ var PerformanceComponent3D = function() {
                     eventParams: {
                         cast: "bool",
                         property: "useAntialiasing",
-                        eventName: "wnp.request.changePerformancesProperty"
+                        eventName: "hcs.request.changePerformancesProperty"
                     }
                 }, {
                     type: "checkbox",
@@ -17797,7 +17896,7 @@ var PerformanceComponent3D = function() {
                     eventParams: {
                         cast: "bool",
                         property: "useShadow",
-                        eventName: "wnp.request.changePerformancesProperty"
+                        eventName: "hcs.request.changePerformancesProperty"
                     }
                 }, {
                     type: "checkbox",
@@ -17806,21 +17905,21 @@ var PerformanceComponent3D = function() {
                     eventParams: {
                         cast: "bool",
                         property: "useMultiTexturing",
-                        eventName: "wnp.request.changePerformancesProperty"
+                        eventName: "hcs.request.changePerformancesProperty"
                     }
                 }]
             }], s = [{
                 label: _("Apply and reload"),
-                action: "wnp.engine2D.contextMenuPerformance.close"
+                action: "hcs.engine2D.contextMenuPerformance.close"
             }], window.addEventListener("focus", l, !1), window.addEventListener("blur", l, !1)
         };
     return a.prototype = Object.create(BaseComponent3D.prototype), a.prototype.initialize = function() {
         var t = {
             title: _("Increase performances"),
-            action: "wnp.request.changePerformances",
+            action: "hcs.request.changePerformances",
             index: 1
         };
-        ujs.notify("wnp.menu.top.add", {
+        ujs.notify("hcs.menu.top.add", {
             item: t,
             menuPath: "toolbarOption"
         })
@@ -17830,16 +17929,16 @@ var PerformanceComponent3D = function() {
         var e = "number" == typeof item ? t : r[0].content.indexOf(t);
         return e > -1 && r[0].content.splice(e, 1), e > -1
     }, a.prototype.onChangePerformance = function() {
-        ujs.notify("wnp.menu.top.deselect");
+        ujs.notify("hcs.menu.top.deselect");
         var t = {
             id: "performancesWindow",
             title: _("Settings"),
-            x: wanaplan.getWidth() / 2 - 100,
+            x: hcsdesign.getWidth() / 2 - 100,
             y: 100
         };
-        wnp.UI.ContextMenu.show(t, r, s)
+        hcs.UI.ContextMenu.show(t, r, s)
     }, a.prototype.onContextMenuPerformanceClose = function() {
-        ujs.notify("wnp.engine2D.contextMenu.close"), ujs.notify("wnp.engine3D.refreshGL")
+        ujs.notify("hcs.engine2D.contextMenu.close"), ujs.notify("hcs.engine3D.refreshGL")
     }, a.prototype.onContextMenuPropertyChanged = function(e) {
         var n = e.property,
             i = e.value;
@@ -17860,8 +17959,8 @@ var PerformanceComponent3D = function() {
                 if (this.waitSince === !1)
                     this.waitSince = i;
                 else if (i - this.waitSince > n && !this.hasBeenAlreadyNotified) {
-                    var r = wanaplan.engine2D.searchComponent("PedagoComponent");
-                    this.hasBeenAlreadyNotified = !0, wnpLocalStorage.setItem(o, !0), wnp.UI.IFrame.show(document.body, {
+                    var r = hcsdesign.engine2D.searchComponent("PedagoComponent");
+                    this.hasBeenAlreadyNotified = !0, hcsLocalStorage.setItem(o, !0), hcs.UI.IFrame.show(document.body, {
                         width: 720,
                         height: 240,
                         src: r.getPageURL("graphics")
@@ -17875,10 +17974,10 @@ var PerformanceComponent3D = function() {
 }();
 var HardwareScalingComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "HardwareScalingComponent3D"), this.hardwareScalingLevel = 1, this.hardwareScaling = 1, this._e3d = wanaplan.engine3D, this._camComponent = null, this._edtComponent = null, this._perfComponent = null, this._performanceItem = {}, this._initialized = !1
+        BaseComponent3D.call(this, t, "HardwareScalingComponent3D"), this.hardwareScalingLevel = 1, this.hardwareScaling = 1, this._e3d = hcsdesign.engine3D, this._camComponent = null, this._edtComponent = null, this._perfComponent = null, this._performanceItem = {}, this._initialized = !1
     };
     return t.prototype = Object.create(BaseComponent3D.prototype), t.prototype.initialize = function() {
-        this._initialized || (this._onResize = this._onResize.bind(this), this.hardwareScalingLevel = wanaplan.configuration.hardwareScalingLevel || 1, this.hardwareScaling = 1 / this.hardwareScalingLevel, this._camComponent = this._e3d.searchComponent("CameraComponent"), this._edtComponent = this._e3d.searchComponent("EditionComponent3D"), this._perfComponent = this._e3d.searchComponent("PerformanceComponent3D"), this.hardwareScalingLevel > 1 && (window.addEventListener("resize", this._onResize, !1), this.setHardwareScalingLevel(this.hardwareScalingLevel)), this._perfComponent && (this._performanceItem = {
+        this._initialized || (this._onResize = this._onResize.bind(this), this.hardwareScalingLevel = hcsdesign.configuration.hardwareScalingLevel || 1, this.hardwareScaling = 1 / this.hardwareScalingLevel, this._camComponent = this._e3d.searchComponent("CameraComponent"), this._edtComponent = this._e3d.searchComponent("EditionComponent3D"), this._perfComponent = this._e3d.searchComponent("PerformanceComponent3D"), this.hardwareScalingLevel > 1 && (window.addEventListener("resize", this._onResize, !1), this.setHardwareScalingLevel(this.hardwareScalingLevel)), this._perfComponent && (this._performanceItem = {
             type: "select",
             label: _("Quality"),
             namesValues: [{
@@ -17891,17 +17990,17 @@ var HardwareScalingComponent3D = function() {
                 text: _("Good"),
                 value: 1
             }],
-            selectedKey: wanaplan.configuration.hardwareScalingLevel,
+            selectedKey: hcsdesign.configuration.hardwareScalingLevel,
             eventParams: {
                 cast: "float",
                 property: "hardwareScalingLevel",
-                eventName: "wnp.request.changePerformancesProperty"
+                eventName: "hcs.request.changePerformancesProperty"
             }
         }, this._perfComponent.addItem(this._performanceItem)), this._initialized = !0)
     }, t.prototype.destroy = function() {
-        this.setHardwareScalingLevel(1), wanaplan.configuration.hardwareScalingLevel = 1, wanaplan.configuration.saveConfiguration(), this._perfComponent && this._perfComponent.removeItem(this._performanceItem), this._camComponent && this._camComponent.disableAllPostProcess(), this._edtComponent && (this._edtComponent.dragControl.hardwareScaling = 1), window.removeEventListener("resize", this._onResize)
+        this.setHardwareScalingLevel(1), hcsdesign.configuration.hardwareScalingLevel = 1, hcsdesign.configuration.saveConfiguration(), this._perfComponent && this._perfComponent.removeItem(this._performanceItem), this._camComponent && this._camComponent.disableAllPostProcess(), this._edtComponent && (this._edtComponent.dragControl.hardwareScaling = 1), window.removeEventListener("resize", this._onResize)
     }, t.prototype.setHardwareScalingLevel = function(t) {
-        this.hardwareScaling = 1 / t, this.hardwareScalingLevel = t, this._e3d.engine.setHardwareScalingLevel(t), this._e3d.hardwareScaling = this.hardwareScaling, this._e3d.canvas.width = wanaplan.getWidth() * this.hardwareScaling, this._e3d.canvas.height = wanaplan.getHeight() * this.hardwareScaling, this.hardwareScalingLevel > 2 && this._camComponent && this._camComponent.toggleFSAA(), this._edtComponent && this._edtComponent.dragControl.setHardwareScaling(this.hardwareScaling)
+        this.hardwareScaling = 1 / t, this.hardwareScalingLevel = t, this._e3d.engine.setHardwareScalingLevel(t), this._e3d.hardwareScaling = this.hardwareScaling, this._e3d.canvas.width = hcsdesign.getWidth() * this.hardwareScaling, this._e3d.canvas.height = hcsdesign.getHeight() * this.hardwareScaling, this.hardwareScalingLevel > 2 && this._camComponent && this._camComponent.toggleFSAA(), this._edtComponent && this._edtComponent.dragControl.setHardwareScaling(this.hardwareScaling)
     }, t.prototype._onResize = function() {
         this.hardwareScalingLevel > 1 && this.setHardwareScalingLevel(this.hardwareScalingLevel)
     }, t
@@ -17913,19 +18012,19 @@ var RemoteControlComponent3D = function() {
             BaseComponent3D.call(this, e, "RemoteControlComponent3D"), t = this
         };
     return r.prototype = new BaseComponent3D, r.prototype.initialize = function() {
-        this.createHTML(), document.addEventListener("mouseup", this.onMouseUp, !1), document.addEventListener("mousemove", this.onMouseMove, !1), window.addEventListener("mousewheel", this.onZoomUpdated, !1), document.addEventListener("touchend", this.onMouseUp, !1), document.addEventListener("touchcancel", this.onMouseUp, !1), document.addEventListener("touchmove", this.onMouseMove, !1), document.addEventListener("wnp.request.zoomUpdated", this.onZoomUpdated, !1), document.addEventListener("wnp.contextChanged", this.onZoomUpdated, !1), document.addEventListener("wnp.engine3d.cameraChanged", this.onCameraHasChanged.bind(this), !1), document.addEventListener("wnp.request.changeEngine", this.onCameraHasChanged.bind(this), !1)
+        this.createHTML(), document.addEventListener("mouseup", this.onMouseUp, !1), document.addEventListener("mousemove", this.onMouseMove, !1), window.addEventListener("mousewheel", this.onZoomUpdated, !1), document.addEventListener("touchend", this.onMouseUp, !1), document.addEventListener("touchcancel", this.onMouseUp, !1), document.addEventListener("touchmove", this.onMouseMove, !1), document.addEventListener("hcs.request.zoomUpdated", this.onZoomUpdated, !1), document.addEventListener("hcs.contextChanged", this.onZoomUpdated, !1), document.addEventListener("hcs.engine3d.cameraChanged", this.onCameraHasChanged.bind(this), !1), document.addEventListener("hcs.request.changeEngine", this.onCameraHasChanged.bind(this), !1)
     }, r.prototype.listenJoystickEvents = function() {
         this.joystick.addEventListener("mousedown", this.onJoystickMouseDown, !1), this.joystick.addEventListener("touchstart", this.onJoystickMouseDown, !1)
     }, r.prototype.listenCursorEvents = function() {
         this.cursor.addEventListener("mousedown", this.onCursorMouseDown, !1), this.cursor.addEventListener("touchstart", this.onCursorMouseDown, !1)
     }, r.prototype.onZoomUpdated = function() {
         var e = n.height;
-        if (wanaplan.getSelectedEngine() == wanaplan.ENGINE_2D) {
-            var i = wanaplan.engine2D.getZoom(),
+        if (hcsdesign.getSelectedEngine() == hcsdesign.ENGINE_2D) {
+            var i = hcsdesign.engine2D.getZoom(),
                 o = e * (1 - i);
             o = 0 > o ? 0 : o
         } else {
-            var r = wanaplan.engine3D.camera;
+            var r = hcsdesign.engine3D.camera;
             if ("Camera" == r.name)
                 var s = r.radius,
                     o = e * (s - r.lowerRadiusLimit) / (r.upperRadiusLimit - r.lowerRadiusLimit);
@@ -17939,16 +18038,16 @@ var RemoteControlComponent3D = function() {
             e.touches && (e.preventDefault(), o = e.touches[0].pageY);
             var r = o - n.top,
                 s = 0;
-            if (r > 0 && r < n.height ? s = r : r > 0 && r > n.height ? s = n.height : 0 > r && (s = 0), wanaplan.getSelectedEngine() == wanaplan.ENGINE_2D) {
+            if (r > 0 && r < n.height ? s = r : r > 0 && r > n.height ? s = n.height : 0 > r && (s = 0), hcsdesign.getSelectedEngine() == hcsdesign.ENGINE_2D) {
                 {
                     var a = (n.height - s) / n.height;
-                    wanaplan.engine2D.getZoom()
+                    hcsdesign.engine2D.getZoom()
                 }
-                wanaplan.engine2D.setZoom(a)
+                hcsdesign.engine2D.setZoom(a)
             } else {
                 var a = s / n.height,
-                    l = wanaplan.engine3D.camera;
-                "Camera" == l.name ? l.radius = l.lowerRadiusLimit + (l.upperRadiusLimit - l.lowerRadiusLimit) * a : (l.height = l.heightMax + (l.heightMin - l.heightMax) * a, l.position.y = l.height), t.cursor.style.marginTop = s + "px", ujs.notify("wnp.engine3D.camera.zoom")
+                    l = hcsdesign.engine3D.camera;
+                "Camera" == l.name ? l.radius = l.lowerRadiusLimit + (l.upperRadiusLimit - l.lowerRadiusLimit) * a : (l.height = l.heightMax + (l.heightMin - l.heightMax) * a, l.position.y = l.height), t.cursor.style.marginTop = s + "px", ujs.notify("hcs.engine3D.camera.zoom")
             }
         }
     }, r.prototype.onJoystickMouseDown = function(n) {
@@ -17960,16 +18059,16 @@ var RemoteControlComponent3D = function() {
             },
             s = Math.floor(r.x / i.width * 3),
             a = Math.floor(r.y / i.height * 3);
-        1 == s && 1 == a && ujs.notify("wnp.request.cameraChanged"), e = setInterval(function() {
+        1 == s && 1 == a && ujs.notify("hcs.request.cameraChanged"), e = setInterval(function() {
             t.setTranslation(s, a)
         }, 1)
     }, r.prototype.setTranslation = function(t, e) {
-        if (wanaplan.getSelectedEngine() == wanaplan.ENGINE_2D) {
+        if (hcsdesign.getSelectedEngine() == hcsdesign.ENGINE_2D) {
             var n = 10,
-                i = wanaplan.engine2D.getTranslation();
-            1 > t && (i.x -= n), t > 1 && (i.x += n), 1 > e && (i.y -= n), e > 1 && (i.y += n), wanaplan.engine2D.setTranslation(i)
+                i = hcsdesign.engine2D.getTranslation();
+            1 > t && (i.x -= n), t > 1 && (i.x += n), 1 > e && (i.y -= n), e > 1 && (i.y += n), hcsdesign.engine2D.setTranslation(i)
         } else {
-            var o = wanaplan.engine3D.camera;
+            var o = hcsdesign.engine3D.camera;
             if ("Camera" == o.name) {
                 var n = Math.PI / 300;
                 1 > t && (o.alpha -= n), t > 1 && (o.alpha += n), 1 > e && (o.beta -= n), e > 1 && (o.beta += n)
@@ -17984,11 +18083,11 @@ var RemoteControlComponent3D = function() {
         i = !1, o && (clearInterval(e), o = !1)
     }, r.prototype.createHTML = function() {
         var e = document.createElement("div");
-        e.setAttribute("id", "remoteController"), e.style.width = "50px", e.style.height = "210px", e.style.position = "relative", e.style.backgroundImage = "url('" + wnp.Assets.globalPath + wnp.Assets.remote.bg + "')", this.cursorContainer = document.createElement("div"), this.cursorContainer.setAttribute("style", "width:20px;height:150px;position:absolute;top:57px;left:15px;"), this.cursor = document.createElement("div"), this.cursor.setAttribute("style", "width:20px;height:7px;background:" + wnp.Assets.mainUIColor + ";border-radius:2px;cursor:pointer;border:1px solid " + ("#897364" == wnp.Assets.mainUIColor ? "#897364" : "#333") + ";margin-top:50px;"), this.listenCursorEvents(), this.cursorContainer.appendChild(this.cursor), e.appendChild(this.cursorContainer), this.cameraButton = document.createElement("div"), this.cameraButton.id = "camera-swap-btn", this.cameraButton.style.width = "18px", this.cameraButton.style.height = "18px", this.cameraButton.style.position = "absolute", this.cameraButton.style.backgroundSize = "cover", this.cameraButton.style.top = "16px", this.cameraButton.style.left = "16px", this.cameraButton.style.borderRadius = "7px", e.appendChild(this.cameraButton), t._setCameraIcon(!1), this.joystick = document.createElement("div"), this.joystick.setAttribute("style", "width:50px;height:50px;cursor:pointer;position:absolute;"), this.listenJoystickEvents(), e.appendChild(this.joystick);
+        e.setAttribute("id", "remoteController"), e.style.width = "50px", e.style.height = "210px", e.style.position = "relative", e.style.backgroundImage = "url('" + hcs.Assets.globalPath + hcs.Assets.remote.bg + "')", this.cursorContainer = document.createElement("div"), this.cursorContainer.setAttribute("style", "width:20px;height:150px;position:absolute;top:57px;left:15px;"), this.cursor = document.createElement("div"), this.cursor.setAttribute("style", "width:20px;height:7px;background:" + hcs.Assets.mainUIColor + ";border-radius:2px;cursor:pointer;border:1px solid " + ("#897364" == hcs.Assets.mainUIColor ? "#897364" : "#333") + ";margin-top:50px;"), this.listenCursorEvents(), this.cursorContainer.appendChild(this.cursor), e.appendChild(this.cursorContainer), this.cameraButton = document.createElement("div"), this.cameraButton.id = "camera-swap-btn", this.cameraButton.style.width = "18px", this.cameraButton.style.height = "18px", this.cameraButton.style.position = "absolute", this.cameraButton.style.backgroundSize = "cover", this.cameraButton.style.top = "16px", this.cameraButton.style.left = "16px", this.cameraButton.style.borderRadius = "7px", e.appendChild(this.cameraButton), t._setCameraIcon(!1), this.joystick = document.createElement("div"), this.joystick.setAttribute("style", "width:50px;height:50px;cursor:pointer;position:absolute;"), this.listenJoystickEvents(), e.appendChild(this.joystick);
         var i = document.getElementById("remote-controller");
         i || (i = document.createElement("div"), i.style.position = "absolute", i.style.top = "50px", i.style.left = "10px", i.style.height = "300px", i.style.width = "50px", document.getElementById("modalWidgets").appendChild(i)), i.appendChild(e), n = this.cursorContainer.getBoundingClientRect()
     }, r.prototype.destroy = function() {
-        window.removeEventListener("mousewheel", this.onZoomUpdated), document.removeEventListener("mouseup", this.onMouseUp), document.removeEventListener("mousemove", this.onMouseMove), document.removeEventListener("touchend", this.onMouseUp), document.removeEventListener("touchcancel", this.onMouseUp), document.removeEventListener("touchmove", this.onMouseMove), document.removeEventListener("wnp.request.zoomUpdated", this.onZoomUpdated), document.removeEventListener("wnp.contextChanged", this.onZoomUpdated);
+        window.removeEventListener("mousewheel", this.onZoomUpdated), document.removeEventListener("mouseup", this.onMouseUp), document.removeEventListener("mousemove", this.onMouseMove), document.removeEventListener("touchend", this.onMouseUp), document.removeEventListener("touchcancel", this.onMouseUp), document.removeEventListener("touchmove", this.onMouseMove), document.removeEventListener("hcs.request.zoomUpdated", this.onZoomUpdated), document.removeEventListener("hcs.contextChanged", this.onZoomUpdated);
         var t = document.getElementById("remoteController");
         if (t) {
             var e = t.parentNode;
@@ -18001,13 +18100,13 @@ var RemoteControlComponent3D = function() {
         var e;
         switch (t) {
             case "fpsCamera":
-                e = wnp.Assets.remote.cam;
+                e = hcs.Assets.remote.cam;
                 break;
             case "orbitCamera":
             default:
-                e = wnp.Assets.remote.man
+                e = hcs.Assets.remote.man
         }
-        this.cameraButton.style.backgroundImage = "url('" + wnp.Assets.globalPath + e + "')"
+        this.cameraButton.style.backgroundImage = "url('" + hcs.Assets.globalPath + e + "')"
     }, r
 }();
 var MeasureStructure = function() {
@@ -18082,13 +18181,13 @@ var MeasureComponent = function() {
                 o !== i && e.tryMerge(t[o]) && (t.splice(o, 1), n--, i--, o = 0)
         }
     }, n.prototype.drawTmpWallMesure = function(t, e, n) {
-        var i = wanaplan.getComponentByName("WallComponent2D")._tmpWall;
+        var i = hcsdesign.getComponentByName("WallComponent2D")._tmpWall;
         if (i) {
             var o = new BABYLON.Vector2(i.points[1].position.y - i.points[0].position.y, i.points[0].position.x - i.points[1].position.x).normalize().scaleInPlace(40);
             this._drawMeasureSlice(t, e, n, i.points[0].position.add(o), i.points[1].position.add(o))
         }
     }, n.prototype.draw = function(n, i, o) {
-        for (var r, s, a = wanaplan.getComponentByName("OvertureComponent2D") && wanaplan.getComponentByName("OvertureComponent2D").overtureDragged, l = new BABYLON.Vector2, h = [], c = t.concat(e), u = 0, p = c.length; p > u; u++) {
+        for (var r, s, a = hcsdesign.getComponentByName("OvertureComponent2D") && hcsdesign.getComponentByName("OvertureComponent2D").overtureDragged, l = new BABYLON.Vector2, h = [], c = t.concat(e), u = 0, p = c.length; p > u; u++) {
             h.push([]);
             for (var d = 0, m = c[u].length; m > d; d++)
                 c[u][d].parent.measureDisplayed && (r = [], l.copyFrom(c[u][d].offsetVector).normalize().scaleInPlace(c[u][d].parent.measureDist), r.push(c[u][d].points[0].clone(), c[u][d].points[1].clone()), a && this._addOvertureIntersections(c[u][d].parent, r), s = new MeasureStructure(r, c[u][d].parent, l.clone()), h[u].push(s));
@@ -18099,11 +18198,11 @@ var MeasureComponent = function() {
                 for (var g = 0, f = h[u][d].points.length - 1; f > g; g++)
                     this._drawMeasureSlice(n, i, o, h[u][d].points[g].add(h[u][d].offsetVector), h[u][d].points[g + 1].add(h[u][d].offsetVector))
     }, n.prototype._drawMeasureSlice = function(t, e, n, i, o) {
-        var r = wanaplan.engine2D.toRealCoord(i, e, n),
-            s = wanaplan.engine2D.toRealCoord(o, e, n),
+        var r = hcsdesign.engine2D.toRealCoord(i, e, n),
+            s = hcsdesign.engine2D.toRealCoord(o, e, n),
             a = i.distanceTo(o),
             l = Math.round(a) / 100;
-        return wanaplan.engine2D.symbols2D.drawMeasure(t, r, s, l + "m"), l
+        return hcsdesign.engine2D.symbols2D.drawMeasure(t, r, s, l + "m"), l
     }, n.prototype._addOvertureIntersections = function(t, e) {
         for (var n = function(t, n) {
                 return t.distanceToSquared(e[0]) - n.distanceToSquared(e[0])
@@ -18116,7 +18215,7 @@ var DebugComponent2D = function(t) {
     BaseComponent2D.call(this, t, "DebugComponent2D")
 };
 DebugComponent2D.prototype = Object.create(BaseComponent2D.prototype), DebugComponent2D.prototype.dumpStructureToFile = function() {
-    var t = wanaplan.structure.serialize(),
+    var t = hcsdesign.structure.serialize(),
         e = new Blob([t], {
             type: "text/plain;charset=utf-8"
         });
@@ -18210,7 +18309,7 @@ var DebugComponent3D = function(t) {
     BaseComponent3D.call(this, t, "DebugComponent3D")
 };
 DebugComponent3D.prototype = Object.create(BaseComponent3D.prototype), DebugComponent3D.prototype.dumpSceneToFile = function() {
-    var t = BABYLON.SceneSerializer.Serialize(wanaplan.engine3D.scene),
+    var t = BABYLON.SceneSerializer.Serialize(hcsdesign.engine3D.scene),
         e = JSON.stringify(t),
         n = new Blob([e], {
             type: "text/plain;charset=utf-8"
@@ -18224,14 +18323,14 @@ DebugComponent3D.prototype = Object.create(BaseComponent3D.prototype), DebugComp
             color: i
         }),
         a = new THREE.Mesh(r, s);
-    return this.scene.add(a), this.marks.push(a), a.position.set(t, e, n), wanaplan.engine3D.refreshRenderer(), this.marks.length - 1
+    return this.scene.add(a), this.marks.push(a), a.position.set(t, e, n), hcsdesign.engine3D.refreshRenderer(), this.marks.length - 1
 }, DebugComponent3D.prototype.marklights = function() {
     Logger.message(this);
     for (var t = 0; t < this.scene.__lights.length; t++) {
         var e = this.scene.__lights[t].position;
         this.mark(e.x, e.y, e.z, 16776960)
     }
-    return wanaplan.engine3D.refreshRenderer(), this.scene.__lights
+    return hcsdesign.engine3D.refreshRenderer(), this.scene.__lights
 }, DebugComponent3D.prototype.removemark = function(t) {
     return this.scene.remove(this.marks[t]), this.marks.splice(t, 1), t
 }, DebugComponent3D.prototype.removemarks = function() {
@@ -18261,96 +18360,96 @@ DebugComponent3D.prototype.concatGeom = function(t) {
                         }
             Logger.message(i), o.materials = i;
             var h = new THREE.Mesh(n, o);
-            Logger.message(h.material), t.add(h), Logger.message(wanaplan.engine3D.renderer.autoUpdateObjects), wanaplan.engine3D.renderer.autoUpdateObjects = !1
+            Logger.message(h.material), t.add(h), Logger.message(hcsdesign.engine3D.renderer.autoUpdateObjects), hcsdesign.engine3D.renderer.autoUpdateObjects = !1
         };
     s()
 };
 var updateRenderer = function() {
-    wanaplan.engine3D.renderer.initWebGLObjects(wanaplan.engine3D.scene)
+    hcsdesign.engine3D.renderer.initWebGLObjects(hcsdesign.engine3D.scene)
 };
 var concatgeom = concatgeom || function() {
-        var t = wanaplan.getComponentByName("DebugComponent3D");
-        return DEBUG ? t.concatGeom(wanaplan.engine3D.scene) : (Logger.warning("debug is disabled !"), !1)
+        var t = hcsdesign.getComponentByName("DebugComponent3D");
+        return DEBUG ? t.concatGeom(hcsdesign.engine3D.scene) : (Logger.warning("debug is disabled !"), !1)
     },
     mark = mark || function(t, e, n, i, o) {
-        var r = wanaplan.getComponentByName("DebugComponent3D");
+        var r = hcsdesign.getComponentByName("DebugComponent3D");
         return DEBUG ? r.mark(t, e, n, i, o) : (Logger.warning("debug is disabled !"), !1)
     },
     marklights = marklights || function() {
-        var t = wanaplan.getComponentByName("DebugComponent3D");
+        var t = hcsdesign.getComponentByName("DebugComponent3D");
         return DEBUG ? t.marklights() : (Logger.warning("debug is disabled !"), !1)
     },
     removemark = removemark || function(t) {
-        var e = wanaplan.getComponentByName("DebugComponent3D");
+        var e = hcsdesign.getComponentByName("DebugComponent3D");
         return DEBUG ? e.removemark(t) : (Logger.warning("debug is disabled !"), !1)
     },
     removemarks = removemarks || function() {
-        var t = wanaplan.getComponentByName("DebugComponent3D");
+        var t = hcsdesign.getComponentByName("DebugComponent3D");
         return DEBUG ? t.removemarks() : (Logger.warning("debug is disabled !"), !1)
     },
     drawWalls = drawWalls || function() {
-        var t = wanaplan.getComponentByName("WallComponent3D");
+        var t = hcsdesign.getComponentByName("WallComponent3D");
         return DEBUG ? t.drawWalls() : (Logger.warning("debug is disabled !"), !1)
     },
     debugCSG = debugCSG || function() {
-        var t = wanaplan.getComponentByName("WallComponent3D");
+        var t = hcsdesign.getComponentByName("WallComponent3D");
         return DEBUG ? t.debugCSG() : (Logger.warning("debug is disabled !"), !1)
     },
     debugSS = debugSS || function() {
-        var t = wanaplan.getComponentByName("SubSlopeComponent3D");
+        var t = hcsdesign.getComponentByName("SubSlopeComponent3D");
         return DEBUG ? t.debug() : (Logger.warning("debug is disabled !"), !1)
     };
 var AnalyticsComponent = function() {
     var t, e = {
-            "wnp.contextChanged": {
+            "hcs.contextChanged": {
                 action: "contextChanged",
                 label: "fromContext",
                 value: "{previousContext}"
             },
-            "wnp.request.toggleFullscreen": {
+            "hcs.request.toggleFullscreen": {
                 action: "toggleFullscreen"
             },
-            "wnp.request.print": {
+            "hcs.request.print": {
                 action: "requestPrint"
             },
-            "wnp.engine2d.onAddBackground": {
+            "hcs.engine2d.onAddBackground": {
                 action: "addBackgroundClick"
             },
-            "wnp.component.lock": {
+            "hcs.component.lock": {
                 action: "onLockObject"
             },
-            "wnp.request.undo": {
+            "hcs.request.undo": {
                 action: "history",
                 label: "undo"
             },
-            "wnp.request.redo": {
+            "hcs.request.redo": {
                 action: "history",
                 label: "redo"
             },
-            "wnp.request.switch-transparency": {
+            "hcs.request.switch-transparency": {
                 action: "switchTransparency"
             },
-            "wnp.engine3D.addObject": {
+            "hcs.engine3D.addObject": {
                 action: "addObject"
             },
-            "wnp.engine3D.addProgrammable": {
+            "hcs.engine3D.addProgrammable": {
                 action: "addObject"
             },
-            "wnp.engine3D.addGroup": {
+            "hcs.engine3D.addGroup": {
                 action: "addObject"
             },
-            "wnp.request.object.remove": {
+            "hcs.request.object.remove": {
                 action: "removeObject"
             },
-            "wnp.engine3D.info": {
+            "hcs.engine3D.info": {
                 action: "infoObject"
             },
-            "wnp.contextMenu.propertyChanged": {
+            "hcs.contextMenu.propertyChanged": {
                 action: "objectParamsModified",
                 label: "{property}",
                 value: "{value}"
             },
-            "wnp.engine3D.decorate": {
+            "hcs.engine3D.decorate": {
                 action: "decorate"
             }
         },
@@ -18359,14 +18458,14 @@ var AnalyticsComponent = function() {
         };
     return n.prototype = Object.create(BaseComponent2D.prototype), n.prototype.initialize = function() {
         ga("send", "pageview", {
-            dimension1: wanaplan.api.apiKey,
-            dimension2: wanaplan.mode
+            dimension1: hcsdesign.api.apiKey,
+            dimension2: hcsdesign.mode
         });
         for (var i in e)
             ! function(e, i) {
                 var o = e.split(".").join("_");
                 n.prototype[o] = function(e) {
-                    var n = wanaplan.getSelectedEngine() == wanaplan.ENGINE_2D ? "2D" : "3D",
+                    var n = hcsdesign.getSelectedEngine() == hcsdesign.ENGINE_2D ? "2D" : "3D",
                         o = t.cleanValue(i.action, e),
                         r = t.cleanValue(i.label, e),
                         s = t.cleanValue(i.value, e);
@@ -18393,7 +18492,7 @@ var AnalyticsComponent = function() {
 }();
 var GroupConfiguratorModComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "GroupConfiguratorModComponent3D"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D")
+        BaseComponent3D.call(this, t, "GroupConfiguratorModComponent3D"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D")
     };
     return t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._state = "idle", this._currentObject = null
@@ -18412,13 +18511,13 @@ var GroupConfiguratorModComponent3D = function() {
                 this.edcmp.widgets[t].addInfo && this.edcmp.widgets[t].addInfo();
         return !0
     }, t.prototype.requestStart = function() {
-        return "ready" == this.getState() ? !1 : this.getCurrentObject() ? (this.lockUnrelatedActions(), this._state = "ready", void ujs.notify("wnp.engine3d.groupConfigurator.start")) : !1
+        return "ready" == this.getState() ? !1 : this.getCurrentObject() ? (this.lockUnrelatedActions(), this._state = "ready", void ujs.notify("hcs.engine3d.groupConfigurator.start")) : !1
     }, t.prototype.requestStop = function() {
-        return "idle" == this.getState() ? !1 : (this._state = "idle", ujs.notify("wnp.engine3d.groupConfigurator.stop"), void this.unlockUnrelatedActions())
+        return "idle" == this.getState() ? !1 : (this._state = "idle", ujs.notify("hcs.engine3d.groupConfigurator.stop"), void this.unlockUnrelatedActions())
     }, t.prototype.startListening = function() {
-        this.initBindForThisInstance(), this.stopListening(), document.addEventListener("wnp.request.groupConfigurator.start", this.myBind.onRequestStart), document.addEventListener("wnp.request.groupConfigurator.stop", this.myBind.onRequestStop), document.addEventListener("wnp.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.addEventListener("wnp.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.addEventListener("wnp.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.addEventListener("wnp.contextChanged ", this.myBind.onSwapEngine)
+        this.initBindForThisInstance(), this.stopListening(), document.addEventListener("hcs.request.groupConfigurator.start", this.myBind.onRequestStart), document.addEventListener("hcs.request.groupConfigurator.stop", this.myBind.onRequestStop), document.addEventListener("hcs.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.addEventListener("hcs.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.addEventListener("hcs.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.addEventListener("hcs.contextChanged ", this.myBind.onSwapEngine)
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.request.groupConfigurator.start", this.myBind.onRequestStart), document.removeEventListener("wnp.request.groupConfigurator.stop", this.myBind.onRequestStop), document.removeEventListener("wnp.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.removeEventListener("wnp.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.removeEventListener("wnp.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.removeEventListener("wnp.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.removeEventListener("wnp.contextChanged ", this.myBind.onSwapEngine)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.request.groupConfigurator.start", this.myBind.onRequestStart), document.removeEventListener("hcs.request.groupConfigurator.stop", this.myBind.onRequestStop), document.removeEventListener("hcs.request.groupConfigurator.cancel", this.myBind.onRequestCancel), document.removeEventListener("hcs.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.removeEventListener("hcs.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.removeEventListener("hcs.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.removeEventListener("hcs.contextChanged ", this.myBind.onSwapEngine)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -18443,7 +18542,7 @@ var GroupConfiguratorModComponent3D = function() {
             this.cancel()
         },
         onSwapEngine: function(t) {
-            "2D" == t.engine && ujs.notify("wnp.request.groupConfigurator.cancel")
+            "2D" == t.engine && ujs.notify("hcs.request.groupConfigurator.cancel")
         },
         onFloorChanged: function() {},
         onDisposeObject: function() {}
@@ -18451,7 +18550,7 @@ var GroupConfiguratorModComponent3D = function() {
 }();
 var GroupConfiguratorPanelComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "GroupConfiguratorPanelComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.hec = wanaplan.getComponentByName("HistoryEditionComponent"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D"), this.camF = wanaplan.engine3D.cameraFeatures
+        BaseComponent3D.call(this, t, "GroupConfiguratorPanelComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.hec = hcsdesign.getComponentByName("HistoryEditionComponent"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D"), this.camF = hcsdesign.engine3D.cameraFeatures
     };
     t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._options || this.setOptions()
@@ -18463,9 +18562,9 @@ var GroupConfiguratorPanelComponent3D = function() {
             this._options[n] = "undefined" == typeof t[n] ? e[n] : t[n];
         return this
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("wnp.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("wnp.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("hcs.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("hcs.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.addEventListener("wnp.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("wnp.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.groupConfigurator.start", this.myBind.onEditionStart, !1), document.addEventListener("hcs.engine3d.groupConfigurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("hcs.widget.contextMenu.FurnitureEditorForGroup.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -18480,24 +18579,24 @@ var GroupConfiguratorPanelComponent3D = function() {
             })();
         return this
     }, t.prototype.closeEditBox = function() {
-        wnp.UI.ContextMenu.close()
+        hcs.UI.ContextMenu.close()
     }, t.prototype.openEditBox = function(t) {
         if (t) {
             this._enabled = !0;
             var e = [{
                 label: _("Remove"),
-                action: "wnp.request.object.remove",
+                action: "hcs.request.object.remove",
                 "class": "remove"
             }, {
                 label: _("Duplicate"),
-                action: "wnp.request.object.clone"
+                action: "hcs.request.object.clone"
             }, {
                 label: _("Submit"),
-                action: "wnp.widget.contextMenu.FurnitureEditorForGroup.closed"
+                action: "hcs.widget.contextMenu.FurnitureEditorForGroup.closed"
             }];
-            wanaplan.isPublisher() && e.push({
+            hcsdesign.isPublisher() && e.push({
                 label: _("Add to products"),
-                action: "wnp.request.object.addToProducts"
+                action: "hcs.request.object.addToProducts"
             });
             var n = [{
                 content: [{
@@ -18505,11 +18604,11 @@ var GroupConfiguratorPanelComponent3D = function() {
                     type: "checkbox",
                     value: -1 == t.name.indexOf("group_virtual") ? !0 : !1,
                     eventParams: {
-                        eventName: "wnp.engine3D.contextMenu.group"
+                        eventName: "hcs.engine3D.contextMenu.group"
                     }
                 }]
             }];
-            wnp.UI.ContextMenu.show({
+            hcs.UI.ContextMenu.show({
                 menuName: "FurnitureEditorForGroup",
                 title: _("Group info"),
                 width: 450,
@@ -18528,18 +18627,18 @@ var GroupConfiguratorPanelComponent3D = function() {
             this.closeEditBox()
         },
         onEditBoxClosed: function() {
-            this._enabled = !1, ujs.notify("wnp.request.groupConfigurator.stop")
+            this._enabled = !1, ujs.notify("hcs.request.groupConfigurator.stop")
         }
     }, t
 }();
 var ConfiguratorModComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "ConfiguratorModComponent3D"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D")
+        BaseComponent3D.call(this, t, "ConfiguratorModComponent3D"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D")
     };
     return t.prototype = new BaseComponent3D, t.prototype.startListening = function() {
-        this.initBindForThisInstance(), this.stopListening(), document.addEventListener("wnp.request.configurator.start", this.myBind.onRequestStart), document.addEventListener("wnp.request.configurator.stop", this.myBind.onRequestStop), document.addEventListener("wnp.request.configurator.cancel", this.myBind.onRequestCancel), document.addEventListener("wnp.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.addEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.addEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.addEventListener("wnp.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.addEventListener("wnp.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.addEventListener("wnp.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.addEventListener("wnp.engine3D.object.refresh", this.myBind.onRefreshObject, !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.addEventListener("wnp.contextChanged ", this.myBind.onSwapEngine)
+        this.initBindForThisInstance(), this.stopListening(), document.addEventListener("hcs.request.configurator.start", this.myBind.onRequestStart), document.addEventListener("hcs.request.configurator.stop", this.myBind.onRequestStop), document.addEventListener("hcs.request.configurator.cancel", this.myBind.onRequestCancel), document.addEventListener("hcs.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.addEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.addEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.addEventListener("hcs.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.addEventListener("hcs.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.addEventListener("hcs.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.addEventListener("hcs.engine3D.object.refresh", this.myBind.onRefreshObject, !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.addEventListener("hcs.contextChanged ", this.myBind.onSwapEngine)
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.request.configurator.start", this.myBind.onRequestStart), document.removeEventListener("wnp.request.configurator.stop", this.myBind.onRequestStop), document.removeEventListener("wnp.request.configurator.cancel", this.myBind.onRequestCancel), document.removeEventListener("wnp.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.removeEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.removeEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.removeEventListener("wnp.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.removeEventListener("wnp.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.removeEventListener("wnp.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefreshObject, !1), document.removeEventListener("wnp.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.removeEventListener("wnp.contextChanged ", this.myBind.onSwapEngine)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.request.configurator.start", this.myBind.onRequestStart), document.removeEventListener("hcs.request.configurator.stop", this.myBind.onRequestStop), document.removeEventListener("hcs.request.configurator.cancel", this.myBind.onRequestCancel), document.removeEventListener("hcs.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.removeEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.removeEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.removeEventListener("hcs.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.removeEventListener("hcs.engine3D.object.remove", this.myBind.onDisposeObject, !1), document.removeEventListener("hcs.engine3D.object.dispose", this.myBind.onDisposeObject, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefreshObject, !1), document.removeEventListener("hcs.engine3d.globaleFloorReady", this.myBind.onFloorChanged, !1), document.removeEventListener("hcs.contextChanged ", this.myBind.onSwapEngine)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -18560,19 +18659,19 @@ var ConfiguratorModComponent3D = function() {
     }, t.prototype.getState = function() {
         return this._state
     }, t.prototype.requestStart = function() {
-        return "idle" != this.getState() ? !1 : this.getCurrentObject() ? void(this._animateInandOut() ? ujs.notify("wnp.request.configurator.animationIn.start") : (ujs.notify("wnp.engine3d.configurator.animationIn.begin"), ujs.notify("wnp.engine3d.configurator.animationIn.end"))) : !1
+        return "idle" != this.getState() ? !1 : this.getCurrentObject() ? void(this._animateInandOut() ? ujs.notify("hcs.request.configurator.animationIn.start") : (ujs.notify("hcs.engine3d.configurator.animationIn.begin"), ujs.notify("hcs.engine3d.configurator.animationIn.end"))) : !1
     }, t.prototype.requestStop = function() {
-        return "ready" != this.getState() ? !1 : void(this._animateInandOut() ? ujs.notify("wnp.request.configurator.animationOut.start") : (ujs.notify("wnp.engine3d.configurator.animationOut.begin"), ujs.notify("wnp.engine3d.configurator.animationOut.end")))
+        return "ready" != this.getState() ? !1 : void(this._animateInandOut() ? ujs.notify("hcs.request.configurator.animationOut.start") : (ujs.notify("hcs.engine3d.configurator.animationOut.begin"), ujs.notify("hcs.engine3d.configurator.animationOut.end")))
     }, t.prototype.cancel = function() {
         switch (this._canceling = !0, this._state) {
             case "animationIn":
-                ujs.notify(this._animateInandOut() ? "wnp.request.configurator.animation.cancel" : "wnp.engine3d.configurator.animationIn.end"), this._state = "animationOut", ujs.notify("wnp.engine3d.configurator.animationOut.begin"), ujs.notify("wnp.engine3d.configurator.animationOut.end");
+                ujs.notify(this._animateInandOut() ? "hcs.request.configurator.animation.cancel" : "hcs.engine3d.configurator.animationIn.end"), this._state = "animationOut", ujs.notify("hcs.engine3d.configurator.animationOut.begin"), ujs.notify("hcs.engine3d.configurator.animationOut.end");
                 break;
             case "animationOut":
-                ujs.notify(this._animateInandOut() ? "wnp.request.configurator.animation.cancel" : "wnp.engine3d.configurator.animationOut.end");
+                ujs.notify(this._animateInandOut() ? "hcs.request.configurator.animation.cancel" : "hcs.engine3d.configurator.animationOut.end");
                 break;
             case "ready":
-                this._state = "animationOut", ujs.notify("wnp.engine3d.configurator.animationOut.begin"), ujs.notify("wnp.engine3d.configurator.animationOut.end");
+                this._state = "animationOut", ujs.notify("hcs.engine3d.configurator.animationOut.begin"), ujs.notify("hcs.engine3d.configurator.animationOut.end");
                 break;
             case "idle":
         }
@@ -18582,18 +18681,18 @@ var ConfiguratorModComponent3D = function() {
     }, t.prototype._unlockUnrelatedActions = function() {
         return this.edcmp.unlock(this, 14), this.edcmp.enableWidget(), this.getCurrentObject() && this.getCurrentObject().parent && this.edcmp.isGroup(this.getCurrentObject().parent) && this.edcmp.selectObject(this.getCurrentObject().parent), !0
     }, t.prototype._animateInandOut = function() {
-        return !!wanaplan.getComponentByName("ConfiguratorInOutAnimationComponent3D")
+        return !!hcsdesign.getComponentByName("ConfiguratorInOutAnimationComponent3D")
     }, t.prototype.handlers = {
         onAnimationInStart: function() {
             this._lockUnrelatedActions(), this._state = "animationIn"
         },
         onAnimationInEnd: function() {
-            this._state = "ready", this._canceling || ujs.notify("wnp.engine3d.configurator.start", {
+            this._state = "ready", this._canceling || ujs.notify("hcs.engine3d.configurator.start", {
                 furniture: this.getCurrentObject()
             })
         },
         onAnimationOutStart: function() {
-            this._state = "animationOut", this._unlockUnrelatedActions(), ujs.notify("wnp.engine3d.configurator.stop")
+            this._state = "animationOut", this._unlockUnrelatedActions(), ujs.notify("hcs.engine3d.configurator.stop")
         },
         onAnimationOutEnd: function() {
             this._state = "idle", this._unlockUnrelatedActions()
@@ -18608,11 +18707,11 @@ var ConfiguratorModComponent3D = function() {
             this.cancel()
         },
         onSwapEngine: function(t) {
-            "2D" == t.engine && ujs.notify("wnp.request.configurator.cancel")
+            "2D" == t.engine && ujs.notify("hcs.request.configurator.cancel")
         },
         onFloorChanged: function() {},
         onDisposeObject: function(t) {
-            "idle" != this.getState() && t.object == this._currentObject && ujs.notify("wnp.request.configurator.cancel")
+            "idle" != this.getState() && t.object == this._currentObject && ujs.notify("hcs.request.configurator.cancel")
         },
         onRefreshObject: function() {
             "idle" != this.getState() && this.getCurrentObject() == event.object && this._lockUnrelatedActions()
@@ -18621,7 +18720,7 @@ var ConfiguratorModComponent3D = function() {
 }();
 var ConfiguratorPanelComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "ConfiguratorPanelComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.hec = wanaplan.getComponentByName("HistoryEditionComponent"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D"), this.camF = wanaplan.engine3D.cameraFeatures
+        BaseComponent3D.call(this, t, "ConfiguratorPanelComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.hec = hcsdesign.getComponentByName("HistoryEditionComponent"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D"), this.camF = hcsdesign.engine3D.cameraFeatures
     };
     t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._options || this.setOptions()
@@ -18633,9 +18732,9 @@ var ConfiguratorPanelComponent3D = function() {
             this._options[n] = "undefined" == typeof t[n] ? e[n] : t[n];
         return this
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("wnp.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.removeEventListener("wnp.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.removeEventListener("wnp.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("hcs.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.removeEventListener("hcs.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.removeEventListener("hcs.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.addEventListener("wnp.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("wnp.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.addEventListener("wnp.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.addEventListener("wnp.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.addEventListener("hcs.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("hcs.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.addEventListener("hcs.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.addEventListener("hcs.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -18650,24 +18749,24 @@ var ConfiguratorPanelComponent3D = function() {
             })();
         return this
     }, t.prototype.closeEditBox = function() {
-        wnp.UI.ContextMenu.close(), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1)
+        hcs.UI.ContextMenu.close(), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1)
     }, t.prototype.openEditBox = function(t) {
         if (t) {
             this._enabled = !0;
             var e = [{
                 label: _("删除"),
-                action: "wnp.request.object.remove",
+                action: "hcs.request.object.remove",
                 "class": "remove"
             }, {
                 label: _("复制"),
-                action: "wnp.request.object.clone"
+                action: "hcs.request.object.clone"
             }, {
                 label: _("确定"),
-                action: "wnp.widget.contextMenu.FurnitureEditor.closed"
+                action: "hcs.widget.contextMenu.FurnitureEditor.closed"
             }];
-            wanaplan.isPublisher() && e.push({
+            hcsdesign.isPublisher() && e.push({
                 label: _("增加到物品列表"),
-                action: "wnp.request.object.addToProducts"
+                action: "hcs.request.object.addToProducts"
             });
             var n = t.structure,
                 i = n.getAvailableProperties(),
@@ -18678,7 +18777,7 @@ var ConfiguratorPanelComponent3D = function() {
                     title: _("位置 和 旋转"),
                     content: this._getPositionAndRotationMenu(n)
                 }];
-            wnp.UI.ContextMenu.show({
+            hcs.UI.ContextMenu.show({
                 menuName: "FurnitureEditor",
                 title: _("物品属性"),
                 width: 500,
@@ -18689,7 +18788,7 @@ var ConfiguratorPanelComponent3D = function() {
                 id: "configuratorWindow"
             }, o, e, !1, {
                 furniture: t
-            }), document.addEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1)
+            }), document.addEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1)
         }
     }, t.prototype.refreshEditBox = function(t) {
         if (t && this._enabled) {
@@ -18702,7 +18801,7 @@ var ConfiguratorPanelComponent3D = function() {
                     title: _("位置 和 旋转"),
                     content: this._getPositionAndRotationMenu(e)
                 }];
-            wnp.UI.ContextMenu.update(i)
+            hcs.UI.ContextMenu.update(i)
         }
     }, t.prototype._setTransformProperty = function(t, e, n) {
         if (!t)
@@ -18711,7 +18810,7 @@ var ConfiguratorPanelComponent3D = function() {
         i && (n = n / 180 * Math.PI);
         var o = t.rotation.clone(),
             r = t.position.clone();
-        ujs.setProperty(t, e, +n), ujs.notify("wnp.request.historyAction", {
+        ujs.setProperty(t, e, +n), ujs.notify("hcs.request.historyAction", {
             component: this.edcmp,
             object: t,
             params: {
@@ -18721,7 +18820,7 @@ var ConfiguratorPanelComponent3D = function() {
                 newRotation: t.rotation.clone()
             },
             action: i ? this.edcmp.ROTATEACTION : this.edcmp.MOVEACTION
-        }), t.computeWorldMatrix(!0), t.parent.markAsDirty(), ujs.notify(i ? "wnp.engine3D.object.translate" : "wnp.engine3D.object.rotate", {
+        }), t.computeWorldMatrix(!0), t.parent.markAsDirty(), ujs.notify(i ? "hcs.engine3D.object.translate" : "hcs.engine3D.object.rotate", {
             object: t
         })
     }, t.prototype._setParamProperty = function(t, e, n) {
@@ -18735,9 +18834,9 @@ var ConfiguratorPanelComponent3D = function() {
             exValue: ujs.getProperty(i, e)
         }, ujs.setProperty(i, e, n), this.edcmp.refreshObject(t, {
             modifiedProperties: o
-        }), ujs.notify("wnp.request.saveHistory")
+        }), ujs.notify("hcs.request.saveHistory")
     }, t.prototype._saveFrameState = function() {
-        for (var t = wnp.UI.ContextMenu.getPosition() || {
+        for (var t = hcs.UI.ContextMenu.getPosition() || {
                 x: 100,
                 y: 100
             }, e = document.querySelectorAll(".advancedParams"), n = !(!e.length || e[0].classList.contains("hidden")), o = document.querySelectorAll(".window .tabbed-tabcontent"), r = [], s = o.length; s--;)
@@ -18750,7 +18849,7 @@ var ConfiguratorPanelComponent3D = function() {
         }
     }, t.prototype._restoreFrameState = function() {
         if (this._frameSavedState) {
-            this._frameSavedState.advancedVisible && wnp.Programmable.toggleVisible(), wnp.UI.ContextMenu.setPosition(this._frameSavedState.x, this._frameSavedState.y);
+            this._frameSavedState.advancedVisible && hcs.Programmable.toggleVisible(), hcs.UI.ContextMenu.setPosition(this._frameSavedState.x, this._frameSavedState.y);
             for (var t = document.querySelectorAll(".window .tabbed-tabcontent"), e = t.length; e--;)
                 n(t[e], this._frameSavedState.scroll[e].x, this._frameSavedState.scroll[e].y)
         }
@@ -18774,7 +18873,7 @@ var ConfiguratorPanelComponent3D = function() {
                 value: n(t.rotation.x)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "rotation.x"
             },
             id: "rotation-x"
@@ -18789,7 +18888,7 @@ var ConfiguratorPanelComponent3D = function() {
                 value: n(t.rotation.y)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "rotation.y"
             },
             id: "rotation-y"
@@ -18804,7 +18903,7 @@ var ConfiguratorPanelComponent3D = function() {
                 value: n(t.rotation.z)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "rotation.z"
             },
             id: "rotation-z"
@@ -18822,7 +18921,7 @@ var ConfiguratorPanelComponent3D = function() {
                 value: Math.round(t.position.x)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "position.x"
             },
             id: "position-x"
@@ -18837,7 +18936,7 @@ var ConfiguratorPanelComponent3D = function() {
                 value: Math.round(t.position.y)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "position.y"
             },
             id: "position-y"
@@ -18852,7 +18951,7 @@ var ConfiguratorPanelComponent3D = function() {
                 value: Math.round(t.position.z)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "position.z"
             },
             id: "position-z"
@@ -18874,7 +18973,7 @@ var ConfiguratorPanelComponent3D = function() {
             this._setTransformProperty(this.confm.getCurrentObject(), t.property, t.value)
         },
         onEditBoxClosed: function() {
-            this._enabled = !1, ujs.notify("wnp.request.configurator.stop")
+            this._enabled = !1, ujs.notify("hcs.request.configurator.stop")
         }
     };
     var n = function(t, e, n) {
@@ -18903,7 +19002,7 @@ var ConfiguratorPanelComponent3D = function() {
 }();
 var ConfiguratorInOutAnimationComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "ConfiguratorInOutAnimationComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.camComp = wanaplan.getComponentByName("CameraComponent"), this.avatarComp = wanaplan.getComponentByName("AvatarComponent3D"), this.camF = wanaplan.engine3D.cameraFeatures, this.setOptions({
+        BaseComponent3D.call(this, t, "ConfiguratorInOutAnimationComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.camComp = hcsdesign.getComponentByName("CameraComponent"), this.avatarComp = hcsdesign.getComponentByName("AvatarComponent3D"), this.camF = hcsdesign.engine3D.cameraFeatures, this.setOptions({
             alpha: !1,
             beta: !0,
             goBack: !0,
@@ -18934,7 +19033,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             this._options[n] = "undefined" == typeof t[n] ? e[n] : t[n];
         return this
     }, t.prototype.replaceCameraTarget = function(t) {
-        var e = wanaplan.engine3D.scene.activeCamera,
+        var e = hcsdesign.engine3D.scene.activeCamera,
             n = this.camF,
             i = n.computeCameraStateLooking(t, e);
         i = {
@@ -18951,7 +19050,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             smooth: "ease"
         })
     }, t.prototype.focusObject = function(t) {
-        var e = wanaplan.engine3D.camera,
+        var e = hcsdesign.engine3D.camera,
             n = this.camF;
         if ("In" != this._currentAnimation && !this._focus) {
             this._previous.cameraState = {
@@ -18975,7 +19074,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
                 name: "cameraFocusOn_" + t.name,
                 isACamera: !0,
                 smooth: "ease"
-            }), this._currentAnimation = "In", ujs.notify("wnp.engine3d.configurator.animationIn.begin")
+            }), this._currentAnimation = "In", ujs.notify("hcs.engine3d.configurator.animationIn.begin")
         }
     }, t.prototype.stopCurrentAnimation = function() {
         if (this._cancelor) {
@@ -18984,13 +19083,13 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             switch (this._cancelor = null, this._currentAnimation = null, t) {
                 case "In":
                 case "Out":
-                    ujs.notify("wnp.engine3d.configurator.animation" + t + ".end")
+                    ujs.notify("hcs.engine3d.configurator.animation" + t + ".end")
             }
         }
     }, t.prototype.cancel = function() {
         this.stopCurrentAnimation()
     }, t.prototype.restoreCameraState = function() {
-        var t = wanaplan.engine3D.camera,
+        var t = hcsdesign.engine3D.camera,
             e = this.camF;
         if ("Out" != this._currentAnimation && this._focus) {
             var n = {
@@ -19008,12 +19107,12 @@ var ConfiguratorInOutAnimationComponent3D = function() {
                 name: "cameraFocusOff",
                 isACamera: !0,
                 smooth: "ease"
-            }), this._currentAnimation = "Out", this._previous.cameraState = !1, ujs.notify("wnp.engine3d.configurator.animationOut.begin"), this._listenBreakEvent(!0)
+            }), this._currentAnimation = "Out", this._previous.cameraState = !1, ujs.notify("hcs.engine3d.configurator.animationOut.begin"), this._listenBreakEvent(!0)
         }
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.addEventListener("wnp.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.addEventListener("wnp.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.addEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.addEventListener("wnp.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.addEventListener("wnp.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.addEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.addEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh), document.addEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh), document.addEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !0
+        this.stopListening(), document.addEventListener("hcs.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.addEventListener("hcs.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.addEventListener("hcs.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.addEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.addEventListener("hcs.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.addEventListener("hcs.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.addEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.addEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh), document.addEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh), document.addEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !0
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.removeEventListener("wnp.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.removeEventListener("wnp.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.removeEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.removeEventListener("wnp.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.removeEventListener("wnp.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.removeEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !1
+        this.initBindForThisInstance(), document.removeEventListener("hcs.request.configurator.animation.cancel", this.myBind.onRequestCancel), document.removeEventListener("hcs.request.configurator.animationIn.start", this.myBind.onRequestAnimationIn), document.removeEventListener("hcs.request.configurator.animationOut.start", this.myBind.onRequestAnimationOut), document.removeEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart), document.removeEventListener("hcs.engine3d.configurator.animationIn.end", this.myBind.onAnimationInEnd), document.removeEventListener("hcs.engine3d.configurator.animationOut.begin", this.myBind.onAnimationOutStart), document.removeEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh), this._listening = !1
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -19029,11 +19128,11 @@ var ConfiguratorInOutAnimationComponent3D = function() {
         return this
     }, t.prototype.avatarUnbind = function() {
         var t = this.camComp,
-            e = wanaplan.engine3D.camera;
+            e = hcsdesign.engine3D.camera;
         this._previous.lookAtObject = t.lookAt, this._previous.lookAtY = e.target.y, t.bindLookAt(null)
     }, t.prototype.avatarRebind = function() {
         var t = this.camComp,
-            e = wanaplan.engine3D.camera;
+            e = hcsdesign.engine3D.camera;
         t.cameraActiveId ? t.camera[0].target.y = this.avatarComp.avatar.position.y + 170 : (e.target.y = this._previous.lookAtY, e.target.y = this.avatarComp.avatar.position.y + 170, t.bindLookAt(this._previous.lookAtObject))
     }, t.prototype._listenBreakEvent = function(t) {
         for (var e = n.length; e--;)
@@ -19087,7 +19186,7 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             this.avatarRebind()
         },
         onRequestAnimationOut: function() {
-            this._options.goBack ? this.restoreCameraState() : (ujs.notify("wnp.engine3d.configurator.animationOut.begin"), ujs.notify("wnp.engine3d.configurator.animationOut.end"))
+            this._options.goBack ? this.restoreCameraState() : (ujs.notify("hcs.engine3d.configurator.animationOut.begin"), ujs.notify("hcs.engine3d.configurator.animationOut.end"))
         },
         onRequestAnimationIn: function() {
             this.confm.getCurrentObject() && this.focusObject(this.confm.getCurrentObject())
@@ -19099,12 +19198,12 @@ var ConfiguratorInOutAnimationComponent3D = function() {
             (this._focus || this._currentAnimation) && t.object == this.confm.getCurrentObject() && this.replaceCameraTarget(t.object)
         }
     };
-    var n = ["wnp.engine3D.dragging", "wnp.engine3D.camera.zoom", "wnp.engine3D.click"];
+    var n = ["hcs.engine3D.dragging", "hcs.engine3D.camera.zoom", "hcs.engine3D.click"];
     return t
 }();
 var ConfiguratorXrayComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "ConfiguratorXrayComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.hec = wanaplan.getComponentByName("TransparencyComponent"), this.camF = wanaplan.engine3D.cameraFeatures
+        BaseComponent3D.call(this, t, "ConfiguratorXrayComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.hec = hcsdesign.getComponentByName("TransparencyComponent"), this.camF = hcsdesign.engine3D.cameraFeatures
     };
     t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._options || this.setOptions(), this._savedMaterials = {}, this._clonedMaterials = {}, e = new BABYLON.StandardMaterial("xrayTransparentDefaultMaterial", this.scene)
@@ -19132,9 +19231,9 @@ var ConfiguratorXrayComponent3D = function() {
             this._options[e] = "undefined" == typeof t[e] ? s[e] : t[e];
         return this._setHideStrategy(), this
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.removeEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1), document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.removeEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1), document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1)
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.addEventListener("wnp.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.configurator.animationIn.begin", this.myBind.onAnimationInStart, !1), document.addEventListener("hcs.engine3d.configurator.animationOut.end", this.myBind.onAnimationOutEnd, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -19149,9 +19248,9 @@ var ConfiguratorXrayComponent3D = function() {
             })();
         return this
     }, t.prototype.start = function() {
-        document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1), this._stopSharingMaterial(this.confm.getCurrentObject()), this._flagMeshes(), this._changeOnCameraMove && document.addEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1), this._options.wallTransparency && this._startWallTransparency()
+        document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1), this._stopSharingMaterial(this.confm.getCurrentObject()), this._flagMeshes(), this._changeOnCameraMove && document.addEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1), this._options.wallTransparency && this._startWallTransparency()
     }, t.prototype.stop = function() {
-        if (document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove, !1), this._continueSharingMaterial(this.confm.getCurrentObject()), this._restoreMeshes(), this._options.wallTransparency)
+        if (document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove, !1), this._continueSharingMaterial(this.confm.getCurrentObject()), this._restoreMeshes(), this._options.wallTransparency)
             try {
                 this._stopWallTransparency()
             } catch (t) {
@@ -19174,10 +19273,10 @@ var ConfiguratorXrayComponent3D = function() {
             e = this.confm.getCurrentObject(),
             n = this._options.partialTransparency ? o : i;
         this._hideStrategyInit || this._hideStrategyInit(e, t);
-        for (var s, a = wanaplan.engine3D.scene.meshes, l = a.length; l--;)
+        for (var s, a = hcsdesign.engine3D.scene.meshes, l = a.length; l--;)
             s = a[l], s.name && "Object" == s.name.substr(0, 6) && s != e && s.traverse(this._hideStrategyAccept(s, e, t) ? n : r)
     }, t.prototype._restoreMeshes = function() {
-        for (var t, e = this.confm.getCurrentObject(), n = wanaplan.engine3D.scene.meshes, i = n.length; i--;)
+        for (var t, e = this.confm.getCurrentObject(), n = hcsdesign.engine3D.scene.meshes, i = n.length; i--;)
             t = n[i], t.name && "Object" == t.name.substr(0, 6) && t != e && t.traverse(r)
     }, t.prototype._startWallTransparency = function() {
         var t = this.hec,
@@ -19216,12 +19315,12 @@ var ConfiguratorXrayComponent3D = function() {
 }();
 var MasterReshaperComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "MasterReshaperComponent3D"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this._listeners = []
+        BaseComponent3D.call(this, t, "MasterReshaperComponent3D"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this._listeners = []
     };
     return t.prototype = new BaseComponent3D, t.prototype.initialize = function() {}, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.addEventListener("wnp.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.addEventListener("wnp.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.addEventListener("hcs.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.addEventListener("hcs.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1)
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.removeEventListener("wnp.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.removeEventListener("wnp.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.onDragging, !1), document.removeEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.configurator.cancel", this.myBind.onConfiguratorCancel, !1), document.removeEventListener("hcs.engine3d.configurator.start", this.myBind.onConfiguratorStart, !1), document.removeEventListener("hcs.engine3d.configurator.stop", this.myBind.onConfiguratorStop, !1), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.onDragging, !1), document.removeEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -19253,9 +19352,9 @@ var MasterReshaperComponent3D = function() {
             n = e.getLocker();
         e.unlock(n, 1), e.lock(n, 2)
     }, t.prototype.start = function(t) {
-        this.furniture = t.furniture, this.notify("editionStart", t), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onMouseMove, !1), document.addEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.addEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.addEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1)
+        this.furniture = t.furniture, this.notify("editionStart", t), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onMouseMove, !1), document.addEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.addEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.addEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1)
     }, t.prototype.cancel = t.prototype.stop = function(t) {
-        this.notify("editionEnd", t), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.nDragging, !1), document.removeEventListener("wnp.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1)
+        this.notify("editionEnd", t), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onDragStart, !1), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.nDragging, !1), document.removeEventListener("hcs.engine3D.mouse-move", this.myBind.onMouseMove, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1)
     }, t.prototype.handlers = {
         onConfiguratorStart: function(t) {
             this.start(t)
@@ -19271,7 +19370,7 @@ var MasterReshaperComponent3D = function() {
             var e = this.furniture;
             if (t.collided = this.scene.pick(t.mstate.pos.x, t.mstate.pos.y, function(t) {
                     return t.getTopLevelObject(!0) == e
-                }), this.notify("dragStart", t), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.onDragging, !1), this.dragging = !1, document.addEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.addEventListener("wnp.engine3D.dragging", this.myBind.onDragging, !1), this._currentConfigurator) {
+                }), this.notify("dragStart", t), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.onDragging, !1), this.dragging = !1, document.addEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.addEventListener("hcs.engine3D.dragging", this.myBind.onDragging, !1), this._currentConfigurator) {
                 this.dragging = !0;
                 var n = this.edcmp;
                 n.lock(n.getLocker(), 1)
@@ -19288,7 +19387,7 @@ var MasterReshaperComponent3D = function() {
             if (this.notify("dragEnd", t), this.dragging = !1, this._currentConfigurator) {
                 var e = this.edcmp,
                     n = e.getLocker();
-                e.unlock(n, 1), e.lock(n, 2), document.removeEventListener("wnp.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("wnp.engine3D.dragging", this.myBind.nDragging, !1)
+                e.unlock(n, 1), e.lock(n, 2), document.removeEventListener("hcs.engine3D.drag-end", this.myBind.onDragEnd, !1), document.removeEventListener("hcs.engine3D.dragging", this.myBind.nDragging, !1)
             }
         },
         onMouseMove: function(t) {
@@ -19329,13 +19428,13 @@ var DimensionReshaperComponent3D = function() {
             })();
         return this
     }, t.prototype.initialize = function() {
-        var t = wanaplan.getComponentByName("MasterReshaperComponent3D");
+        var t = hcsdesign.getComponentByName("MasterReshaperComponent3D");
         if (!t)
             return console.warn("MasterReshaperComponent3D not found, the configurator " + this.name + " components will be disabled.");
         this.master = t, this._options || this.setOptions();
-        var e = wanaplan.getComponentByName("HandlesDisplayerForDimensionReshaperFactoryComponent3D"),
-            n = wanaplan.getComponentByName("BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D"),
-            i = wanaplan.getComponentByName("MesureDisplayerForDimensionReshaperFactoryComponent3D");
+        var e = hcsdesign.getComponentByName("HandlesDisplayerForDimensionReshaperFactoryComponent3D"),
+            n = hcsdesign.getComponentByName("BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D"),
+            i = hcsdesign.getComponentByName("MesureDisplayerForDimensionReshaperFactoryComponent3D");
         this.displayer = {}, n && (this.displayer.boundingLimit = n.create(this.camera, this.scene, "green")), n && this._options.displayNewBoundingLimit && (this.displayer.boundingLimitNew = n.create(this.camera, this.scene, "yellow")), e && (this.displayer.handles = e.create(this.camera, this.scene)), i && (this.displayer.mesure = i.create(this.camera, this.scene)), this.initBindForThisInstance(), t.on("editionStart", this.myBind.onEditionStart), t.on("editionEnd", this.myBind.onEditionEnd), t.on("dragStart", this.myBind.onDragStart), t.on("dragging", this.myBind.onDragging), t.on("dragEnd", this.myBind.onDragEnd), t.on("refresh", this.myBind.onAfterRefresh), this.displayer.boundingLimit && this._options.displayBoundingLimitOnHover && (t.on("hover", this.myBind.onHover), t.on("leave", this.myBind.onLeave))
     };
     var e = {
@@ -19390,7 +19489,7 @@ var DimensionReshaperComponent3D = function() {
         return n
     }, t.prototype.getbestAxis = function(t, e, n) {
         n = n || this._direction, e = e || this._pickedPoint || t.position;
-        var i = wanaplan.engine3D,
+        var i = hcsdesign.engine3D,
             o = i.scene.activeCamera,
             r = o.position.subtract(e),
             s = this.computeDimension(t).rotationMatrix.clone();
@@ -19412,7 +19511,7 @@ var DimensionReshaperComponent3D = function() {
             o = i.getTopLevelObject(!0),
             r = this.computeDimension(o);
         n.position = r.position, n.scaling = r.dimension, n.rotationQuaternion = r.rotationQuat;
-        var s = wanaplan.engine3D,
+        var s = hcsdesign.engine3D,
             a = s.scene.createPickingRay(e.mstate.pos.x, e.mstate.pos.y),
             l = a.intersectMeshes([n], !0, !0);
         if (this._options.debug || (n.isVisible = !1), !l || !l.hit)
@@ -19441,7 +19540,7 @@ var DimensionReshaperComponent3D = function() {
         a.multiplyInPlace(a), a.scaleInPlace(-s + .1);
         var l = new BABYLON.Vector3(s, s, s);
         l.addInPlace(a), o.scaling = l, o.markAsDirty();
-        var h = wanaplan.engine3D,
+        var h = hcsdesign.engine3D,
             c = h.scene.createPickingRay(i.mstate.pos.x, i.mstate.pos.y),
             u = c.intersectMeshes([o], !0, !0);
         if (this._options.debug || (o.isVisible = !1), !u || !u.pickedPoint)
@@ -19537,7 +19636,7 @@ var DimensionReshaperComponent3D = function() {
     }, t.prototype._enlargeYourObject = function(t, e, n) {
         if (!(Math.abs(n) < 1e-4)) {
             var i = t.structure,
-                o = wanaplan.getComponentByName("EditionComponent3D"),
+                o = hcsdesign.getComponentByName("EditionComponent3D"),
                 r = {},
                 s = this._getPropertyName(t, e),
                 a = this._roundL(this._computePropertyValue(t, e, n));
@@ -19552,7 +19651,7 @@ var DimensionReshaperComponent3D = function() {
                 exValue: t.position.clone()
             }, t.position.copyFrom(h), o.refreshObject(t, {
                 modifiedProperties: r
-            }), ujs.notify("wnp.request.saveHistory")
+            }), ujs.notify("hcs.request.saveHistory")
         }
     }, t.prototype.handlers = {
         onDragStart: function(t) {
@@ -19599,7 +19698,7 @@ var HandlesDisplayerForDimensionReshaperFactoryComponent3D = function() {
     };
     var e = function() {};
     return e.prototype.initialize = function(t, e) {
-        this.scene = e, this.camera = t, this.dimensionConfigurator = wanaplan.getComponentByName("DimensionReshaperComponent3D"), this._spriteManager = new BABYLON.SpriteManager("handleMgr", wnp.Assets.toolbarTextures.arrowTexture, 6, 128, this.scene), this._sprite = {}, this._animated = {}, this._availableHandles = {}, this.initBindForThisInstance()
+        this.scene = e, this.camera = t, this.dimensionConfigurator = hcsdesign.getComponentByName("DimensionReshaperComponent3D"), this._spriteManager = new BABYLON.SpriteManager("handleMgr", hcs.Assets.toolbarTextures.arrowTexture, 6, 128, this.scene), this._sprite = {}, this._animated = {}, this._availableHandles = {}, this.initBindForThisInstance()
     }, e.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -19614,9 +19713,9 @@ var HandlesDisplayerForDimensionReshaperFactoryComponent3D = function() {
             })();
         return this
     }, e.prototype.start = function(t) {
-        this.stop(), this.object = t, this._computeAvailableHandles(t), document.addEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove), document.addEventListener("wnp.engine3D.drag-start", this.myBind.onMouseDown), this.myBind.onCameraMove()
+        this.stop(), this.object = t, this._computeAvailableHandles(t), document.addEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove), document.addEventListener("hcs.engine3D.drag-start", this.myBind.onMouseDown), this.myBind.onCameraMove()
     }, e.prototype.stop = function() {
-        document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onMouseDown), this.dispose()
+        document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onMouseDown), this.dispose()
     }, e.prototype.startAnimeHandle = function(t) {
         var e = 2 * Math.abs(t.y) + 4 * Math.abs(t.z) + (t.x + t.z + t.y < 0 ? 0 : 1);
         if (!this._animated[e]) {
@@ -19697,7 +19796,7 @@ var HandlesDisplayerForDimensionReshaperFactoryComponent3D = function() {
             var e = [];
             for (var n in this._sprite || {})
                 this._sprite[n] && e.push(this._sprite[n]._colliderMesh);
-            var i = wanaplan.engine3D,
+            var i = hcsdesign.engine3D,
                 o = i.scene.createPickingRay(t.mstate.pos.x, t.mstate.pos.y),
                 r = o.intersectMeshes(e, !0, !0);
             if (r && r.pickedMesh) {
@@ -19718,16 +19817,16 @@ var BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D = function() {
     };
     var e = function() {};
     return e.prototype.initialize = function(t, e, n) {
-        if (this.scene = e, this.camera = t, this.dimensionConfigurator = wanaplan.getComponentByName("DimensionReshaperComponent3D"), "undefined" == typeof n && (n = "green"), "string" == typeof n) {
+        if (this.scene = e, this.camera = t, this.dimensionConfigurator = hcsdesign.getComponentByName("DimensionReshaperComponent3D"), "undefined" == typeof n && (n = "green"), "string" == typeof n) {
             var i, o = new BABYLON.StandardMaterial("texture_dimension_configurator_placeholder", e);
             switch (n) {
                 case "yellow":
-                    i = (new BABYLON.Color3).fromHex(wnp.Assets.complementaryUIColor);
+                    i = (new BABYLON.Color3).fromHex(hcs.Assets.complementaryUIColor);
                     break;
                 default:
-                    i = (new BABYLON.Color3).fromHex(wnp.Assets.mainUIColor)
+                    i = (new BABYLON.Color3).fromHex(hcs.Assets.mainUIColor)
             }
-            wnp.MaterialFactory.MakeBasicColor(o, i), o.backFaceCulling = !1, o.alpha = .6, n = o
+            hcs.MaterialFactory.MakeBasicColor(o, i), o.backFaceCulling = !1, o.alpha = .6, n = o
         }
         return this.mat = n, this
     }, e.prototype._getBoundingLimitGhost = function() {
@@ -19763,7 +19862,7 @@ var MesureDisplayerForDimensionReshaperFactoryComponent3D = function() {
     };
     var e = function() {};
     return e.prototype.initialize = function(t, e) {
-        return this.camera = t, this.scene = e, this.dimensionConfigurator = wanaplan.getComponentByName("DimensionReshaperComponent3D"), this
+        return this.camera = t, this.scene = e, this.dimensionConfigurator = hcsdesign.getComponentByName("DimensionReshaperComponent3D"), this
     }, e.prototype.hide = function() {
         this._cote && (this._cote.plan.isVisible = !1)
     }, e.prototype.dispose = function() {
@@ -19775,7 +19874,7 @@ var MesureDisplayerForDimensionReshaperFactoryComponent3D = function() {
             s = this.dimensionConfigurator.getbestAxis(t, n, e),
             a = e.clone(),
             l = BABYLON.Vector3.Cross(s, a),
-            h = wanaplan.engine3D,
+            h = hcsdesign.engine3D,
             c = h.scene.activeCamera,
             u = c.target.subtract(c.position),
             p = BABYLON.Vector3.TransformCoordinates(l, r.rotationMatrix);
@@ -19809,7 +19908,7 @@ var MesureDisplayerForDimensionReshaperFactoryComponent3D = function() {
             e = BABYLON.Mesh.CreatePlane("cote_plan", 1, t);
         e.scaling.x = 1e3, e.scaling.y = 1e3;
         var n = new BABYLON.StandardMaterial("cote_texture", t);
-        wanaplan.engine3D.scene.getEngine().getCaps().maxAnisotropy = 128;
+        hcsdesign.engine3D.scene.getEngine().getCaps().maxAnisotropy = 128;
         var i = new BABYLON.DynamicTexture("cote_texture", {
             width: 512,
             height: 256
@@ -19995,7 +20094,7 @@ var MagnetismComponent2D = function() {
 var MagnetismComponent3D = function() {
     var t, e, n = !1,
         i = function(n) {
-            BaseComponent3D.call(this, n, "MagnetismComponent3D"), this._lastPosition = new BABYLON.Vector3, this._lastFictivePosition = new BABYLON.Vector3, this._speedVector = new BABYLON.Vector3, this._physicSpeedVector = new BABYLON.Vector3, this._correctedSpeedVector = new BABYLON.Vector3, this._tmpVector = new BABYLON.Vector3, e = wanaplan.engine3D.searchComponent("EditionComponent3D"), t = this, this.collisionList = [], this.currentCollisionBox = null
+            BaseComponent3D.call(this, n, "MagnetismComponent3D"), this._lastPosition = new BABYLON.Vector3, this._lastFictivePosition = new BABYLON.Vector3, this._speedVector = new BABYLON.Vector3, this._physicSpeedVector = new BABYLON.Vector3, this._correctedSpeedVector = new BABYLON.Vector3, this._tmpVector = new BABYLON.Vector3, e = hcsdesign.engine3D.searchComponent("EditionComponent3D"), t = this, this.collisionList = [], this.currentCollisionBox = null
         },
         o = .1,
         r = function(t, e) {
@@ -20013,7 +20112,7 @@ var MagnetismComponent3D = function() {
         s = [];
     r.prototype.showBox = function() {
         if (!this._debugCube) {
-            var t = wanaplan.engine3D.scene;
+            var t = hcsdesign.engine3D.scene;
             this._debugCube = BABYLON.Mesh.CreateBox("boundingboxConfigurator.boundingLimitGhost", 1, t), this._debugCube.material = new BABYLON.StandardMaterial("BB_debug", t), this._debugCube.material.wireframe = !0, this._debugCube.material.alpha = .29, s.push(this._debugCube)
         }
         for (var e = this._debugCube, n = new BABYLON.Vector3(0, 0, 0), i = 4; i--;)
@@ -20086,7 +20185,7 @@ var MagnetismComponent3D = function() {
         this.update()
     };
     a.prototype.overlaps1Way = r.prototype.overlaps1Way, a.prototype.worstOverlap = r.prototype.worstOverlap, a.prototype.overlaps = r.prototype.overlaps, a.prototype.showBox = r.prototype.showBox, a.prototype.update = r.prototype.update, i.prototype = Object.create(BaseComponent3D.prototype), i.prototype.initialize = function() {
-        e || (e = wanaplan.engine3D.searchComponent("EditionComponent3D"))
+        e || (e = hcsdesign.engine3D.searchComponent("EditionComponent3D"))
     }, i.prototype.buildCollisionList = function(e) {
         var i = t.getFloor();
         if (n)
@@ -20094,9 +20193,9 @@ var MagnetismComponent3D = function() {
                 s.shift().dispose();
         this.collisionList.length = 0;
         for (var o = function(t) {
-                if (t.structure && (t.magnetismCollider = t.structure.magnetismCollider), t.magnetismCollider & (wnp.Constants.MAGNETISM.OBJECT | wnp.Constants.MAGNETISM.VERTICAL))
+                if (t.structure && (t.magnetismCollider = t.structure.magnetismCollider), t.magnetismCollider & (hcs.Constants.MAGNETISM.OBJECT | hcs.Constants.MAGNETISM.VERTICAL))
                     t.getBoundingBox(!0), this.collisionList.push(new r(t));
-                else if (-1 != t.name.indexOf("WallMesh_") && e.magnetismCollider & wnp.Constants.MAGNETISM.WALL)
+                else if (-1 != t.name.indexOf("WallMesh_") && e.magnetismCollider & hcs.Constants.MAGNETISM.WALL)
                     for (var n in t.boundingBoxes)
                         "OvertureStructure" !== t.objectInstances[n].name && "SubSlopeStructure" !== t.objectInstances[n].name && this.collisionList.push(new r(t, t.boundingBoxes[n]))
             }.bind(this), l = i.getChildren(), h = 0, c = l.length; c > h; h++)
@@ -20115,8 +20214,8 @@ var MagnetismComponent3D = function() {
         "3D" == t ? this.initialized || (e.on("selectObject", this.onDragStart.bind(this)), e.on("dragstart", this.onDragStart.bind(this)), e.on("dragging", this.onDragging.bind(this)), e.on("objectMoves", this.onDragging.bind(this))) : this.initialized && (e.off("selectObject", this.onDragStart.bind(this)), e.off("dragstart", this.onDragStart.bind(this)), e.off("dragging", this.onDragging.bind(this)), e.off("objectMoves", this.onDragging.bind(this)))
     }, i.prototype.onDragStart = function(e) {
         var n = -1 != e.object.name.indexOf("group_");
-        if (n && (e.object.magnetismCollider = wnp.Constants.MAGNETISM.WALL), e.object.structure && (e.object.magnetismCollider = e.object.structure.magnetismCollider), e.object.magnetismCollider) {
-            if (t.buildCollisionList(e.object), !n && e.object.magnetismCollider & (wnp.Constants.MAGNETISM.OBJECT | wnp.Constants.MAGNETISM.VERTICAL)) {
+        if (n && (e.object.magnetismCollider = hcs.Constants.MAGNETISM.WALL), e.object.structure && (e.object.magnetismCollider = e.object.structure.magnetismCollider), e.object.magnetismCollider) {
+            if (t.buildCollisionList(e.object), !n && e.object.magnetismCollider & (hcs.Constants.MAGNETISM.OBJECT | hcs.Constants.MAGNETISM.VERTICAL)) {
                 t.currentCollisionBox = null;
                 for (var i = 0; !t.currentCollisionBox && i < t.collisionList.length;)
                     t.collisionList[i].object == e.object && (t.currentCollisionBox = t.collisionList[i]), i++;
@@ -20126,7 +20225,7 @@ var MagnetismComponent3D = function() {
             t._lastPosition.copyFrom(e.object.position), t._lastFictivePosition.copyFrom(e.object.position)
         }
     }, i.prototype.lateralCollisionCandidate = function(e) {
-        return t.currentCollisionBox.object.magnetismCollider & wnp.Constants.MAGNETISM.OBJECT && -1 == e.object.name.indexOf("WallMesh_") && e.object.magnetismCollider & wnp.Constants.MAGNETISM.OBJECT || t.currentCollisionBox.object.magnetismCollider & wnp.Constants.MAGNETISM.WALL && -1 != e.object.name.indexOf("WallMesh_")
+        return t.currentCollisionBox.object.magnetismCollider & hcs.Constants.MAGNETISM.OBJECT && -1 == e.object.name.indexOf("WallMesh_") && e.object.magnetismCollider & hcs.Constants.MAGNETISM.OBJECT || t.currentCollisionBox.object.magnetismCollider & hcs.Constants.MAGNETISM.WALL && -1 != e.object.name.indexOf("WallMesh_")
     }, i.prototype.onDragging = function(n) {
         if (n.object.magnetismCollider) {
             var i = 1,
@@ -20143,7 +20242,7 @@ var MagnetismComponent3D = function() {
                 r = 0;
                 for (var h = 0, c = t.collisionList.length; c > h; h++)
                     if (!(t.collisionList[h].yRange[1] <= t.currentCollisionBox.yRange[0] || t.collisionList[h].yRange[0] >= t.currentCollisionBox.yRange[1]) && t.collisionList[h].overlaps(t.currentCollisionBox)) {
-                        if (l && (t.currentCollisionBox.object.magnetismCollider & wnp.Constants.MAGNETISM.VERTICAL || "room" == t.collisionList[h].object.name)) {
+                        if (l && (t.currentCollisionBox.object.magnetismCollider & hcs.Constants.MAGNETISM.VERTICAL || "room" == t.collisionList[h].object.name)) {
                             if (t._lastFictivePosition.copyFrom(t.currentCollisionBox.object.position), t.solveCollision(t.collisionList[h], !0) < 5)
                                 continue;
                             t._speedVector.y = Math.abs(t.currentCollisionBox.yRange[1] - t.collisionList[h].yRange[0]) <= Math.abs(t.currentCollisionBox.yRange[0] - t.collisionList[h].yRange[1]) ? t.collisionList[h].yRange[0] - t.currentCollisionBox.yRange[1] : t.collisionList[h].yRange[1] - t.currentCollisionBox.yRange[0], t.currentCollisionBox.object.position.addInPlace(t._speedVector);
@@ -20194,22 +20293,22 @@ var MagnetismComponent3D = function() {
 }();
 var AvatarComponent3D = function() {
     var t, e = function(e) {
-        BaseComponent3D.call(this, e, "AvatarComponent3D"), this.avatar = null, this.structure = this.core.getSelectedStructure(), this._avatarEnabled = !0, wanaplan.api.params.avatarEnabled === !1 && (this._avatarEnabled = !1), t = this, BABYLON.SceneLoader.ImportMesh("", wnp.Assets.globalPath + "js/Components/AvatarComponent/avatar/", "girl.babylon", e.engine3D.scene, function(n) {
+        BaseComponent3D.call(this, e, "AvatarComponent3D"), this.avatar = null, this.structure = this.core.getSelectedStructure(), this._avatarEnabled = !0, hcsdesign.api.params.avatarEnabled === !1 && (this._avatarEnabled = !1), t = this, BABYLON.SceneLoader.ImportMesh("", hcs.Assets.globalPath + "js/Components/AvatarComponent/avatar/", "girl.babylon", e.engine3D.scene, function(n) {
             t.avatar = new BABYLON.Mesh("avatar", e.engine3D.scene), t.avatar.isVisible = !1;
             for (var i = 0, o = n.length; o > i; i++)
                 n[i].parent = t.avatar, t._avatarEnabled ? (n[i].material.backFaceCulling = !1, n[i].receiveShadows = !0, e.engine3D.castShadows(n[i])) : n[i].isVisible = !1;
             t.avatar.position.y += 5;
-            var r = wanaplan.getComponentByName("EditionComponent3D");
+            var r = hcsdesign.getComponentByName("EditionComponent3D");
             r && r.addUnremovableDraggable(t.avatar)
-        }), this.globalBoundingBox = this.core.configuration.boundingSize, this.onNewPlanReady = this.onNewPlanReady.bind(this), document.addEventListener("wnp.request.newPlanReady", this.onNewPlanReady, !1)
+        }), this.globalBoundingBox = this.core.configuration.boundingSize, this.onNewPlanReady = this.onNewPlanReady.bind(this), document.addEventListener("hcs.request.newPlanReady", this.onNewPlanReady, !1)
     };
     return e.prototype = Object.create(BaseComponent3D.prototype), e.prototype.onFloorSelected = function(t) {
         var e = t.structure;
         this.structure = e, "undefined" != typeof e.elevation && (this.avatar.position.y = e.elevation + 5)
     }, e.prototype.startListening = function() {
-        this.onFloorSelected = this.onFloorSelected.bind(this), document.addEventListener("wnp.request.floorSelected", this.onFloorSelected, !1)
+        this.onFloorSelected = this.onFloorSelected.bind(this), document.addEventListener("hcs.request.floorSelected", this.onFloorSelected, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.floorSelected", this.onFloorSelected, !1)
+        document.removeEventListener("hcs.request.floorSelected", this.onFloorSelected, !1)
     }, e.prototype.onNewPlanReady = function() {
         this.structure = this.core.getSelectedStructure(), "undefined" != typeof this.structure.elevation && (this.avatar.position.y = this.structure.elevation + 5)
     }, e.prototype.setVisibility = function(t) {
@@ -20290,12 +20389,12 @@ FloorStructure = function() {
 var FloorComponent3D = function() {
     var t = null,
         e = function(e) {
-            BaseComponent3D.call(this, e, "FloorComponent3D"), this._floors = [], this.priority = 1, this._current = 0, t = this, this.onNewPlanReady = this.onNewPlanReady.bind(this), document.addEventListener("wnp.request.newPlanReady", this.onNewPlanReady)
+            BaseComponent3D.call(this, e, "FloorComponent3D"), this._floors = [], this.priority = 1, this._current = 0, t = this, this.onNewPlanReady = this.onNewPlanReady.bind(this), document.addEventListener("hcs.request.newPlanReady", this.onNewPlanReady)
         };
     return e.prototype = new BaseComponent3D, e.prototype.compute = function() {}, e.prototype.startListening = function() {
-        this.onSelectFloor = this.onSelectFloor.bind(this), this.onDeleteFloor = this.onDeleteFloor.bind(this), document.addEventListener("wnp.request.floorSelected", this.onSelectFloor), document.addEventListener("wnp.request.floorDeleted", this.onDeleteFloor)
+        this.onSelectFloor = this.onSelectFloor.bind(this), this.onDeleteFloor = this.onDeleteFloor.bind(this), document.addEventListener("hcs.request.floorSelected", this.onSelectFloor), document.addEventListener("hcs.request.floorDeleted", this.onDeleteFloor)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.floorSelected", this.onSelectFloor), document.removeEventListener("wnp.request.floorDeleted", this.onDeleteFloor)
+        document.removeEventListener("hcs.request.floorSelected", this.onSelectFloor), document.removeEventListener("hcs.request.floorDeleted", this.onDeleteFloor)
     }, e.prototype.onContextChanged = function(t) {
         "3D" == t ? (this.startListening(), this.createFloor()) : this.stopListening()
     }, e.prototype.onSelectFloor = function(t) {
@@ -20306,36 +20405,36 @@ var FloorComponent3D = function() {
             id: t.id
         })
     }, e.prototype.onNewPlanReady = function() {
-        for (var t = wanaplan.engine3D.scene.meshes.slice(0), e = t.length - 1; e >= 0; e--)
+        for (var t = hcsdesign.engine3D.scene.meshes.slice(0), e = t.length - 1; e >= 0; e--)
             "structure" == t[e].type && t[e].dispose();
         return !0
     }, e.prototype.deleteFloor = function(t) {
-        for (var e = wanaplan.engine3D.scene.meshes.slice(0), n = e.length - 1; n >= 0; n--)
+        for (var e = hcsdesign.engine3D.scene.meshes.slice(0), n = e.length - 1; n >= 0; n--)
             e[n].name && -1 != e[n].name.indexOf("FloorMesh") && e[n].structureId >= t.id && e[n].dispose()
     }, e.prototype.getFloor = function(t) {
-        for (var t = t || wanaplan.getSelectedStructure(), e = "FloorMesh_" + t.id, n = 0; n < wanaplan.engine3D.scene.meshes.length; n++)
-            if (wanaplan.engine3D.scene.meshes[n].name == e)
-                return wanaplan.engine3D.scene.meshes[n];
+        for (var t = t || hcsdesign.getSelectedStructure(), e = "FloorMesh_" + t.id, n = 0; n < hcsdesign.engine3D.scene.meshes.length; n++)
+            if (hcsdesign.engine3D.scene.meshes[n].name == e)
+                return hcsdesign.engine3D.scene.meshes[n];
         return null
     }, e.prototype.createFloor = function(t) {
         var e, t = t || 0,
-            n = +wanaplan.getSelectedStructure().id || 0;
+            n = +hcsdesign.getSelectedStructure().id || 0;
         this._current = n;
         for (var i = n + 1; i < this.structure.getLength(); i++)
             e = this.structure.getElement(i), this.deleteFloor(e);
         for (var o = t; n >= o; o++)
             if (e = this.structure.getElement(o), this.deleteFloor(e), e instanceof FloorStructure) {
                 var r = this.createFloorMesh(e);
-                r.position.y = e.elevation, r.computeWorldMatrix(), ujs.notify("wnp.engine3d.floorReady", {
+                r.position.y = e.elevation, r.computeWorldMatrix(), ujs.notify("hcs.engine3d.floorReady", {
                     floor: r,
                     structure: e
                 })
             }
-        ujs.notify("wnp.engine3d.globaleFloorReady", {
+        ujs.notify("hcs.engine3d.globaleFloorReady", {
             maxFloorId: n
         }), this.initialized = !0
     }, e.prototype.createFloorMesh = function(t) {
-        var e = new BABYLON.Mesh("FloorMesh_" + t.id, wanaplan.engine3D.scene);
+        var e = new BABYLON.Mesh("FloorMesh_" + t.id, hcsdesign.engine3D.scene);
         return e.isVisible = !1, e.structureId = t.id, e.structure = t, e.id = t.id, e.type = "structure", e
     }, e
 }();
@@ -20345,7 +20444,7 @@ var FloorController = function() {
             BaseComponent2D.call(this, e, "FloorController"), this._dragging = !1, this.core = e, t = this
         };
     return e.prototype = Object.create(BaseComponent2D.prototype), e.prototype.update = function() {
-        wanaplan.getSelectedStructure().isDirty() && this.updateHTML()
+        hcsdesign.getSelectedStructure().isDirty() && this.updateHTML()
     }, e.prototype.onContextChanged = function() {}, e.prototype.initialize = function() {
         this.updateHTML(), this.startListening();
         ({
@@ -20354,15 +20453,15 @@ var FloorController = function() {
                 type: "checkbox",
                 label: _("Display the lower floor"),
                 eventParams: {
-                    eventName: "wnp.request.object.seeBottomFloor",
+                    eventName: "hcs.request.object.seeBottomFloor",
                     cast: "int"
                 }
             }]
         })
     }, e.prototype.startListening = function() {
-        document.addEventListener("wnp.structure.locale.loaded", this.updateHTML)
+        document.addEventListener("hcs.structure.locale.loaded", this.updateHTML)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.structure.locale.loaded", this.updateHTML)
+        document.removeEventListener("hcs.structure.locale.loaded", this.updateHTML)
     }, e.prototype.updateHTML = function() {
         t.removeHTML();
         var e = t.buildHTML();
@@ -20401,7 +20500,7 @@ var FloorController = function() {
     }, e.prototype.insertFloorBefore = function(e, n) {
         var i = this.structure.getElement(e);
         this.structure.removeElement(i), this.structure.addMemberAtIndex(n, i);
-        for (var o = 0, r = 0; r < wanaplan.structure.getLength(); r++) {
+        for (var o = 0, r = 0; r < hcsdesign.structure.getLength(); r++) {
             var i = t.structure.getElement(r);
             i instanceof FloorStructure && (i.elevation = o, o += i.height)
         }
@@ -20410,7 +20509,7 @@ var FloorController = function() {
         (id = this.getAttribute("rel")) && t.selectFloor(id)
     }, e.prototype.onItemContextMenu = function(e) {
         if (id = this.getAttribute("rel")) {
-            var n = wanaplan.structure.getElement(id),
+            var n = hcsdesign.structure.getElement(id),
                 i = [{
                     name: "label",
                     label: _("Name"),
@@ -20430,7 +20529,7 @@ var FloorController = function() {
                         value: n.height
                     }
                 }];
-            wanaplan.engine2D.displayContextMenu(i, n, t.onContextMenuPropertyChanged.bind(t))
+            hcsdesign.engine2D.displayContextMenu(i, n, t.onContextMenuPropertyChanged.bind(t))
         }
         e.stopPropagation()
     }, e.prototype.onContextMenuPropertyChanged = function(t, e, n) {
@@ -20439,7 +20538,7 @@ var FloorController = function() {
             if (t[e] = n, "height" == e) {
                 for (var o = 0; o < t.walls.length; o++)
                     (t.walls[o].height > t.height || t.walls[o].height == i) && (t.walls[o].height = t.height);
-                this.core.structure.updateFloorElevations(), ujs.notify("wnp.request.floorSelected", {
+                this.core.structure.updateFloorElevations(), ujs.notify("hcs.request.floorSelected", {
                     id: this.core.getSelectedStructure().id,
                     structure: this.core.getSelectedStructure()
                 })
@@ -20447,15 +20546,15 @@ var FloorController = function() {
         }
         this.updateHTML(), this.core.engine2D.requestStaticDraw()
     }, e.prototype.onItemDelete = function(e) {
-        if (confirm(_("confirm the deletion")) && !(wanaplan.structure.getLength() <= 1)) {
+        if (confirm(_("confirm the deletion")) && !(hcsdesign.structure.getLength() <= 1)) {
             if (id = this.getAttribute("rel")) {
-                var n = wanaplan.structure.getElement(id);
-                wanaplan.structure.removeElement(n);
-                for (var i = 0, o = 0; o < wanaplan.structure.getLength(); o++) {
+                var n = hcsdesign.structure.getElement(id);
+                hcsdesign.structure.removeElement(n);
+                for (var i = 0, o = 0; o < hcsdesign.structure.getLength(); o++) {
                     var r = t.structure.getElement(o);
                     r instanceof FloorStructure && (r.elevation = i, i += r.height)
                 }
-                ujs.notify("wnp.request.floorDeleted", {
+                ujs.notify("hcs.request.floorDeleted", {
                     id: id
                 }, !0), t.selectFloor(0 == id ? id : id - 1)
             }
@@ -20469,25 +20568,25 @@ var FloorController = function() {
                 n[o].checked && i.push(n[o].value);
             return t.onAddItemConfirm(e, i), !0
         }};
-        wnp.UI.MessageBox.show(n)
+        hcs.UI.MessageBox.show(n)
     }, e.prototype.onAddItemConfirm = function(e, n) {
         var i = t.duplicateForFloor(n);
         if (i.id > 0) {
-            var o = wanaplan.structure.getElement(i.id - 1);
+            var o = hcsdesign.structure.getElement(i.id - 1);
             i.elevation = o.elevation + o.height
         }
         var r = function() {
             t.selectFloor(i.id)
         };
-        ujs.notify("wnp.request.floorAdded", {
+        ujs.notify("hcs.request.floorAdded", {
             id: i.id,
             callback: r
         }, !0)
     }, e.prototype.duplicateForFloor = function(t) {
         var t = t || [],
-            e = wanaplan.structure.getCurrentStructure(),
+            e = hcsdesign.structure.getCurrentStructure(),
             n = e.clone();
-        wanaplan.structure.addElement(n), n.updateReferences(wanaplan.structure), n.hoppers = [];
+        hcsdesign.structure.addElement(n), n.updateReferences(hcsdesign.structure), n.hoppers = [];
         for (var i = 0, o = n.walls.length; o > i; i++)
             n.walls[i].materials = {}, n.walls[i].subSlopes = [];
         for (var r = n.internalRooms.concat(n.externalRooms), i = 0, o = r.length; o > i; i++)
@@ -20517,11 +20616,11 @@ var FloorController = function() {
     }, e.prototype.onSelectFloor = function(e) {
         e.id > -1 && t.selectFloor(e.id)
     }, e.prototype.selectFloor = function(e) {
-        wanaplan.structure.setCurrentStructureIndex(e), wanaplan.structure.members[e].dirty(), wanaplan.engine2D.update(!0), wanaplan.engine2D.requestStaticDraw(), t.updateHTML();
-        var n = wanaplan.getComponentByName("HistoryComponent");
-        n && n.reset(), ujs.notify("wnp.request.floorSelected", {
+        hcsdesign.structure.setCurrentStructureIndex(e), hcsdesign.structure.members[e].dirty(), hcsdesign.engine2D.update(!0), hcsdesign.engine2D.requestStaticDraw(), t.updateHTML();
+        var n = hcsdesign.getComponentByName("HistoryComponent");
+        n && n.reset(), ujs.notify("hcs.request.floorSelected", {
             id: e,
-            structure: wanaplan.structure.getCurrentStructure()
+            structure: hcsdesign.structure.getCurrentStructure()
         }, !0)
     }, e
 }();
@@ -20619,7 +20718,7 @@ var PointStructure = function() {
 }();
 var PointComponent2D = function() {
     var t = function(t) {
-        BaseComponent2D.call(this, t, "PointComponent2D"), this._SIZE = 13, this._ANGLERADIUS = 55, this.anglePointList = [], this.dragging = !1, wanaplan.engine2D.registerEventCb("PointComponent2D.double-click", this.priority, "double-click", wanaplan.engine2D.MODE_NORMAL, PointStructure, this.onDoubleClick.bind(this), null), wanaplan.engine2D.registerEventCb("PointComponent2D.hover", this.priority, "hover", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_DRAW, PointStructure, this.onHover.bind(this), null), wanaplan.engine2D.registerEventCb("PointComponent2D.leave", this.priority, "leave", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_DRAW, PointStructure, this.onLeave.bind(this), null), wanaplan.engine2D.registerEventCb("PointComponent2D.dragstart", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, PointStructure, this.onDragStart.bind(this), null), this.priority = 90
+        BaseComponent2D.call(this, t, "PointComponent2D"), this._SIZE = 13, this._ANGLERADIUS = 55, this.anglePointList = [], this.dragging = !1, hcsdesign.engine2D.registerEventCb("PointComponent2D.double-click", this.priority, "double-click", hcsdesign.engine2D.MODE_NORMAL, PointStructure, this.onDoubleClick.bind(this), null), hcsdesign.engine2D.registerEventCb("PointComponent2D.hover", this.priority, "hover", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_DRAW, PointStructure, this.onHover.bind(this), null), hcsdesign.engine2D.registerEventCb("PointComponent2D.leave", this.priority, "leave", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_DRAW, PointStructure, this.onLeave.bind(this), null), hcsdesign.engine2D.registerEventCb("PointComponent2D.dragstart", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, PointStructure, this.onDragStart.bind(this), null), this.priority = 90
     };
     return t.prototype = new BaseComponent2D, BaseComponent2D.prototype.getTargeted = function(t) {
         var e = this.structure.getCurrentStructure(),
@@ -20646,7 +20745,7 @@ var PointComponent2D = function() {
             h = s.determinant(a) / (s.length() * a.length()),
             c = Math.acos(BABYLON.Math.clamp(l, -1, 1)) * (h > 0 ? 1 : -1),
             u = BABYLON.Math.NormalizeAngle(Math.atan2(s.y, s.x), !0);
-        wanaplan.engine2D.symbols2D.drawAngle(t, {
+        hcsdesign.engine2D.symbols2D.drawAngle(t, {
             x: e.x + n * i.position.x,
             y: e.y + n * i.position.y
         }, n, this._ANGLERADIUS, u, u + c, 0 > h)
@@ -20655,7 +20754,7 @@ var PointComponent2D = function() {
             x: e.x + i.position.x * n,
             y: e.y + i.position.y * n
         };
-        wanaplan.engine2D.symbols2D.drawPointHover(t, o, n);
+        hcsdesign.engine2D.symbols2D.drawPointHover(t, o, n);
         for (var r = 0, s = this.anglePointList.length; s > r; r++)
             this.drawAngle(t, e, n, this.anglePointList[r])
     }, t.prototype.onDragStart = function(t, e) {
@@ -20665,12 +20764,12 @@ var PointComponent2D = function() {
                 for (var o = 0, r = e.parents[n].points.length; r > o; o++)
                     e.parents[n].points[o] !== e && this.anglePointList.push(e.parents[n].points[o])
         }
-        return this.dragging = !0, wanaplan.engine2D.registerEventCb("PointComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), wanaplan.engine2D.registerEventCb("PointComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), wanaplan.engine2D.registerEventCb("PointComponent2D.drag.hover", this.priority, "hover", wanaplan.engine2D.MODE_DRAG, PointStructure, this.onHover.bind(this), e), wanaplan.engine2D.registerEventCb("PointComponent2D.drag.leave", this.priority, "leave", wanaplan.engine2D.MODE_DRAG, PointStructure, this.onLeave.bind(this), e), !1
+        return this.dragging = !0, hcsdesign.engine2D.registerEventCb("PointComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), hcsdesign.engine2D.registerEventCb("PointComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), hcsdesign.engine2D.registerEventCb("PointComponent2D.drag.hover", this.priority, "hover", hcsdesign.engine2D.MODE_DRAG, PointStructure, this.onHover.bind(this), e), hcsdesign.engine2D.registerEventCb("PointComponent2D.drag.leave", this.priority, "leave", hcsdesign.engine2D.MODE_DRAG, PointStructure, this.onLeave.bind(this), e), !1
     }, t.prototype.onDragging = function(t, e, n, i) {
         0 == i.parents.length && this.onDragEnd(), i.position.copyFrom(n.planPos);
         for (var o = 0, r = i.parents.length; r > o; o++)
             i.parents[o] && (i.parents[o].needsUpdate = !0);
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onDragEnd = function(t, e, n, i) {
         if (this.anglePointList.length = 0, this.dragging = !1, i) {
             var o = this.structure.getCurrentStructure();
@@ -20679,16 +20778,16 @@ var PointComponent2D = function() {
             r === i && i.tryAttach(o);
             var s = [r.parents[0], r.parents[1]],
                 a = o.getElements("walls");
-            s[0] && -1 != a.indexOf(s[0]) && (s[0] = s[0].tryMerge(o)), s[1] && -1 != a.indexOf(s[1]) && (s[1] = s[1].tryMerge(o)), s[0] && -1 != a.indexOf(s[0]) && s[0].splitAtIntersections(o), s[1] && -1 != a.indexOf(s[1]) && s[1].splitAtIntersections(o), wanaplan.getComponentByName("WallComponent2D").update(), wanaplan.getComponentByName("WallComponent2D").simplifyWalls(), this.update(), o.dirty(), wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.unregisterEventCb("PointComponent2D.drag.hover"), wanaplan.engine2D.unregisterEventCb("PointComponent2D.drag.leave"), wanaplan.getComponentByName("WallComponent2D").update()
+            s[0] && -1 != a.indexOf(s[0]) && (s[0] = s[0].tryMerge(o)), s[1] && -1 != a.indexOf(s[1]) && (s[1] = s[1].tryMerge(o)), s[0] && -1 != a.indexOf(s[0]) && s[0].splitAtIntersections(o), s[1] && -1 != a.indexOf(s[1]) && s[1].splitAtIntersections(o), hcsdesign.getComponentByName("WallComponent2D").update(), hcsdesign.getComponentByName("WallComponent2D").simplifyWalls(), this.update(), o.dirty(), hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.unregisterEventCb("PointComponent2D.drag.hover"), hcsdesign.engine2D.unregisterEventCb("PointComponent2D.drag.leave"), hcsdesign.getComponentByName("WallComponent2D").update()
         }
     }, t.prototype.onHover = function(t, e, n, i) {
         var e = i || e;
-        return this.dragging || this.anglePointList.push(e), wanaplan.engine2D.registerEventCb("PointComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onDynamicDraw.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
+        return this.dragging || this.anglePointList.push(e), hcsdesign.engine2D.registerEventCb("PointComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onDynamicDraw.bind(this), e), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onLeave = function(t, e, n, i) {
-        this.dragging || (this.anglePointList.length = 0, wanaplan.engine2D.unregisterEventCb("PointComponent2D.dynamic-draw")), wanaplan.engine2D.requestDynamicDraw()
+        this.dragging || (this.anglePointList.length = 0, hcsdesign.engine2D.unregisterEventCb("PointComponent2D.dynamic-draw")), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onDoubleClick = function(t, e, n) {
-        var i = wanaplan.getSelectedStructure(),
-            o = wanaplan.getComponentByName("WallComponent2D", wanaplan.ENGINE_2D);
+        var i = hcsdesign.getSelectedStructure(),
+            o = hcsdesign.getComponentByName("WallComponent2D", hcsdesign.ENGINE_2D);
         if (e.isAttached(i)) {
             var r = e.wallAttached(i);
             n.planPos = e.position.clone(), o.onDoubleClick(t, r, n, null)
@@ -21322,15 +21421,15 @@ CurvedWall = function() {
 var WallComponent2D = function() {
     var t = function(t) {
         BaseComponent2D.call(this, t, "WallComponent2D"), this.TYPE_NORMAL = 1, this.TYPE_SEPARATOR = 2, this._COLORS = ["#333333", "#616161", "#BEBEBE", "#EEEEEE"], this._PATTERNS = [null, null, null, null], this._PATTERN_IMGS = [new Image, new Image, null, null], this._PATTERN_IMGS[0].addEventListener("load", function() {
-            this._PATTERNS[0] = wanaplan.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[0], "repeat"), wanaplan.engine2D.requestStaticDraw()
+            this._PATTERNS[0] = hcsdesign.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[0], "repeat"), hcsdesign.engine2D.requestStaticDraw()
         }.bind(this), !1), this._PATTERN_IMGS[1].addEventListener("load", function() {
-            this._PATTERNS[1] = wanaplan.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[1], "repeat"), wanaplan.engine2D.requestStaticDraw()
-        }.bind(this), !1), this._PATTERN_IMGS[0].src = wnp.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern.png", this._PATTERN_IMGS[1].src = wnp.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern_tmp.png", this.priority = 10, this._tmpWall = null, this._tmpThickness = 20, this._tmpType = this.TYPE_NORMAL, this._tmpDragStartPt = null, this._lastPlanPos = new BABYLON.Vector3, this._updateList = [], this._applyHeightToAll = !1, this._minWallLengthRatio = .01, this._draggingMinWallLengthRatio = .5, this.displayMesure = !0
+            this._PATTERNS[1] = hcsdesign.engine2D.canvas.getContext("2d").createPattern(this._PATTERN_IMGS[1], "repeat"), hcsdesign.engine2D.requestStaticDraw()
+        }.bind(this), !1), this._PATTERN_IMGS[0].src = hcs.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern.png", this._PATTERN_IMGS[1].src = hcs.Assets.globalPath + "js/Components/CoreComponents/Wall/Images/pattern_tmp.png", this.priority = 10, this._tmpWall = null, this._tmpThickness = 20, this._tmpType = this.TYPE_NORMAL, this._tmpDragStartPt = null, this._lastPlanPos = new BABYLON.Vector3, this._updateList = [], this._applyHeightToAll = !1, this._minWallLengthRatio = .01, this._draggingMinWallLengthRatio = .5, this.displayMesure = !0
     };
     return t.prototype = new BaseComponent2D, t.WALL_OFFSET = 10, t.prototype.startListening = function() {
-        this.onAddWall = this.onAddWall.bind(this), this.onAddWallEnd = this.onAddWallEnd.bind(this), document.addEventListener("wnp.engine2d.onAddWall", this.onAddWall, !1), document.addEventListener("wnp.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.registerEventCb("WallComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onHover.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onLeave.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.double-click", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onDoubleClick.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.context-menu", this.priority, "click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onContextMenu.bind(this), null), GlobalHelper.isMobileDevice() && wanaplan.engine2D.registerEventCb("WallComponent2D.mobile-drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, null, this.onMobileDragStart.bind(this), null)
+        this.onAddWall = this.onAddWall.bind(this), this.onAddWallEnd = this.onAddWallEnd.bind(this), document.addEventListener("hcs.engine2d.onAddWall", this.onAddWall, !1), document.addEventListener("hcs.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.registerEventCb("WallComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onHover.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAW | this.core.engine2D.MODE_CONTEXTMENU, WallStructure, this.onLeave.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.double-click", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onDoubleClick.bind(this), null), this.core.engine2D.registerEventCb("WallComponent2D.context-menu", this.priority, "click", this.core.engine2D.MODE_NORMAL, WallStructure, this.onContextMenu.bind(this), null), GlobalHelper.isMobileDevice() && hcsdesign.engine2D.registerEventCb("WallComponent2D.mobile-drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, null, this.onMobileDragStart.bind(this), null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddWall", this.onAddWall, !1), document.removeEventListener("wnp.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.unregisterEventCb("WallComponent2D.static-draw"), this.core.engine2D.unregisterEventCb("WallComponent2D.hover"), this.core.engine2D.unregisterEventCb("WallComponent2D.leave"), this.core.engine2D.unregisterEventCb("WallComponent2D.double-click"), this.core.engine2D.unregisterEventCb("WallComponent2D.context-menu"), GlobalHelper.isMobileDevice() && wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag-start")
+        document.removeEventListener("hcs.engine2d.onAddWall", this.onAddWall, !1), document.removeEventListener("hcs.engine2d.onAddWallEnd", this.onAddWallEnd, !1), this.core.engine2D.unregisterEventCb("WallComponent2D.static-draw"), this.core.engine2D.unregisterEventCb("WallComponent2D.hover"), this.core.engine2D.unregisterEventCb("WallComponent2D.leave"), this.core.engine2D.unregisterEventCb("WallComponent2D.double-click"), this.core.engine2D.unregisterEventCb("WallComponent2D.context-menu"), GlobalHelper.isMobileDevice() && hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag-start")
     }, t.prototype.initialize = function() {
         this.startListening();
         var t = {
@@ -21339,8 +21438,8 @@ var WallComponent2D = function() {
             items: [
                 {
                     title: _("承重墙"),
-                    action: "wnp.engine2d.onAddWall",
-                    cancelAction: "wnp.engine2d.onAddWallEnd",
+                    action: "hcs.engine2d.onAddWall",
+                    cancelAction: "hcs.engine2d.onAddWallEnd",
                     params: {
                         wallType: this.TYPE_NORMAL,
                         thickness: 30,
@@ -21349,8 +21448,8 @@ var WallComponent2D = function() {
                 },
                 {
                     title: _("墙"),
-                    action: "wnp.engine2d.onAddWall",
-                    cancelAction: "wnp.engine2d.onAddWallEnd",
+                    action: "hcs.engine2d.onAddWall",
+                    cancelAction: "hcs.engine2d.onAddWallEnd",
                     params: {
                         wallType: this.TYPE_NORMAL,
                         thickness: 7,
@@ -21359,8 +21458,8 @@ var WallComponent2D = function() {
                 }/*,
                 {
                     title: _("房间分割线"),
-                    cancelAction: "wnp.engine2d.onAddWallEnd",
-                    action: "wnp.engine2d.onAddWall",
+                    cancelAction: "hcs.engine2d.onAddWallEnd",
+                    action: "hcs.engine2d.onAddWall",
                     params: {
                         wallType: this.TYPE_SEPARATOR,
                         thickness: .2,
@@ -21368,7 +21467,7 @@ var WallComponent2D = function() {
                     }
                 }*/
             ]};
-        ujs.notify("wnp.menu.main.add", {item: t,menuPath: "draw2D",position: .5})
+        ujs.notify("hcs.menu.main.add", {item: t,menuPath: "draw2D",position: .5})
     }, t.prototype.update = function(t) {
         var e, n = t || this.structure.getCurrentStructure(),
             i = n.getElements("walls");
@@ -21407,19 +21506,19 @@ var WallComponent2D = function() {
             r = (o.measureDisplayed === !1 ? !1 : !0, o.styleId || 0);
         t.fillStyle = this._PATTERNS[r] || this._COLORS[r], t.strokeStyle = this._COLORS[r], t.save(), t.translate(e.x, e.y), t.scale(n, n), i.draw(t), t.restore()
     }, t.prototype._drawMeasures = function(t, e, n) {
-        wanaplan.getComponentByName("MeasureComponent").draw(t, e, n)
+        hcsdesign.getComponentByName("MeasureComponent").draw(t, e, n)
     }, t.prototype._addWallFirstPoint = function(t, e) {
-        var n = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D),
-            i = (wanaplan.getComponentByName("PointComponent2D", wanaplan.ENGINE_2D), wanaplan.getSelectedStructure());
+        var n = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D),
+            i = (hcsdesign.getComponentByName("PointComponent2D", hcsdesign.ENGINE_2D), hcsdesign.getSelectedStructure());
         this._tmpWall = new PolygonWall, this._tmpWall.height = i.height, this._tmpWall.thickness = this._tmpThickness, this._tmpWall.type = this._tmpType || this._tmpWall.TYPE_NORMAL;
         var o = e || new PointStructure,
             r = new PointStructure;
-        e || (o.position = t.planPos.clone()), r.position = t.planPos.clone(), e || (n && n.addVirtualPoint(this.name, o), wanaplan.engine2D.setEnableAutoScroll(!0)), n && n.onWallDrawStart(o), this._tmpWall.setPoints([o, r]), wanaplan.engine2D.requestStaticDraw()
+        e || (o.position = t.planPos.clone()), r.position = t.planPos.clone(), e || (n && n.addVirtualPoint(this.name, o), hcsdesign.engine2D.setEnableAutoScroll(!0)), n && n.onWallDrawStart(o), this._tmpWall.setPoints([o, r]), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype._addWallNewPoint = function(t) {
         {
-            var e = wanaplan.getSelectedStructure(),
-                n = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D);
-            wanaplan.getComponentByName("PointComponent2D", wanaplan.ENGINE_2D)
+            var e = hcsdesign.getSelectedStructure(),
+                n = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D);
+            hcsdesign.getComponentByName("PointComponent2D", hcsdesign.ENGINE_2D)
         }
         n.removeVirtualPoint(this.name, null), this._tmpWall.getPoints(1).position = t.planPos.clone(), this._tmpWall.addToStructure(e);
         var i = !1,
@@ -21432,7 +21531,7 @@ var WallComponent2D = function() {
         return o.splitAtIntersections(e), i
     }, t.prototype._addWallUpdate = function(t) {
         var e = this._tmpWall.getPoints(1);
-        e.position = t.planPos.clone(), this._tmpWall.setPoints(e, 1), this._tmpWall.needsUpdate = !0, wanaplan.engine2D.requestDynamicDraw()
+        e.position = t.planPos.clone(), this._tmpWall.setPoints(e, 1), this._tmpWall.needsUpdate = !0, hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onStaticDraw = function(t, e, n) {
         var i = !1;
         if (i = this.structure.getElement(+this.structure.getCurrentStructure().id - 1))
@@ -21451,16 +21550,16 @@ var WallComponent2D = function() {
             };
             this._drawWall(t, e, n, a[r], s)
         }
-        this.displayMesure && (wanaplan.getComponentByName("MeasureComponent").buildFromRooms(wanaplan.getSelectedStructure().internalRooms, wanaplan.getSelectedStructure().externalRooms), this._drawMeasures(t, e, n))
+        this.displayMesure && (hcsdesign.getComponentByName("MeasureComponent").buildFromRooms(hcsdesign.getSelectedStructure().internalRooms, hcsdesign.getSelectedStructure().externalRooms), this._drawMeasures(t, e, n))
     }, t.prototype.onDragStart = function(t, e, n) {
-        return e.targeted = e && e.isTargeted(n.planPos) instanceof BABYLON.Vector3 ? e.cp : !1, this._lastPlanPos.copyFrom(n.planPos), wanaplan.engine2D.registerEventCb("WallComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag.hover", this.priority, "hover", wanaplan.engine2D.MODE_DRAG, WallStructure, this.onHover.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag.leave", this.priority, "leave", wanaplan.engine2D.MODE_DRAG, WallStructure, this.onLeave.bind(this), e), !1
+        return e.targeted = e && e.isTargeted(n.planPos) instanceof BABYLON.Vector3 ? e.cp : !1, this._lastPlanPos.copyFrom(n.planPos), hcsdesign.engine2D.registerEventCb("WallComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag.hover", this.priority, "hover", hcsdesign.engine2D.MODE_DRAG, WallStructure, this.onHover.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag.leave", this.priority, "leave", hcsdesign.engine2D.MODE_DRAG, WallStructure, this.onLeave.bind(this), e), !1
     }, t.prototype.onDragging = function(t, e, n, i) {
         var o;
         if (o = n.forcePosition ? n.forcePosition.clone().subtractInPlace(i.getPoints(0).position) : n.planPos.clone().subtractInPlace(this._lastPlanPos), this._lastPlanPos.copyFrom(n.planPos), i.needsUpdate = !0, i.targeted)
-            return i.cp.addInPlace(mouseVector), wanaplan.engine2D.requestStaticDraw(), !1;
+            return i.cp.addInPlace(mouseVector), hcsdesign.engine2D.requestStaticDraw(), !1;
         var r = o.clone().projectOnVector(i.getWallVector()),
             s = o.subtractInPlace(r);
-        return i.translate(s, this.structure.getCurrentStructure()), i.getLength() < this._draggingMinWallLengthRatio * i.thickness && (i.remove(this.structure.getCurrentStructure()), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), this.simplifyWalls(), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw")), wanaplan.engine2D.requestStaticDraw(), !1
+        return i.translate(s, this.structure.getCurrentStructure()), i.getLength() < this._draggingMinWallLengthRatio * i.thickness && (i.remove(this.structure.getCurrentStructure()), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), this.simplifyWalls(), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw")), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDragEnd = function(t, e, n, i) {
         var o = this.structure.getCurrentStructure(),
             r = o.getElements("walls");
@@ -21477,12 +21576,12 @@ var WallComponent2D = function() {
         h && h.tryMerge(o), c && c.tryMerge(o);
         for (var u = 0, p = s.attachedPoints.length; p > u; u++)
             s.attachedPoints[u].parents[0] && s.attachedPoints[u].parents[0].tryMerge(o);
-        this.update(), this.simplifyWalls(), wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag.hover"), wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag.leave"), this.update()
+        this.update(), this.simplifyWalls(), hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag.hover"), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag.leave"), this.update()
     }, t.prototype.onHover = function(t, e, n, i) {
         var e = i || e;
-        return wanaplan.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("WallComponent2D.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, WallStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("WallComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("WallComponent2D.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, WallStructure, this.onDragStart.bind(this), null), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onLeave = function(t, e, n, i) {
-        wanaplan.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), wanaplan.engine2D.unregisterEventCb("WallComponent2D.drag-start"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("WallComponent2D.dynamic-draw"), hcsdesign.engine2D.unregisterEventCb("WallComponent2D.drag-start"), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onMobileDragStart = function(t, e, n, i) {
         return e ? this.onDragStart(t, e, n, i) : void 0
     }, t.prototype.onSelectionDynamicDraw = function(t, e, n, i) {
@@ -21501,47 +21600,47 @@ var WallComponent2D = function() {
                     x: a.x * n + e.x,
                     y: a.y * n + e.y
                 };
-            wanaplan.engine2D.symbols2D.drawPoint(t, l), wanaplan.engine2D.symbols2D.drawMeasure(t, r, l), wanaplan.engine2D.symbols2D.drawMeasure(t, s, l), wanaplan.engine2D.symbols2D.drawArc(t, r, l, s)
+            hcsdesign.engine2D.symbols2D.drawPoint(t, l), hcsdesign.engine2D.symbols2D.drawMeasure(t, r, l), hcsdesign.engine2D.symbols2D.drawMeasure(t, s, l), hcsdesign.engine2D.symbols2D.drawArc(t, r, l, s)
         } else
-            wanaplan.engine2D.symbols2D.drawSegment(t, r, s)
+            hcsdesign.engine2D.symbols2D.drawSegment(t, r, s)
     }, t.prototype.onDoubleClick = function(t, e, n) {
-        var i = wanaplan.getSelectedStructure(),
+        var i = hcsdesign.getSelectedStructure(),
             o = new PointStructure;
         o.position = e.getNearestPoint(n.planPos);
         var r = new PolygonWall;
-        r.height = e.height, r.type = e.type, r.thickness = e.thickness, r.points = [o, e.getPoints(1)], e.points[1] = o, o.parents = [r, e], r.getPoints(1).parents.splice(r.getPoints(1).parents.indexOf(e), 1), r.getPoints(1).parents.push(r), r.reorganizeOnSplit(i, [r, e]), i.insertElement("points", o), i.insertElement("walls", r), wanaplan.engine2D.requestStaticDraw()
+        r.height = e.height, r.type = e.type, r.thickness = e.thickness, r.points = [o, e.getPoints(1)], e.points[1] = o, o.parents = [r, e], r.getPoints(1).parents.splice(r.getPoints(1).parents.indexOf(e), 1), r.getPoints(1).parents.push(r), r.reorganizeOnSplit(i, [r, e]), i.insertElement("points", o), i.insertElement("walls", r), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onAddWall = function(t) {
-        if (wanaplan.helpBubbleManager.display("wnp.2d.draw-wall"), this._tmpThickness = t.thickness, this._tmpType = t.wallType, this._tmpRounded = t.rounded || !1, wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_DRAW), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallDynamicDraw.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.click", this.priority, "click", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallClick.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallMouseMove.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.draw-end", this.priority, "draw-end", wanaplan.engine2D.MODE_DRAW, null, this.onAddWallDrawEnd.bind(this), null), 1 == t.putPoint) {
-            var e = wanaplan.engine2D.getMouseState(),
-                n = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D);
+        if (/*hcsdesign.helpBubbleManager.display("hcs.2d.draw-wall"), */this._tmpThickness = t.thickness, this._tmpType = t.wallType, this._tmpRounded = t.rounded || !1, hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallDynamicDraw.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.click", this.priority, "click", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallClick.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallDragStart.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallMouseMove.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.draw-end", this.priority, "draw-end", hcsdesign.engine2D.MODE_DRAW, null, this.onAddWallDrawEnd.bind(this), null), 1 == t.putPoint) {
+            var e = hcsdesign.engine2D.getMouseState(),
+                n = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D);
             n.applyPointMag(e), this.onAddWallClick(t, null, e, null)
         }
     }, t.prototype.onAddWallEnd = function() {
-        wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL)
+        hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL)
     }, t.prototype.onAddWallClick = function(t, e, n, i) {
-        var o = wanaplan.getComponentByName("MagnetismComponent2D");
-        if ("touchUp" == t.type && null != this._tmpWall && this.onAddWallMouseMove(t, e, n, i), wanaplan.getSelectedStructure().dirty(), !i && null != this._tmpWall && this._tmpWall.getLength() <= 10)
-            return wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), o && o.onWallDrawEnd(), void wanaplan.engine2D.requestStaticDraw();
+        var o = hcsdesign.getComponentByName("MagnetismComponent2D");
+        if ("touchUp" == t.type && null != this._tmpWall && this.onAddWallMouseMove(t, e, n, i), hcsdesign.getSelectedStructure().dirty(), !i && null != this._tmpWall && this._tmpWall.getLength() <= 10)
+            return hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), o && o.onWallDrawEnd(), void hcsdesign.engine2D.requestStaticDraw();
         var r = !1;
         if (!i && null != this._tmpWall && (e instanceof WallStructure || e instanceof PointStructure) && (r = !0), null == this._tmpWall)
             this._addWallFirstPoint(n);
         else {
             var s = this._addWallNewPoint(n);
-            r || s ? (this._tmpWall = null, wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.getSelectedStructure().update(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), o && o.onWallDrawEnd(), wanaplan.engine2D.requestStaticDraw()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
+            r || s ? (this._tmpWall = null, hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.getSelectedStructure().update(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), o && o.onWallDrawEnd(), hcsdesign.engine2D.requestStaticDraw()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
         }
     }, t.prototype.onAddWallDragStart = function(t, e, n) {
-        return 0 == (n.buttons & n.BUTTON_LEFT) ? !0 : (this._tmpDragStartPt = n.planPos.clone(), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onAddWallDragEnd.bind(this), null), wanaplan.engine2D.registerEventCb("WallComponent2D.add-wall.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onAddWallMouseMove.bind(this), null), !1)
+        return 0 == (n.buttons & n.BUTTON_LEFT) ? !0 : (this._tmpDragStartPt = n.planPos.clone(), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onAddWallDragEnd.bind(this), null), hcsdesign.engine2D.registerEventCb("WallComponent2D.add-wall.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onAddWallMouseMove.bind(this), null), !1)
     }, t.prototype.onAddWallDragEnd = function(t, e, n, i) {
-        wanaplan.getSelectedStructure().dirty();
-        var o = wanaplan.getComponentByName("MagnetismComponent2D");
+        hcsdesign.getSelectedStructure().dirty();
+        var o = hcsdesign.getComponentByName("MagnetismComponent2D");
         if (!i && null != this._tmpWall && this._tmpWall.getLength() <= 10)
-            return wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), void(o && o.onWallDrawEnd());
+            return hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), void(o && o.onWallDrawEnd());
         var r = !1;
         if (null != this._tmpWall && (e instanceof WallStructure || e instanceof PointStructure) && (r = !0), null == this._tmpWall)
             this._addWallFirstPoint(n);
         else {
             var s = this._addWallNewPoint(n);
-            r || s ? (this._tmpWall = null, wanaplan.getComponentByName("PointComponent2D").update(), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect"), o && o.onWallDrawEnd()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
+            r || s ? (this._tmpWall = null, hcsdesign.getComponentByName("PointComponent2D").update(), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), o && o.onWallDrawEnd()) : this._addWallFirstPoint(n, this._tmpWall.getPoints(1))
         }
     }, t.prototype.onAddWallMouseMove = function(t, e, n) {
         if (null != this._tmpWall && null == this._tmpDragStartPt)
@@ -21554,19 +21653,19 @@ var WallComponent2D = function() {
         if (null != this._tmpWall) {
             this._tmpWall.getLength() > 5 && (this._tmpWall.computeCp && this._tmpWall.computeCp(!0), this._tmpWall.computeDefault(0), this._tmpWall.computeDefault(1), this._drawWall(t, e, n, this._tmpWall, {
                 styleId: 1
-            }), this.displayMesure && wanaplan.getComponentByName("MeasureComponent").drawTmpWallMesure(t, e, n));
+            }), this.displayMesure && hcsdesign.getComponentByName("MeasureComponent").drawTmpWallMesure(t, e, n));
             var i = {
                 x: this._tmpWall.points[0].position.x,
                 y: this._tmpWall.points[0].position.y
             };
-            i.x = i.x * n + e.x, i.y = i.y * n + e.y, 1 == this._tmpWall.points[0].parents.length ? wanaplan.engine2D.symbols2D.drawCancelGrip(t, i, [!1, !1, !1, !1], 0) : wanaplan.engine2D.symbols2D.drawCheckGrip(t, i, [!1, !1, !1, !1], 0);
-            var o = wanaplan.engine2D.getTarget();
-            (o instanceof WallStructure || o instanceof PointStructure) && wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D))
+            i.x = i.x * n + e.x, i.y = i.y * n + e.y, 1 == this._tmpWall.points[0].parents.length ? hcsdesign.engine2D.symbols2D.drawCancelGrip(t, i, [!1, !1, !1, !1], 0) : hcsdesign.engine2D.symbols2D.drawCheckGrip(t, i, [!1, !1, !1, !1], 0);
+            var o = hcsdesign.engine2D.getTarget();
+            (o instanceof WallStructure || o instanceof PointStructure) && hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D))
         }
     }, t.prototype.onAddWallDrawEnd = function() {
         null != this._tmpWall && this._tmpWall.remove(), this._tmpWall = null, this._tmpDragStartPt = null;
-        var t = wanaplan.getComponentByName("MagnetismComponent2D", wanaplan.ENGINE_2D);
-        t.removeVirtualPoint(this.name, null), wanaplan.engine2D.requestStaticDraw()
+        var t = hcsdesign.getComponentByName("MagnetismComponent2D", hcsdesign.ENGINE_2D);
+        t.removeVirtualPoint(this.name, null), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenu = function(t, e) {
         var n = [];
         e.type != e.TYPE_SEPARATOR && (n.push({
@@ -21617,10 +21716,10 @@ var WallComponent2D = function() {
             type: "checkbox",
             cast: "bool",
             value: e.measureDisplayed
-        }), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        }), hcsdesign.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         "_applyHeightToAll" == e ? this._applyHeightToAll = n : t[e] = n;
-        var i = wanaplan.getSelectedStructure(),
+        var i = hcsdesign.getSelectedStructure(),
             o = i.getElements("walls");
         if ("height" != e && "_applyHeightToAll" != e || !this._applyHeightToAll) {
             for (var r = 0, s = 1; s < o.length; s++)
@@ -21631,15 +21730,15 @@ var WallComponent2D = function() {
                 o[s].height = t.height;
             i.height = t.height
         }
-        wanaplan.structure.updateFloorElevations(), t.needsUpdate = !0, wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.structure.updateFloorElevations(), t.needsUpdate = !0, hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
+        var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, t
 }();
 var WallComponent3D = function() {
     var t, e = function(e) {
-        BaseComponent3D.call(this, e, "WallComponent3D"), this.walls = [], this.initialized = !1, this.defaultWallTexture = null, this.priority = 10, t = this, this._defaultMaterial = new wnp.WhiteMaterial("defaultWall", wanaplan.engine3D.scene, {
+        BaseComponent3D.call(this, e, "WallComponent3D"), this.walls = [], this.initialized = !1, this.defaultWallTexture = null, this.priority = 10, t = this, this._defaultMaterial = new hcs.WhiteMaterial("defaultWall", hcsdesign.engine3D.scene, {
             factor: 1
         })
     };
@@ -21648,19 +21747,19 @@ var WallComponent3D = function() {
             i = e.structure || t.core.getSelectedStructure();
         t.walls.length = 0;
         var o = t.draw(i);
-        ujs.notify("wnp.engine3d.wallsReady", {
+        ujs.notify("hcs.engine3d.wallsReady", {
             floor: n,
             structure: i,
             walls: o
         })
     }, e.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.roomsReady", this.onRoomsReady, !1)
+        document.addEventListener("hcs.engine3d.roomsReady", this.onRoomsReady, !1)
     }, e.prototype.stopListening = function() {
-        document.addEventListener("wnp.engine3d.roomsReady", this.onRoomsReady, !1)
+        document.addEventListener("hcs.engine3d.roomsReady", this.onRoomsReady, !1)
     }, e.prototype.get3DWallFrom2D = function(t) {
-        return wanaplan.engine3D.scene.getMeshByName("WallMesh_" + t.id)
+        return hcsdesign.engine3D.scene.getMeshByName("WallMesh_" + t.id)
     }, e.prototype.replaceWall = function(t, e) {
-        -1 != wanaplan.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, t.dispose())
+        -1 != hcsdesign.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, t.dispose())
     };
     var n = function(t, e) {
         for (var n, i, o, r = 0, s = this.subMeshes.length; s > r; r++)
@@ -21668,20 +21767,20 @@ var WallComponent3D = function() {
         return o
     };
     return e.prototype.draw = function(t) {
-        t = t || wanaplan.getSelectedStructure();
-        var e = wanaplan.getComponentByName("RoomComponent2D").getInternalRooms(),
-            i = wanaplan.getComponentByName("RoomComponent2D").getExternalRooms(),
-            o = wanaplan.getComponentByName("MeasureComponent"),
+        t = t || hcsdesign.getSelectedStructure();
+        var e = hcsdesign.getComponentByName("RoomComponent2D").getInternalRooms(),
+            i = hcsdesign.getComponentByName("RoomComponent2D").getExternalRooms(),
+            o = hcsdesign.getComponentByName("MeasureComponent"),
             r = o.getInternalMeasures(),
             s = (o.getExternalMeasures(), t.getElements("walls")),
-            a = wanaplan.getComponentByName("FloorComponent3D").getFloor(t),
-            l = new BABYLON.Mesh("WallMesh_" + t.id, wanaplan.engine3D.scene),
+            a = hcsdesign.getComponentByName("FloorComponent3D").getFloor(t),
+            l = new BABYLON.Mesh("WallMesh_" + t.id, hcsdesign.engine3D.scene),
             h = [],
             c = [],
             u = [],
             p = [],
             d = {};
-        l.objectInstances = [], l.material = new BABYLON.MultiMaterial("wall_material", wanaplan.engine3D.scene), l.material.subMaterials.push(new wnp.WhiteMaterial("white", wanaplan.engine3D.scene), new wnp.WhiteMaterial("white", wanaplan.engine3D.scene));
+        l.objectInstances = [], l.material = new BABYLON.MultiMaterial("wall_material", hcsdesign.engine3D.scene), l.material.subMaterials.push(new hcs.WhiteMaterial("white", hcsdesign.engine3D.scene), new hcs.WhiteMaterial("white", hcsdesign.engine3D.scene));
         var m, g, f, y, _, v, b, w, x, C = {},
             M = 0,
             D = 0,
@@ -21710,7 +21809,7 @@ var WallComponent3D = function() {
                     }, B++, D += 4, M += 2, "undefined" == typeof d[m.id] && (d[m.id] = []), d[m.id].push([t[i].points[0], t[i].points[1]])
                 }
             }.bind(this),
-            P = wanaplan.structure.version;
+            P = hcsdesign.structure.version;
         "1.2.0.1" == P && this.migrateMaterials(t.walls, r);
         for (var I = 0, N = e.length; N > I; I++)
             e[I].dispatchMaterials(), currentPanes = e[I].panes, O(currentPanes);
@@ -21725,14 +21824,14 @@ var WallComponent3D = function() {
             R[I].parent.type != R[I].parent.TYPE_SEPARATOR && (L(R[I].points[0].position, R[I].points[1].position, R[I].parent.height, 0, k, 0), C[0].indexCount += 6, D += 4, M += 2)
         }
         for (var V, F, Y, z, j = [], I = 0, N = s.length; N > I; I++)
-            s[I].type !== s[I].TYPE_SEPARATOR && (V = s[I].getPolygon(), V && (F = BABYLON.Mesh.TriangulateNewMesh("wallTop", V, null, wanaplan.engine3D.scene), F && (Y = F.duplicate(), Y.invertFaces(), F.position.y = s[I].height, j.push(F), j.push(Y))));
-        z = BABYLON.Mesh.mergeMeshes("wallTop", j, wanaplan.engine3D.scene), BABYLON.Mesh.ComputeFlatNormal(h, c, p), l.setVerticesData(BABYLON.VertexBuffer.PositionKind, h), l.setVerticesData(BABYLON.VertexBuffer.NormalKind, c), l.setVerticesData(BABYLON.VertexBuffer.UVKind, u), l.setIndices(p), l.subMeshes = [];
+            s[I].type !== s[I].TYPE_SEPARATOR && (V = s[I].getPolygon(), V && (F = BABYLON.Mesh.TriangulateNewMesh("wallTop", V, null, hcsdesign.engine3D.scene), F && (Y = F.duplicate(), Y.invertFaces(), F.position.y = s[I].height, j.push(F), j.push(Y))));
+        z = BABYLON.Mesh.mergeMeshes("wallTop", j, hcsdesign.engine3D.scene), BABYLON.Mesh.ComputeFlatNormal(h, c, p), l.setVerticesData(BABYLON.VertexBuffer.PositionKind, h), l.setVerticesData(BABYLON.VertexBuffer.NormalKind, c), l.setVerticesData(BABYLON.VertexBuffer.UVKind, u), l.setIndices(p), l.subMeshes = [];
         for (var I in C) {
             var W = BABYLON.SubMesh.CreateFromIndices(+I, C[I].indexStart, C[I].indexCount, l);
             W.boundingBox = C[I].boundingBox, W.objectInstance = C[I].objectInstance
         }
-        var G = BABYLON.Mesh.mergeMeshes("WallMesh_" + t.id, [z, l], wanaplan.engine3D.scene, !0);
-        return G.material = l.material, G.isDecorable = !0, wanaplan.engine3D.castShadows(G), G.receiveShadows = !0, G.parent = a, G.decorate = n, this._mesh = G, G
+        var G = BABYLON.Mesh.mergeMeshes("WallMesh_" + t.id, [z, l], hcsdesign.engine3D.scene, !0);
+        return G.material = l.material, G.isDecorable = !0, hcsdesign.engine3D.castShadows(G), G.receiveShadows = !0, G.parent = a, G.decorate = n, this._mesh = G, G
     }, e.prototype.migrateMaterials = function(t, e) {
         for (var n, i, o, r, s = 0, a = t.length; a > s; s++)
             if (t[s].materials) {
@@ -21746,10 +21845,10 @@ var WallComponent3D = function() {
                     }
             }
         Logger.message("Conversion termin��e");
-        var m = wanaplan.structure.version.split(".");
-        m[1] = +m[1] + 1, wanaplan.structure.version = m.join(".")
+        var m = hcsdesign.structure.version.split(".");
+        m[1] = +m[1] + 1, hcsdesign.structure.version = m.join(".")
     }, e.prototype.switchTransparentStatusByStructure = function(t) {
-        var e = (wanaplan.getComponentByName("FloorComponent3D").getFloor(t), this.get3DWallFrom2D(t));
+        var e = (hcsdesign.getComponentByName("FloorComponent3D").getFloor(t), this.get3DWallFrom2D(t));
         if (e)
             for (var n, i, o = 0, r = e.subMeshes.length; r > o; o++)
                 n = e.subMeshes[o], i = n.getMaterial(), void 0 !== i.alternativeMaterialIndex && switchMaterialIndex(i)
@@ -21762,7 +21861,7 @@ var WallComponent3D = function() {
                     var c;
                     h.objectInstance.materialInfo ? c = h.objectInstance.materialInfo.material : "OvertureStructure" == h.objectInstance.name || "SubSlopeOvertureStructure" == h.objectInstance.name ? c = h.objectInstance.material : "SubSlopeStructure" == h.objectInstance.name && (c = o ? h.objectInstance.materials.bottom : h.objectInstance.materials.top, o = !o), h.materialIndex = s, i[s] = c, h.boundingBox && (n[s] = h.boundingBox), s++
                 } else
-                    0 == a || 1 == a ? (i[s] = new wnp.WhiteMaterial("white", wanaplan.engine3D.scene, {
+                    0 == a || 1 == a ? (i[s] = new hcs.WhiteMaterial("white", hcsdesign.engine3D.scene, {
                         factor: 0
                     }), h.materialIndex = 0, s++) : r.push(a)
             }
@@ -21983,7 +22082,7 @@ var RoomComponent2D = function() {
         BaseComponent2D.call(this, t, "RoomComponent2D"), this.priority = 9, this.rooms = [], this._remainings = 0, this.internalRooms = [], this.externalRooms = [], this.useCache = !1, this.displayRoomName = !0, this.core.engine2D.registerEventCb("RoomComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), this.core.engine2D.registerEventCb("RoomComponent2D.room.click", this.priority, "click", this.core.engine2D.MODE_NORMAL, RoomStructure, this.onContextMenu.bind(this), {})
     };
     return t.prototype = new BaseComponent2D, t.prototype.update = function(t) {
-        return !t && !wanaplan.getSelectedStructure().isDirty() || wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_CONTEXTMENU ? void 0 : (t = t || wanaplan.getSelectedStructure(), this.useCache ? (this.useCache = !1, this.computeRooms(t, PolygonMerger.getCachedCycles())) : this.computeRooms(t))
+        return !t && !hcsdesign.getSelectedStructure().isDirty() || hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_CONTEXTMENU ? void 0 : (t = t || hcsdesign.getSelectedStructure(), this.useCache ? (this.useCache = !1, this.computeRooms(t, PolygonMerger.getCachedCycles())) : this.computeRooms(t))
     }, t.prototype.removeBiggestArea = function() {
         for (var t, e = 0, n = 0, i = this.rooms.length; i > n; n++)
             this.rooms[n].getRoomArea() > e && (t = n, e = this.rooms[n].getRoomArea());
@@ -21991,7 +22090,7 @@ var RoomComponent2D = function() {
     }, t.prototype.getExternalWalls = function(t) {
         return Logger.warning("getExternalWalls is deprecated"), null
     }, t.prototype.getAllSubSlopes = function(t) {
-        var t = t || wanaplan.getSelectedStructure(),
+        var t = t || hcsdesign.getSelectedStructure(),
             e = t.getElements("internalRooms");
         0 != e.length && e[0].cycle || (this.update(t), e = t.getElements("internalRooms"));
         for (var n = [], i = function(t, e) {
@@ -22065,7 +22164,7 @@ var RoomComponent2D = function() {
         for (var e = this.structure.getCurrentStructure().getElements("internalRooms"), n = this.core.engine2D.getZoom(), i = 0, o = e.length; o > i; i++) {
             var r = e[i].areaPosition;
             if (!e[i].textWidth) {
-                var s = wanaplan.engine2D.canvas.getContext("2d");
+                var s = hcsdesign.engine2D.canvas.getContext("2d");
                 e[i].textWidth = s.measureText(e[i].label).width
             }
             var a = r.x - e[i].textWidth / 2 / n,
@@ -22119,7 +22218,7 @@ var RoomComponent2D = function() {
     }, t.prototype.onStaticDraw = function(t, e, n) {
         this.drawRooms(t, e, n)
     }, t.prototype.drawRooms = function(t, e, n) {
-        var i = wanaplan.getSelectedStructure();
+        var i = hcsdesign.getSelectedStructure();
         for (var o in i.internalRooms)
             i.internalRooms[o].area > 250 && this.drawRoom(i.internalRooms[o], t, e, n)
     }, t.prototype.isPointInRooms = function(t) {
@@ -22147,10 +22246,10 @@ var RoomComponent2D = function() {
 var RoomComponent3D = function() {
     var t, e = function(e) {
         BaseComponent3D.call(this, e, "RoomComponent3D"), this._defaultRoomTextures = {
-            diffuseTexture: new BABYLON.Texture(wnp.Assets.roomTextures.diffuse, wanaplan.engine3D.scene),
-            specularTexture: new BABYLON.Texture(wnp.Assets.roomTextures.specular, wanaplan.engine3D.scene),
-            bumpTexture: new BABYLON.Texture(wnp.Assets.roomTextures.normal, wanaplan.engine3D.scene)
-        }, this._defaultMaterial = new wnp.WoodMaterial("floor", wanaplan.engine3D.scene), this._defaultMaterial.diffuseTexture = this._defaultRoomTextures.diffuseTexture, this._defaultMaterial.bumpTexture = this._defaultRoomTextures.bumpTexture, this._defaultCeiling = new wnp.WhiteMaterial("CeilingBasic", wanaplan.engine3D.scene), this._commonMaterials = [new wnp.WhiteMaterial("FloorSide_common", wanaplan.engine3D.scene), new wnp.WhiteMaterial("Ceiling_common", wanaplan.engine3D.scene)], this._materialOffset = 0, t = this
+            diffuseTexture: new BABYLON.Texture(hcs.Assets.roomTextures.diffuse, hcsdesign.engine3D.scene),
+            specularTexture: new BABYLON.Texture(hcs.Assets.roomTextures.specular, hcsdesign.engine3D.scene),
+            bumpTexture: new BABYLON.Texture(hcs.Assets.roomTextures.normal, hcsdesign.engine3D.scene)
+        }, this._defaultMaterial = new hcs.WoodMaterial("floor", hcsdesign.engine3D.scene), this._defaultMaterial.diffuseTexture = this._defaultRoomTextures.diffuseTexture, this._defaultMaterial.bumpTexture = this._defaultRoomTextures.bumpTexture, this._defaultCeiling = new hcs.WhiteMaterial("CeilingBasic", hcsdesign.engine3D.scene), this._commonMaterials = [new hcs.WhiteMaterial("FloorSide_common", hcsdesign.engine3D.scene), new hcs.WhiteMaterial("Ceiling_common", hcsdesign.engine3D.scene)], this._materialOffset = 0, t = this
     };
     e.prototype = new BaseComponent3D, e.prototype.getSideMaterial = function() {
         return this._defaultMaterial
@@ -22161,19 +22260,19 @@ var RoomComponent3D = function() {
     }, e.prototype.setCeilingMaterial = function(t) {
         this._defaultCeiling = t
     }, e.prototype.onContextChanged = function(t) {
-        "3D" == t ? this.initialized || (document.addEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !0) : this.initialized && (document.removeEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !1)
+        "3D" == t ? this.initialized || (document.addEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !0) : this.initialized && (document.removeEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !1)
     }, e.prototype.onFloorReady = function(e) {
         var n = e.floor || t.getFloor(),
             i = e.structure || t.core.getSelectedStructure();
-        wanaplan.getComponentByName("RoomComponent2D").update(i);
+        hcsdesign.getComponentByName("RoomComponent2D").update(i);
         var o = i.getElements("hoppers"),
-            r = wanaplan.structure.getElement(i.id + 1),
+            r = hcsdesign.structure.getElement(i.id + 1),
             s = i.getElements("internalRooms");
         if (r)
             var a = t.build(s, o, n, r.hoppers);
         else
             var a = t.build(s, o, n, []);
-        t.mesh = a, ujs.notify("wnp.engine3d.roomsReady", {
+        t.mesh = a, ujs.notify("hcs.engine3d.roomsReady", {
             floor: n,
             structure: i
         })
@@ -22188,8 +22287,8 @@ var RoomComponent3D = function() {
             var h = this.createRoom(t[a], 0, t[a].height);
             s < t[a].height && (s = t[a].elevation), h && (r.push(h.floor), r.push(h.ceiling))
         }
-        var c = BABYLON.Mesh.mergeMeshes("RoomMesh_" + i.structure.id, r, wanaplan.engine3D.scene, !0);
-        if (c.material = new BABYLON.MultiMaterial("RoomMaterial", wanaplan.engine3D.scene), c.isDecorable = !0, c.decorate = n, c.parent = i, i.roomMesh = c, c.receiveShadows = !0, wanaplan.engine3D.scene.lights.point.excludedMeshes.push(c), HopperComponent3D) {
+        var c = BABYLON.Mesh.mergeMeshes("RoomMesh_" + i.structure.id, r, hcsdesign.engine3D.scene, !0);
+        if (c.material = new BABYLON.MultiMaterial("RoomMaterial", hcsdesign.engine3D.scene), c.isDecorable = !0, c.decorate = n, c.parent = i, i.roomMesh = c, c.receiveShadows = !0, hcsdesign.engine3D.scene.lights.point.excludedMeshes.push(c), HopperComponent3D) {
             for (var u = 0; u < e.length; u++)
                 c = HopperComponent3D.Build(c, e[u], 0, s + 5);
             for (var u = 0; u < o.length; u++)
@@ -22206,14 +22305,14 @@ var RoomComponent3D = function() {
             return !1;
         if (i = BABYLON.Mesh.ExtrudeNewMesh("room", o, null, {
                 amount: 5 + t.elevation
-            }, wanaplan.engine3D.scene))
-            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", o, [], wanaplan.engine3D.scene, n - .1);
+            }, hcsdesign.engine3D.scene))
+            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", o, [], hcsdesign.engine3D.scene, n - .1);
         else {
             var s = this.normalizePolygon(t.points);
             i = BABYLON.Mesh.ExtrudeNewMesh("room", s, null, {
                 amount: 5 + t.elevation
-            }, wanaplan.engine3D.scene);
-            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", s, [], wanaplan.engine3D.scene, n - .1);
+            }, hcsdesign.engine3D.scene);
+            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", s, [], hcsdesign.engine3D.scene, n - .1);
             if (!i)
                 return null
         }
@@ -22232,16 +22331,16 @@ var RoomComponent3D = function() {
         var i = BABYLON.CSG.FromMesh(t),
             o = BABYLON.Mesh.ExtrudeNewMesh("hopper_temp", e, null, {
                 amount: n
-            }, wanaplan.engine3D.scene);
+            }, hcsdesign.engine3D.scene);
         if (!o)
             return t;
         o.parent = t.parent, o.material = this._commonMaterials[0];
         var r = BABYLON.CSG.FromMesh(o),
             s = i.subtract(r),
-            a = s.toMesh("room_global", t.material, wanaplan.engine3D.scene, !1);
+            a = s.toMesh("room_global", t.material, hcsdesign.engine3D.scene, !1);
         return a.parent = t.parent, o.dispose(), this.replaceRoom(t, a), a
     }, e.prototype.replaceRoom = function(t, e) {
-        -1 != wanaplan.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.parent = t.parent, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, wanaplan.engine3D.scene.lights.point.excludedMeshes.push(e), t.dispose(), this.mesh = e)
+        -1 != hcsdesign.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.parent = t.parent, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, hcsdesign.engine3D.scene.lights.point.excludedMeshes.push(e), t.dispose(), this.mesh = e)
     }, e.prototype.createInstances = function(t) {
         if (t) {
             for (var e, n = [], i = [], o = [], r = 0, s = 0, a = t.subMeshes.length; a > s; s++) {
@@ -22337,9 +22436,9 @@ var OvertureComponent2D = function() {
         BaseComponent2D.call(this, t, "OvertureComponent2D"), this.COLOR = "#888", this.MINSIZE = 30, this.priority = 60, this.overtureDragged = !1, this._applyToAll = !1
     };
     return t.prototype = new BaseComponent2D, t.prototype.startListening = function() {
-        this.onAddOverture = this.onAddOverture.bind(this), this.onAddOvertureEnd = this.onAddOvertureEnd.bind(this), this.onStaticDraw = this.onStaticDraw.bind(this), this.onHover = this.onHover.bind(this), this.onLeave = this.onLeave.bind(this), this.onContextMenu = this.onContextMenu.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("wnp.engine2d.onAddOverture", this.onAddOverture, !1), document.addEventListener("wnp.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), wanaplan.engine2D.registerEventCb("OvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, OvertureStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.hover", this.priority, "hover", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_DRAG | wanaplan.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onHover, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.leave", this.priority, "leave", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onLeave, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.context-menu", this.priority, "click", wanaplan.engine2D.MODE_NORMAL, OvertureStructure, this.onContextMenu, null), wanaplan.engine2D.registerEventCb("OvertureComponent2D.double-click", this.priority, "double-click", wanaplan.engine2D.MODE_NORMAL, OvertureStructure, this.onDoubleClick, null)
+        this.onAddOverture = this.onAddOverture.bind(this), this.onAddOvertureEnd = this.onAddOvertureEnd.bind(this), this.onStaticDraw = this.onStaticDraw.bind(this), this.onHover = this.onHover.bind(this), this.onLeave = this.onLeave.bind(this), this.onContextMenu = this.onContextMenu.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("hcs.engine2d.onAddOverture", this.onAddOverture, !1), document.addEventListener("hcs.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, OvertureStructure, this.onDragStart.bind(this), null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.hover", this.priority, "hover", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_DRAG | hcsdesign.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onHover, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.leave", this.priority, "leave", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_CONTEXTMENU, OvertureStructure, this.onLeave, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.context-menu", this.priority, "click", hcsdesign.engine2D.MODE_NORMAL, OvertureStructure, this.onContextMenu, null), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.double-click", this.priority, "double-click", hcsdesign.engine2D.MODE_NORMAL, OvertureStructure, this.onDoubleClick, null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddOverture", this.onAddOverture, !1), document.removeEventListener("wnp.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.drag-start"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.leave"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.context-menu"), wanaplan.engine2D.unregisterEventCb("OvertureComponent2D.double-click")
+        document.removeEventListener("hcs.engine2d.onAddOverture", this.onAddOverture, !1), document.removeEventListener("hcs.engine2d.onAddOvertureEnd", this.onAddOvertureEnd, !1), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.static-draw"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.drag-start"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.hover"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.leave"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.context-menu"), hcsdesign.engine2D.unregisterEventCb("OvertureComponent2D.double-click")
     }, t.prototype.initialize = function() {
         var t, e = [
             ["doors", _("门洞"), "Door", 0, 90, 204, 0, !1, !1],
@@ -22361,7 +22460,7 @@ var OvertureComponent2D = function() {
             title: _("门"),
             id: "doors",
             items: []
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 1
@@ -22369,7 +22468,7 @@ var OvertureComponent2D = function() {
             title: _("凸窗"),
             id: "bay_windows",
             items: []
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 2
@@ -22377,7 +22476,7 @@ var OvertureComponent2D = function() {
             title: _("窗"),
             id: "windows",
             items: []
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 2
@@ -22385,8 +22484,8 @@ var OvertureComponent2D = function() {
         for (var n in e)
             t = {
                 title: e[n][1],
-                action: "wnp.engine2d.onAddOverture",
-                cancelAction: "wnp.engine2d.onAddOvertureEnd",
+                action: "hcs.engine2d.onAddOverture",
+                cancelAction: "hcs.engine2d.onAddOvertureEnd",
                 params: {
                     overtureType: e[n][2],
                     elevation: e[n][3],
@@ -22396,7 +22495,7 @@ var OvertureComponent2D = function() {
                     sliding: e[n][7],
                     galandage: e[n][8]
                 }
-            }, "Door" === e[n][2] && (t.params.stretched_texture = !0), ujs.notify("wnp.menu.main.add", {
+            }, "Door" === e[n][2] && (t.params.stretched_texture = !0), ujs.notify("hcs.menu.main.add", {
                 item: t,
                 menuPath: "draw2D." + e[n][0],
                 position: n
@@ -22418,7 +22517,7 @@ var OvertureComponent2D = function() {
                         return o[l].overtures[a];
         return null
     }, t.prototype._drawOverture = function(t, e, n, i) {
-        if (i.getParentWall() || i.remove(wanaplan.getSelectedStructure()), t.save(), t.strokeStyle = this.COLOR, t.translate(Math.round(i.getParentWall().getPoints(0).position.x * n) + e.x, Math.round(i.getParentWall().getPoints(0).position.y * n) + e.y), t.rotate(Math.atan2(-i.getParentWall().getWallVector().x, i.getParentWall().getWallVector().y) + Math.PI / 2), t.translate(Math.round(i.position.x * n), 0), t.fillStyle = "#fff", t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n) - 1, Math.round(i.width * n), Math.round(i.getParentWall().thickness * n) + 2), t.fillStyle = this.COLOR, t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n), Math.round(i.width * n), Math.round(i.getParentWall().thickness * n)), i.sliding) {
+        if (i.getParentWall() || i.remove(hcsdesign.getSelectedStructure()), t.save(), t.strokeStyle = this.COLOR, t.translate(Math.round(i.getParentWall().getPoints(0).position.x * n) + e.x, Math.round(i.getParentWall().getPoints(0).position.y * n) + e.y), t.rotate(Math.atan2(-i.getParentWall().getWallVector().x, i.getParentWall().getWallVector().y) + Math.PI / 2), t.translate(Math.round(i.position.x * n), 0), t.fillStyle = "#fff", t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n) - 1, Math.round(i.width * n), Math.round(i.getParentWall().thickness * n) + 2), t.fillStyle = this.COLOR, t.fillRect(Math.round(-i.width / 2 * n), Math.round(-i.getParentWall().thickness / 2 * n), Math.round(i.width * n), Math.round(i.getParentWall().thickness * n)), i.sliding) {
             t.strokeStyle = "rgba(255, 255, 255, .8)", t.fillStyle = "rgba(255, 255, 255, .4)", t.beginPath();
             var o = Math.round((i.getParentWall().thickness / 2 - 4) * n) + .5,
                 r = Math.round(i.width / 2 * n);
@@ -22447,25 +22546,25 @@ var OvertureComponent2D = function() {
         var i = e.getAbsolutePos(),
             o = i.position.subtract(i.vector.clone().scaleInPlace(e.width / 2)),
             r = i.position.add(i.vector.clone().scaleInPlace(e.width / 2));
-        return wanaplan.engine2D.registerEventCb("overtureComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), wanaplan.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), n.planPos.distanceTo(o) <= 13 || n.planPos.distanceTo(r) <= 13 ? wanaplan.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDraggingResize.bind(this), e) : wanaplan.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), this.overtureDragged = !0, !1
+        return hcsdesign.engine2D.registerEventCb("overtureComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), hcsdesign.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), n.planPos.distanceTo(o) <= 13 || n.planPos.distanceTo(r) <= 13 ? hcsdesign.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDraggingResize.bind(this), e) : hcsdesign.engine2D.registerEventCb("overtureComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), this.overtureDragged = !0, !1
     }, t.prototype.onDraggingMove = function(t, e, n, i) {
         var o = this.structure.getCurrentStructure(),
             r = n.planPos.clone(),
             s = WallStructure.prototype.getNearestWall(r, o),
             a = s.getNearestPoint(r),
             l = a.distanceTo(s.getPoints(0).position);
-        return i.position.x = l, i.setParentWall(s), i.projectOnWall(), wanaplan.engine2D.requestStaticDraw(), !1
+        return i.position.x = l, i.setParentWall(s), i.projectOnWall(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDraggingResize = function(t, e, n, i) {
         var o = n.planPos.clone(),
             r = i.parentWall.getNearestPoint(o),
             s = i.getAbsolutePos();
-        return i.width = 2 * r.distanceTo(s.position) + 10, i.clampSize(), wanaplan.engine2D.requestStaticDraw(), !1
+        return i.width = 2 * r.distanceTo(s.position) + 10, i.clampSize(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDragEnd = function(t, e, n, i) {
-        wanaplan.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), this.overtureDragged = !1, i.width = Math.round(i.width), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), this.overtureDragged = !1, i.width = Math.round(i.width), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onHover = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_NORMAL, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("overtureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_NORMAL, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onLeave = function() {
-        wanaplan.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("overtureComponent2D.dynamic-draw"), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onSelectionDynamicDraw = function(t, e, n, i) {
         if (!i.parentWall)
             return !1;
@@ -22481,21 +22580,21 @@ var OvertureComponent2D = function() {
                 x: a.x * n + e.x,
                 y: a.y * n + e.y
             };
-        wanaplan.engine2D.symbols2D.drawGripSegment(t, l, h, [!1, !1, !1, !0], [!1, !0, !1, !1], i.getAngle())
+        hcsdesign.engine2D.symbols2D.drawGripSegment(t, l, h, [!1, !1, !1, !0], [!1, !0, !1, !1], i.getAngle())
     }, t.prototype.onAddOverture = function(t) {
-        overture = new OvertureStructure, overture.type = t.overtureType, overture.elevation = t.elevation, overture.width = t.width, overture.height = t.height, overture.nbCasement = t.nbCasement, overture.sliding = t.sliding, overture.galandage = t.galandage, void 0 != t.hinge && (overture.hinge = t.hinge), void 0 != t.side && (overture.side = t.side), void 0 != t.batiThickness && (overture.batiThickness = t.batiThickness), void 0 != t.stretched_texture && (overture.stretched_texture = t.stretched_texture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.wall.hover", this.priority, "hover", wanaplan.engine2D.MODE_DRAW, WallStructure, this.onAddOvertureUpdate.bind(this), overture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.move", this.priority, "mouse-move", wanaplan.engine2D.MODE_DRAW, null, this.onAddOvertureUpdate.bind(this), overture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.click", this.priority, "click", wanaplan.engine2D.MODE_DRAW, null, this.onAddOvertureEnd.bind(this), overture), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_DRAW, null, this.onAddOvertureDragStart.bind(this), overture), this.core.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.leave-draw-zone", this.priority, "leave-draw-zone", this.core.engine2D.MODE_DRAW, null, this.onAddOvertureLeaveZone.bind(this), overture), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_DRAW)
+        overture = new OvertureStructure, overture.type = t.overtureType, overture.elevation = t.elevation, overture.width = t.width, overture.height = t.height, overture.nbCasement = t.nbCasement, overture.sliding = t.sliding, overture.galandage = t.galandage, void 0 != t.hinge && (overture.hinge = t.hinge), void 0 != t.side && (overture.side = t.side), void 0 != t.batiThickness && (overture.batiThickness = t.batiThickness), void 0 != t.stretched_texture && (overture.stretched_texture = t.stretched_texture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.wall.hover", this.priority, "hover", hcsdesign.engine2D.MODE_DRAW, WallStructure, this.onAddOvertureUpdate.bind(this), overture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_DRAW, null, this.onAddOvertureUpdate.bind(this), overture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.click", this.priority, "click", hcsdesign.engine2D.MODE_DRAW, null, this.onAddOvertureEnd.bind(this), overture), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_DRAW, null, this.onAddOvertureDragStart.bind(this), overture), this.core.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.leave-draw-zone", this.priority, "leave-draw-zone", this.core.engine2D.MODE_DRAW, null, this.onAddOvertureLeaveZone.bind(this), overture), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW)
     }, t.prototype.onAddOvertureDragStart = function(t, e, n, i) {
-        return 0 != (n.buttons & n.BUTTON_LEFT) ? (wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onAddOvertureUpdate.bind(this), i), wanaplan.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onAddOvertureEnd.bind(this), i), !1) : void 0
+        return 0 != (n.buttons & n.BUTTON_LEFT) ? (hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onAddOvertureUpdate.bind(this), i), hcsdesign.engine2D.registerEventCb("OvertureComponent2D.addOverture.all.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onAddOvertureEnd.bind(this), i), !1) : void 0
     }, t.prototype.onAddOvertureUpdate = function(t, e, n, i) {
-        wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D));
+        hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D));
         var o = this.structure.getCurrentStructure();
-        return e instanceof WallStructure && i.setParentWall(e), o.insertElement("overtures", i), this.onDraggingMove(t, e, n, i), wanaplan.engine2D.requestStaticDraw(), !1
+        return e instanceof WallStructure && i.setParentWall(e), o.insertElement("overtures", i), this.onDraggingMove(t, e, n, i), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onAddOvertureEnd = function(t, e, n, i) {
-        return "deselect" != t.from && ujs.notify("wnp.menu.main.deselect"), "touchUp" == t.type && this.onAddOvertureUpdate(t, e, n, i), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), wanaplan.helpBubbleManager.display("wnp.2d.properties"), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), !1
+        return "deselect" != t.from && ujs.notify("hcs.menu.main.deselect"), "touchUp" == t.type && this.onAddOvertureUpdate(t, e, n, i), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), /*hcsdesign.helpBubbleManager.display("hcs.2d.properties"), */hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onAddOvertureLeaveZone = function(t, e) {
         this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.wall.hover"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.click"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.move"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.drag-start"), this.core.engine2D.unregisterEventCb("OvertureComponent2D.addOverture.all.leave-draw-zone");
         var n = this.core.getSelectedStructure();
-        return e.remove(n), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), wanaplan.getSelectedStructure().dirty(), wanaplan.engine2D.requestStaticDraw(), !1
+        return e.remove(n), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), hcsdesign.getSelectedStructure().dirty(), hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onContextMenu = function(t, e) {
         var n = [];
         if (n.push({
@@ -22595,7 +22694,7 @@ var OvertureComponent2D = function() {
             type: "button",
             cast: "int",
             value: _("切换")
-        }), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        }), hcsdesign.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         switch (e) {
             case "hinge":
@@ -22611,14 +22710,14 @@ var OvertureComponent2D = function() {
                 t[e] = n
         }
         if (this._applyToAll && ("elevation" == e || "height" == e || "width" == e))
-            for (var i = wanaplan.getSelectedStructure(), o = i.getElements("overtures"), r = 0; r < o.length; r++)
+            for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("overtures"), r = 0; r < o.length; r++)
                 o[r].type == t.type && (o[r][e] = n);
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
+        var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, t.prototype.onDoubleClick = function(t, e) {
-        return wanaplan.helpBubbleManager.display("wnp.2d.dup-overture"), this.onAddOverture({
+        return /*hcsdesign.helpBubbleManager.display("hcs.2d.dup-overture"),*/ this.onAddOverture({
             overtureType: e.type,
             elevation: e.elevation,
             width: e.width,
@@ -22634,21 +22733,21 @@ var OvertureComponent2D = function() {
 var OvertureComponent3D = function() {
     var t, e = 0,
         n = function(e) {
-            BaseComponent3D.call(this, e, "OvertureComponent3D"), this.priority = 11, t = this, this._defaultMaterial = new wnp.WhiteMaterial("bati", wanaplan.engine3D.scene, {
+            BaseComponent3D.call(this, e, "OvertureComponent3D"), this.priority = 11, t = this, this._defaultMaterial = new hcs.WhiteMaterial("bati", hcsdesign.engine3D.scene, {
                 factor: 1
             })
         };
     return n.prototype = new BaseComponent3D, n.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.wallsReady", this.onWallsReady, !1), document.addEventListener("wnp.engine3d.subslopesReady", this.onSubslopesReady, !1)
+        document.addEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1), document.addEventListener("hcs.engine3d.subslopesReady", this.onSubslopesReady, !1)
     }, n.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3d.wallsReady", this.onWallsReady, !1), document.removeEventListener("wnp.engine3d.subslopesReady", this.onSubslopesReady, !1)
+        document.removeEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1), document.removeEventListener("hcs.engine3d.subslopesReady", this.onSubslopesReady, !1)
     }, n.prototype.onWallsReady = function(e) {
-        for (var n = e.floor || t.getFloor(), i = e.structure || t.core.getSelectedStructure(), o = e.walls || [], r = wanaplan.getComponentByName("WallComponent3D").get3DWallFrom2D(i), s = new BABYLON.CSG.FromMesh(r), a = i.getElements("overtures"), l = new BABYLON.CSG, h = 0; h < a.length; h++)
+        for (var n = e.floor || t.getFloor(), i = e.structure || t.core.getSelectedStructure(), o = e.walls || [], r = hcsdesign.getComponentByName("WallComponent3D").get3DWallFrom2D(i), s = new BABYLON.CSG.FromMesh(r), a = i.getElements("overtures"), l = new BABYLON.CSG, h = 0; h < a.length; h++)
             l.unionInPlace(t.overtureBox(a[h], i, n));
         t.carveWithOvertureMeshes(l, s, r, n);
         for (var h = 0; h < a.length; h++)
             t.createOverture(a[h], i, n);
-        ujs.notify("wnp.engine3d.overturesReady", {
+        ujs.notify("hcs.engine3d.overturesReady", {
             floor: n,
             structure: i,
             walls: o
@@ -22657,10 +22756,10 @@ var OvertureComponent3D = function() {
         for (var n = e.floor || t.getFloor(), i = e.structure || t.core.getSelectedStructure(), o = e.walls || [], r = i.getElements("subslopes"), s = 0; s < r.length; s++)
             for (var a = 0; a < r[s].overtures.length; a++)
                 o = t.carveSubslopeOverture(r[s], r[s].overtures[a], i, n), t.createOverture(r[s].overtures[a], i, n);
-        var l = wanaplan.engine3D.searchComponent("WallComponent3D");
+        var l = hcsdesign.engine3D.searchComponent("WallComponent3D");
         l && l.createInstances(o);
-        var h = wanaplan.engine3D.searchComponent("RoomComponent3D");
-        h && h.createInstances(h.mesh), n.roomMesh = o, ujs.notify("wnp.engine3d.subslopeOverturesReady", {
+        var h = hcsdesign.engine3D.searchComponent("RoomComponent3D");
+        h && h.createInstances(h.mesh), n.roomMesh = o, ujs.notify("hcs.engine3d.subslopeOverturesReady", {
             floor: n,
             structure: i,
             walls: o
@@ -22668,7 +22767,7 @@ var OvertureComponent3D = function() {
     }, n.prototype.createOverture = function(t, n, i) {
         function o(t) {
             t.traverse(function(t) {
-                "vitre" !== t.name && (wanaplan.engine3D.castShadows(t), t.receiveShadows = !0)
+                "vitre" !== t.name && (hcsdesign.engine3D.castShadows(t), t.receiveShadows = !0)
             })
         }
 
@@ -22678,10 +22777,10 @@ var OvertureComponent3D = function() {
         }
         var s, i = i || this.core.getComponentByName("FloorComponent3D").getFloor(n),
             a = function(n) {
-                var s = n.getObject3D(wanaplan.engine3D.scene);
+                var s = n.getObject3D(hcsdesign.engine3D.scene);
                 s.structure = t, s.animate = n.animate.bind(n), s.decorate = n.decorate.bind(s), o(s), s.structure.programmableInstance = n, t.programmableInstance = n, s.isDecorable = !0, s.parent = i, s.name = "Overture_" + e++;
                 var a = t.programmableInstance.materials;
-                if (t.programmableInstance.getDefaultMaterials && (a = ujs.mergeObjects(t.programmableInstance.getDefaultMaterials(wanaplan.engine3D.scene), a)), t.programmableInstance.materials = a, s.initMaterials(a), t.material.opacitySwitched)
+                if (t.programmableInstance.getDefaultMaterials && (a = ujs.mergeObjects(t.programmableInstance.getDefaultMaterials(hcsdesign.engine3D.scene), a)), t.programmableInstance.materials = a, s.initMaterials(a), t.material.opacitySwitched)
                     for (var l in n.materials)
                         n.materials.hasOwnProperty(l) && !n.materials[l].opacitySwitched && r(n.materials[l], .2)
             }.bind(this);
@@ -22725,7 +22824,7 @@ var OvertureComponent3D = function() {
                 plinte: t.plinte,
                 stretched_texture: t.stretched_texture
             };
-        return wnp.Programmable.createInstance(s, h, l, t, a, !1, this.engine3D), !0
+        return hcs.Programmable.createInstance(s, h, l, t, a, !1, this.engine3D), !0
     }, n.prototype.overtureBox = function(t, e, n) {
         var e = e || this.core.getSelectedStructure(),
             n = n || this.core.getComponentByName("FloorComponent3D").getFloor(e),
@@ -22734,10 +22833,10 @@ var OvertureComponent3D = function() {
             var o = 5,
                 r = t.parentWall.getWallVector(),
                 s = Math.atan2(-r.y, r.x);
-            t.parentWall.thickness + o, wanaplan.getComponentByName("WallComponent3D").get3DWallFrom2D(e)
+            t.parentWall.thickness + o, hcsdesign.getComponentByName("WallComponent3D").get3DWallFrom2D(e)
         }
         t.material = t.material || this._defaultMaterial.clone("DefaultMaterial");
-        var a = new BABYLON.Mesh.CreateBloc("CSGtemp", t.width, t.height, t.parentWall.thickness + 10, wanaplan.engine3D.scene),
+        var a = new BABYLON.Mesh.CreateBloc("CSGtemp", t.width, t.height, t.parentWall.thickness + 10, hcsdesign.engine3D.scene),
             l = a.getBoundingBox();
         l.angle = s, l.center = i, a.subMeshes[0].objectInstance = t, a.subMeshes[0].boundingBox = l, a.position = i, a.rotation.y = -s, a.parent = n;
         var h = new BABYLON.CSG.FromMesh(a);
@@ -22746,8 +22845,8 @@ var OvertureComponent3D = function() {
         var o = o || this.core.getSelectedStructure(),
             i = i || this.core.getComponentByName("FloorComponent3D").getFloor(o);
         e.subtractInPlace(t);
-        var r = e.toMesh(n.name, n.material, wanaplan.engine3D.scene, !0);
-        return r.isDecorable = !0, r.parent = i, wanaplan.getComponentByName("WallComponent3D").replaceWall(n, r), wanaplan.engine3D.castShadows(r), r
+        var r = e.toMesh(n.name, n.material, hcsdesign.engine3D.scene, !0);
+        return r.isDecorable = !0, r.parent = i, hcsdesign.getComponentByName("WallComponent3D").replaceWall(n, r), hcsdesign.engine3D.castShadows(r), r
     }, n.prototype.carveSubslopeOverture = function(t, e, n, i) {
         var n = n || this.core.getSelectedStructure(),
             i = i || this.core.getComponentByName("FloorComponent3D").getFloor(n),
@@ -22766,16 +22865,16 @@ var OvertureComponent3D = function() {
         0 > d && (c.x = -c.x, c.y = -c.y, u.x = -u.x, u.y = -u.y);
         var m = Math.atan2(-c.y, c.x);
         e.elevation = h.y, e.angle = m, e.angleX = s;
-        var g = wanaplan.getComponentByName("WallComponent3D").get3DWallFrom2D(n),
-            f = new BABYLON.Mesh.CreateBloc("CSGtemp", e.width, e.height, 20, wanaplan.engine3D.scene),
+        var g = hcsdesign.getComponentByName("WallComponent3D").get3DWallFrom2D(n),
+            f = new BABYLON.Mesh.CreateBloc("CSGtemp", e.width, e.height, 20, hcsdesign.engine3D.scene),
             y = f.getBoundingBox();
-        y.angle = m, y.center = h, f.material = new BABYLON.StandardMaterial("CSGtemp", wanaplan.engine3D.scene), f.subMeshes[0].objectInstance = e, f.position = h, f.rotation.y = -m + Math.PI, f.rotation.x = s, f.parent = i;
+        y.angle = m, y.center = h, f.material = new BABYLON.StandardMaterial("CSGtemp", hcsdesign.engine3D.scene), f.subMeshes[0].objectInstance = e, f.position = h, f.rotation.y = -m + Math.PI, f.rotation.x = s, f.parent = i;
         var _ = new BABYLON.CSG.FromMesh(g),
             v = new BABYLON.CSG.FromMesh(f),
             b = _.subtract(v);
-        e.material = e.material || new BABYLON.StandardMaterial("bati", wanaplan.engine3D.scene);
-        var w = b.toMesh(g.name, g.material, wanaplan.engine3D.scene, !0);
-        return f.dispose(), w.isDecorable = !0, w.parent = i, wanaplan.getComponentByName("WallComponent3D").replaceWall(g, w), wanaplan.engine3D.castShadows(w), w
+        e.material = e.material || new BABYLON.StandardMaterial("bati", hcsdesign.engine3D.scene);
+        var w = b.toMesh(g.name, g.material, hcsdesign.engine3D.scene, !0);
+        return f.dispose(), w.isDecorable = !0, w.parent = i, hcsdesign.getComponentByName("WallComponent3D").replaceWall(g, w), hcsdesign.engine3D.castShadows(w), w
     }, n
 }();
 SubSlopeStructure = function() {
@@ -22931,40 +23030,40 @@ SubSlopeComponent2D = function() {
         BaseComponent2D.call(this, t, "SubSlopeComponent2D"), this.priority = 100, this.subSlopes = [], this.needsUpdate = !0, this._applyHeightToAll = !1, this._HANDLERADIUS = 10, this._HANDLESTATICSTYLE = "rgba(137,115,100,0.8)", this._HANDLESTYLE = this._HANDLESTATICSTYLE
     };
     return t.prototype = new BaseComponent2D, t.prototype.startListening = function() {
-        this.onEditSubSlope = this.onEditSubSlope.bind(this), this.onModeSubSlopeEnd = this.onModeSubSlopeEnd.bind(this), document.addEventListener("wnp.engine2d.onEditSubSlope", this.onEditSubSlope, !1), document.addEventListener("wnp.engine2d.onModeSubSlopeEnd", this.onModeSubSlopeEnd, !1), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.static-draw", this.priority, "static-draw", wanaplan.engine2D.MODE_SUBSLOPE | wanaplan.engine2D.MODE_DRAG, null, this.onStaticDraw.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.hover", this.priority, "hover", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onHover.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.leave", this.priority, "leave", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onLeave.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.dragstart", this.priority, "drag-start", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.subslope-end", this.priority, "subslope-end", null, null, this.onSubSlopeEnd.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.context-menu", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onContextMenu.bind(this), null)
+        this.onEditSubSlope = this.onEditSubSlope.bind(this), this.onModeSubSlopeEnd = this.onModeSubSlopeEnd.bind(this), document.addEventListener("hcs.engine2d.onEditSubSlope", this.onEditSubSlope, !1), document.addEventListener("hcs.engine2d.onModeSubSlopeEnd", this.onModeSubSlopeEnd, !1), hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.static-draw", this.priority, "static-draw", hcsdesign.engine2D.MODE_SUBSLOPE | hcsdesign.engine2D.MODE_DRAG, null, this.onStaticDraw.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.hover", this.priority, "hover", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onHover.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.leave", this.priority, "leave", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onLeave.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.dragstart", this.priority, "drag-start", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onDragStart.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.subslope-end", this.priority, "subslope-end", null, null, this.onSubSlopeEnd.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.context-menu", this.priority, "click", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeStructure, this.onContextMenu.bind(this), null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onEditSubSlope", this.onEditSubSlope, !1), document.removeEventListener("wnp.engine2d.onModeSubSlopeEnd", this.onModeSubSlopeEnd, !1), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.leave"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.dragstart"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.subslope-end"), wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.context-menu")
+        document.removeEventListener("hcs.engine2d.onEditSubSlope", this.onEditSubSlope, !1), document.removeEventListener("hcs.engine2d.onModeSubSlopeEnd", this.onModeSubSlopeEnd, !1), hcsdesign.engine2D.unregisterEventCb("SubSlopeComponent2D.static-draw"), hcsdesign.engine2D.unregisterEventCb("SubSlopeComponent2D.hover"), hcsdesign.engine2D.unregisterEventCb("SubSlopeComponent2D.leave"), hcsdesign.engine2D.unregisterEventCb("SubSlopeComponent2D.dragstart"), hcsdesign.engine2D.unregisterEventCb("SubSlopeComponent2D.subslope-end"), hcsdesign.engine2D.unregisterEventCb("SubSlopeComponent2D.context-menu")
     }, t.prototype.initialize = function() {
         this.startListening();
         /*var t = {
             id: "subslopes",
             title: _("斜顶"),
             index: 90,
-            action: "wnp.engine2d.onEditSubSlope",
-            cancelAction: "wnp.engine2d.onModeSubSlopeEnd"
+            action: "hcs.engine2d.onEditSubSlope",
+            cancelAction: "hcs.engine2d.onModeSubSlopeEnd"
         };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "0",
             position: 90
         })*/
     }, t.prototype.onEditSubSlope = function() {
-        this.needsUpdate = !0, wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_SUBSLOPE), wanaplan.engine2D.requestStaticDraw()
+        this.needsUpdate = !0, hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_SUBSLOPE), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onModeSubSlopeEnd = function() {
-        wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL)
+        hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL)
     }, t.prototype.onSubSlopeEnd = function() {
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onStaticDraw = function(t, e, n) {
-        0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE) && (this.getSubSlopes(), this.update(), this.draw(t, e, n))
+        0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE) && (this.getSubSlopes(), this.update(), this.draw(t, e, n))
     }, t.prototype.onHover = function(t, e) {
-        return this._HANDLESTYLE = "rgba(137,115,100,0.8)", wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onDynamicDraw.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
+        return this._HANDLESTYLE = "rgba(137,115,100,0.8)", hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.dynamic-draw", this.priority, "dynamic-draw", null, null, this.onDynamicDraw.bind(this), e), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onLeave = function() {
-        this._HANDLESTYLE = "rgba(137,115,100,0.8)", wanaplan.engine2D.unregisterEventCb("SubSlopeComponent2D.dynamic-draw"), wanaplan.engine2D.requestDynamicDraw()
+        this._HANDLESTYLE = "rgba(137,115,100,0.8)", hcsdesign.engine2D.unregisterEventCb("SubSlopeComponent2D.dynamic-draw"), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onDragStart = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), wanaplan.engine2D.registerEventCb("SubSlopeComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), !1
+        return hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDragging.bind(this), e), hcsdesign.engine2D.registerEventCb("SubSlopeComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), !1
     }, t.prototype.onDragging = function(t, e, n, i) {
-        var o = wanaplan.getSelectedStructure(),
-            r = n.posDelta.scaleInPlace(1 / wanaplan.engine2D.getZoom()),
+        var o = hcsdesign.getSelectedStructure(),
+            r = n.posDelta.scaleInPlace(1 / hcsdesign.engine2D.getZoom()),
             s = r.clone().projectOnVector(i.polygonPoints[3].subtract(i.polygonPoints[2])),
             a = r.subtractInPlace(s),
             l = [];
@@ -23015,29 +23114,29 @@ SubSlopeComponent2D = function() {
         }
         for (var M = o.getElements("subslopes"), c = 0; c < M.length; c++)
             - 1 != M[c].neighbors.indexOf(i.wall) && (M[c].needsUpdate = !0);
-        i.needsUpdate = !0, wanaplan.engine2D.requestStaticDraw()
+        i.needsUpdate = !0, hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onDragEnd = function() {
-        wanaplan.engine2D.requestDynamicDraw(), ujs.notify("wnp.subslope.drag-end")
+        hcsdesign.engine2D.requestDynamicDraw(), ujs.notify("hcs.subslope.drag-end")
     }, t.prototype.onDynamicDraw = function(t, e, n, i) {
-        if (0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE)) {
+        if (0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE)) {
             var o = BABYLON.Vector2.Lerp(i.polygonPoints[3], i.polygonPoints[2], .5);
             o.scaleInPlace(n), o.addInPlace(e)
         }
     }, t.prototype.update = function(t) {
-        if ((t || wanaplan.getSelectedStructure().isDirty()) && this.getSubSlopes(!0, t), 0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE))
-            for (var t = wanaplan.getSelectedStructure(), e = t.getElements("subslopes"), n = 0, i = e.length; i > n; n++)
+        if ((t || hcsdesign.getSelectedStructure().isDirty()) && this.getSubSlopes(!0, t), 0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE))
+            for (var t = hcsdesign.getSelectedStructure(), e = t.getElements("subslopes"), n = 0, i = e.length; i > n; n++)
                 e[n].computePolygonPoints()
     }, t.prototype.getTargeted = function(t) {
-        if (0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE)) {
-            for (var e = wanaplan.getSelectedStructure(), n = e.getElements("subslopes"), i = 0; i < n.length; i++) {
+        if (0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE)) {
+            for (var e = hcsdesign.getSelectedStructure(), n = e.getElements("subslopes"), i = 0; i < n.length; i++) {
                 var o = BABYLON.Vector2.Lerp(n[i].polygonPoints[3], n[i].polygonPoints[2], .5);
-                if (t.distanceTo(o) < this._HANDLERADIUS / wanaplan.engine2D.getZoom())
+                if (t.distanceTo(o) < this._HANDLERADIUS / hcsdesign.engine2D.getZoom())
                     return n[i]
             }
             return null
         }
     }, t.prototype.getSubSlopes = function(t, e) {
-        var e = e || wanaplan.getSelectedStructure(),
+        var e = e || hcsdesign.getSelectedStructure(),
             n = e.getElements("subslopes");
         if (!this.needsUpdate && !t)
             return n;
@@ -23047,7 +23146,7 @@ SubSlopeComponent2D = function() {
                         e = t.points[l].subtract(n).dot(i), o > e ? (s = l, o = e) : e > r && (a = l, r = e);
                     t.points = [t.points[s], t.points[a]], t.side = [t.side[s], t.side[a]], t.neighbors = [t.neighbors[s], t.neighbors[a]]
                 }
-            }, o = wanaplan.getComponentByName("RoomComponent2D").getAllSubSlopes(e), r = e.getElements("walls"), s = [], a = [], l = 0; l < r.length; l++) {
+            }, o = hcsdesign.getComponentByName("RoomComponent2D").getAllSubSlopes(e), r = e.getElements("walls"), s = [], a = [], l = 0; l < r.length; l++) {
             for (var h = [], c = 0; c < r[l].subSlopes.length; c++)
                 h.push({
                     offset: r[l].subSlopes[c].offset,
@@ -23088,7 +23187,7 @@ SubSlopeComponent2D = function() {
             o[l].computePolygonPoints();
         return e.replaceElements("subslopes", o), this.needsUpdate = !1, o
     }, t.prototype.splitSubSlope = function(t, e) {
-        var n = wanaplan.getSelectedStructure(),
+        var n = hcsdesign.getSelectedStructure(),
             i = n.getElements("subslopes"),
             o = t.indexClosest(e.points),
             r = new SubSlopeStructure,
@@ -23112,13 +23211,13 @@ SubSlopeComponent2D = function() {
         for (var i = this.getSubSlopes(), o = 0, r = i.length; r > o; o++)
             this.drawOnWall(t, e, n, i[o])
     }, t.prototype.drawOnWall = function(t, e, n, i) {
-        t.fillStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_FILL, t.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_STROKE, t.lineWidth = 2, t.beginPath();
+        t.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_FILL, t.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_STROKE, t.lineWidth = 2, t.beginPath();
         for (var o = [i.polygonPoints[0].clone(), i.polygonPoints[1].clone(), i.polygonPoints[3].clone(), i.polygonPoints[2].clone()], r = new BABYLON.Vector2, s = 0, a = i.polygonPoints.length; a > s; s++)
             r = o[s], r.scaleInPlace(n), r.addInPlace(e), r.x = Math.round(r.x), r.y = Math.round(r.y), 0 == s ? t.moveTo(r.x, r.y) : t.lineTo(r.x, r.y);
         t.fill(), i.offset > 0 && (t.closePath(), t.stroke());
         var l = o[2].lerp(o[3], .5),
             h = Math.atan2(i.side[0].y, i.side[0].x);
-        wanaplan.engine2D.symbols2D.drawGrip(t, l, [!1, !1, !1, !1], 0), wanaplan.engine2D.symbols2D.drawArrows(t, l, [!1, !0, !1, !1], 12, h, !0)
+        hcsdesign.engine2D.symbols2D.drawGrip(t, l, [!1, !1, !1, !1], 0), hcsdesign.engine2D.symbols2D.drawArrows(t, l, [!1, !0, !1, !1], 12, h, !0)
     }, t.prototype.onContextMenu = function(t, e) {
         var n = [];
         n.push({
@@ -23168,11 +23267,11 @@ SubSlopeComponent2D = function() {
             type: "checkbox",
             cast: "bool",
             value: this._applyHeightToAll
-        }), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        }), hcsdesign.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         if (!("lowHeight" == e && n > t.hiHeight || "hiHeight" == e && n < t.lowHeight)) {
             t[e] = n;
-            var i = wanaplan.getSelectedStructure(),
+            var i = hcsdesign.getSelectedStructure(),
                 o = i.getElements("walls");
             if (("hiHeight" == e || "lowHeight" == e || "_applyHeightToAll" == e) && t._applyHeightToAll) {
                 for (var r = 0; r < o.length; r++)
@@ -23180,10 +23279,10 @@ SubSlopeComponent2D = function() {
                         o[r].subSlopes[s].lowHeight = t.lowHeight, o[r].subSlopes[s].hiHeight = t.hiHeight;
                 i.height = t.height
             }
-            wanaplan.engine2D.requestStaticDraw()
+            hcsdesign.engine2D.requestStaticDraw()
         }
     }, t.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
+        var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, t
 }();
@@ -23192,17 +23291,17 @@ SubSlopeOvertureComponent2D = function() {
         BaseComponent2D.call(this, t, "SubSlopeOvertureComponent2D"), this.priority = 99, this._tmpOverture = null, this._addState = 0, this._targetedAt = null, this._targetedAtSide = null, this._overture1Magnetism = null, this._overture2Magnetism = null
     };
     return t.prototype = new BaseComponent2D, t.prototype.getTargeted = function(t) {
-        if (0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE)) {
+        if (0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE)) {
             var e = this.structure.getCurrentStructure(),
                 n = e.getElements("walls");
-            if (!(wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_DRAG))
+            if (!(hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_DRAG))
                 for (var i = 0, o = n.length; o > i; i++)
                     for (var r = 0, s = n[i].subSlopes.length; s > r; r++)
                         for (var a = 0, l = n[i].subSlopes[r].overtures.length; l > a; a++)
                             for (var h = 0; h < n[i].subSlopes[r].overtures[a].polygon.length; h++) {
                                 var c = this.isPointInOvertureSide(t, n[i].subSlopes[r].overtures[a]);
                                 if (ov = n[i].subSlopes[r].overtures[a], c !== !1)
-                                    return this._targetedAtSide = c, wanaplan.engine2D.requestDynamicDraw(), n[i].subSlopes[r].overtures[a];
+                                    return this._targetedAtSide = c, hcsdesign.engine2D.requestDynamicDraw(), n[i].subSlopes[r].overtures[a];
                                 if (this._targetedAtSide = null, ov.isTargeted(t))
                                     return ov
                             }
@@ -23213,29 +23312,29 @@ SubSlopeOvertureComponent2D = function() {
                 title: _("天窗"),
                 index: 90,
                 id: "Velux",
-                action: "wnp.engine2d.onAddSubSlopeOverture"
+                action: "hcs.engine2d.onAddSubSlopeOverture"
             },
             e = {
                 title: _("屋顶窗"),
                 index: 91,
                 id: "Dormer",
-                action: "wnp.engine2d.onAddSubSlopeOverture"
+                action: "hcs.engine2d.onAddSubSlopeOverture"
             };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D.subslopes",
             position: 90
-        }), ujs.notify("wnp.menu.main.add", {
+        }), ujs.notify("hcs.menu.main.add", {
             item: e,
             menuPath: "draw2D.subslopes",
             position: 91
         })*/
     }, t.prototype.startListening = function() {
-        this.onAddSubSlopeOverture = this.onAddSubSlopeOverture.bind(this), this.onDragEndSubSlope = this.onDragEndSubSlope.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("wnp.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.addEventListener("wnp.subslope.drag-end", this.onDragEndSubSlope, !1), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hover", this.priority, "hover", null, SubSlopeOvertureStructure, this.onHover.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.leave", this.priority, "leave", null, SubSlopeOvertureStructure, this.onLeave.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDragStart.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.context-menu", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onContextMenu.bind(this), null), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, SubSlopeOvertureStructure, this.onDragDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("SubSlopeOvertureComponent2D.double-click", this.priority, "double-click", wanaplan.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDoubleClick, null)
+        this.onAddSubSlopeOverture = this.onAddSubSlopeOverture.bind(this), this.onDragEndSubSlope = this.onDragEndSubSlope.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), document.addEventListener("hcs.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.addEventListener("hcs.subslope.drag-end", this.onDragEndSubSlope, !1), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hover", this.priority, "hover", null, SubSlopeOvertureStructure, this.onHover.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.leave", this.priority, "leave", null, SubSlopeOvertureStructure, this.onLeave.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDragStart.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.context-menu", this.priority, "click", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onContextMenu.bind(this), null), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, SubSlopeOvertureStructure, this.onDragDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("SubSlopeOvertureComponent2D.double-click", this.priority, "double-click", hcsdesign.engine2D.MODE_SUBSLOPE, SubSlopeOvertureStructure, this.onDoubleClick, null)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.removeEventListener("wnp.subslope.drag-end", this.onDragEndSubSlope, !1), wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.static-draw"), wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.hover"), wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.leave"), this.core.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.double-click")
+        document.removeEventListener("hcs.engine2d.onAddSubSlopeOverture", this.onAddSubSlopeOverture, !1), document.removeEventListener("hcs.subslope.drag-end", this.onDragEndSubSlope, !1), hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.static-draw"), hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.hover"), hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.leave"), this.core.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.double-click")
     }, t.prototype.onHover = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, SubSlopeOvertureStructure, this.onDragStart.bind(this), {}), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, SubSlopeOvertureStructure, this.onHoverSubSlopeOverture.bind(this), e), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, SubSlopeOvertureStructure, this.onDragStart.bind(this), {}), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, SubSlopeOvertureStructure, this.onHoverSubSlopeOverture.bind(this), e), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, t.prototype.onHoverSubSlopeOverture = function(t, e, n, i) {
         this.drawTarget(i, t, n)
     }, t.prototype.onDragEndSubSlope = function() {
@@ -23245,14 +23344,14 @@ SubSlopeOvertureComponent2D = function() {
             for (var o = 0; o < e[n].overtures.length; o++)
                 for (var r = 0; 4 > r; r++)
                     if (!e[n].overtures[o].polygon[r].isPointInPolygon(i)) {
-                        e[n].overtures[o].remove(), wanaplan.engine2D.requestStaticDraw();
+                        e[n].overtures[o].remove(), hcsdesign.engine2D.requestStaticDraw();
                         break
                     }
         }
     }, t.prototype.onLeave = function() {
-        wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onDragDynamicDraw = function(t, e, n) {
-        if (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE)
+        if (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE)
             for (var i = this.structure.getCurrentStructure(), o = i.getElements("subslopes"), r = 0; r < o.length; r++) {
                 var s = new Array,
                     a = o[r].wall,
@@ -23335,28 +23434,28 @@ SubSlopeOvertureComponent2D = function() {
                 x: r.x * n + e.x,
                 y: r.y * n + e.y
             };
-        wanaplan.engine2D.symbols2D.drawGrip(t, s, [!0, !0, !0, !0], 0)
+        hcsdesign.engine2D.symbols2D.drawGrip(t, s, [!0, !0, !0, !0], 0)
     }, t.prototype.changeAddStateVelux = function() {
-        this._addState = 1, wanaplan.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onAddVeluxClick.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), wanaplan.engine2D.requestStaticDraw()
+        this._addState = 1, hcsdesign.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onAddVeluxClick.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.changeAddStateSubSlopeOverture = function() {
-        this._addState = 1, wanaplan.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onAddSubSlopeOvertureClick.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), wanaplan.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), wanaplan.engine2D.requestStaticDraw()
+        this._addState = 1, hcsdesign.engine2D.registerEventCb("component.add-hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onAddSubSlopeOvertureClick.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onMouseMove.bind(this), {}), hcsdesign.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onAddVelux = function() {
         this._tmpOverture = new SubSlopeOvertureStructure, this._tmpOverture.type = "Velux", this.changeAddStateVelux()
     }, t.prototype.onAddSubSlopeOverture = function(t) {
         this._tmpOverture = new SubSlopeOvertureStructure, this._tmpOverture.type = t.id, t.width && (this._tmpOverture.width = t.width), t.height && (this._tmpOverture.height = t.height), this.changeAddStateSubSlopeOverture()
     }, t.prototype.onAddSubSlopeOvertureClick = function() {
-        wanaplan.helpBubbleManager.display("wnp.2d.subslopeOverture-menu"), 1 == this._addState && (this._tmpOverture.parent.overtures.push(this._tmpOverture), wanaplan.engine2D.requestStaticDraw(), ujs.notify("wnp.menu.main.deselect"), this._addState = 0, this._tmpOverture = null, wanaplan.engine2D.requestDynamicDraw())
+        hcsdesign.helpBubbleManager.display("hcs.2d.subslopeOverture-menu"), 1 == this._addState && (this._tmpOverture.parent.overtures.push(this._tmpOverture), hcsdesign.engine2D.requestStaticDraw(), ujs.notify("hcs.menu.main.deselect"), this._addState = 0, this._tmpOverture = null, hcsdesign.engine2D.requestDynamicDraw())
     }, t.prototype.onMouseMove = function(t, e, n) {
         if (this._tmpOverture) {
             this._tmpOverture._tmpPos = n.planPos;
-            for (var i = wanaplan.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
+            for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
                 for (var s = 0; s < o[r].subSlopes.length; s++)
                     if (o[r].subSlopes[s].isPointIn(n.planPos)) {
                         this._tmpOverture.parent = o[r].subSlopes[s];
                         var a = o[r].subSlopes[s].wall,
                             l = a.getWallVector().normalize(),
                             h = new BABYLON.Vector2(l.y, -l.x);
-                        return this._tmpOverture.position.copyFrom(this._tmpOverture._tmpPos).subtractInPlace(a.points[0].position.clone().lerp(a.points[1].position, .5)), this.appliedMagnetism(this._tmpOverture, o[r].subSlopes[s], h, l), void wanaplan.engine2D.requestStaticDraw()
+                        return this._tmpOverture.position.copyFrom(this._tmpOverture._tmpPos).subtractInPlace(a.points[0].position.clone().lerp(a.points[1].position, .5)), this.appliedMagnetism(this._tmpOverture, o[r].subSlopes[s], h, l), void hcsdesign.engine2D.requestStaticDraw()
                     }
         }
     }, t.prototype.onContextMenu = function(t, e) {
@@ -23425,7 +23524,7 @@ SubSlopeOvertureComponent2D = function() {
             label: _("深度"),
             type: "html",
             html: "<label>" + _("深度") + '</label><span class="field">' + Math.round(e.height * Math.cos(o)) + " cm</span>"
-        })), wanaplan.engine2D.displayContextMenu(i, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        })), hcsdesign.engine2D.displayContextMenu(i, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, t.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         var i = Math.atan((t.parent.hiHeight - t.parent.lowHeight) / t.parent.offset);
         if (-1 != e.indexOf("sticks_")) {
@@ -23444,25 +23543,25 @@ SubSlopeOvertureComponent2D = function() {
                 t.sticks[l] = !1;
         else
             "dormerRoofHeight" == e ? t.dormerRoof.height = n : t[e] = "height" == e ? n / Math.sin(i) : "width" == e && "Dormer" == t.type ? n - 2 * t.wallThickness : n;
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, t.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
-        t.remove(e), wanaplan.engine2D.requestDynamicDraw()
+        var e = hcsdesign.getSelectedStructure();
+        t.remove(e), hcsdesign.engine2D.requestDynamicDraw()
     }, t.prototype.onStaticDraw = function(t, e, n) {
-        if (0 != (wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_SUBSLOPE))
-            for (var i = wanaplan.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
+        if (0 != (hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_SUBSLOPE))
+            for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("walls"), r = 0; r < o.length; r++)
                 for (var s = 0; s < o[r].subSlopes.length; s++)
                     for (var a = 0; a < o[r].subSlopes[s].overtures.length; a++)
                         this.draw(o[r].subSlopes[s].overtures[a], t, e, n)
     }, t.prototype.onDynamicDraw = function(t, e, n) {
-        1 == this._addState && (wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D)), this.draw(this._tmpOverture, t, e, n, !1)), this.drawMagnetism(this._overture1Magnetism, this._overture2Magnetism, t, e, n)
+        1 == this._addState && (hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D)), this.draw(this._tmpOverture, t, e, n, !1)), this.drawMagnetism(this._overture1Magnetism, this._overture2Magnetism, t, e, n)
     }, t.prototype.onDragStart = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-end", this.priority, "drag-end", wanaplan.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), wanaplan.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), wanaplan.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dragging", this.priority, "dragging", wanaplan.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), !1
+        return hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.drag-end", this.priority, "drag-end", hcsdesign.engine2D.MODE_DRAG, null, this.onDragEnd.bind(this), e), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAG, null, this.onSelectionDynamicDraw.bind(this), e), hcsdesign.engine2D.registerEventCb("component.dynamic-component.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_SUBSLOPE, null, this.onDynamicDraw.bind(this), {}), hcsdesign.engine2D.registerEventCb("SubSlopeOvertureComponent2D.dragging", this.priority, "dragging", hcsdesign.engine2D.MODE_DRAG, null, this.onDraggingMove.bind(this), e), !1
     }, t.prototype.onDraggingMove = function(t, e, n, i) {
         for (var o = i.parent.wall, r = o.getWallVector().normalize(), s = new BABYLON.Vector2(r.y, -r.x), a = this.structure.getCurrentStructure(), l = a.getElements("subslopes"), h = 0; h < l.length; h++)
             l[h].isPointIn(n.planPos) && (i.wall = l[h].wall);
         var o = i.wall,
-            c = (o.getWallVector().normalize(), o.points[0].position.clone().lerp(o.points[1].position, .5), n.posDelta.scale(1 / wanaplan.engine2D.getZoom())),
+            c = (o.getWallVector().normalize(), o.points[0].position.clone().lerp(o.points[1].position, .5), n.posDelta.scale(1 / hcsdesign.engine2D.getZoom())),
             u = new BABYLON.Vector2(c.x, c.y),
             p = new BABYLON.Vector2(c.x, c.y);
         if (u.projectOnVector(r), p.projectOnVector(s), null === this._targetedAtSide) {
@@ -23492,9 +23591,9 @@ SubSlopeOvertureComponent2D = function() {
                 i.height += 1 / f * C * x * p.length()
             }
         }
-        return i.modified = !0, wanaplan.engine2D.requestStaticDraw(), !1
+        return i.modified = !0, hcsdesign.engine2D.requestStaticDraw(), !1
     }, t.prototype.onDoubleClick = function(t, e) {
-        return this.core.helpBubbleManager.display("wnp.2d.dup-overture"), this.onAddSubSlopeOverture({
+        return this.core.helpBubbleManager.display("hcs.2d.dup-overture"), this.onAddSubSlopeOverture({
             id: e.type,
             width: e.width,
             height: e.height
@@ -23553,7 +23652,7 @@ SubSlopeOvertureComponent2D = function() {
             o[p] = c, t[p] = u
         }
     }, t.prototype.onDragEnd = function(t, e, n, i) {
-        wanaplan.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), wanaplan.engine2D.requestStaticDraw(), this.checkCoherence(i), this._overture1Magnetism = null, this._overture2Magnetism = null
+        hcsdesign.engine2D.unregisterEventCb("SubSlopeOvertureComponent2D.dynamic-draw"), hcsdesign.engine2D.requestStaticDraw(), this.checkCoherence(i), this._overture1Magnetism = null, this._overture2Magnetism = null
     }, t.prototype.checkCoherence = function(t) {
         t.width < 0 && (t.width = -t.width), t.height < 0 && (t.height = -t.height)
     }, t.prototype.isPointInOvertureSide = function(t, e) {
@@ -23567,15 +23666,15 @@ SubSlopeOvertureComponent2D = function() {
         return !1
     }, t.prototype.drawTarget = function(t, e, n) {
         if (null !== this._targetedAt) {
-            var i = wanaplan.engine2D.toRealCoord(t.polygon[this._targetedAt]);
-            wanaplan.engine2D.symbols2D.drawPointHover(e, i, n)
+            var i = hcsdesign.engine2D.toRealCoord(t.polygon[this._targetedAt]);
+            hcsdesign.engine2D.symbols2D.drawPointHover(e, i, n)
         } else if (null !== this._targetedAtSide) {
-            var o = wanaplan.engine2D.toRealCoord(t.polygon[this._targetedAtSide]),
-                r = wanaplan.engine2D.toRealCoord(this._targetedAtSide + 1 < t.polygon.length ? t.polygon[this._targetedAtSide + 1] : t.polygon[0]);
-            wanaplan.engine2D.symbols2D.drawSegment(e, o, r)
+            var o = hcsdesign.engine2D.toRealCoord(t.polygon[this._targetedAtSide]),
+                r = hcsdesign.engine2D.toRealCoord(this._targetedAtSide + 1 < t.polygon.length ? t.polygon[this._targetedAtSide + 1] : t.polygon[0]);
+            hcsdesign.engine2D.symbols2D.drawSegment(e, o, r)
         }
     }, t.prototype.draw = function(t, e, n, i, o) {
-        if (e.save(), e.beginPath(), o ? (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE), null !== t.position && null !== t.parent) {
+        if (e.save(), e.beginPath(), o ? (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE), null !== t.position && null !== t.parent) {
             var r = t.parent.wall,
                 s = r.getWallVector().normalize(),
                 a = new BABYLON.Vector2(s.y, -s.x),
@@ -23591,20 +23690,20 @@ SubSlopeOvertureComponent2D = function() {
             "Dormer" == t.type ? (t.polygon[0] = c.add(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))).add(s.scale(t.wallThickness)), t.polygon[1] = c.add(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))).subtract(a.scale(t.wallThickness)).add(s.scale(t.wallThickness)), t.polygon[2] = c.subtract(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))).subtract(a.scale(t.wallThickness)).subtract(s.scale(t.wallThickness)), t.polygon[3] = c.subtract(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))).subtract(s.scale(t.wallThickness))) : (t.polygon[0] = c.add(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))), t.polygon[1] = c.add(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))), t.polygon[2] = c.subtract(s.scale(t.width / 2)).subtract(a.scale(t.height / (2 / d))), t.polygon[3] = c.subtract(s.scale(t.width / 2)).add(a.scale(t.height / (2 / d))));
             var m = c.add(a.scale(t.height / (2 / d) + u)),
                 g = c.subtract(a.scale(t.height / (2 / d))),
-                f = wanaplan.engine2D.toRealCoord(t.polygon[0], n, i),
-                y = wanaplan.engine2D.toRealCoord(t.polygon[1], n, i),
-                _ = wanaplan.engine2D.toRealCoord(t.polygon[2], n, i),
-                v = wanaplan.engine2D.toRealCoord(t.polygon[3], n, i),
-                b = wanaplan.engine2D.toRealCoord(m, n, i),
-                w = wanaplan.engine2D.toRealCoord(g, n, i);
+                f = hcsdesign.engine2D.toRealCoord(t.polygon[0], n, i),
+                y = hcsdesign.engine2D.toRealCoord(t.polygon[1], n, i),
+                _ = hcsdesign.engine2D.toRealCoord(t.polygon[2], n, i),
+                v = hcsdesign.engine2D.toRealCoord(t.polygon[3], n, i),
+                b = hcsdesign.engine2D.toRealCoord(m, n, i),
+                w = hcsdesign.engine2D.toRealCoord(g, n, i);
             "Velux" == t.type ? (e.moveTo(Math.round(f.x) + .5, Math.round(f.y) + .5), e.lineTo(Math.round(y.x) + .5, Math.round(y.y) + .5), e.lineTo(Math.round(_.x) + .5, Math.round(_.y) + .5), e.lineTo(Math.round(v.x) + .5, Math.round(v.y) + .5)) : (e.moveTo(Math.round(b.x) + .5, Math.round(b.y) + .5), e.lineTo(Math.round(v.x) + .5, Math.round(v.y) + .5), e.lineTo(Math.round(_.x) + .5, Math.round(_.y) + .5), e.lineTo(Math.round(y.x) + .5, Math.round(y.y) + .5), e.lineTo(Math.round(f.x) + .5, Math.round(f.y) + .5), e.lineTo(Math.round(b.x) + .5, Math.round(b.y) + .5), e.lineTo(Math.round(w.x) + .5, Math.round(w.y) + .5)), e.closePath(), e.fill(), e.stroke(), e.restore()
         }
     }, t.prototype.drawMagnetism = function(t, e, n, i, o) {
-        if (n.save(), n.beginPath(), n.fillStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_FILL, n.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_STROKE, null !== t) {
+        if (n.save(), n.beginPath(), n.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_FILL, n.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_STROKE, null !== t) {
             var r = t.getAbsolutePosition().position,
                 s = e.getAbsolutePosition().position,
-                a = wanaplan.engine2D.toRealCoord(r, i, o),
-                l = wanaplan.engine2D.toRealCoord(s, i, o),
+                a = hcsdesign.engine2D.toRealCoord(r, i, o),
+                l = hcsdesign.engine2D.toRealCoord(s, i, o),
                 h = t.parent.wall,
                 c = h.getWallVector().normalize(),
                 u = Math.abs(c.x * (r.y - s.y)),
@@ -23613,7 +23712,7 @@ SubSlopeOvertureComponent2D = function() {
         }
         n.closePath(), n.fill(), n.stroke(), n.restore()
     }, t.prototype.drawCotes = function(t, e, n, i, o, r) {
-        n.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
+        n.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
         var s = t.parent.wall,
             a = s.getWallVector().normalize(),
             l = new BABYLON.Vector2(a.y, -a.x),
@@ -23632,12 +23731,12 @@ SubSlopeOvertureComponent2D = function() {
         var y = u.dot(d),
             _ = new BABYLON.Vector2(p.x * m + d.x * y, p.y * m + d.y * y),
             v = new BABYLON.Vector2(p.x * g + d.x * y, p.y * g + d.y * y),
-            b = wanaplan.engine2D.toRealCoord(_, i, o),
-            w = wanaplan.engine2D.toRealCoord(v, i, o),
+            b = hcsdesign.engine2D.toRealCoord(_, i, o),
+            w = hcsdesign.engine2D.toRealCoord(v, i, o),
             x = Math.round(r) / 100;
-        wanaplan.engine2D.symbols2D.drawMeasure(n, b, w, x + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
+        hcsdesign.engine2D.symbols2D.drawMeasure(n, b, w, x + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
     }, t.prototype.drawCotesSS = function(t, e, n, i, o, r, s) {
-        n.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
+        n.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, n.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE;
         var a = t.parent.wall,
             l = a.getWallVector().normalize(),
             h = new BABYLON.Vector2(l.y, -l.x),
@@ -23662,9 +23761,9 @@ SubSlopeOvertureComponent2D = function() {
         }
         var f = Math.sqrt((r.x - c.x) * (r.x - c.x) + (r.y - c.y) * (r.y - c.y)) / Math.cos(g);
         f = Math.round(f) / 100;
-        var y = wanaplan.engine2D.toRealCoord(c, i, o),
-            _ = wanaplan.engine2D.toRealCoord(u, i, o);
-        wanaplan.engine2D.symbols2D.drawMeasure(n, y, _, f + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
+        var y = hcsdesign.engine2D.toRealCoord(c, i, o),
+            _ = hcsdesign.engine2D.toRealCoord(u, i, o);
+        hcsdesign.engine2D.symbols2D.drawMeasure(n, y, _, f + "m"), n.closePath(), n.fill(), n.stroke(), n.restore()
     }, t
 }();
 SubSlopeComponent3D = function() {
@@ -23672,13 +23771,13 @@ SubSlopeComponent3D = function() {
         BaseComponent3D.call(this, e, "SubSlopeComponent3D"), this.currentID = 0, t = this
     };
     return e.prototype = new BaseComponent3D, e.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.wallsReady", this.onWallsReady, !1)
+        document.addEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3d.wallsReady", this.onWallsReady, !1)
+        document.removeEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1)
     }, e.prototype.onWallsReady = function(e) {
         var n = e.floor || t.getFloor(),
             i = e.structure || t.core.getSelectedStructure();
-        t.core.getComponentByName("SubSlopeComponent2D").getSubSlopes(!0), t.drawSSForStructure(i, n, wanaplan.engine3D.scene)
+        t.core.getComponentByName("SubSlopeComponent2D").getSubSlopes(!0), t.drawSSForStructure(i, n, hcsdesign.engine3D.scene)
     }, e.prototype.buildCSG = function(t, e, n, i) {
         var o, r, s = s || !1;
         n = n || this.core.getComponentByName("FloorComponent3D").getFloor(e);
@@ -23713,7 +23812,7 @@ SubSlopeComponent3D = function() {
             f = [],
             y = [];
         o = o || this.core.getComponentByName("FloorComponent3D").getFloor(i);
-        var _ = new wnp.WhiteMaterial("bottom", wanaplan.engine3D.scene, {
+        var _ = new hcs.WhiteMaterial("bottom", hcsdesign.engine3D.scene, {
                 factor: 1
             }),
             v = n.materials.bottom || _;
@@ -23744,14 +23843,14 @@ SubSlopeComponent3D = function() {
         a.position.y = .2;
         var T = t,
             S = BABYLON.Mesh.mergeMeshes("mat", [T, a], r, !0);
-        S.name = T.name, S.id = T.id, S.decorate = T.decorate, S.receiveShadows = T.receiveShadows, S.material = T.material, S.isDecorable = !0, wanaplan.engine3D.castShadows(S)
+        S.name = T.name, S.id = T.id, S.decorate = T.decorate, S.receiveShadows = T.receiveShadows, S.material = T.material, S.isDecorable = !0, hcsdesign.engine3D.castShadows(S)
     }, e.prototype.buildFromCSG = function(t, e, n, i, o, r) {
         var s = t,
             a = e,
             l = i.clone();
         a.subtractInPlace(i);
         var h = a.toMesh("mat", s.material, r, !0);
-        this.core.getComponentByName("WallComponent3D").replaceWall(s, h), h.material = s.material, h.isDecorable = !0, wanaplan.engine3D.castShadows(h);
+        this.core.getComponentByName("WallComponent3D").replaceWall(s, h), h.material = s.material, h.isDecorable = !0, hcsdesign.engine3D.castShadows(h);
         var c = n;
         c.subtractInPlace(l);
         var u = c.toMesh("mat", o.roomMesh.material, r, !0);
@@ -23771,7 +23870,7 @@ SubSlopeComponent3D = function() {
             }
         for (h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), this.buildFromCSG(h, c, u, p, e, n), o = 0, r = a.length; r > o; o++)
             i = a[o].plane(), h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), i && this.addSubSlope(h, i, a[o], t, e, n);
-        h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), h.parent = e, ujs.notify("wnp.engine3d.subslopesReady", {
+        h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), h.parent = e, ujs.notify("hcs.engine3d.subslopesReady", {
             floor: e,
             structure: t,
             walls: h
@@ -23953,11 +24052,11 @@ StairwayStructure = function() {
             r = n[0].add(o),
             s = n[3].add(o),
             a = Math.round(r.distanceTo(s)) / 100;
-        if (a > .5 && wanaplan.engine2D.symbols2D.drawMeasure(t, r, s, a + "m", "#cccccc"), this.points.length > 2) {
+        if (a > .5 && hcsdesign.engine2D.symbols2D.drawMeasure(t, r, s, a + "m", "#cccccc"), this.points.length > 2) {
             var l = n[1].subtract(o),
                 h = n[2].subtract(o),
                 c = Math.round(l.distanceTo(h)) / 100;
-            c > .5 && wanaplan.engine2D.symbols2D.drawMeasure(t, l, h, c + "m", "#cccccc")
+            c > .5 && hcsdesign.engine2D.symbols2D.drawMeasure(t, l, h, c + "m", "#cccccc")
         }
         t.beginPath(), t.moveTo(n[0].x, n[0].y), t.lineTo(n[3].x, n[3].y), t.moveTo(n[1].x, n[1].y), t.lineTo(n[2].x, n[2].y), t.stroke(), this.drawStepStairs(t, e.stairsSegment), this.drawStepBearing(t, e.bearingPolygon0, 1), this.drawStepBearing(t, e.bearingPolygon1)
     }, t.prototype.drawStepStairs = function(t, e) {
@@ -23970,9 +24069,9 @@ StairwayStructure = function() {
             l = Math.floor(s / a),
             h = s / l,
             c = Math.atan2(o.y, o.x);
-        wanaplan.engine2D.symbols2D.drawArrows(t, n, [0, 1, 0, 0], 0, c, !1, {
+        hcsdesign.engine2D.symbols2D.drawArrows(t, n, [0, 1, 0, 0], 0, c, !1, {
             size: 10
-        }), wanaplan.engine2D.symbols2D.drawArrows(t, i, [0, 1, 0, 0], -10, c, !1, {
+        }), hcsdesign.engine2D.symbols2D.drawArrows(t, i, [0, 1, 0, 0], -10, c, !1, {
             size: 10
         });
         var u = o.scale(h);
@@ -24042,9 +24141,9 @@ SpiralStairwayStructure = function() {
         this.orientation ? 1 : -1;
         this.orientation ? t.arc(n.x, n.y, r, s, a, !1) : t.arc(n.x, n.y, r, a, s, !1), t.moveTo(n.x, n.y), t.lineTo(i.x, i.y), t.moveTo(n.x, n.y), t.lineTo(o.x, o.y), t.stroke();
         var l = [0, 0, 1, 0];
-        this.orientation || (l = [1, 0, 0, 0]), wanaplan.engine2D.symbols2D.drawArrows(t, n.clone().lerp(i, .5), l, 0, s, !1, {
+        this.orientation || (l = [1, 0, 0, 0]), hcsdesign.engine2D.symbols2D.drawArrows(t, n.clone().lerp(i, .5), l, 0, s, !1, {
             size: 10
-        }), wanaplan.engine2D.symbols2D.drawArrows(t, n.clone().lerp(o, .5), l, -10, a, !1, {
+        }), hcsdesign.engine2D.symbols2D.drawArrows(t, n.clone().lerp(o, .5), l, -10, a, !1, {
             size: 10
         }), t.save(), t.beginPath(), this.orientation ? t.arc(n.x, n.y, r, a, s, !1) : t.arc(n.x, n.y, r, s, a, !1), t.strokeStyle = "#eeeeee";
         for (var h, c = 0; 10 >= c; c++)
@@ -24055,12 +24154,12 @@ SpiralStairwayStructure = function() {
 StairwayComponent2D = function() {
     var t = null,
         e = function(e) {
-            BaseComponent2D.call(this, e, "StairwayComponent2D"), this.priority = 50, this._tmpStairway = !1, this._tmpPoint = null, this._targetedAt = null, this._targetedAtPoint = null, this._SIZE = 13, t = this, this.onFloorAdded = this.onFloorAdded.bind(this), document.addEventListener("wnp.request.floorAdded", this.onFloorAdded), document.addEventListener("wnp.core.structure.loaded", this.onStructureLoaded.bind(this))
+            BaseComponent2D.call(this, e, "StairwayComponent2D"), this.priority = 50, this._tmpStairway = !1, this._tmpPoint = null, this._targetedAt = null, this._targetedAtPoint = null, this._SIZE = 13, t = this, this.onFloorAdded = this.onFloorAdded.bind(this), document.addEventListener("hcs.request.floorAdded", this.onFloorAdded), document.addEventListener("hcs.core.structure.loaded", this.onStructureLoaded.bind(this))
         };
     return e.prototype = new BaseComponent2D, e.prototype.startListening = function() {
-        this.onAddStairway = this.onAddStairway.bind(this), document.addEventListener("wnp.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAG | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onHover.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onLeave.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.click", this.priority, "click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onContextMenu.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.dblclick", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onDoubleClick.bind(this), {})
+        this.onAddStairway = this.onAddStairway.bind(this), document.addEventListener("hcs.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAG | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onHover.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onLeave.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.click", this.priority, "click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onContextMenu.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.dblclick", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onDoubleClick.bind(this), {})
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.static-draw"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.hover"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.leave"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.click"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.dblclick")
+        document.removeEventListener("hcs.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.static-draw"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.hover"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.leave"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.click"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.dblclick")
     }, e.prototype.onStructureLoaded = function() {
         for (var t, e = 0; e < this.structure.members.length; e++) {
             t = this.structure.members[e];
@@ -24157,21 +24256,21 @@ StairwayComponent2D = function() {
             id: "stairways",
             items: [{
                 title: _("一般式楼梯"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !1
                 }
             }, {
                 title: _("楼梯平台"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !0
                 }
             }, {
                 title: _("悬式楼梯"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !1,
@@ -24183,12 +24282,12 @@ StairwayComponent2D = function() {
                 }
             }, {
                 title: _("螺旋梯"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "spiral"
                 }
             }]
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: _item,
             menuPath: "draw2D",
             position: 5
@@ -24197,7 +24296,7 @@ StairwayComponent2D = function() {
         this._tmpStairway = "spiral" == t.stairwayType ? new SpiralStairwayStructure : new StraightStairwayStructure, this._tmpStairway.height = this.core.getSelectedStructure().height;
         for (var e in this._tmpStairway)
             this._tmpStairway.hasOwnProperty(e) && "undefined" != typeof t[e] && "type" != e && (this._tmpStairway[e] = t[e]);
-        this._tmpPoint = null, this.core.helpBubbleManager.display("wnp.2d.draw-staires"), this.core.engine2D.setMode(wanaplan.engine2D.MODE_DRAW), this.core.engine2D.registerEventCb("StairwayComponent2D.add-stair.click", this.priority, "click", this.core.engine2D.MODE_DRAW, null, this.onAddStairwayClick.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", this.core.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", this.core.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.drag-start-draw", this.priority, "drag-start", this.core.engine2D.MODE_DRAW, null, this.onDrawDragStart.bind(this), {})
+        this._tmpPoint = null, this.core.helpBubbleManager.display("hcs.2d.draw-staires"), this.core.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW), this.core.engine2D.registerEventCb("StairwayComponent2D.add-stair.click", this.priority, "click", this.core.engine2D.MODE_DRAW, null, this.onAddStairwayClick.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", this.core.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", this.core.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.drag-start-draw", this.priority, "drag-start", this.core.engine2D.MODE_DRAW, null, this.onDrawDragStart.bind(this), {})
     }, e.prototype.onDoubleClick = function(t, e) {
         e.targeted && e.targeted.point == e.points.length - 1 && (this.onAddStairway({}), this._tmpStairway = e, this.core.engine2D.setMode(this.core.engine2D.MODE_DRAW))
     }, e.prototype.finalizeTmpStairway = function() {
@@ -24210,7 +24309,7 @@ StairwayComponent2D = function() {
                 n.points = this._tmpStairway.getHopperPoints(), n.stairwayId = this._tmpStairway.id, e.insertElement("hoppers", n)
             }
         }
-        this._tmpStairway = new StairwayStructure, this._tmpPoint = null, this.core.engine2D.requestStaticDraw(), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect")
+        this._tmpStairway = new StairwayStructure, this._tmpPoint = null, this.core.engine2D.requestStaticDraw(), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect")
     }, e.prototype.onAddStairwayClick = function(t, e, n, i) {
         if ("touchUp" == t.type && this.onDrawDragging(t, e, n, i), 0 == this._tmpStairway.points.length || this._tmpPoint) {
             if (this._tmpPoint = this._tmpPoint || n.planPos, this._tmpPoint = this._tmpPoint || n.planPos, this._tmpStairway.points.push(this._tmpPoint.clone()), 1 == this._tmpStairway.points.length) {
@@ -24421,25 +24520,25 @@ StairwayComponent2D = function() {
 var StairwayComponent3D = function() {
     function t(t) {
         t.traverse(function(t) {
-            wanaplan.engine3D.castShadows(t), t.receiveShadows = !0
+            hcsdesign.engine3D.castShadows(t), t.receiveShadows = !0
         })
     }
     var e, n = function(t) {
         BaseComponent3D.call(this, t, "StairwayComponent3D"), this._scenes = [], this.priority = 1, e = this
     };
     return n.prototype = new BaseComponent3D, n.prototype.compute = function() {}, n.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1)
+        document.addEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1)
     }, n.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1)
+        document.removeEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1)
     }, n.prototype.onFloorReady = function(t) {
         for (var n = t.floor || e.getFloor(), i = t.structure || e.core.getSelectedStructure(), o = 0; o < i.stairways.length; o++)
-            e.createStairway(i.stairways[o], n, wanaplan.engine3D.scene)
+            e.createStairway(i.stairways[o], n, hcsdesign.engine3D.scene)
     }, n.prototype.createScene = function() {
         for (var t = this.core.getComponentByName("FloorComponent3D"), e = 0; e < this.structure.getLength(); e++) {
             var n = this.structure.getElement(e);
             if (n instanceof FloorStructure)
                 for (var i = t.getFloor(n), o = 0; o < n.stairways.length; o++)
-                    this.createStairway(n.stairways[o], i, wanaplan.engine3D.scene)
+                    this.createStairway(n.stairways[o], i, hcsdesign.engine3D.scene)
         }
     }, n.prototype.initMaterials = function(t, e) {
         for (var n in e)
@@ -24451,10 +24550,10 @@ var StairwayComponent3D = function() {
                 var r = o.getObject3D(i);
                 t(r), r.structure = e, r.structure.programmableInstance = o, r.name = "Stairway_" + e.id, r.isDecorable = !0, r.decorate = o.decorate, r.parent = n;
                 var s = o.materials;
-                o.getDefaultMaterials && (s = ujs.mergeObjects(o.getDefaultMaterials(wanaplan.engine3D.scene), s)), this.initMaterials(r, s), e.materials = s, o.materials = s
+                o.getDefaultMaterials && (s = ujs.mergeObjects(o.getDefaultMaterials(hcsdesign.engine3D.scene), s)), this.initMaterials(r, s), e.materials = s, o.materials = s
             }.bind(this)),
             r = e.programmableInstance ? e.programmableInstance.materials : e.materials;
-        return "spiral" == e.type ? wnp.Programmable.createInstance("Stairs.Spiral.js", e, r, e, o) : wnp.Programmable.createInstance("Stairs.js", e, r, e, o), !0
+        return "spiral" == e.type ? hcs.Programmable.createInstance("Stairs.Spiral.js", e, r, e, o) : hcs.Programmable.createInstance("Stairs.js", e, r, e, o), !0
     }, n
 }();
 HopperStructure = function() {
@@ -24493,26 +24592,26 @@ HopperComponent2D = function() {
             BaseComponent2D.call(this, e, "HopperComponent2D"), this.priority = 80, this._tmpHopper = new HopperStructure, this._targetedAt = null, this._targetedAtSide = null, t = this
         };
     return e.prototype = new BaseComponent2D, e.prototype.startListening = function() {
-        this.onAddHopper = this.onAddHopper.bind(this), document.addEventListener("wnp.engine2d.onAddHopper", this.onAddHopper, !1), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.hover", this.priority, "hover", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_DRAG | wanaplan.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onHover.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.leave", this.priority, "leave", wanaplan.engine2D.MODE_NORMAL | wanaplan.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onLeave.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.click", this.priority, "click", wanaplan.engine2D.MODE_NORMAL, HopperStructure, this.onContextMenu.bind(this), {}), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.dblclick", this.priority, "double-click", wanaplan.engine2D.MODE_NORMAL, HopperStructure, this.onDblClick.bind(this), {})
+        this.onAddHopper = this.onAddHopper.bind(this), document.addEventListener("hcs.engine2d.onAddHopper", this.onAddHopper, !1), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.hover", this.priority, "hover", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_DRAG | hcsdesign.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onHover.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.leave", this.priority, "leave", hcsdesign.engine2D.MODE_NORMAL | hcsdesign.engine2D.MODE_CONTEXTMENU, HopperStructure, this.onLeave.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_NORMAL, HopperStructure, this.onContextMenu.bind(this), {}), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.dblclick", this.priority, "double-click", hcsdesign.engine2D.MODE_NORMAL, HopperStructure, this.onDblClick.bind(this), {})
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddHopper", this.onAddHopper, !1), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.static-draw"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.hover"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.leave"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.click"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.dblclick")
+        document.removeEventListener("hcs.engine2d.onAddHopper", this.onAddHopper, !1), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.static-draw"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.hover"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.leave"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.click"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.dblclick")
     }, e.prototype.getTargeted = function(t) {
-        for (var e = wanaplan.getSelectedStructure(), n = e.getElements("hoppers"), i = (wanaplan.engine2D.getZoom(), 0); i < n.length; i++) {
-            if (!(wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_DRAG))
+        for (var e = hcsdesign.getSelectedStructure(), n = e.getElements("hoppers"), i = (hcsdesign.engine2D.getZoom(), 0); i < n.length; i++) {
+            if (!(hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_DRAG))
                 for (var o = 0; o < n[i].points.length; o++) {
                     if (n[i].points[o].distanceTo(t) < 13)
-                        return this._targetedAt = o, this._targetedAtSide = null, wanaplan.engine2D.requestDynamicDraw(), n[i];
+                        return this._targetedAt = o, this._targetedAtSide = null, hcsdesign.engine2D.requestDynamicDraw(), n[i];
                     var r = this.isPointInHopperSide(t, n[i]);
                     if (r !== !1)
-                        return this._targetedAtSide = r, this._targetedAt = null, wanaplan.engine2D.requestDynamicDraw(), n[i]
+                        return this._targetedAtSide = r, this._targetedAt = null, hcsdesign.engine2D.requestDynamicDraw(), n[i]
                 }
             if (this.isPointInHopper(t, n[i]))
-                return wanaplan.engine2D.getMode() & wanaplan.engine2D.MODE_DRAG || (this._targetedAt = null, this._targetedAtSide = null, wanaplan.engine2D.requestDynamicDraw()), n[i]
+                return hcsdesign.engine2D.getMode() & hcsdesign.engine2D.MODE_DRAG || (this._targetedAt = null, this._targetedAtSide = null, hcsdesign.engine2D.requestDynamicDraw()), n[i]
         }
     }, e.prototype.onLeave = function() {
-        wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper-hover.dynamic-draw"), wanaplan.engine2D.unregisterEventCb("HopperComponent2D.hopper.drag-start"), wanaplan.engine2D.requestDynamicDraw()
+        hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper-hover.dynamic-draw"), hcsdesign.engine2D.unregisterEventCb("HopperComponent2D.hopper.drag-start"), hcsdesign.engine2D.requestDynamicDraw()
     }, e.prototype.onHover = function(t, e) {
-        return wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, HopperStructure, this.onHoverHopper.bind(this), e), wanaplan.engine2D.registerEventCb("HopperComponent2D.hopper.drag-start", this.priority, "drag-start", wanaplan.engine2D.MODE_NORMAL, HopperStructure, this.onDragStart.bind(this), {}), wanaplan.engine2D.requestDynamicDraw(), !1
+        return hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper-hover.dynamic-draw", this.priority, "dynamic-draw", null, HopperStructure, this.onHoverHopper.bind(this), e), hcsdesign.engine2D.registerEventCb("HopperComponent2D.hopper.drag-start", this.priority, "drag-start", hcsdesign.engine2D.MODE_NORMAL, HopperStructure, this.onDragStart.bind(this), {}), hcsdesign.engine2D.requestDynamicDraw(), !1
     }, e.prototype.onHoverHopper = function(t, e, n, i) {
         this.draw(i, t, e, n, !0), this.drawTarget(i, t, n)
     }, e.prototype.onDblClick = function(t, e, n) {
@@ -24522,7 +24621,7 @@ HopperComponent2D = function() {
                 var o = e.points[i],
                     r = i + 1 < e.points.length ? e.points[i + 1] : e.points[0],
                     s = n.planPos.projectOnSegment(o, r);
-                e.insertPointAt(i + 1, s), this._targetedAtSide = null, this._targetedAt = i + 1, wanaplan.engine2D.requestDynamicDraw()
+                e.insertPointAt(i + 1, s), this._targetedAtSide = null, this._targetedAt = i + 1, hcsdesign.engine2D.requestDynamicDraw()
             }
         }
     }, e.prototype.onDrag = function(t, e, n, i) {
@@ -24531,35 +24630,35 @@ HopperComponent2D = function() {
                 r != this._targetedAt && (Math.abs(o.x - i.points[r].x) < 10 && (o.x = i.points[r].x), Math.abs(o.y - i.points[r].y) < 10 && (o.y = i.points[r].y));
             this.getRoom(i).isPointIn(o) && (i.points[this._targetedAt] = o)
         } else if (null !== this._targetedAtSide) {
-            var s = n.posDelta.scale(1 / wanaplan.engine2D.getZoom()),
+            var s = n.posDelta.scale(1 / hcsdesign.engine2D.getZoom()),
                 a = i.points[this._targetedAtSide],
                 l = this._targetedAtSide + 1 < i.points.length ? this._targetedAtSide + 1 : 0,
                 h = i.points[l],
                 c = new BABYLON.Vector2(a.y - h.y, h.x - a.x);
             s.projectOnVector(c), this.getRoom(i).isPointIn(i.points[this._targetedAtSide].add(s)) && this.getRoom(i).isPointIn(i.points[l].add(s)) && (i.points[this._targetedAtSide].addInPlace(s), i.points[l].addInPlace(s))
         } else {
-            var s = n.posDelta.scale(1 / wanaplan.engine2D.getZoom());
+            var s = n.posDelta.scale(1 / hcsdesign.engine2D.getZoom());
             i.move(s)
         }
-        return i.modified = !0, wanaplan.engine2D.requestStaticDraw(), !1
+        return i.modified = !0, hcsdesign.engine2D.requestStaticDraw(), !1
     }, e.prototype.compute = function() {
-        for (var t = wanaplan.getSelectedStructure(), e = 0; e < t.getElements("hoppers").length; e++)
+        for (var t = hcsdesign.getSelectedStructure(), e = 0; e < t.getElements("hoppers").length; e++)
             this.computeHopper(t.getElements("hoppers")[e])
     }, e.prototype.computeHopper = function(t) {
         for (var e = t.points.length - 1; e >= 0; e--) {
             var n = e - 1 >= 0 ? e - 1 : t.points.length - 1;
             t.points[e].distanceTo(t.points[n]) < 2 && t.points.splice(e, 1)
         }
-        t.points.length < 3 && (t.remove(wanaplan.getSelectedStructure()), wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.requestDynamicDraw(), this._targetedAt = null, this._targetedAtSide = null)
+        t.points.length < 3 && (t.remove(hcsdesign.getSelectedStructure()), hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.requestDynamicDraw(), this._targetedAt = null, this._targetedAtSide = null)
     }, e.prototype.onDragEnd = function(t, e, n, i) {
         this.computeHopper(i)
     }, e.prototype.onDragStart = function(t, e) {
-        this.getRoom(e, !0), wanaplan.engine2D.registerEventCb("hopperComponent2D.hopper.drag", this.priority, "dragging", null, null, this.onDrag.bind(this), e), wanaplan.engine2D.registerEventCb("hopperComponent2D.stair-hover.drag-end", this.priority, "drag-end", null, null, this.onDragEnd.bind(this), e)
+        this.getRoom(e, !0), hcsdesign.engine2D.registerEventCb("hopperComponent2D.hopper.drag", this.priority, "dragging", null, null, this.onDrag.bind(this), e), hcsdesign.engine2D.registerEventCb("hopperComponent2D.stair-hover.drag-end", this.priority, "drag-end", null, null, this.onDragEnd.bind(this), e)
     }, e.prototype.onAddHopper = function() {
-        wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_DRAW), wanaplan.engine2D.registerEventCb("hopperComponent2D.add-hopper.click", this.priority, "click", wanaplan.engine2D.MODE_DRAW, null, this.onAddHopperClick.bind(this), {}), wanaplan.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", wanaplan.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), wanaplan.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", wanaplan.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {})
+        hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW), hcsdesign.engine2D.registerEventCb("hopperComponent2D.add-hopper.click", this.priority, "click", hcsdesign.engine2D.MODE_DRAW, null, this.onAddHopperClick.bind(this), {}), hcsdesign.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", hcsdesign.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), hcsdesign.engine2D.registerEventCb("hopperComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", hcsdesign.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {})
     }, e.prototype.onAddHopperClick = function() {
-        var t = wanaplan.getSelectedStructure();
-        t.insertElement("hoppers", this._tmpHopper), this._tmpHopper = new HopperStructure, wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.setMode(wanaplan.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect")
+        var t = hcsdesign.getSelectedStructure();
+        t.insertElement("hoppers", this._tmpHopper), this._tmpHopper = new HopperStructure, hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.setMode(hcsdesign.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect")
     }, e.prototype.onMouseMove = function(t, e, n) {
         var i = n.planPos.subtract(this._tmpHopper.points[0].clone());
         i.x -= 50, i.y -= 50, this._tmpHopper.move(i)
@@ -24586,7 +24685,7 @@ HopperComponent2D = function() {
             label: _("四周没有护栏"),
             type: "button",
             value: _("选择")
-        })), wanaplan.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
+        })), hcsdesign.engine2D.displayContextMenu(n, e, this.onContextMenuPropertyChanged.bind(this), this.onContextMenuRemove.bind(this))
     }, e.prototype.onContextMenuPropertyChanged = function(t, e, n) {
         if (-1 != e.indexOf("sticks_")) {
             var i = e.split("_");
@@ -24604,47 +24703,47 @@ HopperComponent2D = function() {
                 t.sticks[a] = !1;
         else
             t[e] = n;
-        wanaplan.engine2D.requestStaticDraw()
+        hcsdesign.engine2D.requestStaticDraw()
     }, e.prototype.onContextMenuRemove = function(t) {
-        var e = wanaplan.getSelectedStructure();
+        var e = hcsdesign.getSelectedStructure();
         t.remove(e)
     }, e.prototype.onStaticDraw = function(t, e, n) {
-        for (var i = wanaplan.getSelectedStructure(), o = i.getElements("hoppers"), r = 0; r < o.length; r++)
+        for (var i = hcsdesign.getSelectedStructure(), o = i.getElements("hoppers"), r = 0; r < o.length; r++)
             this.draw(o[r], t, e, n)
     }, e.prototype.onDynamicDraw = function(t, e, n) {
-        wanaplan.engine2D.setCursorIcon(wanaplan.engine2D.symbols2D.drawCursorCheck.bind(wanaplan.engine2D.symbols2D)), this.draw(this._tmpHopper, t, e, n)
+        hcsdesign.engine2D.setCursorIcon(hcsdesign.engine2D.symbols2D.drawCursorCheck.bind(hcsdesign.engine2D.symbols2D)), this.draw(this._tmpHopper, t, e, n)
     }, e.prototype.initialize = function() {
         var t = {
             title: _("储料仓"),
             index: 80,
-            action: "wnp.engine2d.onAddHopper"
+            action: "hcs.engine2d.onAddHopper"
         };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: t,
             menuPath: "draw2D",
             position: 80
         })
     }, e.prototype.drawTarget = function(t, e, n) {
         if (null !== this._targetedAt) {
-            var i = wanaplan.engine2D.toRealCoord(t.points[this._targetedAt]);
-            wanaplan.engine2D.symbols2D.drawPointHover(e, i, n)
+            var i = hcsdesign.engine2D.toRealCoord(t.points[this._targetedAt]);
+            hcsdesign.engine2D.symbols2D.drawPointHover(e, i, n)
         } else if (null !== this._targetedAtSide) {
-            var o = wanaplan.engine2D.toRealCoord(t.points[this._targetedAtSide]),
-                r = wanaplan.engine2D.toRealCoord(this._targetedAtSide + 1 < t.points.length ? t.points[this._targetedAtSide + 1] : t.points[0]);
-            wanaplan.engine2D.symbols2D.drawSegment(e, o, r)
+            var o = hcsdesign.engine2D.toRealCoord(t.points[this._targetedAtSide]),
+                r = hcsdesign.engine2D.toRealCoord(this._targetedAtSide + 1 < t.points.length ? t.points[this._targetedAtSide + 1] : t.points[0]);
+            hcsdesign.engine2D.symbols2D.drawSegment(e, o, r)
         }
     }, e.prototype.draw = function(t, e, n, i, o) {
-        e.save(), e.beginPath(), o ? (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = wanaplan.engine2D.symbols2D.COLOR_INACTIVE_STROKE);
+        e.save(), e.beginPath(), o ? (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_ACTIVE_STROKE_DARKER) : (e.fillStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_FILL, e.strokeStyle = hcsdesign.engine2D.symbols2D.COLOR_INACTIVE_STROKE);
         for (var r = 0; r < t.points.length; r++) {
-            var s = wanaplan.engine2D.toRealCoord(t.points[r], n, i);
+            var s = hcsdesign.engine2D.toRealCoord(t.points[r], n, i);
             0 == r ? e.moveTo(Math.round(s.x) + .5, Math.round(s.y) + .5) : e.lineTo(Math.round(s.x) + .5, Math.round(s.y) + .5)
         }
         e.closePath(), e.fill(), e.stroke(), e.beginPath();
         for (var r = 0; r < t.points.length; r++)
             if (t.sticks[r]) {
-                var a = wanaplan.engine2D.toRealCoord(t.points[r], n, i),
+                var a = hcsdesign.engine2D.toRealCoord(t.points[r], n, i),
                     l = r + 1 < t.points.length ? r + 1 : 0,
-                    h = wanaplan.engine2D.toRealCoord(t.points[l], n, i);
+                    h = hcsdesign.engine2D.toRealCoord(t.points[l], n, i);
                 e.lineWidth = 4, e.beginPath(), e.moveTo(Math.round(a.x), Math.round(a.y)), e.lineTo(Math.round(h.x), Math.round(h.y)), e.stroke()
             }
         e.restore()
@@ -24652,7 +24751,7 @@ HopperComponent2D = function() {
         var e = e || !1;
         if (t.room && e === !1)
             return t.room;
-        var n = wanaplan.getComponentByName("RoomComponent2D"),
+        var n = hcsdesign.getComponentByName("RoomComponent2D"),
             i = n.isPointInRooms(t.points[0]);
         return i !== !1 ? (t.room = i, t.room) : !1
     }, e.prototype.isPointInHopperSide = function(t, e) {
@@ -24671,15 +24770,15 @@ HopperComponent2D = function() {
 var HopperComponent3D = function() {
     var t, e = function(e) {
         BaseComponent3D.call(this, e, "HopperComponent3D"), t = this;
-        var n = wanaplan.getComponentByName("RoomComponent3D");
+        var n = hcsdesign.getComponentByName("RoomComponent3D");
         this._commonHopperMaterial = n.getSideMaterial()
     };
     return e.prototype = new BaseComponent3D, e.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1)
+        document.addEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1)
+        document.removeEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1)
     }, e.prototype.onFloorReady = function(e) {
-        for (var n = e.floor || t.getFloor(), i = e.structure || wanaplan.getSelectedStructure(), o = 0; o < i.hoppers.length; o++)
+        for (var n = e.floor || t.getFloor(), i = e.structure || hcsdesign.getSelectedStructure(), o = 0; o < i.hoppers.length; o++)
             t.createHopperSticks(i.hoppers[o], n)
     }, e.prototype.decorate = function(t, e) {
         var n = e.pickedMesh.material;
@@ -24714,45 +24813,45 @@ var HopperComponent3D = function() {
     }, e.prototype.createHopperSticks = function(t, e) {
         if (Object.keys(t.sticks).length) {
             var n = t.materials;
-            n = ujs.mergeObjects(this.getDefaultMaterials(wanaplan.engine3D.scene), n);
-            var i = new BABYLON.Mesh("sticks", wanaplan.engine3D.scene);
+            n = ujs.mergeObjects(this.getDefaultMaterials(hcsdesign.engine3D.scene), n);
+            var i = new BABYLON.Mesh("sticks", hcsdesign.engine3D.scene);
             i.isVisible = !1;
             for (var o in t.sticks) {
                 var r = t.sticks[o] ? o : !1;
                 if (r !== !1) {
-                    var s = new BABYLON.Mesh("rails", wanaplan.engine3D.scene);
+                    var s = new BABYLON.Mesh("rails", hcsdesign.engine3D.scene);
                     s.isVisible = !1;
                     var a = t.points[+r],
                         l = t.points[+r + 1 >= t.points.length ? 0 : +r + 1],
                         h = a.clone().lerp(l.clone(), .5),
                         c = Math.atan2(l.y - a.y, l.x - a.x),
                         u = a.distanceTo(l),
-                        p = BABYLON.Mesh.CreateBloc("bas", u, 10, 5, wanaplan.engine3D.scene);
+                        p = BABYLON.Mesh.CreateBloc("bas", u, 10, 5, hcsdesign.engine3D.scene);
                     p.parent = s, p.position.y = 5, p.name = "bas", p.isDecorable = !0;
-                    var d = BABYLON.Mesh.CreateBloc("rails", u, 3, 5, wanaplan.engine3D.scene);
+                    var d = BABYLON.Mesh.CreateBloc("rails", u, 3, 5, hcsdesign.engine3D.scene);
                     d.position.y = 90, d.name = "rails", d.isDecorable = !0, d.parent = s;
                     var m = 20,
                         g = Math.round(u / m),
                         m = u / g,
-                        f = new BABYLON.Mesh("stick", wanaplan.engine3D.scene);
+                        f = new BABYLON.Mesh("stick", hcsdesign.engine3D.scene);
                     f.isVisible = !1;
-                    for (var y = BABYLON.Mesh.CreateCylinder("rail_stick", 90, 2, 2, 6, 1, !0, wanaplan.engine3D.scene), _ = 0; g > _; _++) {
+                    for (var y = BABYLON.Mesh.CreateCylinder("rail_stick", 90, 2, 2, 6, 1, !0, hcsdesign.engine3D.scene), _ = 0; g > _; _++) {
                         var v = y.clone();
                         v.position.x = 3 + _ * m, v.position.z = 0, v.position.y = 45, v.parent = f
                     }
-                    y.dispose(), f = BABYLON.Mesh.mergeMeshesRec("rail_stick", [f], wanaplan.engine3D.scene), f.position.x -= u / 2, f.isDecorable = !0, f.parent = s, s.rotation.y = c, s.position.x = h.x, s.position.z = -h.y, s.parent = i
+                    y.dispose(), f = BABYLON.Mesh.mergeMeshesRec("rail_stick", [f], hcsdesign.engine3D.scene), f.position.x -= u / 2, f.isDecorable = !0, f.parent = s, s.rotation.y = c, s.position.x = h.x, s.position.z = -h.y, s.parent = i
                 }
             }
-            this.mergeGeometries(i, n, wanaplan.engine3D.scene), i.isDecorable = !0, i.decorate = this.decorate, i.structure = t, i.parent = e, this.initMaterials(i, n), t.materials = n
+            this.mergeGeometries(i, n, hcsdesign.engine3D.scene), i.isDecorable = !0, i.decorate = this.decorate, i.structure = t, i.parent = e, this.initMaterials(i, n), t.materials = n
         }
         return !1
     }, e.prototype.getDefaultMaterials = function(t) {
         var e = {};
-        return e.rails = new wnp.WhiteMaterial("rails", t, {
+        return e.rails = new hcs.WhiteMaterial("rails", t, {
             factor: .8
-        }), e.rail_stick = new wnp.MetalMaterial("rail_stick", t, {
+        }), e.rail_stick = new hcs.MetalMaterial("rail_stick", t, {
             brillance: .2
-        }), e.bas = new wnp.WhiteMaterial("bas", t, {
+        }), e.bas = new hcs.WhiteMaterial("bas", t, {
             factor: .8
         }), e
     }, e.prototype.prepareMaterials = function(t, e) {
@@ -24773,28 +24872,28 @@ var HopperComponent3D = function() {
                 s = 100 > o ? o + 1 : 100,
                 a = BABYLON.Mesh.ExtrudeNewMesh("hopper_temp", n.points, null, {
                     amount: s
-                }, wanaplan.engine3D.scene);
+                }, hcsdesign.engine3D.scene);
             if (!a)
                 return e;
             a.position.y += i, a.parent = e.parent, n.material = n.material || t._commonHopperMaterial, a.subMeshes[0].objectInstance = n;
             var l = BABYLON.CSG.FromMesh(a);
             r.subtractInPlace(l);
-            var h = r.toMesh("room_global", e.material, wanaplan.engine3D.scene, !0);
-            return h.parent = e.parent, wanaplan.getComponentByName("RoomComponent3D").replaceRoom(e, h), 0 != i && h.subMeshes.splice(h.subMeshes.length - 1, 1), h.isDecorable = !0, h.parent.roomMesh = h, a.dispose(), h
+            var h = r.toMesh("room_global", e.material, hcsdesign.engine3D.scene, !0);
+            return h.parent = e.parent, hcsdesign.getComponentByName("RoomComponent3D").replaceRoom(e, h), 0 != i && h.subMeshes.splice(h.subMeshes.length - 1, 1), h.isDecorable = !0, h.parent.roomMesh = h, a.dispose(), h
         }
     }, e.Debug = function() {
-        var t = BABYLON.Mesh.CreateSphere("sphere", 1, 40, wanaplan.engine3D.scene),
-            e = BABYLON.Mesh.CreateBox("box", 40, wanaplan.engine3D.scene);
+        var t = BABYLON.Mesh.CreateSphere("sphere", 1, 40, hcsdesign.engine3D.scene),
+            e = BABYLON.Mesh.CreateBox("box", 40, hcsdesign.engine3D.scene);
         t.position.y += 51, e.position.y += 25;
         var n = BABYLON.CSG.FromMesh(t),
             i = BABYLON.CSG.FromMesh(e),
-            o = new BABYLON.MultiMaterial("multiMat", wanaplan.engine3D.scene),
-            r = new BABYLON.StandardMaterial("mat0", wanaplan.engine3D.scene),
-            s = new BABYLON.StandardMaterial("mat1", wanaplan.engine3D.scene);
+            o = new BABYLON.MultiMaterial("multiMat", hcsdesign.engine3D.scene),
+            r = new BABYLON.StandardMaterial("mat0", hcsdesign.engine3D.scene),
+            s = new BABYLON.StandardMaterial("mat1", hcsdesign.engine3D.scene);
         r.diffuseColor.copyFromFloats(.8, .2, .2), r.backFaceCulling = !1, s.diffuseColor.copyFromFloats(.2, .8, .2), s.backFaceCulling = !1, o.subMaterials.push(r, s);
         var a = i.subtract(n),
-            l = a.toMesh("csg", o, wanaplan.engine3D.scene, !0);
-        l.position = new BABYLON.Vector3(-100, 0, 0), a = n.subtract(i), l = a.toMesh("csg2", o, wanaplan.engine3D.scene, !0), l.position = new BABYLON.Vector3(100, 0, 0), a = n.intersect(i), l = a.toMesh("csg3", o, wanaplan.engine3D.scene, !0), l.position = new BABYLON.Vector3(0, 0, 100)
+            l = a.toMesh("csg", o, hcsdesign.engine3D.scene, !0);
+        l.position = new BABYLON.Vector3(-100, 0, 0), a = n.subtract(i), l = a.toMesh("csg2", o, hcsdesign.engine3D.scene, !0), l.position = new BABYLON.Vector3(100, 0, 0), a = n.intersect(i), l = a.toMesh("csg3", o, hcsdesign.engine3D.scene, !0), l.position = new BABYLON.Vector3(0, 0, 100)
     }, e
 }();
 var GeneralOptionComponent2D = function() {
@@ -24802,11 +24901,11 @@ var GeneralOptionComponent2D = function() {
         BaseComponent2D.call(this, t, "GeneralOptionComponent2D")
     };
     return t.prototype = Object.create(BaseComponent2D.prototype), t.prototype.initialize = function() {
-        this.priority = 0, this.startListening(), this.gridComp = wanaplan.getComponentByName("GridComponent2D"), this.roomComp = wanaplan.getComponentByName("RoomComponent2D"), this.wallComp = wanaplan.getComponentByName("WallComponent2D")
+        this.priority = 0, this.startListening(), this.gridComp = hcsdesign.getComponentByName("GridComponent2D"), this.roomComp = hcsdesign.getComponentByName("RoomComponent2D"), this.wallComp = hcsdesign.getComponentByName("WallComponent2D")
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine2D.contextMenu.generalOption.propertyChange", this.myBind.onPropertyChange, !1), document.addEventListener("wnp.request.2Doptions", this.myBind.onRequestPanel, !1), document.addEventListener("wnp.contextChanged", this.myBind.onContextChange, !1), this._listening = !0, this._injectMenu()
+        this.stopListening(), document.addEventListener("hcs.engine2D.contextMenu.generalOption.propertyChange", this.myBind.onPropertyChange, !1), document.addEventListener("hcs.request.2Doptions", this.myBind.onRequestPanel, !1), document.addEventListener("hcs.contextChanged", this.myBind.onContextChange, !1), this._listening = !0, this._injectMenu()
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine2D.contextMenu.generalOption.propertyChange", this.myBind.onPropertyChange, !1), document.removeEventListener("wnp.request.2Doptions", this.myBind.onRequestPanel, !1), document.removeEventListener("wnp.contextChanged", this.myBind.onContextChange, !1), this._listening = !1, this._removeMenu()
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine2D.contextMenu.generalOption.propertyChange", this.myBind.onPropertyChange, !1), document.removeEventListener("hcs.request.2Doptions", this.myBind.onRequestPanel, !1), document.removeEventListener("hcs.contextChanged", this.myBind.onContextChange, !1), this._listening = !1, this._removeMenu()
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -24821,15 +24920,15 @@ var GeneralOptionComponent2D = function() {
             })();
         return this
     }, t.prototype.openGeneralOptionPanel = function() {
-        var t = wanaplan.engine2D;
-        t.setMode(t.MODE_CONTEXTMENU), wnp.UI.ContextMenu.show({
+        var t = hcsdesign.engine2D;
+        t.setMode(t.MODE_CONTEXTMENU), hcs.UI.ContextMenu.show({
             title: _("General Settings")
         }, [{
             title: "Tab 1",
             content: this._getPanelParam()
         }], [{
             label: _("Ok"),
-            action: "wnp.engine2D.contextMenu.close"
+            action: "hcs.engine2D.contextMenu.close"
         }], 0)
     }, t.prototype._getPanelParam = function() {
         var t = [];
@@ -24840,7 +24939,7 @@ var GeneralOptionComponent2D = function() {
             eventParams: {
                 cast: "boolean",
                 property: "displayGrid",
-                eventName: "wnp.engine2D.contextMenu.generalOption.propertyChange"
+                eventName: "hcs.engine2D.contextMenu.generalOption.propertyChange"
             }
         }), this.roomComp && t.push({
             label: _("display room name"),
@@ -24849,7 +24948,7 @@ var GeneralOptionComponent2D = function() {
             eventParams: {
                 cast: "boolean",
                 property: "displayRoomName",
-                eventName: "wnp.engine2D.contextMenu.generalOption.propertyChange"
+                eventName: "hcs.engine2D.contextMenu.generalOption.propertyChange"
             }
         }), this.wallComp && t.push({
             label: _("display mesure"),
@@ -24858,28 +24957,28 @@ var GeneralOptionComponent2D = function() {
             eventParams: {
                 cast: "boolean",
                 property: "displayMesure",
-                eventName: "wnp.engine2D.contextMenu.generalOption.propertyChange"
+                eventName: "hcs.engine2D.contextMenu.generalOption.propertyChange"
             }
         }), t
     }, t.prototype._injectMenu = function() {
-        wanaplan.getComponentByName("TopMenuComponent") && wanaplan.getComponentByName("TopMenuComponent").menu.json.length && (this._removeMenu(), setTimeout(function() {
-            ujs.notify("wnp.menu.top.add", {
+        hcsdesign.getComponentByName("TopMenuComponent") && hcsdesign.getComponentByName("TopMenuComponent").menu.json.length && (this._removeMenu(), setTimeout(function() {
+            ujs.notify("hcs.menu.top.add", {
                 item: {
                     id: "2D-options",
                     title: _("2D options"),
-                    action: "wnp.request.2Doptions",
+                    action: "hcs.request.2Doptions",
                     index: 2
                 },
                 menuPath: "toolbarOption"
             })
         }, 0))
     }, t.prototype._removeMenu = function() {
-        ujs.notify("wnp.menu.top.delete", {
+        ujs.notify("hcs.menu.top.delete", {
             id: "2D-options"
         })
     }, t.prototype.handlers = {
         onRequestPanel: function() {
-            ujs.notify("wnp.menu.top.deselect"), this.openGeneralOptionPanel()
+            ujs.notify("hcs.menu.top.deselect"), this.openGeneralOptionPanel()
         },
         onPropertyChange: function(t) {
             var e = t.property,
@@ -24894,7 +24993,7 @@ var GeneralOptionComponent2D = function() {
                 case "displayGrid":
                     this.gridComp && (this.gridComp.displayGrid = n)
             }
-            wanaplan.engine2D.requestStaticDraw()
+            hcsdesign.engine2D.requestStaticDraw()
         }
     }, t
 }();
@@ -24928,7 +25027,7 @@ ObjectStructure = function() {
         var t = [];
         return null !== this.programmableInstance && (t = this.programmableInstance.getAvailableProperties(this)), t
     }, e.prototype.getMagnetismCollider = function() {
-        return void 0 !== this.magnetismCollider ? this.magnetismCollider : void 0 !== this.params.magnetismCollider ? this.params.magnetismCollider : wnp.Constants.MAGNETISM.DEFAULT
+        return void 0 !== this.magnetismCollider ? this.magnetismCollider : void 0 !== this.params.magnetismCollider ? this.params.magnetismCollider : hcs.Constants.MAGNETISM.DEFAULT
     }, e.prototype.animate = function(t, e) {
         null !== this.programmableInstance && this.programmableInstance.animate && this.programmableInstance.animate(t, e)
     }, e.prototype.getProperty = function(t) {
@@ -24951,8 +25050,8 @@ ObjectStructure = function() {
         }
     }, e
 }();
-var wnp = window.wnp || {};
-wnp.Programmable = function() {
+var hcs = window.hcs || {};
+hcs.Programmable = function() {
     var t, e = function(e, n, i) {
         this.params = {}, this.mergeParams(i), this.materials = null, this.structure = n, n && (this.magnetismCollider = this.structure.magnetismCollider), this.id = 0, this.async = !1, this.objectName = "Programmable", t = this
     };
@@ -24971,11 +25070,11 @@ wnp.Programmable = function() {
         var n = t.split("/"),
             i = n[n.length - 1],
             o = i.split(".")[0];
-        delete n[n.length - 1], n = n.join("/"), -1 === n.indexOf("http://") && -1 == n.indexOf("https://") && (n = wnp.Assets.globalPath + n);
-        var r = new BABYLON.Mesh(o, wanaplan.engine3D.scene);
-        return r.isVisible = !1, BABYLON.SceneLoader.ImportMesh("", n, i, wanaplan.engine3D.scene, function(t) {
+        delete n[n.length - 1], n = n.join("/"), -1 === n.indexOf("http://") && -1 == n.indexOf("https://") && (n = hcs.Assets.globalPath + n);
+        var r = new BABYLON.Mesh(o, hcsdesign.engine3D.scene);
+        return r.isVisible = !1, BABYLON.SceneLoader.ImportMesh("", n, i, hcsdesign.engine3D.scene, function(t) {
             for (var n = 0, i = t.length; i > n; n++)
-                t[n].parent = r, t[n].receiveShadows = !0, wanaplan.engine3D.castShadows(t[n]);
+                t[n].parent = r, t[n].receiveShadows = !0, hcsdesign.engine3D.castShadows(t[n]);
             e && e(r)
         }), r
     }, e.prototype.importOBJ = function() {
@@ -25052,10 +25151,10 @@ wnp.Programmable = function() {
         a.length = a.length - 1;
         var e = e || {},
             l = function() {
-                var t = ujs.getProperty(wnp.Programmable, a.join(".")),
+                var t = ujs.getProperty(hcs.Programmable, a.join(".")),
                     r = e.params || e,
                     l = new t(s, i, r);
-                l.materials = n || l.getDefaultMaterials(wanaplan.engine3D.scene);
+                l.materials = n || l.getDefaultMaterials(hcsdesign.engine3D.scene);
                 e.id;
                 o(l)
             },
@@ -25063,7 +25162,7 @@ wnp.Programmable = function() {
             c = function(t, e, n) {
                 if (t >= h)
                     return void l();
-                var i = n || wnp.Constants.PROGRAMMABLE_PATH;
+                var i = n || hcs.Constants.PROGRAMMABLE_PATH;
                 HTMLHelper.addScript([i, "/", e, ".js"].join(""), void 0, function() {
                     var i = e + "/" + a[t + 1];
                     c(t + 1, i, n)
@@ -25073,14 +25172,14 @@ wnp.Programmable = function() {
     }, e.prototype.serialize = function() {
         var t = {
             "class": {
-                name: "wnp.Programmable"
+                name: "hcs.Programmable"
             }
         };
         return ujs.serializeObject(this, t, ["objectName", "id", "params", "materials"]), t
     }, e.prototype.deserialize = function(t) {
         return ujs.deserializeObject(t, this, ["objectName", "id", "params", "materials"]), this
     }, e.Deserialize = function(t) {
-        var n = new e(wanaplan.engine3D, null, t.params);
+        var n = new e(hcsdesign.engine3D, null, t.params);
         return n.deserialize(t), n
     }, e.prototype.getAvailableProperties = function() {
         var t = this.generateFormForObject("params", this);
@@ -25092,7 +25191,7 @@ wnp.Programmable = function() {
             }
 //            Object.keys(e.advanced).length > 0 && t.push({
 //                type: "html",
-//                html: "<a href='' onclick='wnp.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
+//                html: "<a href='' onclick='hcs.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
 //            })
         }
         return t
@@ -25139,7 +25238,7 @@ wnp.Programmable = function() {
                 type: h,
                 value: c,
                 eventParams: {
-                    eventName: "wnp.contextMenu.propertyChanged",
+                    eventName: "hcs.contextMenu.propertyChanged",
                     property: a
                 },
                 id: a.split(".").join("-")
@@ -25157,18 +25256,18 @@ wnp.Programmable = function() {
     }, e.prototype.generateMissingFacesUvs = function() {
         return console.warn("Can't use it with BABYLON"), null
     }, e
-}(), wnp.Programmable.toggleVisible = function() {
+}(), hcs.Programmable.toggleVisible = function() {
     for (var t = document.querySelectorAll(".advancedParams"), e = 0; e < t.length; e++)
         t[e].classList.toggle("hidden")
 };
 var DecorationComponent3D = function() {
     function t(t) {
-        "object" == typeof t && ("keydown" == t.type && 27 != t.keyCode || "mousedown" == t.type && 0 == t.button) || (n = null, ujs.notify("wnp.menu.main.deselect"), wanaplan.engine3D.mode = wanaplan.engine3D.MODE_NORMAL, wanaplan.engine3D.canvas.classList.remove("brush"))
+        "object" == typeof t && ("keydown" == t.type && 27 != t.keyCode || "mousedown" == t.type && 0 == t.button) || (n = null, ujs.notify("hcs.menu.main.deselect"), hcsdesign.engine3D.mode = hcsdesign.engine3D.MODE_NORMAL, hcsdesign.engine3D.canvas.classList.remove("brush"))
     }
     var e, n = null,
         i = 0,
         o = function(t) {
-            BaseComponent3D.call(this, t, "DecorationComponent3D"), this.tabs = [], window.ejecta || (this.tabs = document.getElementsByClassName("menu-tab")), e = this, this.historycmp = null, this.PAINTACTION = 0, this.setupHistory(), this.standardMaps = ["map", "bumpMap", "normalMap", "specularMap"], document.addEventListener("wnp.core.structure.loaded", this.initializeLastColor.bind(this), !1)
+            BaseComponent3D.call(this, t, "DecorationComponent3D"), this.tabs = [], window.ejecta || (this.tabs = document.getElementsByClassName("menu-tab")), e = this, this.historycmp = null, this.PAINTACTION = 0, this.setupHistory(), this.standardMaps = ["map", "bumpMap", "normalMap", "specularMap"], document.addEventListener("hcs.core.structure.loaded", this.initializeLastColor.bind(this), !1)
         };
     return o.prototype = new BaseComponent3D, o.prototype.initializeLastColor = function() {
         var t = this.core.structure.lastMaterialsUsed.length > 0 ? "" : " hidden",
@@ -25181,24 +25280,24 @@ var DecorationComponent3D = function() {
                 layout: "layout-table-60",
                 items: e
             };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: n,
             menuPath: /*"decorate3D",*/ "furnishing3D",
             position: 0
         })
     }, o.prototype.destroy = function() {
-        ujs.notify("wnp.menu.main.remove", {
+        ujs.notify("hcs.menu.main.remove", {
             item: "furnishing3D"
-        }), ujs.notify("wnp.menu.main.remove", {
+        }), ujs.notify("hcs.menu.main.remove", {
             item: "decorate3D"
         })
     }, o.prototype.cleanJson = function(t) {
         for (var e in t)
-            t.hasOwnProperty(e) && (t[e] instanceof Object ? t[e] = this.cleanJson(t[e]) : "string" == typeof t[e] && -1 !== t[e].indexOf("http://") && (t[e] = GlobalHelper.stripDomainUrl(t[e], "wanaplan.")));
+            t.hasOwnProperty(e) && (t[e] instanceof Object ? t[e] = this.cleanJson(t[e]) : "string" == typeof t[e] && -1 !== t[e].indexOf("http://") && (t[e] = GlobalHelper.stripDomainUrl(t[e], "hcsdesign.")));
         return t
     }, o.prototype.initialize = function() {
         var t = this,
-            e = "http://v2.wanaplan.fr/data/menu.content.compiled.json";
+            e = "http://v2.hcsdesign.fr/data/menu.content.compiled.json";
         window.ejecta && (e = "Wanaplan/" + e);
         var n = function() {
             ujs.ajax({
@@ -25207,7 +25306,7 @@ var DecorationComponent3D = function() {
                 params: ["t=", Math.round(100 * Math.random())].join(""),
                 success: function(e) {
                     var n = JSON.parse(e);
-                    n = t.cleanJson(n), ujs.notify("wnp.menu.main.add", {
+                    n = t.cleanJson(n), ujs.notify("hcs.menu.main.add", {
                         item: n,
                         menuPath: "decorate3D",
                         position: 0
@@ -25216,13 +25315,13 @@ var DecorationComponent3D = function() {
             })
         };
         ujs.ajax({
-            url: wnp.Constants.TEXTURES_FILE,
+            url: hcs.Constants.TEXTURES_FILE,
             method: "GET",
             params: ["t=", Math.round(100 * Math.random())].join(""),
             success: function(e) {
                 try {
                     var i = JSON.parse(e);
-                    i = t.cleanJson(i), ujs.notify("wnp.menu.main.add", {
+                    i = t.cleanJson(i), ujs.notify("hcs.menu.main.add", {
                         item: i,
                         menuPath: "decorate3D",
                         position: 0
@@ -25234,9 +25333,9 @@ var DecorationComponent3D = function() {
             onerror: n
         })
     }, o.prototype.startListening = function() {
-        document.addEventListener("wnp.request.changeEngine", this.onChangeEngine, !1), document.addEventListener("wnp.engine3D.paint", this.onPaintHandler, !1), document.addEventListener("wnp.engine3D.click.collided", this.onClick, !1), document.addEventListener("keydown", t, !1)
+        document.addEventListener("hcs.request.changeEngine", this.onChangeEngine, !1), document.addEventListener("hcs.engine3D.paint", this.onPaintHandler, !1), document.addEventListener("hcs.engine3D.click.collided", this.onClick, !1), document.addEventListener("keydown", t, !1)
     }, o.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.changeEngine", this.onChangeEngine, !1), document.removeEventListener("wnp.engine3D.paint", this.onPaintHandler), document.removeEventListener("wnp.engine3D.click.collided", this.onClick, !1), document.removeEventListener("keydown", t)
+        document.removeEventListener("hcs.request.changeEngine", this.onChangeEngine, !1), document.removeEventListener("hcs.engine3D.paint", this.onPaintHandler), document.removeEventListener("hcs.engine3D.click.collided", this.onClick, !1), document.removeEventListener("keydown", t)
     }, o.prototype.onContextChanged = function(e) {
         if ("3D" == e) {
             if (!this.initialized) {
@@ -25251,28 +25350,28 @@ var DecorationComponent3D = function() {
             this.initialized = !1
         }
     }, o.prototype.onPaintHandler = function(t) {
-        e.core.helpBubbleManager.display("wnp.3d.paint");
+        e.core.helpBubbleManager.display("hcs.3d.paint");
         var i = t.params || {};
         n = {
             title: t.title,
-            action: "wnp.engine3D.paint",
+            action: "hcs.engine3D.paint",
             params: i,
             texture: !0
-        }, wanaplan.engine3D.mode = e.engine3D.MODE_PAINT, wanaplan.engine3D.canvas.classList.add("brush"), ujs.notify("wnp.engine3D.brushReady")
+        }, hcsdesign.engine3D.mode = e.engine3D.MODE_PAINT, hcsdesign.engine3D.canvas.classList.add("brush"), ujs.notify("hcs.engine3D.brushReady")
     }, o.prototype.updateLastItemMenu = function(t) {
-        for (var e = !1, n = 0; n < wanaplan.structure.lastMaterialsUsed.length; n++)
-            t.title == wanaplan.structure.lastMaterialsUsed[n].title && (e = !0);
-        e === !1 && (wanaplan.structure.lastMaterialsUsed.push(ujs.cloneObject(t)), ujs.notify("wnp.menu.main.replace", {
+        for (var e = !1, n = 0; n < hcsdesign.structure.lastMaterialsUsed.length; n++)
+            t.title == hcsdesign.structure.lastMaterialsUsed[n].title && (e = !0);
+        e === !1 && (hcsdesign.structure.lastMaterialsUsed.push(ujs.cloneObject(t)), ujs.notify("hcs.menu.main.replace", {
             item: {
                 id: "last_colors",
                 addClass: "last-color-item",
-                items: wanaplan.structure.lastMaterialsUsed
+                items: hcsdesign.structure.lastMaterialsUsed
             },
             merge: !0
         }, !0)), this.core.structure.lastMaterialsUsed.length > 21 && this.core.structure.lastMaterialsUsed.splice(0, this.core.structure.lastMaterialsUsed.length - 21)
     }, o.prototype.onClick = function(o) {
         if (null != n) {
-            var r = wnp.MaterialFactory.ImportWNPMaterial(n.params);
+            var r = hcs.MaterialFactory.ImportWNPMaterial(n.params);
             r.isDefault = !1;
             var s = o.collided.pickedMesh.getTopLevelObject();
             if (s.isDecorable) {
@@ -25282,7 +25381,7 @@ var DecorationComponent3D = function() {
                     var a = e.decorate(o.collided.pickedMesh, r, o.collided);
                 r.backFaceCulling = a ? a.backFaceCulling : !1
             }
-            e.updateLastItemMenu(n), ujs.notify("wnp.request.historyAction", {
+            e.updateLastItemMenu(n), ujs.notify("hcs.request.historyAction", {
                 component: e,
                 object: s,
                 params: {
@@ -25291,7 +25390,7 @@ var DecorationComponent3D = function() {
                     collided: o.collided
                 },
                 action: e.PAINTACTION
-            }), n && e.updateLastItemMenu(n), ujs.notify("wnp.engine3D.decorate", {
+            }), n && e.updateLastItemMenu(n), ujs.notify("hcs.engine3D.decorate", {
                 material: r
             }), 1 >= i && t()
         }
@@ -25308,7 +25407,7 @@ var DecorationComponent3D = function() {
     }, o.prototype.redoPaint = function(t, n) {
         e.historyPaint(t, n, n.newMaterial)
     }, o.prototype.historyPaint = function(t, n, i) {
-        e.applyMaterial(t, i, n.collided), ujs.notify("wnp.request.saveHistory")
+        e.applyMaterial(t, i, n.collided), ujs.notify("hcs.request.saveHistory")
     }, o.prototype.setupHistory = function() {
         this.historycmp = this.core.getComponentByName("HistoryComponent"), this.historycmp && this.historycmp.registerAction(this.PAINTACTION, this.undoPaint, this.redoPaint, this)
     }, o
@@ -25323,7 +25422,7 @@ var LuxensComponent3D = function() {
             id: "luxens",
             items: e,
             layout: "layout-table-26"
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: _item,
             menuPath: /*"decorate3D",*/ "furnishing3D",
             position: 10
@@ -25335,10 +25434,10 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
-            materialType: "wnp.WhiteMaterial",
+            materialType: "hcs.WhiteMaterial",
             color: {
                 r: 1,
                 g: 1,
@@ -25349,10 +25448,10 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
-            materialType: "wnp.WhiteMaterial",
+            materialType: "hcs.WhiteMaterial",
             color: {
                 r: .96,
                 g: .96,
@@ -25363,10 +25462,10 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
-            materialType: "wnp.WhiteMaterial",
+            materialType: "hcs.WhiteMaterial",
             color: {
                 r: .9,
                 g: .9,
@@ -25377,7 +25476,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Noir 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25391,7 +25490,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Noir 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25405,7 +25504,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Noir 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25419,7 +25518,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc calcaire 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25433,7 +25532,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc calcaire 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25447,7 +25546,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc calcaire 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25461,7 +25560,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc calcaire 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25475,7 +25574,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc calcaire 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25489,7 +25588,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc calcaire 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25503,7 +25602,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc ivoire 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25517,7 +25616,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc ivoire 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25531,7 +25630,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc ivoire 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25545,7 +25644,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc ivoire 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25559,7 +25658,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc ivoire 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25573,7 +25672,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc ivoire 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25587,7 +25686,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc coquille 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25601,7 +25700,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc coquille 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25615,7 +25714,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc coquille 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25629,7 +25728,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc coquille 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25643,7 +25742,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc coquille 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25657,7 +25756,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Blanc coquille 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25671,7 +25770,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris galet 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25685,7 +25784,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris galet 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25699,7 +25798,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris galet 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25713,7 +25812,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris galet 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25727,7 +25826,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris galet 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25741,7 +25840,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris galet 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25755,7 +25854,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris zingué 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25769,7 +25868,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris zingué 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25783,7 +25882,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris zingué 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25797,7 +25896,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris zingué 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25811,7 +25910,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris zingué 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25825,7 +25924,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris zingué 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25839,7 +25938,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris smoke 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25853,7 +25952,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris smoke 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25867,7 +25966,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris smoke 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25881,7 +25980,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris smoke 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25895,7 +25994,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris smoke 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25909,7 +26008,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris smoke 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25923,7 +26022,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris gris 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25937,7 +26036,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris gris 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25951,7 +26050,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris gris 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25965,7 +26064,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris gris 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25979,7 +26078,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris gris 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -25993,7 +26092,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris gris 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26007,7 +26106,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris poivré 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26021,7 +26120,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris poivré 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26035,7 +26134,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris poivré 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26049,7 +26148,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris poivré 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26063,7 +26162,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris poivré 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26077,7 +26176,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris poivré 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26091,7 +26190,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris doré 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26105,7 +26204,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris doré 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26119,7 +26218,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris doré 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26133,7 +26232,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris doré 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26147,7 +26246,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris doré 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26161,7 +26260,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Gris doré 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26175,7 +26274,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun taupe 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26189,7 +26288,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun taupe 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26203,7 +26302,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun taupe 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26217,7 +26316,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun taupe 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26231,7 +26330,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun taupe 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26245,7 +26344,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun taupe 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26259,7 +26358,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun gatsby 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26273,7 +26372,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun gatsby 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26287,7 +26386,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun gatsby 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26301,7 +26400,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun gatsby 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26315,7 +26414,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun gatsby 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26329,7 +26428,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun gatsby 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26343,7 +26442,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun brun 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26357,7 +26456,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun brun 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26371,7 +26470,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun brun 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26385,7 +26484,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun brun 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26399,7 +26498,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun brun 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26413,7 +26512,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun brun 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26427,7 +26526,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun argileux 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26441,7 +26540,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun argileux 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26455,7 +26554,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun argileux 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26469,7 +26568,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun argileux 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26483,7 +26582,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun argileux 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26497,7 +26596,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun argileux 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26511,7 +26610,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun chocolat 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26525,7 +26624,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun chocolat 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26539,7 +26638,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun chocolat 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26553,7 +26652,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun chocolat 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26567,7 +26666,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun chocolat 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26581,7 +26680,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun chocolat 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26595,7 +26694,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun havane 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26609,7 +26708,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun havane 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26623,7 +26722,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun havane 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26637,7 +26736,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun havane 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26651,7 +26750,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun havane 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26665,7 +26764,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Brun havane 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26679,7 +26778,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge velours 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26693,7 +26792,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge velours 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26707,7 +26806,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge velours 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26721,7 +26820,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge velours 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26735,7 +26834,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge velours 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26749,7 +26848,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge velours 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26763,7 +26862,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge rubis 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26777,7 +26876,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge rubis 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26791,7 +26890,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge rubis 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26805,7 +26904,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge rubis 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26819,7 +26918,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge rubis 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26833,7 +26932,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge rubis 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26847,7 +26946,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge gourmand 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26861,7 +26960,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge gourmand 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26875,7 +26974,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge gourmand 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26889,7 +26988,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge gourmand 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26903,7 +27002,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge gourmand 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26917,7 +27016,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge gourmand 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26931,7 +27030,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge-rouge 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26945,7 +27044,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge-rouge 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26959,7 +27058,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge-rouge 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26973,7 +27072,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge-rouge 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -26987,7 +27086,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge-rouge 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27001,7 +27100,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge-rouge 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27015,7 +27114,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge corail 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27029,7 +27128,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge corail 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27043,7 +27142,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge corail 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27057,7 +27156,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge corail 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27071,7 +27170,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge corail 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27085,7 +27184,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rouge corail 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27099,7 +27198,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange vitaminé 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27113,7 +27212,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange vitaminé 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27127,7 +27226,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange vitaminé 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27141,7 +27240,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange vitaminé 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27155,7 +27254,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange vitaminé 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27169,7 +27268,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange vitaminé 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27183,7 +27282,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange fusion 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27197,7 +27296,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange fusion 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27211,7 +27310,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange fusion 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27225,7 +27324,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange fusion 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27239,7 +27338,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange fusion 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27253,7 +27352,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange fusion 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27267,7 +27366,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange-orange 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27281,7 +27380,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange-orange 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27295,7 +27394,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange-orange 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27309,7 +27408,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange-orange 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27323,7 +27422,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange-orange 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27337,7 +27436,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange-orange 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27351,7 +27450,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange doré 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27365,7 +27464,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange doré 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27379,7 +27478,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange doré 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27393,7 +27492,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange doré 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27407,7 +27506,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange doré 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27421,7 +27520,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Orange doré 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27435,7 +27534,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune solaire 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27449,7 +27548,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune solaire 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27463,7 +27562,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune solaire 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27477,7 +27576,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune solaire 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27491,7 +27590,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune solaire 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27505,7 +27604,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune solaire 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27519,7 +27618,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune pépite 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27533,7 +27632,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune pépite 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27547,7 +27646,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune pépite 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27561,7 +27660,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune pépite 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27575,7 +27674,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune pépite 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27589,7 +27688,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune pépite 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27603,7 +27702,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune louxor 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27617,7 +27716,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune louxor 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27631,7 +27730,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune louxor 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27645,7 +27744,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune louxor 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27659,7 +27758,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune louxor 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27673,7 +27772,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune louxor 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27687,7 +27786,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune-jaune 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27701,7 +27800,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune-jaune 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27715,7 +27814,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune-jaune 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27729,7 +27828,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune-jaune 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27743,7 +27842,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune-jaune 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27757,7 +27856,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune-jaune 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27771,7 +27870,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune anis 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27785,7 +27884,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune anis 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27799,7 +27898,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune anis 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27813,7 +27912,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune anis 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27827,7 +27926,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune anis 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27841,7 +27940,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Jaune anis 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27855,7 +27954,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert botanique 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27869,7 +27968,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert botanique 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27883,7 +27982,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert botanique 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27897,7 +27996,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert botanique 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27911,7 +28010,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert botanique 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27925,7 +28024,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert botanique 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27939,7 +28038,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert kaki 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27953,7 +28052,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert kaki 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27967,7 +28066,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert kaki 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27981,7 +28080,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert kaki 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -27995,7 +28094,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert kaki 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28009,7 +28108,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert kaki 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28023,7 +28122,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert pistache 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28037,7 +28136,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert pistache 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28051,7 +28150,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert pistache 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28065,7 +28164,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert pistache 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28079,7 +28178,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert pistache 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28093,7 +28192,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert pistache 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28107,7 +28206,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert-vert 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28121,7 +28220,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert-vert 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28135,7 +28234,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert-vert 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28149,7 +28248,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert-vert 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28163,7 +28262,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert-vert 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28177,7 +28276,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert-vert 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28191,7 +28290,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert lagon 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28205,7 +28304,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert lagon 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28219,7 +28318,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert lagon 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28233,7 +28332,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert lagon 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28247,7 +28346,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert lagon 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28261,7 +28360,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert lagon 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28275,7 +28374,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert cèdre 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28289,7 +28388,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert cèdre 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28303,7 +28402,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert cèdre 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28317,7 +28416,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert cèdre 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28331,7 +28430,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert cèdre 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28345,7 +28444,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Vert cèdre 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28359,7 +28458,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu baltique 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28373,7 +28472,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu baltique 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28387,7 +28486,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu baltique 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28401,7 +28500,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu baltique 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28415,7 +28514,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu baltique 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28429,7 +28528,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu baltique 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28443,7 +28542,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu atoll 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28457,7 +28556,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu atoll 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28471,7 +28570,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu atoll 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28485,7 +28584,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu atoll 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28499,7 +28598,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu atoll 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28513,7 +28612,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu atoll 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28527,7 +28626,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu turquoise 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28541,7 +28640,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu turquoise 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28555,7 +28654,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu turquoise 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28569,7 +28668,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu turquoise 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28583,7 +28682,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu turquoise 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28597,7 +28696,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu turquoise 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28611,7 +28710,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu cyclades 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28625,7 +28724,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu cyclades 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28639,7 +28738,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu cyclades 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28653,7 +28752,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu cyclades 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28667,7 +28766,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu cyclades 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28681,7 +28780,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu cyclades 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28695,7 +28794,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu-bleu 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28709,7 +28808,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu-bleu 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28723,7 +28822,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu-bleu 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28737,7 +28836,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu-bleu 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28751,7 +28850,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu-bleu 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28765,7 +28864,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu-bleu 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28779,7 +28878,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu orageux 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28793,7 +28892,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu orageux 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28807,7 +28906,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu orageux 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28821,7 +28920,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu orageux 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28835,7 +28934,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu orageux 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28849,7 +28948,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Bleu orageux 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28863,7 +28962,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet-violet 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28877,7 +28976,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet-violet 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28891,7 +28990,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet-violet 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28905,7 +29004,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet-violet 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28919,7 +29018,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet-violet 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28933,7 +29032,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet-violet 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28947,7 +29046,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet tulipe 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28961,7 +29060,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet tulipe 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28975,7 +29074,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet tulipe 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -28989,7 +29088,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet tulipe 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29003,7 +29102,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet tulipe 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29017,7 +29116,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet tulipe 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29031,7 +29130,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet aubergine 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29045,7 +29144,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet aubergine 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29059,7 +29158,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet aubergine 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29073,7 +29172,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet aubergine 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29087,7 +29186,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet aubergine 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29101,7 +29200,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet aubergine 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29115,7 +29214,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet figue 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29129,7 +29228,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet figue 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29143,7 +29242,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet figue 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29157,7 +29256,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet figue 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29171,7 +29270,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet figue 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29185,7 +29284,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Violet figue 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29199,7 +29298,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose antique 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29213,7 +29312,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose antique 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29227,7 +29326,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose antique 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29241,7 +29340,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose antique 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29255,7 +29354,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose antique 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29269,7 +29368,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose antique 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29283,7 +29382,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose-rose 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29297,7 +29396,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose-rose 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29311,7 +29410,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose-rose 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29325,7 +29424,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose-rose 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29339,7 +29438,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose-rose 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29353,7 +29452,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose-rose 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29367,7 +29466,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose shocking 1",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29381,7 +29480,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose shocking 2",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29395,7 +29494,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose shocking 3",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29409,7 +29508,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose shocking 4",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29423,7 +29522,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose shocking 5",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29437,7 +29536,7 @@ var LuxensComponent3D = function() {
         texture: !0,
         title: "Rose shocking 6",
         icon: "",
-        action: "wnp.engine3D.paint",
+        action: "hcs.engine3D.paint",
         items: [],
         params: {
             materialType: "luxens",
@@ -29473,7 +29572,7 @@ var OutsideComponent3D = function() {
                 items: [t, i],
                 layout: "layout-list"
             };
-        ujs.notify("wnp.menu.main.add", {
+        ujs.notify("hcs.menu.main.add", {
             item: o,
             menuPath: /*"decorate3D",*/ "furnishing3D",
             position: 1e3
@@ -29483,11 +29582,11 @@ var OutsideComponent3D = function() {
             title: "Grid (default)",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "0",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground01.jpg",
                 id: "0"
             }
@@ -29495,11 +29594,11 @@ var OutsideComponent3D = function() {
             title: "Macadam",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "1",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground02.jpg",
                 id: "1"
             }
@@ -29507,11 +29606,11 @@ var OutsideComponent3D = function() {
             title: "Soil",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "2",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground03.jpg",
                 id: "2"
             }
@@ -29519,11 +29618,11 @@ var OutsideComponent3D = function() {
             title: "Grass",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "3",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground04.jpg",
                 id: "3"
             }
@@ -29531,11 +29630,11 @@ var OutsideComponent3D = function() {
             title: "Grass 2",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "4",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground05.jpg",
                 id: "4"
             }
@@ -29543,110 +29642,110 @@ var OutsideComponent3D = function() {
             title: "Grass 3",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "5",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground06.jpg"
             }
         }, {
             title: "Grass 4",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "6",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground07.jpg"
             }
         }, {
             title: "Grass 5",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "7",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground08.jpg"
             }
         }, {
             title: "Grass 6",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "8",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground09.jpg"
             }
         }, {
             title: "Soil",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "9",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground10.jpg"
             }
         }, {
             title: "Gray gravel",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "10",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground11.jpg"
             }
         }, {
             title: "Brick",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "11",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground12.jpg"
             }
         }, {
             title: "Brick 2",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "12",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground13.jpg"
             }
         }, {
             title: "Brick 3",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "13",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground14.jpg"
             }
         }, {
             title: "Brick 4",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeGround",
+            action: "hcs.engine3D.changeGround",
             id: "14",
             items: [],
             params: {
-                materialType: "wnp.MattMaterial",
+                materialType: "hcs.MattMaterial",
                 url: "textures/textureset/ground/ground15.jpg"
             }
         }],
@@ -29654,7 +29753,7 @@ var OutsideComponent3D = function() {
             title: "Default sky",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeSky",
+            action: "hcs.engine3D.changeSky",
             id: "0",
             items: [],
             params: {
@@ -29665,7 +29764,7 @@ var OutsideComponent3D = function() {
             title: "Sky 1",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeSky",
+            action: "hcs.engine3D.changeSky",
             id: "1",
             items: [],
             params: {
@@ -29676,7 +29775,7 @@ var OutsideComponent3D = function() {
             title: "Sky 2",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeSky",
+            action: "hcs.engine3D.changeSky",
             id: "2",
             items: [],
             params: {
@@ -29687,7 +29786,7 @@ var OutsideComponent3D = function() {
             title: "Sky 3",
             texture: !0,
             icon: "",
-            action: "wnp.engine3D.changeSky",
+            action: "hcs.engine3D.changeSky",
             id: "3",
             items: [],
             params: {
@@ -29700,7 +29799,7 @@ var OutsideComponent3D = function() {
 var ObjectComponent3D = function() {
     function t(t) {
         t.traverse(function(t) {
-            wanaplan.engine3D.castShadows(t), t.receiveShadows = !0
+            hcsdesign.engine3D.castShadows(t), t.receiveShadows = !0
         })
     }
     var e, n = (new BABYLON.Vector3(50, 50, 50), new BABYLON.Vector3(0, 0, 0), "js/Components/CoreComponents/Object/Programmable/"),
@@ -29710,13 +29809,13 @@ var ObjectComponent3D = function() {
             BaseComponent3D.call(this, t, "ObjectComponent3D"), i = t.version, e = this
         });
     return r.prototype = new BaseComponent3D, r.prototype.initialize = function() {
-        /*wnp.Constants.PRODUCTS_CATEGORY_FILE && ujs.ajax({
-            url: wnp.Constants.PRODUCTS_CATEGORY_FILE,
+        /*hcs.Constants.PRODUCTS_CATEGORY_FILE && ujs.ajax({
+            url: hcs.Constants.PRODUCTS_CATEGORY_FILE,
             method: "GET",
             params: ["t=", Math.round(100 * Math.random())].join(""),
             success: function(t) {
                 try {
-                    productsMenu = JSON.parse(t), ujs.notify("wnp.menu.main.add", {
+                    productsMenu = JSON.parse(t), ujs.notify("hcs.menu.main.add", {
                         item: productsMenu,
                         menuPath: "1",
                         position: 0
@@ -29731,24 +29830,24 @@ var ObjectComponent3D = function() {
 		xmlHttp.send(null);
 		//console.warn(xmlHttp.responseText);
 		productsMenu = JSON.parse(xmlHttp.responseText);
-		ujs.notify("wnp.menu.main.add", {item: productsMenu,menuPath: "1",position: 0})
+		ujs.notify("hcs.menu.main.add", {item: productsMenu,menuPath: "1",position: 0})
     }, r.prototype.onFloorReady = function(t) {
-        for (var n = t.floor || e.getFloor(), i = t.structure || wanaplan.getSelectedStructure(), o = i.getElements("objects"), r = 0; r < o.length; r++)
+        for (var n = t.floor || e.getFloor(), i = t.structure || hcsdesign.getSelectedStructure(), o = i.getElements("objects"), r = 0; r < o.length; r++)
             o[r].isRecentlyAdded = !1, e.buildObject(o[r], o[r].programmableInstance, n)
     }, r.prototype.loadProgrammableFile = function(t, e, o) {
         var r = e || t + ".js";
-        "undefined" == typeof wnp.Programmable[t] ? HTMLHelper.addScript(n + r + "?t=" + i, void 0, o) : o(void 0)
+        "undefined" == typeof hcs.Programmable[t] ? HTMLHelper.addScript(n + r + "?t=" + i, void 0, o) : o(void 0)
     }, r.prototype.startListening = function() {
-        document.addEventListener("wnp.request.floorSelected", this.onFloorChanged, !1), document.addEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1), document.addEventListener("wnp.engine3D.addObject", this.onAddObject, !1), document.addEventListener("wnp.engine3D.addGroup", this.onAddGroup, !1), document.addEventListener("wnp.engine3D.addProgrammable", this.onAddObject, !1), document.addEventListener("wnp.engine3D.object.remove", this.onRemoveObject, !1)
+        document.addEventListener("hcs.request.floorSelected", this.onFloorChanged, !1), document.addEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1), document.addEventListener("hcs.engine3D.addObject", this.onAddObject, !1), document.addEventListener("hcs.engine3D.addGroup", this.onAddGroup, !1), document.addEventListener("hcs.engine3D.addProgrammable", this.onAddObject, !1), document.addEventListener("hcs.engine3D.object.remove", this.onRemoveObject, !1)
     }, r.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.floorSelected", this.onFloorChanged, !1), document.removeEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1), document.removeEventListener("wnp.engine3D.addObject", this.onAddObject), document.removeEventListener("wnp.engine3D.addGroup", this.onAddGroup), document.removeEventListener("wnp.engine3D.addProgrammable", this.onAddObject, !1), document.removeEventListener("wnp.engine3D.object.remove", this.onRemoveObject, !1)
+        document.removeEventListener("hcs.request.floorSelected", this.onFloorChanged, !1), document.removeEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1), document.removeEventListener("hcs.engine3D.addObject", this.onAddObject), document.removeEventListener("hcs.engine3D.addGroup", this.onAddGroup), document.removeEventListener("hcs.engine3D.addProgrammable", this.onAddObject, !1), document.removeEventListener("hcs.engine3D.object.remove", this.onRemoveObject, !1)
     }, r.prototype.onAddGroup = function(t) {
         var n = t.objectParams,
             i = JSON.parse(n.params),
             o = JSON.parse(n.materials),
             r = (new Date).getTime(),
             s = e.getFloor(),
-            a = wanaplan.getComponentByName("AvatarComponent3D", this.engine3D),
+            a = hcsdesign.getComponentByName("AvatarComponent3D", this.engine3D),
             l = a.avatar.position.clone();
         l.y -= 5 + +s.position.y;
         for (var h in i)
@@ -29762,20 +29861,20 @@ var ObjectComponent3D = function() {
                 }
             }, e.onAddObject(t)
     }, r.prototype.onAddObject = function(t) {
-        var n = wanaplan.getSelectedStructure(),
+        var n = hcsdesign.getSelectedStructure(),
             i = e.getFloor(),
             o = t.objectParams,
             r = new ObjectStructure;
         if (r.builderId = o.builder_id, "string" == typeof o.params && "" !== o.params && (o.params = JSON.parse(o.params)), "string" == typeof o.materials && "" !== o.materials && (o.materials = "[]" === o.materials ? {} : ujs.deserializeObject(JSON.parse(o.materials))), o.customData && (r.customData = o.customData), r.filename = o.path, r.baseUrl = o.baseUrl || null, t.position)
             r.position.x = t.position.x, r.position.y = t.position.y, r.position.z = t.position.z;
         else {
-            var s = wanaplan.getComponentByName("AvatarComponent3D", this.engine3D);
+            var s = hcsdesign.getComponentByName("AvatarComponent3D", this.engine3D);
             avatarPosition = s.avatar.position, r.position.x = avatarPosition.x, r.position.z = avatarPosition.z, r.position.y += 5
         }
         t.rotation && (r.rotation.x = t.rotation.x, r.rotation.y = t.rotation.y, r.rotation.z = t.rotation.z), n.insertElement("objects", r), r.isRecentlyAdded = !0, e.buildObject(r, o, i)
     }, r.prototype.onRemoveObject = function(t) {
-        for (var e, n = 0; n < wanaplan.structure.getLength(); n++)
-            e = wanaplan.structure.getElement(n), e.removeElement("objects", t.structure)
+        for (var e, n = 0; n < hcsdesign.structure.getLength(); n++)
+            e = hcsdesign.structure.getElement(n), e.removeElement("objects", t.structure)
     }, r.prototype.refreshObject = function(t, e) {
         for (var n = t.structure.programmableInstance, i = (t.getFloor(), t.getChildren()), o = i.length; o--;)
             i[o].dispose();
@@ -29790,7 +29889,7 @@ var ObjectComponent3D = function() {
             t.material = n.material;
             for (var s = n.getChildren(), o = s.length; o--;)
                 s[o].parent = t;
-            t.computeWorldMatrix(!0), t.getBoundingBox(!0), n.silentDispose = !0, n.dispose(), n.silentDispose = !1, ujs.notify("wnp.engine3D.object.refresh", {
+            t.computeWorldMatrix(!0), t.getBoundingBox(!0), n.silentDispose = !0, n.dispose(), n.silentDispose = !1, ujs.notify("hcs.engine3D.object.refresh", {
                 object: t
             }), e && e(t)
         }, !0)
@@ -29802,17 +29901,17 @@ var ObjectComponent3D = function() {
                 return n ? (t.programmableInstance = a, t.objectInstance = n, void e.addObjectToScene(n, t, i, o, r)) : (Logger.warning("[ObjectComponent3D] onObject3dLoaded : unable to build the following object : "), void Logger.warning(a))
             },
             h = t.baseUrl || null;
-        t.filename && wnp.Programmable.createInstance(t.filename, n, s, t, function(t) {
+        t.filename && hcs.Programmable.createInstance(t.filename, n, s, t, function(t) {
             if (a = t, a.async)
-                a.getObject3D(wanaplan.engine3D.scene, l);
+                a.getObject3D(hcsdesign.engine3D.scene, l);
             else {
-                var e = a.getObject3D(wanaplan.engine3D.scene);
+                var e = a.getObject3D(hcsdesign.engine3D.scene);
                 l(e)
             }
         }, h, e.engine3D)
     }, r.prototype.addObjectToScene = function(t, n, i, o, r) {
         var o = o || function() {};
-        return e.prepareObject3D(t, n, i), o(t), r || ujs.notify("wnp.engine3D.object.create", {
+        return e.prepareObject3D(t, n, i), o(t), r || ujs.notify("hcs.engine3D.object.create", {
             object: t,
             objectStructure: n
         }), t
@@ -29820,15 +29919,15 @@ var ObjectComponent3D = function() {
         n.structure = i, n.name = "Object_" + ++o, i.id = o, n.parent = r, n.position.copyFrom(i.position), n.rotation.copyFrom(i.rotation), n.scaling.copyFrom(i.scaling), i.position = n.position, i.rotation = n.rotation, i.scaling = n.scaling, i.position.x = +i.position.x, i.position.y = +i.position.y, i.position.z = +i.position.z, i.rotationQuaternion && (n.rotationQuaternion = i.rotationQuaternion), n.structure.group && (n.parent = n.structure.group, n.changeFrame(r)), n.computeWorldMatrix(!0), r.markAsDirty(), n.isDecorable = !0, n.decorate = i.programmableInstance.decorate.bind(n), n.animate = i.programmableInstance.animate.bind(i.programmableInstance);
         var s = i.programmableInstance.materials;
         if (i.programmableInstance.getDefaultMaterials) {
-            var a = i.programmableInstance.getDefaultMaterials(wanaplan.engine3D.scene);
+            var a = i.programmableInstance.getDefaultMaterials(hcsdesign.engine3D.scene);
             s = ujs.mergeObjects(a, i.programmableInstance.materials)
         }
         n.initMaterials(s), n.onDispose = function() {
-            n.silentDispose || ujs.notify("wnp.engine3D.object.dispose", {
+            n.silentDispose || ujs.notify("hcs.engine3D.object.dispose", {
                 object: n
             })
         }, t(n);
-        var l = wanaplan.getComponentByName("EditionComponent3D");
+        var l = hcsdesign.getComponentByName("EditionComponent3D");
         return l && e.getFloor().structureId == r.structureId && l.addDraggable(n), n
     }, r
 }();
@@ -29844,7 +29943,7 @@ var EditionComponent3D = function() {
         l = 8,
         h = [],
         c = function(e) {
-            BaseComponent3D.call(this, e, "EditionComponent3D"), t = this, this.scene = wanaplan.engine3D.scene, this.camera = wanaplan.engine3D.camera, this.rotatorWidget = new wnp.Widget.Rotator(this), this.infoWidget = new wnp.Widget.Info(this), this.infoWidget.setClickCallback(this.onIAction.bind(this)), this.elevationWidget = new wnp.Widget.Elevation(this), this.cloneWidget = new wnp.Widget.Clone(this), this.groupWidget = new wnp.Widget.Group(this), this.removeWidget = new wnp.Widget.Remove(this), this.widgets = [], this.widgets.push(this.rotatorWidget), this.widgets.push(this.infoWidget), this.widgets.push(this.elevationWidget), this.widgets.push(this.cloneWidget), this.widgets.push(this.removeWidget), this.widgets.push(this.groupWidget), this.dragControl = new wnp.DragControls(this.scene, wanaplan.engine3D.canvas), this.dragControl.constrains("xz"), this.addUnremovableDraggable = this.dragControl.addUnremovableDraggable, this.addDraggable = this.dragControl.addDraggable, this.removeDraggable = this.dragControl.removeDraggable, this.resetDraggable = this.dragControl.resetDraggable
+            BaseComponent3D.call(this, e, "EditionComponent3D"), t = this, this.scene = hcsdesign.engine3D.scene, this.camera = hcsdesign.engine3D.camera, this.rotatorWidget = new hcs.Widget.Rotator(this), this.infoWidget = new hcs.Widget.Info(this), this.infoWidget.setClickCallback(this.onIAction.bind(this)), this.elevationWidget = new hcs.Widget.Elevation(this), this.cloneWidget = new hcs.Widget.Clone(this), this.groupWidget = new hcs.Widget.Group(this), this.removeWidget = new hcs.Widget.Remove(this), this.widgets = [], this.widgets.push(this.rotatorWidget), this.widgets.push(this.infoWidget), this.widgets.push(this.elevationWidget), this.widgets.push(this.cloneWidget), this.widgets.push(this.removeWidget), this.widgets.push(this.groupWidget), this.dragControl = new hcs.DragControls(this.scene, hcsdesign.engine3D.canvas), this.dragControl.constrains("xz"), this.addUnremovableDraggable = this.dragControl.addUnremovableDraggable, this.addDraggable = this.dragControl.addDraggable, this.removeDraggable = this.dragControl.removeDraggable, this.resetDraggable = this.dragControl.resetDraggable
         };
     c.prototype = new BaseComponent3D, c.prototype.addWidget = function(t) {
         return this.widgets.push(t), t
@@ -29862,20 +29961,20 @@ var EditionComponent3D = function() {
     };
     c.prototype.initialize = function() {
         this.ephemeralInfos = document.getElementById("ephemeralInfos"), this.historycmp = null, this.MOVEACTION = 0, this.ROTATEACTION = 1, this.GROUPACTION = 3, this.DELETEACTION = 4, this.ADDACTION = 5, this.isViewer || (this.dragControl.on("mousedown", function(e) {
-            e.hit && (t.camera.enabled = !1, ujs.notify("wnp.engine3D.editorComponent.hideEditBox"))
+            e.hit && (t.camera.enabled = !1, ujs.notify("hcs.engine3D.editorComponent.hideEditBox"))
         }, !1), this.dragControl.on("mouseup", function() {
             t.camera.enabled = !0
         }, !1)), this.setupHistory()
     }, c.prototype.startListening = function() {
-        this.onMouseDown = this.onMouseDown.bind(this), this.onMouseMove = this.onMouseMove.bind(this), this.onMouseUp = this.onMouseUp.bind(this), this.onClick = this.onClick.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), this.onGroup = this.onGroup.bind(this), this.onKeyDown = this.onKeyDown.bind(this), this.onCloneObject = this.onCloneObject.bind(this), this.onAddToProducts = this.onAddToProducts.bind(this), this.onRemoveObject = this.onRemoveObject.bind(this), this.onCreateObject = this.onCreateObject.bind(this), this.onDisposeObject = this.onDisposeObject.bind(this), this.onFloorChanged = this.onFloorChanged.bind(this), this.onNewPlan = this.onNewPlan.bind(this), this.onDragEnd = this.onDragEnd.bind(this), this.onDragging = this.onDragging.bind(this), this.onDragStart = this.onDragStart.bind(this), wanaplan.engine3D.canvas.addEventListener("pointerdown", this.onMouseDown, !1), wanaplan.engine3D.canvas.addEventListener("pointermove", this.onMouseMove, !1), wanaplan.engine3D.canvas.addEventListener("pointerup", this.onMouseUp, !1), this.dragControl.on("dragstart", this.onDragStart), this.dragControl.on("drag", this.onDragging), this.dragControl.on("dragend", this.onDragEnd), document.addEventListener("wnp.engine3D.click.collided", this.onClick, !1), document.addEventListener("wnp.engine3D.dblclick.collided", this.onDoubleClick, !1), document.addEventListener("wnp.engine3D.contextMenu.group", this.onGroup, !1), document.addEventListener("wnp.keyboardManager.keyDown", this.onKeyDown, !0), document.addEventListener("wnp.request.object.clone", this.onCloneObject, !1), document.addEventListener("wnp.request.object.addToProducts", this.onAddToProducts, !1), document.addEventListener("wnp.request.object.remove", this.onRemoveObject, !1), document.addEventListener("wnp.engine3D.object.create", this.onCreateObject, !1), document.addEventListener("wnp.engine3D.object.refresh", this.onRefreshObject, !1), document.addEventListener("wnp.engine3D.object.dispose", this.onDisposeObject, !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.addEventListener("wnp.request.newPlanReady", this.onNewPlan, !1)
+        this.onMouseDown = this.onMouseDown.bind(this), this.onMouseMove = this.onMouseMove.bind(this), this.onMouseUp = this.onMouseUp.bind(this), this.onClick = this.onClick.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), this.onGroup = this.onGroup.bind(this), this.onKeyDown = this.onKeyDown.bind(this), this.onCloneObject = this.onCloneObject.bind(this), this.onAddToProducts = this.onAddToProducts.bind(this), this.onRemoveObject = this.onRemoveObject.bind(this), this.onCreateObject = this.onCreateObject.bind(this), this.onDisposeObject = this.onDisposeObject.bind(this), this.onFloorChanged = this.onFloorChanged.bind(this), this.onNewPlan = this.onNewPlan.bind(this), this.onDragEnd = this.onDragEnd.bind(this), this.onDragging = this.onDragging.bind(this), this.onDragStart = this.onDragStart.bind(this), hcsdesign.engine3D.canvas.addEventListener("pointerdown", this.onMouseDown, !1), hcsdesign.engine3D.canvas.addEventListener("pointermove", this.onMouseMove, !1), hcsdesign.engine3D.canvas.addEventListener("pointerup", this.onMouseUp, !1), this.dragControl.on("dragstart", this.onDragStart), this.dragControl.on("drag", this.onDragging), this.dragControl.on("dragend", this.onDragEnd), document.addEventListener("hcs.engine3D.click.collided", this.onClick, !1), document.addEventListener("hcs.engine3D.dblclick.collided", this.onDoubleClick, !1), document.addEventListener("hcs.engine3D.contextMenu.group", this.onGroup, !1), document.addEventListener("hcs.keyboardManager.keyDown", this.onKeyDown, !0), document.addEventListener("hcs.request.object.clone", this.onCloneObject, !1), document.addEventListener("hcs.request.object.addToProducts", this.onAddToProducts, !1), document.addEventListener("hcs.request.object.remove", this.onRemoveObject, !1), document.addEventListener("hcs.engine3D.object.create", this.onCreateObject, !1), document.addEventListener("hcs.engine3D.object.refresh", this.onRefreshObject, !1), document.addEventListener("hcs.engine3D.object.dispose", this.onDisposeObject, !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.addEventListener("hcs.request.newPlanReady", this.onNewPlan, !1)
     }, c.prototype.stopListening = function() {
-        wanaplan.engine3D.canvas.removeEventListener("pointerdown", this.onMouseDown), wanaplan.engine3D.canvas.removeEventListener("pointermove", this.onMouseMove, !1), wanaplan.engine3D.canvas.removeEventListener("pointerup", this.onMouseUp, !1), this.dragControl.off("dragstart", this.onDragStart), this.dragControl.off("drag", this.onDragging), this.dragControl.off("dragend", this.onDragEnd), document.removeEventListener("wnp.engine3D.click.collided", this.onClick, !1), document.removeEventListener("wnp.engine3D.dblclick.collided", this.onDoubleClick, !1), document.removeEventListener("wnp.engine3D.contextMenu.group", this.onGroup, !1), document.removeEventListener("wnp.keyboardManager.keyDown", this.onKeyDown, !0), document.removeEventListener("wnp.request.object.clone", this.onCloneObject, !1), document.removeEventListener("wnp.request.object.addToProducts", this.onAddToProducts, !1), document.removeEventListener("wnp.request.object.remove", this.onRemoveObject, !1), document.removeEventListener("wnp.engine3D.object.create", this.onCreateObject, !1), document.removeEventListener("wnp.engine3D.object.dispose", this.onDisposeObject, !1), document.removeEventListener("wnp.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.removeEventListener("wnp.request.newPlan", this.onNewPlan, !1), this.disableWidget()
+        hcsdesign.engine3D.canvas.removeEventListener("pointerdown", this.onMouseDown), hcsdesign.engine3D.canvas.removeEventListener("pointermove", this.onMouseMove, !1), hcsdesign.engine3D.canvas.removeEventListener("pointerup", this.onMouseUp, !1), this.dragControl.off("dragstart", this.onDragStart), this.dragControl.off("drag", this.onDragging), this.dragControl.off("dragend", this.onDragEnd), document.removeEventListener("hcs.engine3D.click.collided", this.onClick, !1), document.removeEventListener("hcs.engine3D.dblclick.collided", this.onDoubleClick, !1), document.removeEventListener("hcs.engine3D.contextMenu.group", this.onGroup, !1), document.removeEventListener("hcs.keyboardManager.keyDown", this.onKeyDown, !0), document.removeEventListener("hcs.request.object.clone", this.onCloneObject, !1), document.removeEventListener("hcs.request.object.addToProducts", this.onAddToProducts, !1), document.removeEventListener("hcs.request.object.remove", this.onRemoveObject, !1), document.removeEventListener("hcs.engine3D.object.create", this.onCreateObject, !1), document.removeEventListener("hcs.engine3D.object.dispose", this.onDisposeObject, !1), document.removeEventListener("hcs.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.removeEventListener("hcs.request.newPlan", this.onNewPlan, !1), this.disableWidget()
     }, c.prototype.onIAction = function() {
         var t = this.getSelectedObject();
-        ujs.notify(this.isGroup(t) ? "wnp.request.groupConfigurator.start" : "wnp.request.configurator.start")
+        ujs.notify(this.isGroup(t) ? "hcs.request.groupConfigurator.start" : "hcs.request.configurator.start")
     }, c.prototype.onMouseDown = function(t) {
-        t.collided = wanaplan.engine3D.collideWithScene(t.clientX, t.clientY), u("mousedown", t);
-        var e = wanaplan.engine3D.keyboardManager.isPressed([17, 91, 224]);
+        t.collided = hcsdesign.engine3D.collideWithScene(t.clientX, t.clientY), u("mousedown", t);
+        var e = hcsdesign.engine3D.keyboardManager.isPressed([17, 91, 224]);
         this.dragControl.constrains(e ? "y" : "xz")
     }, c.prototype.onMouseUp = function(t) {
         u("mouseup", t)
@@ -29892,7 +29991,7 @@ var EditionComponent3D = function() {
             object: n
         }), t.ephemeralInfos.classList.add("hidden");
         var i = n.getTopLevelObject(!0);
-        ujs.notify("wnp.request.historyAction", {
+        ujs.notify("hcs.request.historyAction", {
             component: t,
             object: i,
             params: {
@@ -29916,7 +30015,7 @@ var EditionComponent3D = function() {
             var i = n.collided;
             if (i && i.hit) {
                 t.dragControl.setDraggingMode(t.dragControl.GROUPS);
-                var r = wanaplan.engine3D.keyboardManager.isPressed([17, 91, 224]),
+                var r = hcsdesign.engine3D.keyboardManager.isPressed([17, 91, 224]),
                     s = i.pickedMesh.getTopLevelObject();
                 if (this.isGroup(s) || this.isSelectableObject(s)) {
                     if (r)
@@ -29936,8 +30035,8 @@ var EditionComponent3D = function() {
             n = e ? e.animate : null;
         n && n(e, t.collided.pickedMesh)
     }, c.prototype.onKeyDown = function(e) {
-        var n = wanaplan.engine3D.keyboardManager.isPressed([17, 91, 224]);
-        n && i && 68 == e.keyCode && t.onCloneObject(), 46 == e.keyCode && t.getSelectedObject() && ujs.notify("wnp.request.object.remove", {
+        var n = hcsdesign.engine3D.keyboardManager.isPressed([17, 91, 224]);
+        n && i && 68 == e.keyCode && t.onCloneObject(), 46 == e.keyCode && t.getSelectedObject() && ujs.notify("hcs.request.object.remove", {
             object: t.getSelectedObject(),
             structure: t.getSelectedObject().structure
         })
@@ -29963,9 +30062,9 @@ var EditionComponent3D = function() {
     }, c.prototype.onFloorChanged = function() {
         t.deselectObject(), t.resetDraggable()
     }, c.prototype.lock = function(e, n) {
-        o && o !== e || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !1, this.dragControl.reset()), n & r && (this.camera.enabled = !1), n & l && (t.camera.cameraTranslationenabled = !1), wanaplan.keyboardManager && n & a && (wanaplan.keyboardManager.preventDefault = !1), o = e)
+        o && o !== e || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !1, this.dragControl.reset()), n & r && (this.camera.enabled = !1), n & l && (t.camera.cameraTranslationenabled = !1), hcsdesign.keyboardManager && n & a && (hcsdesign.keyboardManager.preventDefault = !1), o = e)
     }, c.prototype.unlock = function(e, n) {
-        o && o !== e && e !== this || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !0, this.dragControl.reset()), n & r && (this.camera.enabled = !0), n & l && (t.camera.cameraTranslationenabled = !0), wanaplan.keyboardManager && n & a && (wanaplan.keyboardManager.preventDefault = !0), o = null)
+        o && o !== e && e !== this || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !0, this.dragControl.reset()), n & r && (this.camera.enabled = !0), n & l && (t.camera.cameraTranslationenabled = !0), hcsdesign.keyboardManager && n & a && (hcsdesign.keyboardManager.preventDefault = !0), o = null)
     }, c.prototype.disableWidget = function() {
         u("deselectObject")
     }, c.prototype.enableWidget = function() {
@@ -29995,7 +30094,7 @@ var EditionComponent3D = function() {
             i && i.markAsDirty(), u("objectMoves", {
                 object: e,
                 delta: n
-            }), ujs.notify("wnp.engine3D.object.translate", {
+            }), ujs.notify("hcs.engine3D.object.translate", {
                 object: e
             })
         }
@@ -30003,7 +30102,7 @@ var EditionComponent3D = function() {
         (t.isSelectableObject(e) || t.isGroup(e)) && (e.rotation.addInPlace(n), u("objectRotates", {
             object: e,
             delta: n
-        }), ujs.notify("wnp.engine3D.object.rotate", {
+        }), ujs.notify("hcs.engine3D.object.rotate", {
             object: e
         }))
     };
@@ -30016,7 +30115,7 @@ var EditionComponent3D = function() {
     };
     return c.prototype.createGroup = function(e, i) {
         var o;
-        return null !== e && void 0 !== e ? (o = new BABYLON.Mesh("group_" + e, wanaplan.engine3D.scene), t.setGroupId(o, e), n = Math.max(n, e)) : o = new BABYLON.Mesh("group_virtual", wanaplan.engine3D.scene), o.isDecorable = !0, o.decorate = p.bind(o), o.isVisible = !1, o.parent = i, this.addDraggable(o), o
+        return null !== e && void 0 !== e ? (o = new BABYLON.Mesh("group_" + e, hcsdesign.engine3D.scene), t.setGroupId(o, e), n = Math.max(n, e)) : o = new BABYLON.Mesh("group_virtual", hcsdesign.engine3D.scene), o.isDecorable = !0, o.decorate = p.bind(o), o.isVisible = !1, o.parent = i, this.addDraggable(o), o
     }, c.prototype.mergeGroup = function(e, n) {
         var i = !!n && this.isGroup(n),
             o = !!e && this.isGroup(e);
@@ -30086,8 +30185,8 @@ var EditionComponent3D = function() {
         }
     }, c.prototype.refreshObject = function(t, e) {
         e = e || {};
-        var n = wanaplan.getComponentByName("ObjectComponent3D");
-        !e.noHistory && e.modifiedProperties && ujs.notify("wnp.request.historyAction", {
+        var n = hcsdesign.getComponentByName("ObjectComponent3D");
+        !e.noHistory && e.modifiedProperties && ujs.notify("hcs.request.historyAction", {
             component: this,
             object: t,
             params: e.modifiedProperties || {},
@@ -30112,7 +30211,7 @@ var EditionComponent3D = function() {
         e.value ? t.virtualToRealGroup(e) : t.deleteSelectedGroup()
     }, c.prototype.onCloneGroup = function(e) {
         var i = e.getChildren(),
-            o = wanaplan.getComponentByName("ObjectComponent3D");
+            o = hcsdesign.getComponentByName("ObjectComponent3D");
         t.virtualToRealGroup(), t.deleteGroup(), t.deselectObject();
         var r = t.createGroup(++n, e.getFloor());
         r.computeWorldMatrix(!0);
@@ -30123,27 +30222,27 @@ var EditionComponent3D = function() {
             var c = i[l];
             if (t.isSelectableObject(c)) {
                 var u = c.structure.clone();
-                wanaplan.getSelectedStructure().insertElement("objects", u);
+                hcsdesign.getSelectedStructure().insertElement("objects", u);
                 var p = function(e) {
-                    t.deselectObject(), e.position.addInPlace(a), t.selectObject(e), ujs.notify("wnp.request.saveHistory")
+                    t.deselectObject(), e.position.addInPlace(a), t.selectObject(e), ujs.notify("hcs.request.saveHistory")
                 };
                 u.customData.groupId = r.groupId, o.buildObject(u, u.programmableInstance, c.getFloor(), p)
             }
         }
     }, c.prototype.onCloneObject = function() {
-        var e = wanaplan.getComponentByName("ObjectComponent3D"),
+        var e = hcsdesign.getComponentByName("ObjectComponent3D"),
             n = i;
         if (null != n)
             if (t.isGroup(n))
                 t.onCloneGroup(n);
             else if (t.isSelectableObject(n)) {
             var o = n.structure.clone();
-            wanaplan.getSelectedStructure().insertElement("objects", o);
+            hcsdesign.getSelectedStructure().insertElement("objects", o);
             var r = function(e) {
                 t.deselectObject(), t.selectObject(e);
                 var n = e.getBoundingBox(),
                     i = new BABYLON.Vector3(n.maximum.x - n.minimum.x, 0, 0);
-                i = BABYLON.Vector3.TransformNormal(i, e.getWorldMatrix()), e.position.addInPlace(i), ujs.notify("wnp.request.saveHistory"), ujs.notify("wnp.engine3D.object.clone")
+                i = BABYLON.Vector3.TransformNormal(i, e.getWorldMatrix()), e.position.addInPlace(i), ujs.notify("hcs.request.saveHistory"), ujs.notify("hcs.engine3D.object.clone")
             };
             e.buildObject(o, o.programmableInstance, n.getFloor(), r)
         }
@@ -30167,7 +30266,7 @@ var EditionComponent3D = function() {
                 })
         }
     }, c.prototype.onAddToProducts = function() {
-        var e = wnp.Constants.BACK_URL + "ws/add-model";
+        var e = hcs.Constants.BACK_URL + "ws/add-model";
         if (i && i.structure && t.isSelectableObject(i)) {
             var n = i.structure,
                 o = n.filename || "object";
@@ -30177,7 +30276,7 @@ var EditionComponent3D = function() {
                 withCredentials: !0,
                 params: "action=add&model=model&is_active=0&name=" + o + "&encoded=1&builder_id=" + n.builderId + "&params=" + JSON.stringify(n.programmableInstance.params) + "&materials=" + JSON.stringify(ujs.serializeObject(n.programmableInstance.materials)),
                 success: function(t) {
-                    Logger.message(t), wnp.UI.MessageBox.show({
+                    Logger.message(t), hcs.UI.MessageBox.show({
                         title: _("Object added"),
                         message: _("Object is now available in the backoffice"),
                         buttonAText: _("Close"),
@@ -30235,9 +30334,9 @@ var EditionComponent3D = function() {
     }, c.prototype.redoMove = function(e, n) {
         t.historyMove(e, n.newPosition, n.newRotation)
     }, c.prototype.undoRotate = c.prototype.undoMove, c.prototype.redoRotate = c.prototype.redoMove, c.prototype.historyMove = function(t, e, n) {
-        t.position.copyFromFloats(e.x, e.y, e.z), t.rotation.copyFromFloats(n.x, n.y, n.z), ujs.notify("wnp.request.saveHistory"), ujs.notify("wnp.engine3D.object.translate", {
+        t.position.copyFromFloats(e.x, e.y, e.z), t.rotation.copyFromFloats(n.x, n.y, n.z), ujs.notify("hcs.request.saveHistory"), ujs.notify("hcs.engine3D.object.translate", {
             object: t
-        }), ujs.notify("wnp.engine3D.object.rotate", {
+        }), ujs.notify("hcs.engine3D.object.rotate", {
             object: t
         })
     }, c.prototype.undoRefresh = function(e, n) {
@@ -30245,7 +30344,7 @@ var EditionComponent3D = function() {
     }, c.prototype.redoRefresh = function(e, n) {
         t.historyRefresh(e, n, "newValue")
     }, c.prototype.historyRefresh = function(t, e, n) {
-        var i = wanaplan.getComponentByName("ObjectComponent3D");
+        var i = hcsdesign.getComponentByName("ObjectComponent3D");
         for (var o in e)
             "position" == o ? (t.position.copyFrom(e[o][n]), t.structure.position = t.position) : ujs.setProperty(t.structure, o, e[o][n]);
         i.refreshObject(t)
@@ -30281,16 +30380,16 @@ var MobileComponent = function() {
     var e = function(t, e) {
         if (BaseComponent2D.call(this, t, "MobileComponent"), this.dirty = !GlobalHelper.isMobileDevice(), this._isMenuVisible = !0, this._menuModified = !1, this._subMenuContainer = document.getElementById("subMenuContainer"), this._toggleIcon = null, this._mainUI = document.getElementById("main-ui"), this._drawableSurfaces = document.getElementsByClassName("drawableSurface"), "boolean" == typeof e && e === !0 && (this.dirty = !1), !this.dirty) {
             var n = GlobalHelper.getCapabilities();
-            HTMLHelper.addStylesheet("css/mobile.css"), wanaplan.configuration.loadConfiguration(), wanaplan.configuration.hasMobileConfig || (n.extensions.elementIndexUint ? (wanaplan.configuration.useMultiTexturing = !0, wanaplan.configuration.useMultiLights = !0) : (wanaplan.configuration.useMultiTexturing = !1, wanaplan.configuration.useMultiLights = !1), wanaplan.configuration.useShadow = !1, wanaplan.configuration.hasMobileConfig = !0, wanaplan.configuration.saveConfiguration()), this._toggleMenu = this._toggleMenu.bind(this), this.onCoreInitialized = this.onCoreInitialized.bind(this), this.onContextChanged = this.onContextChanged.bind(this), document.addEventListener("wnp.core.initialized", this.onCoreInitialized, !1), document.addEventListener("wnp.mobile.toggleMenu", this._toggleMenu, !1)
+            HTMLHelper.addStylesheet("css/mobile.css"), hcsdesign.configuration.loadConfiguration(), hcsdesign.configuration.hasMobileConfig || (n.extensions.elementIndexUint ? (hcsdesign.configuration.useMultiTexturing = !0, hcsdesign.configuration.useMultiLights = !0) : (hcsdesign.configuration.useMultiTexturing = !1, hcsdesign.configuration.useMultiLights = !1), hcsdesign.configuration.useShadow = !1, hcsdesign.configuration.hasMobileConfig = !0, hcsdesign.configuration.saveConfiguration()), this._toggleMenu = this._toggleMenu.bind(this), this.onCoreInitialized = this.onCoreInitialized.bind(this), this.onContextChanged = this.onContextChanged.bind(this), document.addEventListener("hcs.core.initialized", this.onCoreInitialized, !1), document.addEventListener("hcs.mobile.toggleMenu", this._toggleMenu, !1)
         }
     };
     return e.prototype = Object.create(BaseComponent2D.prototype), e.prototype.initialize = function() {
-        var e = wanaplan.engine2D.searchComponent("PointComponent2D");
+        var e = hcsdesign.engine2D.searchComponent("PointComponent2D");
         e && (e._SIZE = 45);
-        var n = wanaplan.engine3D.searchComponent("CameraComponent");
-        n && (GlobalHelper.isAppleDevice() && (n.camera[0].minZ = 250, n.camera[0].maxZ = 45e3), window.PointerEvent || (n.camera[0].detachControl(wanaplan.engine3D.canvas), n.camera[0].attachControlForMobile(wanaplan.engine3D.canvas))), window.addEventListener("resize", t, !1), t(), this._editionController = document.getElementById("edition-controller")
+        var n = hcsdesign.engine3D.searchComponent("CameraComponent");
+        n && (GlobalHelper.isAppleDevice() && (n.camera[0].minZ = 250, n.camera[0].maxZ = 45e3), window.PointerEvent || (n.camera[0].detachControl(hcsdesign.engine3D.canvas), n.camera[0].attachControlForMobile(hcsdesign.engine3D.canvas))), window.addEventListener("resize", t, !1), t(), this._editionController = document.getElementById("edition-controller")
     }, e.prototype.onCoreInitialized = function() {
-        document.removeEventListener("wnp.core.initialized", this.onCoreInitialized), GlobalHelper.hasWebGL() && (wanaplan.configuration.useMultiLights || (wanaplan.engine3D.scene.lights[1].dispose(), wanaplan.engine3D.scene.lights[0].intensity = .8, wanaplan.engine3D.scene.lights[0].setDirectionToTarget(new BABYLON.Vector3(0, -1, 0))), wanaplan.configuration.useMultiTexturing || (BABYLON.StandardMaterial.reflectionTextureEnabled = !1, BABYLON.StandardMaterial.SpecularTextureEnabled = !1, BABYLON.StandardMaterial.BumpTextureEnabled = !1), wanaplan.configuration.useShadow || wanaplan.engine3D.shadowGenerator.dispose(), wanaplan.engine3D.scene.lights[0].intensity = .45, wanaplan.engine3D.scene.lights[1].intensity = .05), PerformanceComponent3D.prototype.update = function() {}, wanaplan.engine2D.removeComponentByName("PrintComponent2D"), wanaplan.engine3D.removeComponentByName("PrintComponent3D"), wanaplan.engine3D.removeComponentByName("RemoteControlComponent3D"), ujs.notify("wnp.menu.top.sub.replace", {
+        document.removeEventListener("hcs.core.initialized", this.onCoreInitialized), GlobalHelper.hasWebGL() && (hcsdesign.configuration.useMultiLights || (hcsdesign.engine3D.scene.lights[1].dispose(), hcsdesign.engine3D.scene.lights[0].intensity = .8, hcsdesign.engine3D.scene.lights[0].setDirectionToTarget(new BABYLON.Vector3(0, -1, 0))), hcsdesign.configuration.useMultiTexturing || (BABYLON.StandardMaterial.reflectionTextureEnabled = !1, BABYLON.StandardMaterial.SpecularTextureEnabled = !1, BABYLON.StandardMaterial.BumpTextureEnabled = !1), hcsdesign.configuration.useShadow || hcsdesign.engine3D.shadowGenerator.dispose(), hcsdesign.engine3D.scene.lights[0].intensity = .45, hcsdesign.engine3D.scene.lights[1].intensity = .05), PerformanceComponent3D.prototype.update = function() {}, hcsdesign.engine2D.removeComponentByName("PrintComponent2D"), hcsdesign.engine3D.removeComponentByName("PrintComponent3D"), hcsdesign.engine3D.removeComponentByName("RemoteControlComponent3D"), ujs.notify("hcs.menu.top.sub.replace", {
             item: {
                 id: "item1",
                 addClass: "hidden"
@@ -30300,21 +30399,21 @@ var MobileComponent = function() {
         var t = {
             title: _("Toggle"),
             icon: "fa fa-chevron-circle-right",
-            action: "wnp.mobile.toggleMenu",
+            action: "hcs.mobile.toggleMenu",
             id: "toggle-mobile-button",
             items: [],
             index: "0"
         };
-        ujs.notify("wnp.menu.top.sub.add", {
+        ujs.notify("hcs.menu.top.sub.add", {
             item: t,
             menuPath: "."
-        }), window.innerWidth < 800 && (this._toggleMenu(), wanaplan.engine2D.removeComponentByName("ScreenshotMenuComponent"), wanaplan.engine2D.removeComponentByName("FullscreenComponent"), wanaplan.engine3D.removeComponentByName("HistoryEditionComponent"))
+        }), window.innerWidth < 800 && (this._toggleMenu(), hcsdesign.engine2D.removeComponentByName("ScreenshotMenuComponent"), hcsdesign.engine2D.removeComponentByName("FullscreenComponent"), hcsdesign.engine3D.removeComponentByName("HistoryEditionComponent"))
     }, e.prototype.addPointerCallback = function() {
-        document.addEventListener("wnp.input.pointerchanged", function(t) {
-            wanaplan.engine3D.onMouseEvent(t, t.inputStatus)
+        document.addEventListener("hcs.input.pointerchanged", function(t) {
+            hcsdesign.engine3D.onMouseEvent(t, t.inputStatus)
         }, !1)
     }, e.prototype._toggleMenu = function() {
-        this._toggleIcon = document.getElementById("toggle-mobile-button").getElementsByTagName("i")[0], wanaplan.setMenuWidth(this._isMenuVisible ? 0 : void 0), this._isMenuVisible ? (this._mainUI.style.display = "none", this._subMenuContainer.style.right = "0px", this._toggleIcon.setAttribute("class", "fa fa-chevron-circle-left"), this._editionController && (this._editionController.style.right = "40px"), this._drawableSurfaces[0].classList.remove("with-menu"), this._drawableSurfaces[1].classList.remove("with-menu"), wanaplan.setSize(window.innerWidth, window.innerHeight)) : (this._mainUI.style.display = "block", this._subMenuContainer.style.right = wanaplan.getMenuWidth() + "px", this._toggleIcon.setAttribute("class", "fa fa-chevron-circle-right"), this._editionController && (this._editionController.style.right = window.innerWidth - 320 + "px"), this._drawableSurfaces[0].classList.add("with-menu"), this._drawableSurfaces[1].classList.add("with-menu"), wanaplan.setSize(window.innerWidth - wanaplan.getMenuWidth(), window.innerHeight)), this._isMenuVisible = !this._isMenuVisible
+        this._toggleIcon = document.getElementById("toggle-mobile-button").getElementsByTagName("i")[0], hcsdesign.setMenuWidth(this._isMenuVisible ? 0 : void 0), this._isMenuVisible ? (this._mainUI.style.display = "none", this._subMenuContainer.style.right = "0px", this._toggleIcon.setAttribute("class", "fa fa-chevron-circle-left"), this._editionController && (this._editionController.style.right = "40px"), this._drawableSurfaces[0].classList.remove("with-menu"), this._drawableSurfaces[1].classList.remove("with-menu"), hcsdesign.setSize(window.innerWidth, window.innerHeight)) : (this._mainUI.style.display = "block", this._subMenuContainer.style.right = hcsdesign.getMenuWidth() + "px", this._toggleIcon.setAttribute("class", "fa fa-chevron-circle-right"), this._editionController && (this._editionController.style.right = window.innerWidth - 320 + "px"), this._drawableSurfaces[0].classList.add("with-menu"), this._drawableSurfaces[1].classList.add("with-menu"), hcsdesign.setSize(window.innerWidth - hcsdesign.getMenuWidth(), window.innerHeight)), this._isMenuVisible = !this._isMenuVisible
     }, e
 }();
 var MobileInputComponent = function() {
@@ -30333,15 +30432,15 @@ var MobileInputComponent = function() {
     }, i.prototype._onInputChanged = function(i) {
         return "onpointerdown" in window ? void(0 === n ? (n++, e = "mousemove" === i.type) : t.removeInputSupport("mousemove" === i.type ? "touch" : "mouse")) : void t.removeInputSupport("touchstart" === i.type || "touch" === i.pointerType ? "mouse" : "touch")
     }, i.prototype.removeInputSupport = function(t) {
-        var e = wanaplan.engine2D._pointerManager,
-            n = wanaplan.engine3D.pointerManager;
+        var e = hcsdesign.engine2D._pointerManager,
+            n = hcsdesign.engine3D.pointerManager;
         if ("mouse" === t) {
             e.removeMouseSupport(), n && n.removeMouseSupport();
-            var i = wanaplan.engine2D.searchComponent("MobileComponent");
-            i || (console.log("create new"), i = new MobileComponent(wanaplan, !0), wanaplan.engine2D.addInstancedComponent(i), i.onCoreInitialized()), i.addPointerCallback(), GlobalHelper.__forceMobileDevice(!0)
+            var i = hcsdesign.engine2D.searchComponent("MobileComponent");
+            i || (console.log("create new"), i = new MobileComponent(hcsdesign, !0), hcsdesign.engine2D.addInstancedComponent(i), i.onCoreInitialized()), i.addPointerCallback(), GlobalHelper.__forceMobileDevice(!0)
         } else
         //            e.removeTouchSupport(), n && n.removeTouchSupport();
-            this._unbindListeners(), wanaplan.engine2D.removeComponent(this, !0)
+            this._unbindListeners(), hcsdesign.engine2D.removeComponent(this, !0)
     }, i
 }();
 var PedagoComponent = function() {
@@ -30351,12 +30450,12 @@ var PedagoComponent = function() {
     };
     return t.prototype = Object.create(BaseComponent2D.prototype), t.prototype.checkBrowserCapability = function() {
         /*
-         * function : ����������������
+         * function : ��������������
          */
         // step 01: check hasCanvas2D()
         GlobalHelper.hasCanvas2D() || this.redirectToPage("no-webgl");
         // step 02 : check hasWebGL()
-        var t = wnpLocalStorage.getItem("wnp.core.force2D"); // will return null when window.onload call.
+        var t = hcsLocalStorage.getItem("hcs.core.force2D"); // will return null when window.onload call.
         return t ? !0 : GlobalHelper.hasWebGL() ? !0 : (this.redirectToPage(GlobalHelper.isAppleDevice() ? "ios" : "Mac" == BrowserDetect.OS && "Safari" == BrowserDetect.browser ? "safari" : GlobalHelper.isAndroidDevice() && navigator.userAgent.match(/chrome/i) ? "no-webgl-chrome-android" : GlobalHelper.isMobileDevice() ? "mobile" : "no-webgl"), !1)
     }, t.prototype.getPageURL = function(t) {
         return [this.pedagoPath, t, ".php"].join("")
@@ -30370,13 +30469,13 @@ var LockComponent = function() {
             BaseComponent3D.call(this, t, "LockComponent"), this._editionComponent = null, this._isLocked = !1
         };
     return e.prototype = Object.create(BaseComponent3D.prototype), e.prototype.onContextChanged = function(t) {
-        "2D" === t ? ujs.notify("wnp.menu.top.sub.replace", {
+        "2D" === t ? ujs.notify("hcs.menu.top.sub.replace", {
             item: {
                 id: "lock-icon",
                 addClass: "hidden"
             },
             merge: !0
-        }, !0) : ujs.notify("wnp.menu.top.sub.replace", {
+        }, !0) : ujs.notify("hcs.menu.top.sub.replace", {
             item: {
                 id: "lock-icon",
                 addClass: ""
@@ -30386,24 +30485,24 @@ var LockComponent = function() {
     }, e.prototype.initialize = function() {
         HTMLHelper.addStylesheet(t + "lockComponent.css", {
             media: "screen"
-        }), this._editionComponent = wanaplan.engine3D.searchComponent("EditionComponent3D"), this.toggleLock = this.toggleLock.bind(this);
+        }), this._editionComponent = hcsdesign.engine3D.searchComponent("EditionComponent3D"), this.toggleLock = this.toggleLock.bind(this);
         var e = {
-            action: "wnp.component.lock",
+            action: "hcs.component.lock",
             id: "lock-icon",
             index: 1,
             addClass: "hidden",
             icon: "fa fa-unlock",
             title: _("Lock/Unlock")
         };
-        ujs.notify("wnp.menu.top.sub.add", {
+        ujs.notify("hcs.menu.top.sub.add", {
             item: e,
             menuPath: "."
-        }), document.addEventListener("wnp.component.lock", this.toggleLock, !1)
+        }), document.addEventListener("hcs.component.lock", this.toggleLock, !1)
     }, e.prototype.destroy = function() {
-        ujs.notify("wnp.menu.top.sub.delete", {
+        ujs.notify("hcs.menu.top.sub.delete", {
             id: "lock-icon",
             menuPath: "."
-        }), document.removeEventListener("wnp.component.lock", this.toggleLock)
+        }), document.removeEventListener("hcs.component.lock", this.toggleLock)
     }, e.prototype.toggleLock = function() {
         this._isLocked = !this._isLocked;
         var t = document.getElementById("lock-icon"),
@@ -30416,7 +30515,7 @@ var EditMeasureComponent = function() {
         BaseComponent2D.call(this, t, "EditMeasureComponent")
     };
     return t.prototype = new BaseComponent2D, t.prototype.initialize = function() {}, t.prototype.startListening = function() {
-        this.onClick = this.onClick.bind(this), this.onDblClick = this.onDblClick.bind(this), this.destroyDialog = this.destroyDialog.bind(this), document.addEventListener("click", this.onClick, !1), document.addEventListener("dblclick", this.onDblClick, !1), document.addEventListener("wnp.contextChanged", this.destroyDialog, !1)
+        this.onClick = this.onClick.bind(this), this.onDblClick = this.onDblClick.bind(this), this.destroyDialog = this.destroyDialog.bind(this), document.addEventListener("click", this.onClick, !1), document.addEventListener("dblclick", this.onDblClick, !1), document.addEventListener("hcs.contextChanged", this.destroyDialog, !1)
     }, t.prototype.stopListening = function() {
         document.removeEventListener("click", this.onClick, !1), document.removeEventListener("dblclick", this.onDblClick, !1), this.destroyDialog()
     }, t.prototype.destroyDialog = function() {
@@ -30537,9 +30636,9 @@ var HideAvatarComponent = function() {
     return t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         BaseComponent3D.prototype.initialize.call(this)
     }, t.prototype.startListening = function() {
-        this.onZoom = this.onZoom.bind(this), document.addEventListener("wnp.engine3D.camera.zoom", this.onZoom, !1)
+        this.onZoom = this.onZoom.bind(this), document.addEventListener("hcs.engine3D.camera.zoom", this.onZoom, !1)
     }, t.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3D.camera.zoom", this.onZoom, !1)
+        document.removeEventListener("hcs.engine3D.camera.zoom", this.onZoom, !1)
     }, t.prototype.onZoom = function() {
         var t = 500,
             e = API.getComponent("CameraComponent");
@@ -30551,8 +30650,8 @@ var HideAvatarComponent = function() {
         }
     }, t
 }();
-var wnp = window.wnp || {};
-wnp.LoopTimer = function() {
+var hcs = window.hcs || {};
+hcs.LoopTimer = function() {
     var t = function() {
         var t = 0,
             e = 0;
@@ -30571,9 +30670,9 @@ wnp.LoopTimer = function() {
 }();
 
 var socket = io.connect();
-var wanaplan = null;
+var hcsdesign = null;
 
-var wnpLocalStorage = {
+var hcsLocalStorage = {
     fallback: true,
     items : {},
     setItem: function(key, val) {
@@ -30589,14 +30688,9 @@ var wnpLocalStorage = {
     }
 }
 
-socket.on('reconnect', function () {
-    socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (data) { 
-        wnpLocalStorage.items = data;
-    });
-});
 socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (data) {
     
-    wnpLocalStorage.items = data;
+    hcsLocalStorage.items = data;
 
     BABYLON.Engine.ShadersRepository = "js/Vendors/Babylon/Shaders/";
     function t(t, e) {
@@ -30629,14 +30723,14 @@ socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (
     }
 
     function e() {
-        var loc = "http://v2.wanaplan.fr/#b3JpZ2luPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tJmFwaUtleT1jZjk4NjZiNjQwZjZjNmMyNzEyMmM5Y2NjYThkOWRkNyZzYXZlVXJsPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tL2FwaS9wbGFuL3NhdmUvJm5ld1VybD1odHRwOi8vd3d3LndhbmFwbGFuLmNvbS9hcGkvcGxhbi9uZXcvJmF1dG9SZXNpemU9dHJ1ZSZwYXJhbXM9W29iamVjdCBPYmplY3RdJndpZHRoPTEyNzcmaGVpZ2h0PTM4MSZpZD0xJnBhcmFtcz17fQ==";
-        var e = wnpLocalStorage.getItem("wnp.core.force2D"),
+        var loc = "http://v2.hcsdesign.fr/#b3JpZ2luPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tJmFwaUtleT1jZjk4NjZiNjQwZjZjNmMyNzEyMmM5Y2NjYThkOWRkNyZzYXZlVXJsPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tL2FwaS9wbGFuL3NhdmUvJm5ld1VybD1odHRwOi8vd3d3LndhbmFwbGFuLmNvbS9hcGkvcGxhbi9uZXcvJmF1dG9SZXNpemU9dHJ1ZSZwYXJhbXM9W29iamVjdCBPYmplY3RdJndpZHRoPTEyNzcmaGVpZ2h0PTM4MSZpZD0xJnBhcmFtcz17fQ==";
+        var e = hcsLocalStorage.getItem("hcs.core.force2D"),
             n = "",
             //        s = document.location.href.split("#");
             s = loc.split("#");
-        // s[0] = "http://v2.wanaplan.fr/"
+        // s[0] = "http://v2.hcsdesign.fr/"
         // s[1] = apiKey
-        // n = "origin=http://www.wanaplan.com&apiKey=cf9866b640f6c6c27122c9ccca8d9dd7&saveUrl=htt…ewUrl=http://www.wanaplan.com/api/plan/new/&autoResize=true&params=[object Object]&width=1277&height=146&id=1&params={}"
+        // n = "origin=http://www.hcsdesign.com&apiKey=cf9866b640f6c6c27122c9ccca8d9dd7&saveUrl=htt…ewUrl=http://www.hcsdesign.com/api/plan/new/&autoResize=true&params=[object Object]&width=1277&height=146&id=1&params={}"
         s[1] && (n = a(s[1]));
         var p = function(t) {
                 for (var e = {}, n = t.split("&"), i = 0; i < n.length; i++) {
@@ -30647,22 +30741,22 @@ socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (
             },
             d = p(n); // 将n装换成map（参数为key，值为value，例如{width=1277, height=146...}）
         if (!GlobalHelper.hasWebGL() && e && (d.allow3D = !1),
-            d.apiKey /*|| (document.location.href = "http://www.wanaplan.com")*/ , u = d.lang ? d.lang : u, t(u),
-            wanaplan = new l.Core(h, c, d), wanaplan.engine2D.addComponent(GridComponent2D), wanaplan.engine2D.addComponent(PointComponent2D), wanaplan.engine2D.addComponent(WallComponent2D), wanaplan.engine2D.addComponent(RoomComponent2D), /* wanaplan.engine2D.addComponent(StairwayComponent2D), wanaplan.engine2D.addComponent(HopperComponent2D),*/ wanaplan.engine2D.addComponent(SubSlopeComponent2D), wanaplan.engine2D.addComponent(SubSlopeOvertureComponent2D), wanaplan.engine2D.addComponent(OvertureComponent2D), wanaplan.engine2D.addComponent(MobileComponent), wanaplan.engine2D.addComponent(MobileInputComponent), /*wanaplan.engine2D.addComponent(AnalyticsComponent), wanaplan.engine2D.addComponent(FloorController),*/ wanaplan.engine2D.addComponent(MeasureComponent), wanaplan.engine3D.addComponent(CameraComponent), wanaplan.engine3D.addComponent(GridComponent3D), wanaplan.engine3D.addComponent(AvatarComponent3D), wanaplan.engine3D.addComponent(RoomComponent3D), wanaplan.engine3D.addComponent(OvertureComponent3D), wanaplan.engine3D.addComponent(SubSlopeComponent3D), wanaplan.engine3D.addComponent(WallComponent3D), wanaplan.engine3D.addComponent(StairwayComponent3D), wanaplan.engine3D.addComponent(HopperComponent3D), wanaplan.engine3D.addComponent(ObjectComponent3D), wanaplan.engine3D.addComponent(FloorComponent3D), wanaplan.engine3D.addComponent(RemoteControlComponent3D), wanaplan.engine3D.addComponent(TransparencyComponent), r(), o(d), i(d), wanaplan.setSelectedEngine(wanaplan.ENGINE_2D), wanaplan.mode == wanaplan.MODE_VIEWER) {
-            var m = +d.startOn2D ? wanaplan.ENGINE_2D : wanaplan.ENGINE_3D;
-            wanaplan.initialize(function() {
-                wanaplan.engine2D.requestStaticDraw(), wanaplan.engine2D.update(!0), wanaplan.setSelectedEngine(m), wanaplan.hideSplashScreen()
+            d.apiKey /*|| (document.location.href = "http://www.hcsdesign.com")*/ , u = d.lang ? d.lang : u, t(u),
+            hcsdesign = new l.Core(h, c, d), hcsdesign.engine2D.addComponent(GridComponent2D), hcsdesign.engine2D.addComponent(PointComponent2D), hcsdesign.engine2D.addComponent(WallComponent2D), hcsdesign.engine2D.addComponent(RoomComponent2D), /* hcsdesign.engine2D.addComponent(StairwayComponent2D), hcsdesign.engine2D.addComponent(HopperComponent2D),*/ hcsdesign.engine2D.addComponent(SubSlopeComponent2D), hcsdesign.engine2D.addComponent(SubSlopeOvertureComponent2D), hcsdesign.engine2D.addComponent(OvertureComponent2D), hcsdesign.engine2D.addComponent(MobileComponent), hcsdesign.engine2D.addComponent(MobileInputComponent), /*hcsdesign.engine2D.addComponent(AnalyticsComponent), hcsdesign.engine2D.addComponent(FloorController),*/ hcsdesign.engine2D.addComponent(MeasureComponent), hcsdesign.engine3D.addComponent(CameraComponent), hcsdesign.engine3D.addComponent(GridComponent3D), hcsdesign.engine3D.addComponent(AvatarComponent3D), hcsdesign.engine3D.addComponent(RoomComponent3D), hcsdesign.engine3D.addComponent(OvertureComponent3D), hcsdesign.engine3D.addComponent(SubSlopeComponent3D), hcsdesign.engine3D.addComponent(WallComponent3D), hcsdesign.engine3D.addComponent(StairwayComponent3D), hcsdesign.engine3D.addComponent(HopperComponent3D), hcsdesign.engine3D.addComponent(ObjectComponent3D), hcsdesign.engine3D.addComponent(FloorComponent3D), hcsdesign.engine3D.addComponent(RemoteControlComponent3D), hcsdesign.engine3D.addComponent(TransparencyComponent), r(), o(d), i(d), hcsdesign.setSelectedEngine(hcsdesign.ENGINE_2D), hcsdesign.mode == hcsdesign.MODE_VIEWER) {
+            var m = +d.startOn2D ? hcsdesign.ENGINE_2D : hcsdesign.ENGINE_3D;
+            hcsdesign.initialize(function() {
+                hcsdesign.engine2D.requestStaticDraw(), hcsdesign.engine2D.update(!0), hcsdesign.setSelectedEngine(m), hcsdesign.hideSplashScreen()
             })
         } else
-            wanaplan.initialize(); // wanaplan = new l.Core(h, c, d) == new wnp.Core(h, c, d) 因此wanaplan 是wnp.Core的函数对象
+            hcsdesign.initialize(); // hcsdesign = new l.Core(h, c, d) == new hcs.Core(h, c, d) 因此hcsdesign 是hcs.Core的函数对象
     }
 
     function n(t) {
-        if (t.mode == wanaplan.mode || 0 == t.mode) {
+        if (t.mode == hcsdesign.mode || 0 == t.mode) {
             var e = t.configuration || {};
             if (1 != t.type)
                 return;
-            var i = wanaplan["engine" + (t.engine || "2D")];
+            var i = hcsdesign["engine" + (t.engine || "2D")];
             if (!i)
                 return void Logger.message(t.name + " not loaded");
             var o = window[t.name];
@@ -30707,22 +30801,22 @@ socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (
     }
 
     function r() {
-        wanaplan.mode == wanaplan.MODE_EDITOR ? (wanaplan.engine2D.addComponent(MainMenuComponent), wanaplan.engine2D.addComponent(TopMenuComponent), wanaplan.engine2D.addComponent(SaveComponent), wanaplan.engine2D.addComponent(NewComponent), wanaplan.engine2D.addComponent(OptionsComponent), wanaplan.engine2D.addComponent(ExitComponent), wanaplan.engine2D.addComponent(ScreenshotMenuComponent), wanaplan.engine2D.addComponent(FullscreenComponent), wanaplan.engine3D.addComponent(HistoryComponent), wanaplan.engine3D.addComponent(HistoryEditionComponent), wanaplan.engine2D.addComponent(GeneralOptionComponent2D), /*wanaplan.engine2D.addComponent(GridBackgroundComponent2D), */wanaplan.engine2D.addComponent(MagnetismComponent2D), wanaplan.engine2D.addComponent(PrintComponent2D), wanaplan.engine2D.addComponent(DebugComponent2D), wanaplan.engine2D.addComponent(EditMeasureComponent), wanaplan.engine3D.addComponent(PrintComponent3D), wanaplan.engine3D.addComponent(EditionComponent3D), wanaplan.engine3D.addComponent(GroupConfiguratorModComponent3D), wanaplan.engine3D.addComponent(ConfiguratorModComponent3D), wanaplan.engine3D.addComponent(GroupConfiguratorPanelComponent3D), wanaplan.engine3D.addComponent(ConfiguratorPanelComponent3D), wanaplan.engine3D.addComponent(ConfiguratorInOutAnimationComponent3D), wanaplan.engine3D.addComponent(ConfiguratorXrayComponent3D), wanaplan.engine3D.addComponent(MesureDisplayerForDimensionReshaperFactoryComponent3D), wanaplan.engine3D.addComponent(HandlesDisplayerForDimensionReshaperFactoryComponent3D), wanaplan.engine3D.addComponent(BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D), wanaplan.engine3D.addComponent(MasterReshaperComponent3D), wanaplan.engine3D.addComponent(DimensionReshaperComponent3D), wanaplan.engine3D.addComponent(MagnetismComponent3D), wanaplan.engine3D.addComponent(DecorationComponent3D), wanaplan.engine3D.addComponent(LuxensComponent3D), wanaplan.engine3D.addComponent(OutsideComponent3D), wanaplan.engine3D.addComponent(DebugComponent3D), wanaplan.engine3D.addComponent(LockComponent), wanaplan.engine3D.addComponent(PerformanceComponent3D), wanaplan.engine3D.addComponent(HardwareScalingComponent3D), wanaplan.engine3D.addComponent(HideAvatarComponent)) : wanaplan.mode == wanaplan.MODE_VIEWER
+        hcsdesign.mode == hcsdesign.MODE_EDITOR ? (hcsdesign.engine2D.addComponent(MainMenuComponent), hcsdesign.engine2D.addComponent(TopMenuComponent), hcsdesign.engine2D.addComponent(SaveComponent), hcsdesign.engine2D.addComponent(NewComponent), hcsdesign.engine2D.addComponent(OptionsComponent), hcsdesign.engine2D.addComponent(ExitComponent), hcsdesign.engine2D.addComponent(ScreenshotMenuComponent), hcsdesign.engine2D.addComponent(FullscreenComponent), hcsdesign.engine3D.addComponent(HistoryComponent), hcsdesign.engine3D.addComponent(HistoryEditionComponent), hcsdesign.engine2D.addComponent(GeneralOptionComponent2D), /*hcsdesign.engine2D.addComponent(GridBackgroundComponent2D), */hcsdesign.engine2D.addComponent(MagnetismComponent2D), hcsdesign.engine2D.addComponent(PrintComponent2D), hcsdesign.engine2D.addComponent(DebugComponent2D), hcsdesign.engine2D.addComponent(EditMeasureComponent), hcsdesign.engine3D.addComponent(PrintComponent3D), hcsdesign.engine3D.addComponent(EditionComponent3D), hcsdesign.engine3D.addComponent(GroupConfiguratorModComponent3D), hcsdesign.engine3D.addComponent(ConfiguratorModComponent3D), hcsdesign.engine3D.addComponent(GroupConfiguratorPanelComponent3D), hcsdesign.engine3D.addComponent(ConfiguratorPanelComponent3D), hcsdesign.engine3D.addComponent(ConfiguratorInOutAnimationComponent3D), hcsdesign.engine3D.addComponent(ConfiguratorXrayComponent3D), hcsdesign.engine3D.addComponent(MesureDisplayerForDimensionReshaperFactoryComponent3D), hcsdesign.engine3D.addComponent(HandlesDisplayerForDimensionReshaperFactoryComponent3D), hcsdesign.engine3D.addComponent(BoundingLimitDisplayerForDimensionReshaperFactoryComponent3D), hcsdesign.engine3D.addComponent(MasterReshaperComponent3D), hcsdesign.engine3D.addComponent(DimensionReshaperComponent3D), hcsdesign.engine3D.addComponent(MagnetismComponent3D), hcsdesign.engine3D.addComponent(DecorationComponent3D), hcsdesign.engine3D.addComponent(LuxensComponent3D), hcsdesign.engine3D.addComponent(OutsideComponent3D), hcsdesign.engine3D.addComponent(DebugComponent3D), hcsdesign.engine3D.addComponent(LockComponent), hcsdesign.engine3D.addComponent(PerformanceComponent3D), hcsdesign.engine3D.addComponent(HardwareScalingComponent3D), hcsdesign.engine3D.addComponent(HideAvatarComponent)) : hcsdesign.mode == hcsdesign.MODE_VIEWER
     }
 
     function s() {
-        requestAnimationFrame(s), wanaplan.update(), wanaplan.draw()
+        requestAnimationFrame(s), hcsdesign.update(), hcsdesign.draw()
     }
     var a = window.atob || function(t) {
         return t
     };
-    window.WNP_DEBUG = !1, Logger.setDebugMode(window.WNP_DEBUG);
-    var l = window.wnp || {},
+    window.hcs_DEBUG = !1, Logger.setDebugMode(window.hcs_DEBUG);
+    var l = window.hcs || {},
         h = l.Constants.VERSION;
-    window.WNP_DEBUG && (h += Math.round(100 * Math.random()));
+    window.hcs_DEBUG && (h += Math.round(100 * Math.random()));
     var c = new I18njs("./l10n/"),
         u = navigator.language || navigator.browserLanguage || "fr_FR",
-        p = wnpLocalStorage.getItem(l.Constants.LC_LANG_KEY);
+        p = hcsLocalStorage.getItem(l.Constants.LC_LANG_KEY);
     if (null !== p)
         u = p;
     else {
@@ -30736,10 +30830,10 @@ socket.emit('init', { uuid: 'bae9e1d5-47ca-4fc2-af27-0e27da13de65' }, function (
             // 设置延迟加载函数
                 var n = setTimeout(function() {
                 // 由 setTimeout() 返回的 ID 值-n。该值标识要取消的延迟执行代码块。
-                // 当wanaplan.isFullyInitialized为true时，跳转至http://v2.wanaplan.fr/b3JpZ2luPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tJmFwaUtleT1jZjk4NjZiNjQwZjZjNmMyNzEyMmM5Y2NjYThkOWRkNyZzYXZlVXJsPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tL2FwaS9wbGFuL3NhdmUvJm5ld1VybD1odHRwOi8vd3d3LndhbmFwbGFuLmNvbS9hcGkvcGxhbi9uZXcvJmF1dG9SZXNpemU9dHJ1ZSZwYXJhbXM9W29iamVjdCBPYmplY3RdJndpZHRoPTEyNzcmaGVpZ2h0PTM4MSZpZD0xJnBhcmFtcz17fQ==/js/Components/PedagoComponent/pedago/pages/grapics.php
-                clearTimeout(n), wanaplan.isFullyInitialized || com.redirectToPage("graphics")
+                // 当hcsdesign.isFullyInitialized为true时，跳转至http://v2.hcsdesign.fr/b3JpZ2luPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tJmFwaUtleT1jZjk4NjZiNjQwZjZjNmMyNzEyMmM5Y2NjYThkOWRkNyZzYXZlVXJsPWh0dHA6Ly93d3cud2FuYXBsYW4uY29tL2FwaS9wbGFuL3NhdmUvJm5ld1VybD1odHRwOi8vd3d3LndhbmFwbGFuLmNvbS9hcGkvcGxhbi9uZXcvJmF1dG9SZXNpemU9dHJ1ZSZwYXJhbXM9W29iamVjdCBPYmplY3RdJndpZHRoPTEyNzcmaGVpZ2h0PTM4MSZpZD0xJnBhcmFtcz17fQ==/js/Components/PedagoComponent/pedago/pages/grapics.php
+                clearTimeout(n), hcsdesign.isFullyInitialized || com.redirectToPage("graphics")
             }, 15e3);
-            e(), wanaplan.engine2D.addInstancedComponent(com), s()
+            e(), hcsdesign.engine2D.addInstancedComponent(com), s()
         }
     
 });

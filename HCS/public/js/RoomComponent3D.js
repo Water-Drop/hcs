@@ -1,10 +1,10 @@
 var RoomComponent3D = function() {
     var t, e = function(e) {
         BaseComponent3D.call(this, e, "RoomComponent3D"), this._defaultRoomTextures = {
-            diffuseTexture: new BABYLON.Texture(wnp.Assets.roomTextures.diffuse, wanaplan.engine3D.scene),
-            specularTexture: new BABYLON.Texture(wnp.Assets.roomTextures.specular, wanaplan.engine3D.scene),
-            bumpTexture: new BABYLON.Texture(wnp.Assets.roomTextures.normal, wanaplan.engine3D.scene)
-        }, this._defaultMaterial = new wnp.WoodMaterial("floor", wanaplan.engine3D.scene), this._defaultMaterial.diffuseTexture = this._defaultRoomTextures.diffuseTexture, this._defaultMaterial.bumpTexture = this._defaultRoomTextures.bumpTexture, this._defaultCeiling = new wnp.WhiteMaterial("CeilingBasic", wanaplan.engine3D.scene), this._commonMaterials = [new wnp.WhiteMaterial("FloorSide_common", wanaplan.engine3D.scene), new wnp.WhiteMaterial("Ceiling_common", wanaplan.engine3D.scene)], this._materialOffset = 0, t = this
+            diffuseTexture: new BABYLON.Texture(hcs.Assets.roomTextures.diffuse, hcsdesign.engine3D.scene),
+            specularTexture: new BABYLON.Texture(hcs.Assets.roomTextures.specular, hcsdesign.engine3D.scene),
+            bumpTexture: new BABYLON.Texture(hcs.Assets.roomTextures.normal, hcsdesign.engine3D.scene)
+        }, this._defaultMaterial = new hcs.WoodMaterial("floor", hcsdesign.engine3D.scene), this._defaultMaterial.diffuseTexture = this._defaultRoomTextures.diffuseTexture, this._defaultMaterial.bumpTexture = this._defaultRoomTextures.bumpTexture, this._defaultCeiling = new hcs.WhiteMaterial("CeilingBasic", hcsdesign.engine3D.scene), this._commonMaterials = [new hcs.WhiteMaterial("FloorSide_common", hcsdesign.engine3D.scene), new hcs.WhiteMaterial("Ceiling_common", hcsdesign.engine3D.scene)], this._materialOffset = 0, t = this
     };
     e.prototype = new BaseComponent3D, e.prototype.getSideMaterial = function() {
         return this._defaultMaterial
@@ -15,19 +15,19 @@ var RoomComponent3D = function() {
     }, e.prototype.setCeilingMaterial = function(t) {
         this._defaultCeiling = t
     }, e.prototype.onContextChanged = function(t) {
-        "3D" == t ? this.initialized || (document.addEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !0) : this.initialized && (document.removeEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !1)
+        "3D" == t ? this.initialized || (document.addEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !0) : this.initialized && (document.removeEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1), this.initialized = !1)
     }, e.prototype.onFloorReady = function(e) {
         var n = e.floor || t.getFloor(),
             i = e.structure || t.core.getSelectedStructure();
-        wanaplan.getComponentByName("RoomComponent2D").update(i);
+        hcsdesign.getComponentByName("RoomComponent2D").update(i);
         var o = i.getElements("hoppers"),
-            r = wanaplan.structure.getElement(i.id + 1),
+            r = hcsdesign.structure.getElement(i.id + 1),
             s = i.getElements("internalRooms");
         if (r)
             var a = t.build(s, o, n, r.hoppers);
         else
             var a = t.build(s, o, n, []);
-        t.mesh = a, ujs.notify("wnp.engine3d.roomsReady", {
+        t.mesh = a, ujs.notify("hcs.engine3d.roomsReady", {
             floor: n,
             structure: i
         })
@@ -42,8 +42,8 @@ var RoomComponent3D = function() {
             var h = this.createRoom(t[a], 0, t[a].height);
             s < t[a].height && (s = t[a].elevation), h && (r.push(h.floor), r.push(h.ceiling))
         }
-        var c = BABYLON.Mesh.mergeMeshes("RoomMesh_" + i.structure.id, r, wanaplan.engine3D.scene, !0);
-        if (c.material = new BABYLON.MultiMaterial("RoomMaterial", wanaplan.engine3D.scene), c.isDecorable = !0, c.decorate = n, c.parent = i, i.roomMesh = c, c.receiveShadows = !0, wanaplan.engine3D.scene.lights.point.excludedMeshes.push(c), HopperComponent3D) {
+        var c = BABYLON.Mesh.mergeMeshes("RoomMesh_" + i.structure.id, r, hcsdesign.engine3D.scene, !0);
+        if (c.material = new BABYLON.MultiMaterial("RoomMaterial", hcsdesign.engine3D.scene), c.isDecorable = !0, c.decorate = n, c.parent = i, i.roomMesh = c, c.receiveShadows = !0, hcsdesign.engine3D.scene.lights.point.excludedMeshes.push(c), HopperComponent3D) {
             for (var u = 0; u < e.length; u++)
                 c = HopperComponent3D.Build(c, e[u], 0, s + 5);
             for (var u = 0; u < o.length; u++)
@@ -60,14 +60,14 @@ var RoomComponent3D = function() {
             return !1;
         if (i = BABYLON.Mesh.ExtrudeNewMesh("room", o, null, {
                 amount: 5 + t.elevation
-            }, wanaplan.engine3D.scene))
-            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", o, [], wanaplan.engine3D.scene, n - .1);
+            }, hcsdesign.engine3D.scene))
+            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", o, [], hcsdesign.engine3D.scene, n - .1);
         else {
             var s = this.normalizePolygon(t.points);
             i = BABYLON.Mesh.ExtrudeNewMesh("room", s, null, {
                 amount: 5 + t.elevation
-            }, wanaplan.engine3D.scene);
-            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", s, [], wanaplan.engine3D.scene, n - .1);
+            }, hcsdesign.engine3D.scene);
+            var r = BABYLON.Mesh.TriangulateNewMesh("ceiling", s, [], hcsdesign.engine3D.scene, n - .1);
             if (!i)
                 return null
         }
@@ -86,16 +86,16 @@ var RoomComponent3D = function() {
         var i = BABYLON.CSG.FromMesh(t),
             o = BABYLON.Mesh.ExtrudeNewMesh("hopper_temp", e, null, {
                 amount: n
-            }, wanaplan.engine3D.scene);
+            }, hcsdesign.engine3D.scene);
         if (!o)
             return t;
         o.parent = t.parent, o.material = this._commonMaterials[0];
         var r = BABYLON.CSG.FromMesh(o),
             s = i.subtract(r),
-            a = s.toMesh("room_global", t.material, wanaplan.engine3D.scene, !1);
+            a = s.toMesh("room_global", t.material, hcsdesign.engine3D.scene, !1);
         return a.parent = t.parent, o.dispose(), this.replaceRoom(t, a), a
     }, e.prototype.replaceRoom = function(t, e) {
-        -1 != wanaplan.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.parent = t.parent, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, wanaplan.engine3D.scene.lights.point.excludedMeshes.push(e), t.dispose(), this.mesh = e)
+        -1 != hcsdesign.engine3D.scene.meshes.indexOf(t) && (e.name = t.name, e.id = t.id, e.parent = t.parent, e.boundingBoxes = t.boundingBoxes, e.objectInstances = t.objectInstances, e.decorate = t.decorate, e.receiveShadows = t.receiveShadows, hcsdesign.engine3D.scene.lights.point.excludedMeshes.push(e), t.dispose(), this.mesh = e)
     }, e.prototype.createInstances = function(t) {
         if (t) {
             for (var e, n = [], i = [], o = [], r = 0, s = 0, a = t.subMeshes.length; a > s; s++) {

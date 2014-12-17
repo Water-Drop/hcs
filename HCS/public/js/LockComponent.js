@@ -4,13 +4,13 @@ var LockComponent = function() {
             BaseComponent3D.call(this, t, "LockComponent"), this._editionComponent = null, this._isLocked = !1
         };
     return e.prototype = Object.create(BaseComponent3D.prototype), e.prototype.onContextChanged = function(t) {
-        "2D" === t ? ujs.notify("wnp.menu.top.sub.replace", {
+        "2D" === t ? ujs.notify("hcs.menu.top.sub.replace", {
             item: {
                 id: "lock-icon",
                 addClass: "hidden"
             },
             merge: !0
-        }, !0) : ujs.notify("wnp.menu.top.sub.replace", {
+        }, !0) : ujs.notify("hcs.menu.top.sub.replace", {
             item: {
                 id: "lock-icon",
                 addClass: ""
@@ -20,24 +20,24 @@ var LockComponent = function() {
     }, e.prototype.initialize = function() {
         HTMLHelper.addStylesheet(t + "lockComponent.css", {
             media: "screen"
-        }), this._editionComponent = wanaplan.engine3D.searchComponent("EditionComponent3D"), this.toggleLock = this.toggleLock.bind(this);
+        }), this._editionComponent = hcsdesign.engine3D.searchComponent("EditionComponent3D"), this.toggleLock = this.toggleLock.bind(this);
         var e = {
-            action: "wnp.component.lock",
+            action: "hcs.component.lock",
             id: "lock-icon",
             index: 1,
             addClass: "hidden",
             icon: "fa fa-unlock",
             title: _("Lock/Unlock")
         };
-        ujs.notify("wnp.menu.top.sub.add", {
+        ujs.notify("hcs.menu.top.sub.add", {
             item: e,
             menuPath: "."
-        }), document.addEventListener("wnp.component.lock", this.toggleLock, !1)
+        }), document.addEventListener("hcs.component.lock", this.toggleLock, !1)
     }, e.prototype.destroy = function() {
-        ujs.notify("wnp.menu.top.sub.delete", {
+        ujs.notify("hcs.menu.top.sub.delete", {
             id: "lock-icon",
             menuPath: "."
-        }), document.removeEventListener("wnp.component.lock", this.toggleLock)
+        }), document.removeEventListener("hcs.component.lock", this.toggleLock)
     }, e.prototype.toggleLock = function() {
         this._isLocked = !this._isLocked;
         var t = document.getElementById("lock-icon"),

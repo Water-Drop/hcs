@@ -28,7 +28,7 @@ ObjectStructure = function() {
         var t = [];
         return null !== this.programmableInstance && (t = this.programmableInstance.getAvailableProperties(this)), t
     }, e.prototype.getMagnetismCollider = function() {
-        return void 0 !== this.magnetismCollider ? this.magnetismCollider : void 0 !== this.params.magnetismCollider ? this.params.magnetismCollider : wnp.Constants.MAGNETISM.DEFAULT
+        return void 0 !== this.magnetismCollider ? this.magnetismCollider : void 0 !== this.params.magnetismCollider ? this.params.magnetismCollider : hcs.Constants.MAGNETISM.DEFAULT
     }, e.prototype.animate = function(t, e) {
         null !== this.programmableInstance && this.programmableInstance.animate && this.programmableInstance.animate(t, e)
     }, e.prototype.getProperty = function(t) {

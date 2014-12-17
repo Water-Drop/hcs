@@ -1,12 +1,12 @@
 StairwayComponent2D = function() {
     var t = null,
         e = function(e) {
-            BaseComponent2D.call(this, e, "StairwayComponent2D"), this.priority = 50, this._tmpStairway = !1, this._tmpPoint = null, this._targetedAt = null, this._targetedAtPoint = null, this._SIZE = 13, t = this, this.onFloorAdded = this.onFloorAdded.bind(this), document.addEventListener("wnp.request.floorAdded", this.onFloorAdded), document.addEventListener("wnp.core.structure.loaded", this.onStructureLoaded.bind(this))
+            BaseComponent2D.call(this, e, "StairwayComponent2D"), this.priority = 50, this._tmpStairway = !1, this._tmpPoint = null, this._targetedAt = null, this._targetedAtPoint = null, this._SIZE = 13, t = this, this.onFloorAdded = this.onFloorAdded.bind(this), document.addEventListener("hcs.request.floorAdded", this.onFloorAdded), document.addEventListener("hcs.core.structure.loaded", this.onStructureLoaded.bind(this))
         };
     return e.prototype = new BaseComponent2D, e.prototype.startListening = function() {
-        this.onAddStairway = this.onAddStairway.bind(this), document.addEventListener("wnp.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAG | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onHover.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onLeave.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.click", this.priority, "click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onContextMenu.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.dblclick", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onDoubleClick.bind(this), {})
+        this.onAddStairway = this.onAddStairway.bind(this), document.addEventListener("hcs.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.static-draw", this.priority, "static-draw", null, null, this.onStaticDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.hover", this.priority, "hover", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_DRAG | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onHover.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.leave", this.priority, "leave", this.core.engine2D.MODE_NORMAL | this.core.engine2D.MODE_CONTEXTMENU, StairwayStructure, this.onLeave.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.click", this.priority, "click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onContextMenu.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.dblclick", this.priority, "double-click", this.core.engine2D.MODE_NORMAL, StairwayStructure, this.onDoubleClick.bind(this), {})
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.static-draw"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.hover"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.leave"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.click"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.dblclick")
+        document.removeEventListener("hcs.engine2d.onAddStairway", this.onAddStairway, !1), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.static-draw"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.hover"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.leave"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.click"), this.core.engine2D.unregisterEventCb("StairwayComponent2D.stair.dblclick")
     }, e.prototype.onStructureLoaded = function() {
         for (var t, e = 0; e < this.structure.members.length; e++) {
             t = this.structure.members[e];
@@ -103,21 +103,21 @@ StairwayComponent2D = function() {
             id: "stairways",
             items: [{
                 title: _("一般式楼梯"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !1
                 }
             }, {
                 title: _("楼梯平台"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !0
                 }
             }, {
                 title: _("悬式楼梯"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "straight",
                     bearing: !1,
@@ -129,12 +129,12 @@ StairwayComponent2D = function() {
                 }
             }, {
                 title: _("螺旋梯"),
-                action: "wnp.engine2d.onAddStairway",
+                action: "hcs.engine2d.onAddStairway",
                 params: {
                     stairwayType: "spiral"
                 }
             }]
-        }, ujs.notify("wnp.menu.main.add", {
+        }, ujs.notify("hcs.menu.main.add", {
             item: _item,
             menuPath: "draw2D",
             position: 5
@@ -143,7 +143,7 @@ StairwayComponent2D = function() {
         this._tmpStairway = "spiral" == t.stairwayType ? new SpiralStairwayStructure : new StraightStairwayStructure, this._tmpStairway.height = this.core.getSelectedStructure().height;
         for (var e in this._tmpStairway)
             this._tmpStairway.hasOwnProperty(e) && "undefined" != typeof t[e] && "type" != e && (this._tmpStairway[e] = t[e]);
-        this._tmpPoint = null, this.core.helpBubbleManager.display("wnp.2d.draw-staires"), this.core.engine2D.setMode(wanaplan.engine2D.MODE_DRAW), this.core.engine2D.registerEventCb("StairwayComponent2D.add-stair.click", this.priority, "click", this.core.engine2D.MODE_DRAW, null, this.onAddStairwayClick.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", this.core.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", this.core.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.drag-start-draw", this.priority, "drag-start", this.core.engine2D.MODE_DRAW, null, this.onDrawDragStart.bind(this), {})
+        this._tmpPoint = null, this.core.helpBubbleManager.display("hcs.2d.draw-staires"), this.core.engine2D.setMode(hcsdesign.engine2D.MODE_DRAW), this.core.engine2D.registerEventCb("StairwayComponent2D.add-stair.click", this.priority, "click", this.core.engine2D.MODE_DRAW, null, this.onAddStairwayClick.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.mouse-move", this.priority, "mouse-move", this.core.engine2D.MODE_DRAW, null, this.onMouseMove.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.dynamic-stair.dynamic-draw", this.priority, "dynamic-draw", this.core.engine2D.MODE_DRAW, null, this.onDynamicDraw.bind(this), {}), this.core.engine2D.registerEventCb("StairwayComponent2D.stair.drag-start-draw", this.priority, "drag-start", this.core.engine2D.MODE_DRAW, null, this.onDrawDragStart.bind(this), {})
     }, e.prototype.onDoubleClick = function(t, e) {
         e.targeted && e.targeted.point == e.points.length - 1 && (this.onAddStairway({}), this._tmpStairway = e, this.core.engine2D.setMode(this.core.engine2D.MODE_DRAW))
     }, e.prototype.finalizeTmpStairway = function() {
@@ -156,7 +156,7 @@ StairwayComponent2D = function() {
                 n.points = this._tmpStairway.getHopperPoints(), n.stairwayId = this._tmpStairway.id, e.insertElement("hoppers", n)
             }
         }
-        this._tmpStairway = new StairwayStructure, this._tmpPoint = null, this.core.engine2D.requestStaticDraw(), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), ujs.notify("wnp.menu.main.deselect")
+        this._tmpStairway = new StairwayStructure, this._tmpPoint = null, this.core.engine2D.requestStaticDraw(), this.core.engine2D.setMode(this.core.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect")
     }, e.prototype.onAddStairwayClick = function(t, e, n, i) {
         if ("touchUp" == t.type && this.onDrawDragging(t, e, n, i), 0 == this._tmpStairway.points.length || this._tmpPoint) {
             if (this._tmpPoint = this._tmpPoint || n.planPos, this._tmpPoint = this._tmpPoint || n.planPos, this._tmpStairway.points.push(this._tmpPoint.clone()), 1 == this._tmpStairway.points.length) {

@@ -3,15 +3,15 @@ var PrintComponent2D = function() {
         BaseTopMenuComponent2D.call(this, e, "PrintComponent2D"), this.isMainMenuItem = !1, this._item = {
             title: _("Print"),
             icon: "fa fa-print",
-            action: "wnp.request.print",
+            action: "hcs.request.print",
             id: "print-icon-component",
             index: 20
         }, t = this
     };
     return e.prototype = Object.create(BaseTopMenuComponent2D.prototype), e.prototype.startListening = function() {
-        document.addEventListener("wnp.request.print", this.onPrint, !1)
+        document.addEventListener("hcs.request.print", this.onPrint, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.request.print", this.onPrint, !1)
+        document.removeEventListener("hcs.request.print", this.onPrint, !1)
     }, e.prototype.onPrint = function() {
         var e = 842,
             n = 596,

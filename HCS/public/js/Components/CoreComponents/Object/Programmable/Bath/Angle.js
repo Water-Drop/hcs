@@ -1,14 +1,14 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Bath.Angle = (function() {
+hcs.Programmable.Bath.Angle = (function() {
     var that;
 
     /**
@@ -16,19 +16,19 @@ wnp.Programmable.Bath.Angle = (function() {
      *
      * @constructor
      * @class Angle
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var Angle = function (engine, structure, params) {
-        wnp.Programmable.Bath.call(this, engine, structure, params);
+        hcs.Programmable.Bath.call(this, engine, structure, params);
         structure.preferredYAngle = Math.PI/2;
         that = this;
     }
 
-    if (typeof wnp.Programmable.Bath != "undefined") {
-        for (var i in wnp.Programmable.Bath.prototype) {
+    if (typeof hcs.Programmable.Bath != "undefined") {
+        for (var i in hcs.Programmable.Bath.prototype) {
             if (typeof Angle.prototype[i] == 'undefined') {
-                Angle.prototype[i] = wnp.Programmable.Bath.prototype[i];
+                Angle.prototype[i] = hcs.Programmable.Bath.prototype[i];
             }
         }
     }
@@ -38,8 +38,8 @@ wnp.Programmable.Bath.Angle = (function() {
                 
         // materials["global"] = new THREE.MeshFaceMaterial();
 
-        // var mat1 = new wnp.WhiteMaterial(),
-        //     mat2 = new wnp.LuxensMaterial({color:0x890526});
+        // var mat1 = new hcs.WhiteMaterial(),
+        //     mat2 = new hcs.LuxensMaterial({color:0x890526});
 
         // mat1.side = THREE.DoubleSide;
         // mat2.side = THREE.DoubleSide;
@@ -49,9 +49,9 @@ wnp.Programmable.Bath.Angle = (function() {
         //    mat2
         // ];
 
-        materials['global'] =  new wnp.WhiteMaterial("global", scene, {factor : 1.0});
-        materials['coffrage'] = new wnp.LuxensMaterial("coffrage", scene, {baseColor : new BABYLON.Color3(0, 0.486, 0.749)});
-        //materials['global'] =  new wnp.WhiteMaterial("global", scene, {opacity : 0.1});
+        materials['global'] =  new hcs.WhiteMaterial("global", scene, {factor : 1.0});
+        materials['coffrage'] = new hcs.LuxensMaterial("coffrage", scene, {baseColor : new BABYLON.Color3(0, 0.486, 0.749)});
+        //materials['global'] =  new hcs.WhiteMaterial("global", scene, {opacity : 0.1});
        
 
         return materials;
@@ -294,7 +294,7 @@ wnp.Programmable.Bath.Angle = (function() {
                 that.engine3D.refreshRenderer();
             }
         };
-        this.importBabylon(wnp.Assets.robinet4DAE, fRobinet.bind(that, 0) );
+        this.importBabylon(hcs.Assets.robinet4DAE, fRobinet.bind(that, 0) );
     }
 
     Angle.prototype.getObject3D = function(scene) {

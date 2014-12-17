@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.ComponentCollection = function () {
+var hcs = window.hcs || {};
+hcs.ComponentCollection = function () {
     var t = function (t) {
         Array.call(this), this._core = t, this._componentsToRemove = [], this._initialized = !1, this._size = 0
     };

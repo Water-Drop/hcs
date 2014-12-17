@@ -10,7 +10,7 @@ var EditionComponent3D = function() {
         l = 8,
         h = [],
         c = function(e) {
-            BaseComponent3D.call(this, e, "EditionComponent3D"), t = this, this.scene = wanaplan.engine3D.scene, this.camera = wanaplan.engine3D.camera, this.rotatorWidget = new wnp.Widget.Rotator(this), this.infoWidget = new wnp.Widget.Info(this), this.infoWidget.setClickCallback(this.onIAction.bind(this)), this.elevationWidget = new wnp.Widget.Elevation(this), this.cloneWidget = new wnp.Widget.Clone(this), this.groupWidget = new wnp.Widget.Group(this), this.removeWidget = new wnp.Widget.Remove(this), this.widgets = [], this.widgets.push(this.rotatorWidget), this.widgets.push(this.infoWidget), this.widgets.push(this.elevationWidget), this.widgets.push(this.cloneWidget), this.widgets.push(this.removeWidget), this.widgets.push(this.groupWidget), this.dragControl = new wnp.DragControls(this.scene, wanaplan.engine3D.canvas), this.dragControl.constrains("xz"), this.addUnremovableDraggable = this.dragControl.addUnremovableDraggable, this.addDraggable = this.dragControl.addDraggable, this.removeDraggable = this.dragControl.removeDraggable, this.resetDraggable = this.dragControl.resetDraggable
+            BaseComponent3D.call(this, e, "EditionComponent3D"), t = this, this.scene = hcsdesign.engine3D.scene, this.camera = hcsdesign.engine3D.camera, this.rotatorWidget = new hcs.Widget.Rotator(this), this.infoWidget = new hcs.Widget.Info(this), this.infoWidget.setClickCallback(this.onIAction.bind(this)), this.elevationWidget = new hcs.Widget.Elevation(this), this.cloneWidget = new hcs.Widget.Clone(this), this.groupWidget = new hcs.Widget.Group(this), this.removeWidget = new hcs.Widget.Remove(this), this.widgets = [], this.widgets.push(this.rotatorWidget), this.widgets.push(this.infoWidget), this.widgets.push(this.elevationWidget), this.widgets.push(this.cloneWidget), this.widgets.push(this.removeWidget), this.widgets.push(this.groupWidget), this.dragControl = new hcs.DragControls(this.scene, hcsdesign.engine3D.canvas), this.dragControl.constrains("xz"), this.addUnremovableDraggable = this.dragControl.addUnremovableDraggable, this.addDraggable = this.dragControl.addDraggable, this.removeDraggable = this.dragControl.removeDraggable, this.resetDraggable = this.dragControl.resetDraggable
         };
     c.prototype = new BaseComponent3D, c.prototype.addWidget = function(t) {
         return this.widgets.push(t), t
@@ -28,20 +28,20 @@ var EditionComponent3D = function() {
     };
     c.prototype.initialize = function() {
         this.ephemeralInfos = document.getElementById("ephemeralInfos"), this.historycmp = null, this.MOVEACTION = 0, this.ROTATEACTION = 1, this.GROUPACTION = 3, this.DELETEACTION = 4, this.ADDACTION = 5, this.isViewer || (this.dragControl.on("mousedown", function(e) {
-            e.hit && (t.camera.enabled = !1, ujs.notify("wnp.engine3D.editorComponent.hideEditBox"))
+            e.hit && (t.camera.enabled = !1, ujs.notify("hcs.engine3D.editorComponent.hideEditBox"))
         }, !1), this.dragControl.on("mouseup", function() {
             t.camera.enabled = !0
         }, !1)), this.setupHistory()
     }, c.prototype.startListening = function() {
-        this.onMouseDown = this.onMouseDown.bind(this), this.onMouseMove = this.onMouseMove.bind(this), this.onMouseUp = this.onMouseUp.bind(this), this.onClick = this.onClick.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), this.onGroup = this.onGroup.bind(this), this.onKeyDown = this.onKeyDown.bind(this), this.onCloneObject = this.onCloneObject.bind(this), this.onAddToProducts = this.onAddToProducts.bind(this), this.onRemoveObject = this.onRemoveObject.bind(this), this.onCreateObject = this.onCreateObject.bind(this), this.onDisposeObject = this.onDisposeObject.bind(this), this.onFloorChanged = this.onFloorChanged.bind(this), this.onNewPlan = this.onNewPlan.bind(this), this.onDragEnd = this.onDragEnd.bind(this), this.onDragging = this.onDragging.bind(this), this.onDragStart = this.onDragStart.bind(this), wanaplan.engine3D.canvas.addEventListener("pointerdown", this.onMouseDown, !1), wanaplan.engine3D.canvas.addEventListener("pointermove", this.onMouseMove, !1), wanaplan.engine3D.canvas.addEventListener("pointerup", this.onMouseUp, !1), this.dragControl.on("dragstart", this.onDragStart), this.dragControl.on("drag", this.onDragging), this.dragControl.on("dragend", this.onDragEnd), document.addEventListener("wnp.engine3D.click.collided", this.onClick, !1), document.addEventListener("wnp.engine3D.dblclick.collided", this.onDoubleClick, !1), document.addEventListener("wnp.engine3D.contextMenu.group", this.onGroup, !1), document.addEventListener("wnp.keyboardManager.keyDown", this.onKeyDown, !0), document.addEventListener("wnp.request.object.clone", this.onCloneObject, !1), document.addEventListener("wnp.request.object.addToProducts", this.onAddToProducts, !1), document.addEventListener("wnp.request.object.remove", this.onRemoveObject, !1), document.addEventListener("wnp.engine3D.object.create", this.onCreateObject, !1), document.addEventListener("wnp.engine3D.object.refresh", this.onRefreshObject, !1), document.addEventListener("wnp.engine3D.object.dispose", this.onDisposeObject, !1), document.addEventListener("wnp.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.addEventListener("wnp.request.newPlanReady", this.onNewPlan, !1)
+        this.onMouseDown = this.onMouseDown.bind(this), this.onMouseMove = this.onMouseMove.bind(this), this.onMouseUp = this.onMouseUp.bind(this), this.onClick = this.onClick.bind(this), this.onDoubleClick = this.onDoubleClick.bind(this), this.onGroup = this.onGroup.bind(this), this.onKeyDown = this.onKeyDown.bind(this), this.onCloneObject = this.onCloneObject.bind(this), this.onAddToProducts = this.onAddToProducts.bind(this), this.onRemoveObject = this.onRemoveObject.bind(this), this.onCreateObject = this.onCreateObject.bind(this), this.onDisposeObject = this.onDisposeObject.bind(this), this.onFloorChanged = this.onFloorChanged.bind(this), this.onNewPlan = this.onNewPlan.bind(this), this.onDragEnd = this.onDragEnd.bind(this), this.onDragging = this.onDragging.bind(this), this.onDragStart = this.onDragStart.bind(this), hcsdesign.engine3D.canvas.addEventListener("pointerdown", this.onMouseDown, !1), hcsdesign.engine3D.canvas.addEventListener("pointermove", this.onMouseMove, !1), hcsdesign.engine3D.canvas.addEventListener("pointerup", this.onMouseUp, !1), this.dragControl.on("dragstart", this.onDragStart), this.dragControl.on("drag", this.onDragging), this.dragControl.on("dragend", this.onDragEnd), document.addEventListener("hcs.engine3D.click.collided", this.onClick, !1), document.addEventListener("hcs.engine3D.dblclick.collided", this.onDoubleClick, !1), document.addEventListener("hcs.engine3D.contextMenu.group", this.onGroup, !1), document.addEventListener("hcs.keyboardManager.keyDown", this.onKeyDown, !0), document.addEventListener("hcs.request.object.clone", this.onCloneObject, !1), document.addEventListener("hcs.request.object.addToProducts", this.onAddToProducts, !1), document.addEventListener("hcs.request.object.remove", this.onRemoveObject, !1), document.addEventListener("hcs.engine3D.object.create", this.onCreateObject, !1), document.addEventListener("hcs.engine3D.object.refresh", this.onRefreshObject, !1), document.addEventListener("hcs.engine3D.object.dispose", this.onDisposeObject, !1), document.addEventListener("hcs.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.addEventListener("hcs.request.newPlanReady", this.onNewPlan, !1)
     }, c.prototype.stopListening = function() {
-        wanaplan.engine3D.canvas.removeEventListener("pointerdown", this.onMouseDown), wanaplan.engine3D.canvas.removeEventListener("pointermove", this.onMouseMove, !1), wanaplan.engine3D.canvas.removeEventListener("pointerup", this.onMouseUp, !1), this.dragControl.off("dragstart", this.onDragStart), this.dragControl.off("drag", this.onDragging), this.dragControl.off("dragend", this.onDragEnd), document.removeEventListener("wnp.engine3D.click.collided", this.onClick, !1), document.removeEventListener("wnp.engine3D.dblclick.collided", this.onDoubleClick, !1), document.removeEventListener("wnp.engine3D.contextMenu.group", this.onGroup, !1), document.removeEventListener("wnp.keyboardManager.keyDown", this.onKeyDown, !0), document.removeEventListener("wnp.request.object.clone", this.onCloneObject, !1), document.removeEventListener("wnp.request.object.addToProducts", this.onAddToProducts, !1), document.removeEventListener("wnp.request.object.remove", this.onRemoveObject, !1), document.removeEventListener("wnp.engine3D.object.create", this.onCreateObject, !1), document.removeEventListener("wnp.engine3D.object.dispose", this.onDisposeObject, !1), document.removeEventListener("wnp.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.removeEventListener("wnp.request.newPlan", this.onNewPlan, !1), this.disableWidget()
+        hcsdesign.engine3D.canvas.removeEventListener("pointerdown", this.onMouseDown), hcsdesign.engine3D.canvas.removeEventListener("pointermove", this.onMouseMove, !1), hcsdesign.engine3D.canvas.removeEventListener("pointerup", this.onMouseUp, !1), this.dragControl.off("dragstart", this.onDragStart), this.dragControl.off("drag", this.onDragging), this.dragControl.off("dragend", this.onDragEnd), document.removeEventListener("hcs.engine3D.click.collided", this.onClick, !1), document.removeEventListener("hcs.engine3D.dblclick.collided", this.onDoubleClick, !1), document.removeEventListener("hcs.engine3D.contextMenu.group", this.onGroup, !1), document.removeEventListener("hcs.keyboardManager.keyDown", this.onKeyDown, !0), document.removeEventListener("hcs.request.object.clone", this.onCloneObject, !1), document.removeEventListener("hcs.request.object.addToProducts", this.onAddToProducts, !1), document.removeEventListener("hcs.request.object.remove", this.onRemoveObject, !1), document.removeEventListener("hcs.engine3D.object.create", this.onCreateObject, !1), document.removeEventListener("hcs.engine3D.object.dispose", this.onDisposeObject, !1), document.removeEventListener("hcs.engine3d.globaleFloorReady", this.onFloorChanged, !1), document.removeEventListener("hcs.request.newPlan", this.onNewPlan, !1), this.disableWidget()
     }, c.prototype.onIAction = function() {
         var t = this.getSelectedObject();
-        ujs.notify(this.isGroup(t) ? "wnp.request.groupConfigurator.start" : "wnp.request.configurator.start")
+        ujs.notify(this.isGroup(t) ? "hcs.request.groupConfigurator.start" : "hcs.request.configurator.start")
     }, c.prototype.onMouseDown = function(t) {
-        t.collided = wanaplan.engine3D.collideWithScene(t.clientX, t.clientY), u("mousedown", t);
-        var e = wanaplan.engine3D.keyboardManager.isPressed([17, 91, 224]);
+        t.collided = hcsdesign.engine3D.collideWithScene(t.clientX, t.clientY), u("mousedown", t);
+        var e = hcsdesign.engine3D.keyboardManager.isPressed([17, 91, 224]);
         this.dragControl.constrains(e ? "y" : "xz")
     }, c.prototype.onMouseUp = function(t) {
         u("mouseup", t)
@@ -58,7 +58,7 @@ var EditionComponent3D = function() {
             object: n
         }), t.ephemeralInfos.classList.add("hidden");
         var i = n.getTopLevelObject(!0);
-        ujs.notify("wnp.request.historyAction", {
+        ujs.notify("hcs.request.historyAction", {
             component: t,
             object: i,
             params: {
@@ -82,7 +82,7 @@ var EditionComponent3D = function() {
             var i = n.collided;
             if (i && i.hit) {
                 t.dragControl.setDraggingMode(t.dragControl.GROUPS);
-                var r = wanaplan.engine3D.keyboardManager.isPressed([17, 91, 224]),
+                var r = hcsdesign.engine3D.keyboardManager.isPressed([17, 91, 224]),
                     s = i.pickedMesh.getTopLevelObject();
                 if (this.isGroup(s) || this.isSelectableObject(s)) {
                     if (r)
@@ -102,8 +102,8 @@ var EditionComponent3D = function() {
             n = e ? e.animate : null;
         n && n(e, t.collided.pickedMesh)
     }, c.prototype.onKeyDown = function(e) {
-        var n = wanaplan.engine3D.keyboardManager.isPressed([17, 91, 224]);
-        n && i && 68 == e.keyCode && t.onCloneObject(), 46 == e.keyCode && t.getSelectedObject() && ujs.notify("wnp.request.object.remove", {
+        var n = hcsdesign.engine3D.keyboardManager.isPressed([17, 91, 224]);
+        n && i && 68 == e.keyCode && t.onCloneObject(), 46 == e.keyCode && t.getSelectedObject() && ujs.notify("hcs.request.object.remove", {
             object: t.getSelectedObject(),
             structure: t.getSelectedObject().structure
         })
@@ -129,9 +129,9 @@ var EditionComponent3D = function() {
     }, c.prototype.onFloorChanged = function() {
         t.deselectObject(), t.resetDraggable()
     }, c.prototype.lock = function(e, n) {
-        o && o !== e || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !1, this.dragControl.reset()), n & r && (this.camera.enabled = !1), n & l && (t.camera.cameraTranslationenabled = !1), wanaplan.keyboardManager && n & a && (wanaplan.keyboardManager.preventDefault = !1), o = e)
+        o && o !== e || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !1, this.dragControl.reset()), n & r && (this.camera.enabled = !1), n & l && (t.camera.cameraTranslationenabled = !1), hcsdesign.keyboardManager && n & a && (hcsdesign.keyboardManager.preventDefault = !1), o = e)
     }, c.prototype.unlock = function(e, n) {
-        o && o !== e && e !== this || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !0, this.dragControl.reset()), n & r && (this.camera.enabled = !0), n & l && (t.camera.cameraTranslationenabled = !0), wanaplan.keyboardManager && n & a && (wanaplan.keyboardManager.preventDefault = !0), o = null)
+        o && o !== e && e !== this || (n = "undefined" != typeof n ? n : s + r + a + l, n & s && (this.dragControl.enabled = !0, this.dragControl.reset()), n & r && (this.camera.enabled = !0), n & l && (t.camera.cameraTranslationenabled = !0), hcsdesign.keyboardManager && n & a && (hcsdesign.keyboardManager.preventDefault = !0), o = null)
     }, c.prototype.disableWidget = function() {
         u("deselectObject")
     }, c.prototype.enableWidget = function() {
@@ -161,7 +161,7 @@ var EditionComponent3D = function() {
             i && i.markAsDirty(), u("objectMoves", {
                 object: e,
                 delta: n
-            }), ujs.notify("wnp.engine3D.object.translate", {
+            }), ujs.notify("hcs.engine3D.object.translate", {
                 object: e
             })
         }
@@ -169,7 +169,7 @@ var EditionComponent3D = function() {
         (t.isSelectableObject(e) || t.isGroup(e)) && (e.rotation.addInPlace(n), u("objectRotates", {
             object: e,
             delta: n
-        }), ujs.notify("wnp.engine3D.object.rotate", {
+        }), ujs.notify("hcs.engine3D.object.rotate", {
             object: e
         }))
     };
@@ -182,7 +182,7 @@ var EditionComponent3D = function() {
     };
     return c.prototype.createGroup = function(e, i) {
         var o;
-        return null !== e && void 0 !== e ? (o = new BABYLON.Mesh("group_" + e, wanaplan.engine3D.scene), t.setGroupId(o, e), n = Math.max(n, e)) : o = new BABYLON.Mesh("group_virtual", wanaplan.engine3D.scene), o.isDecorable = !0, o.decorate = p.bind(o), o.isVisible = !1, o.parent = i, this.addDraggable(o), o
+        return null !== e && void 0 !== e ? (o = new BABYLON.Mesh("group_" + e, hcsdesign.engine3D.scene), t.setGroupId(o, e), n = Math.max(n, e)) : o = new BABYLON.Mesh("group_virtual", hcsdesign.engine3D.scene), o.isDecorable = !0, o.decorate = p.bind(o), o.isVisible = !1, o.parent = i, this.addDraggable(o), o
     }, c.prototype.mergeGroup = function(e, n) {
         var i = !!n && this.isGroup(n),
             o = !!e && this.isGroup(e);
@@ -252,8 +252,8 @@ var EditionComponent3D = function() {
         }
     }, c.prototype.refreshObject = function(t, e) {
         e = e || {};
-        var n = wanaplan.getComponentByName("ObjectComponent3D");
-        !e.noHistory && e.modifiedProperties && ujs.notify("wnp.request.historyAction", {
+        var n = hcsdesign.getComponentByName("ObjectComponent3D");
+        !e.noHistory && e.modifiedProperties && ujs.notify("hcs.request.historyAction", {
             component: this,
             object: t,
             params: e.modifiedProperties || {},
@@ -278,7 +278,7 @@ var EditionComponent3D = function() {
         e.value ? t.virtualToRealGroup(e) : t.deleteSelectedGroup()
     }, c.prototype.onCloneGroup = function(e) {
         var i = e.getChildren(),
-            o = wanaplan.getComponentByName("ObjectComponent3D");
+            o = hcsdesign.getComponentByName("ObjectComponent3D");
         t.virtualToRealGroup(), t.deleteGroup(), t.deselectObject();
         var r = t.createGroup(++n, e.getFloor());
         r.computeWorldMatrix(!0);
@@ -289,27 +289,27 @@ var EditionComponent3D = function() {
             var c = i[l];
             if (t.isSelectableObject(c)) {
                 var u = c.structure.clone();
-                wanaplan.getSelectedStructure().insertElement("objects", u);
+                hcsdesign.getSelectedStructure().insertElement("objects", u);
                 var p = function(e) {
-                    t.deselectObject(), e.position.addInPlace(a), t.selectObject(e), ujs.notify("wnp.request.saveHistory")
+                    t.deselectObject(), e.position.addInPlace(a), t.selectObject(e), ujs.notify("hcs.request.saveHistory")
                 };
                 u.customData.groupId = r.groupId, o.buildObject(u, u.programmableInstance, c.getFloor(), p)
             }
         }
     }, c.prototype.onCloneObject = function() {
-        var e = wanaplan.getComponentByName("ObjectComponent3D"),
+        var e = hcsdesign.getComponentByName("ObjectComponent3D"),
             n = i;
         if (null != n)
             if (t.isGroup(n))
                 t.onCloneGroup(n);
             else if (t.isSelectableObject(n)) {
             var o = n.structure.clone();
-            wanaplan.getSelectedStructure().insertElement("objects", o);
+            hcsdesign.getSelectedStructure().insertElement("objects", o);
             var r = function(e) {
                 t.deselectObject(), t.selectObject(e);
                 var n = e.getBoundingBox(),
                     i = new BABYLON.Vector3(n.maximum.x - n.minimum.x, 0, 0);
-                i = BABYLON.Vector3.TransformNormal(i, e.getWorldMatrix()), e.position.addInPlace(i), ujs.notify("wnp.request.saveHistory"), ujs.notify("wnp.engine3D.object.clone")
+                i = BABYLON.Vector3.TransformNormal(i, e.getWorldMatrix()), e.position.addInPlace(i), ujs.notify("hcs.request.saveHistory"), ujs.notify("hcs.engine3D.object.clone")
             };
             e.buildObject(o, o.programmableInstance, n.getFloor(), r)
         }
@@ -333,7 +333,7 @@ var EditionComponent3D = function() {
                 })
         }
     }, c.prototype.onAddToProducts = function() {
-        var e = wnp.Constants.BACK_URL + "ws/add-model";
+        var e = hcs.Constants.BACK_URL + "ws/add-model";
         if (i && i.structure && t.isSelectableObject(i)) {
             var n = i.structure,
                 o = n.filename || "object";
@@ -343,7 +343,7 @@ var EditionComponent3D = function() {
                 withCredentials: !0,
                 params: "action=add&model=model&is_active=0&name=" + o + "&encoded=1&builder_id=" + n.builderId + "&params=" + JSON.stringify(n.programmableInstance.params) + "&materials=" + JSON.stringify(ujs.serializeObject(n.programmableInstance.materials)),
                 success: function(t) {
-                    Logger.message(t), wnp.UI.MessageBox.show({
+                    Logger.message(t), hcs.UI.MessageBox.show({
                         title: _("Object added"),
                         message: _("Object is now available in the backoffice"),
                         buttonAText: _("Close"),
@@ -401,9 +401,9 @@ var EditionComponent3D = function() {
     }, c.prototype.redoMove = function(e, n) {
         t.historyMove(e, n.newPosition, n.newRotation)
     }, c.prototype.undoRotate = c.prototype.undoMove, c.prototype.redoRotate = c.prototype.redoMove, c.prototype.historyMove = function(t, e, n) {
-        t.position.copyFromFloats(e.x, e.y, e.z), t.rotation.copyFromFloats(n.x, n.y, n.z), ujs.notify("wnp.request.saveHistory"), ujs.notify("wnp.engine3D.object.translate", {
+        t.position.copyFromFloats(e.x, e.y, e.z), t.rotation.copyFromFloats(n.x, n.y, n.z), ujs.notify("hcs.request.saveHistory"), ujs.notify("hcs.engine3D.object.translate", {
             object: t
-        }), ujs.notify("wnp.engine3D.object.rotate", {
+        }), ujs.notify("hcs.engine3D.object.rotate", {
             object: t
         })
     }, c.prototype.undoRefresh = function(e, n) {
@@ -411,7 +411,7 @@ var EditionComponent3D = function() {
     }, c.prototype.redoRefresh = function(e, n) {
         t.historyRefresh(e, n, "newValue")
     }, c.prototype.historyRefresh = function(t, e, n) {
-        var i = wanaplan.getComponentByName("ObjectComponent3D");
+        var i = hcsdesign.getComponentByName("ObjectComponent3D");
         for (var o in e)
             "position" == o ? (t.position.copyFrom(e[o][n]), t.structure.position = t.position) : ujs.setProperty(t.structure, o, e[o][n]);
         i.refreshObject(t)

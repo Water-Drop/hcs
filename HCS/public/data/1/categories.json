@@ -8,7 +8,7 @@
             "categoryName":"卫生间",
             "categoryFilter":null
         },
-        "action":"wnp.engine3D.showProducts",
+        "action":"hcs.engine3D.showProducts",
         "translations":[
             
         ],
@@ -25,7 +25,7 @@
             "categoryName":"厨房",
             "categoryFilter":null
         },
-        "action":"wnp.engine3D.showProducts",
+        "action":"hcs.engine3D.showProducts",
         "translations":[
             
         ],
@@ -42,7 +42,7 @@
             "categoryName":"卧室",
             "categoryFilter":null
         },
-        "action":"wnp.engine3D.showProducts",
+        "action":"hcs.engine3D.showProducts",
         "translations":[
             
         ],
@@ -59,7 +59,7 @@
             "categoryName":"客厅",
             "categoryFilter":null
         },
-        "action":"wnp.engine3D.showProducts",
+        "action":"hcs.engine3D.showProducts",
         "translations":[
             
         ],

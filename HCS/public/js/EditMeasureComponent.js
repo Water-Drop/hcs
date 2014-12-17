@@ -3,7 +3,7 @@ var EditMeasureComponent = function() {
         BaseComponent2D.call(this, t, "EditMeasureComponent")
     };
     return t.prototype = new BaseComponent2D, t.prototype.initialize = function() {}, t.prototype.startListening = function() {
-        this.onClick = this.onClick.bind(this), this.onDblClick = this.onDblClick.bind(this), this.destroyDialog = this.destroyDialog.bind(this), document.addEventListener("click", this.onClick, !1), document.addEventListener("dblclick", this.onDblClick, !1), document.addEventListener("wnp.contextChanged", this.destroyDialog, !1)
+        this.onClick = this.onClick.bind(this), this.onDblClick = this.onDblClick.bind(this), this.destroyDialog = this.destroyDialog.bind(this), document.addEventListener("click", this.onClick, !1), document.addEventListener("dblclick", this.onDblClick, !1), document.addEventListener("hcs.contextChanged", this.destroyDialog, !1)
     }, t.prototype.stopListening = function() {
         document.removeEventListener("click", this.onClick, !1), document.removeEventListener("dblclick", this.onDblClick, !1), this.destroyDialog()
     }, t.prototype.destroyDialog = function() {

@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.UI = wnp.UI || {}, wnp.UI.HelpBubble = function() {
+var hcs = window.hcs || {};
+hcs.UI = hcs.UI || {}, hcs.UI.HelpBubble = function() {
     var t = function() {
         this._isVisible = !1, this._e_bubble = document.getElementById("helpbubble"), this._e_image = document.getElementById("helpbubble-image"), this._e_content = document.getElementById("helpbubble-content"), this._image = "", this._content = "", document.getElementById("helpbubble-close").onclick = this.hide.bind(this)
     };

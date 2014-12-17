@@ -3,13 +3,13 @@ SubSlopeComponent3D = function() {
         BaseComponent3D.call(this, e, "SubSlopeComponent3D"), this.currentID = 0, t = this
     };
     return e.prototype = new BaseComponent3D, e.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.wallsReady", this.onWallsReady, !1)
+        document.addEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3d.wallsReady", this.onWallsReady, !1)
+        document.removeEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1)
     }, e.prototype.onWallsReady = function(e) {
         var n = e.floor || t.getFloor(),
             i = e.structure || t.core.getSelectedStructure();
-        t.core.getComponentByName("SubSlopeComponent2D").getSubSlopes(!0), t.drawSSForStructure(i, n, wanaplan.engine3D.scene)
+        t.core.getComponentByName("SubSlopeComponent2D").getSubSlopes(!0), t.drawSSForStructure(i, n, hcsdesign.engine3D.scene)
     }, e.prototype.buildCSG = function(t, e, n, i) {
         var o, r, s = s || !1;
         n = n || this.core.getComponentByName("FloorComponent3D").getFloor(e);
@@ -44,7 +44,7 @@ SubSlopeComponent3D = function() {
             f = [],
             y = [];
         o = o || this.core.getComponentByName("FloorComponent3D").getFloor(i);
-        var _ = new wnp.WhiteMaterial("bottom", wanaplan.engine3D.scene, {
+        var _ = new hcs.WhiteMaterial("bottom", hcsdesign.engine3D.scene, {
                 factor: 1
             }),
             v = n.materials.bottom || _;
@@ -75,14 +75,14 @@ SubSlopeComponent3D = function() {
         a.position.y = .2;
         var T = t,
             S = BABYLON.Mesh.mergeMeshes("mat", [T, a], r, !0);
-        S.name = T.name, S.id = T.id, S.decorate = T.decorate, S.receiveShadows = T.receiveShadows, S.material = T.material, S.isDecorable = !0, wanaplan.engine3D.castShadows(S)
+        S.name = T.name, S.id = T.id, S.decorate = T.decorate, S.receiveShadows = T.receiveShadows, S.material = T.material, S.isDecorable = !0, hcsdesign.engine3D.castShadows(S)
     }, e.prototype.buildFromCSG = function(t, e, n, i, o, r) {
         var s = t,
             a = e,
             l = i.clone();
         a.subtractInPlace(i);
         var h = a.toMesh("mat", s.material, r, !0);
-        this.core.getComponentByName("WallComponent3D").replaceWall(s, h), h.material = s.material, h.isDecorable = !0, wanaplan.engine3D.castShadows(h);
+        this.core.getComponentByName("WallComponent3D").replaceWall(s, h), h.material = s.material, h.isDecorable = !0, hcsdesign.engine3D.castShadows(h);
         var c = n;
         c.subtractInPlace(l);
         var u = c.toMesh("mat", o.roomMesh.material, r, !0);
@@ -102,7 +102,7 @@ SubSlopeComponent3D = function() {
             }
         for (h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), this.buildFromCSG(h, c, u, p, e, n), o = 0, r = a.length; r > o; o++)
             i = a[o].plane(), h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), i && this.addSubSlope(h, i, a[o], t, e, n);
-        h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), h.parent = e, ujs.notify("wnp.engine3d.subslopesReady", {
+        h = this.core.getComponentByName("WallComponent3D").get3DWallFrom2D(t), h.parent = e, ujs.notify("hcs.engine3d.subslopesReady", {
             floor: e,
             structure: t,
             walls: h

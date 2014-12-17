@@ -2392,7 +2392,9 @@ input::-webkit-inner-spin-button,input::-webkit-outer-spin-button {
 }
 
 .window .product-item .selected.show {
-    left: 15px;
+    /*left: 15px;*/
+    /* add */
+    margin: 0 0 0 0;
     opacity: 1;
     animation: bubble-in .5s;
     -webkit-animation: bubble-in .5s;

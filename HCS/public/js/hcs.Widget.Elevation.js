@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
+var hcs = window.hcs || {};
+hcs.Widget = hcs.Widget || {}, hcs.Widget.Elevation = function() {
     var t, e, n, i = document.getElementById("modalWidgets"), o = !1, r = 38, s = 287, a = function(e) {
         i = document.getElementById("modalWidgets"), t = e, this.imagePath = "images/remote-controller/", this.domElement = this.buildHTML(), this.defaultDomStyle = "top: " + r + "px;right: " + s + "px;", this.domElement.setAttribute("style", this.defaultDomStyle), i.appendChild(this.domElement), this.slider = document.getElementById("edition-slider"), this.sliderContainer = document.getElementById("edition-slider-content"), this.globalSliderContainer = document.getElementById("edition-slider-bar"), this.globalSliderContainerHeight = this.globalSliderContainer.scrollHeight, this.sliderMin = 12, this.sliderMax = 114, this.sliderPos = this.sliderMin, this.sliderSelected = !1, n = this, this.buttonState = null, this.running = !0, this.updateSliderPos(0), this.hide(), e.on("selectObject", this.onSelectObject), e.on("deselectObject", this.onDeselectObject)
     };
@@ -17,7 +17,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
     }, a.prototype.updateDomPosition = function(t, e) {
         this.defaultDomStyle = "top: " + e + "px;right: " + t + "px;", this.domElement.setAttribute("style", this.defaultDomStyle)
     }, a.prototype.movePanel = function() {
-        var t = wanaplan.engine3D.canvas.height, e = Math.round(r + (t - r) / 2 - document.getElementById("edition-panel").offsetHeight / 2);
+        var t = hcsdesign.engine3D.canvas.height, e = Math.round(r + (t - r) / 2 - document.getElementById("edition-panel").offsetHeight / 2);
         n.updateDomPosition(s, e)
     }, a.prototype.show = function() {
         document.getElementById("edition-panel").style.display = "block"
@@ -42,7 +42,7 @@ wnp.Widget = wnp.Widget || {}, wnp.Widget.Elevation = function() {
             var i = t.getSelectedObject().position.clone(), o = i.clone();
             i.y = e;
             var r = t.getSelectedObject().rotation;
-            ujs.notify("wnp.request.historyAction", {component: t,object: t.getSelectedObject(),params: {oldPosition: i,newPosition: o,oldRotation: r,newRotation: r},action: t.MOVEACTION})
+            ujs.notify("hcs.request.historyAction", {component: t,object: t.getSelectedObject(),params: {oldPosition: i,newPosition: o,oldRotation: r,newRotation: r},action: t.MOVEACTION})
         }
     }, a.prototype.setElevationVelocity = function(e) {
         t.moveObject(t.getSelectedObject(), new BABYLON.Vector3(0, e, 0))

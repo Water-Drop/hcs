@@ -1,34 +1,34 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Bath = (function () {
+hcs.Programmable.Bath = (function () {
     /**
      * Define a basic 3D object (draw dynamically)
      *
      * @constructor
      * @class Bath
-     * @param {wnp.Core}
+     * @param {hcs.Core}
      * @param {Object}
      */
     var Bath = function (engine, structure, params) {
-        wnp.Programmable.call(this, engine, structure, params);
+        hcs.Programmable.call(this, engine, structure, params);
         for (var i in params) {
             this[i] = params[i];
         }
-        structure.magnetismCollider = wnp.Constants.MAGNETISM.DEFAULT;
+        structure.magnetismCollider = hcs.Constants.MAGNETISM.DEFAULT;
         this.objectName = 'Bath';
         structure.preferredYAngle = -Math.PI;
     };
 
     // heritage
-    for (var i in wnp.Programmable.prototype) {
-        Bath.prototype[i] = wnp.Programmable.prototype[i];
+    for (var i in hcs.Programmable.prototype) {
+        Bath.prototype[i] = hcs.Programmable.prototype[i];
     }
 
     Bath.prototype.localizeAndSortParams = function() {
@@ -86,17 +86,17 @@ wnp.Programmable.Bath = (function () {
         var materials = {};
 
 
-        materials['global'] =  new wnp.WhiteMaterial("global", scene, {factor : 0.8});
-        //materials['global'] =  new wnp.WhiteMaterial("global", scene);
-        materials['coffrage'] = new wnp.WhiteMaterial("coffrage", scene, {factor : 0.8});
-        materials['frames'] = new wnp.MetalMaterial("frames", scene);
+        materials['global'] =  new hcs.WhiteMaterial("global", scene, {factor : 0.8});
+        //materials['global'] =  new hcs.WhiteMaterial("global", scene);
+        materials['coffrage'] = new hcs.WhiteMaterial("coffrage", scene, {factor : 0.8});
+        materials['frames'] = new hcs.MetalMaterial("frames", scene);
 
 
-        // materials['global'] =  new wnp.WhiteMaterial();
+        // materials['global'] =  new hcs.WhiteMaterial();
         // materials['global'].side = THREE.DoubleSide;
 
-        // materials['coffrage'] =  new wnp.WhiteMaterial();
-        // materials['frames'] =  new wnp.MetalMaterial();
+        // materials['coffrage'] =  new hcs.WhiteMaterial();
+        // materials['frames'] =  new hcs.MetalMaterial();
 
         return materials;
     };

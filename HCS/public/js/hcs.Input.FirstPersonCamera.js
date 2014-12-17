@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Input = wnp.Input || {}, wnp.Input.FirstPersonCamera = function () {
+var hcs = window.hcs || {};
+hcs.Input = hcs.Input || {}, hcs.Input.FirstPersonCamera = function () {
     var t = !1, e = function (t, n, i) {
         BABYLON.Camera.call(this, t, n, i), this.cameraDirection = new BABYLON.Vector3(0, 0, 0), this.cameraRotation = new BABYLON.Vector2(0, 0), this.rotation = new BABYLON.Vector3(0, 0, 0), this.ellipsoid = new BABYLON.Vector3(.5, 1, .5), this._keys = [], this.keysUp = [38, 87], this.keysDown = [40, 83], this.keysLeft = [37, 81], this.keysRight = [39, 69], this.keysStrafeLeft = [65], this.keysStrafeRight = [68], GlobalHelper.hasAzertyKeyboard && (this.keysUp[1] = 90, this.keysLeft[1] = 65, this.keysStrafeLeft[0] = 81), this._collider = new BABYLON.Collider, this._needMoveForGravity = !0, this._currentTarget = BABYLON.Vector3.Zero(), this._viewMatrix = BABYLON.Matrix.Zero(), this._camMatrix = BABYLON.Matrix.Zero(), this._cameraTransformMatrix = BABYLON.Matrix.Zero(), this._cameraRotationMatrix = BABYLON.Matrix.Zero(), this._referencePoint = BABYLON.Vector3.Zero(), this._transformedReferencePoint = BABYLON.Vector3.Zero(), this._oldPosition = BABYLON.Vector3.Zero(), this._diffPosition = BABYLON.Vector3.Zero(), this._newPosition = BABYLON.Vector3.Zero(), this._lookAtTemp = BABYLON.Matrix.Zero(), this._tempMatrix = BABYLON.Matrix.Zero(), e.prototype._initCache.call(this)
     };
@@ -29,15 +29,15 @@ wnp.Input = wnp.Input || {}, wnp.Input.FirstPersonCamera = function () {
         var e = t.subtract(this.position);
         this.rotation.y = e.x >= 0 ? -Math.atan(e.z / e.x) + Math.PI / 2 : -Math.atan(e.z / e.x) - Math.PI / 2, this.rotation.z = -Math.acos(BABYLON.Vector3.Dot(new BABYLON.Vector3(0, 1, 0), this.upVector)), isNaN(this.rotation.x) && (this.rotation.x = 0), isNaN(this.rotation.y) && (this.rotation.y = 0), isNaN(this.rotation.z) && (this.rotation.z = 0)
     }, e.prototype.lockUnrelatedActions = function () {
-        var t = wanaplan.getComponentByName("EditionComponent3D");
-        return t && (ujs.notify("wnp.request.configurator.cancel"), t.lock(this, 14), t.deselectObject()), !0
+        var t = hcsdesign.getComponentByName("EditionComponent3D");
+        return t && (ujs.notify("hcs.request.configurator.cancel"), t.lock(this, 14), t.deselectObject()), !0
     }, e.prototype.unlockUnrelatedActions = function () {
-        var t = wanaplan.getComponentByName("EditionComponent3D");
+        var t = hcsdesign.getComponentByName("EditionComponent3D");
         return t && t.unlock(this, 14), !0
     }, e.prototype.attachControl = function (e, n) {
         var i, o = this, r = this._scene.getEngine();
         if (!this._attachedCanvas) {
-            document.addEventListener("wnp.ui.messagebox.opened", this._onMessageBoxOpened, !1), document.addEventListener("wnp.ui.messagebox.closed", this._onMessageBoxClosed, !1), this.lockUnrelatedActions(), this._attachedCanvas = e, void 0 === this._onMouseDown && (this.onMouseDown = function (t) {
+            document.addEventListener("hcs.ui.messagebox.opened", this._onMessageBoxOpened, !1), document.addEventListener("hcs.ui.messagebox.closed", this._onMessageBoxClosed, !1), this.lockUnrelatedActions(), this._attachedCanvas = e, void 0 === this._onMouseDown && (this.onMouseDown = function (t) {
                 i = t.touches && 1 == t.touches.length ? { x: t.touches[0].pageX, y: t.touches[0].pageY} : { x: t.clientX, y: t.clientY }, n || t.preventDefault()
             }, this.onMouseUp = function (t) {
                 i = null, n || t.preventDefault()
@@ -73,7 +73,7 @@ wnp.Input = wnp.Input || {}, wnp.Input.FirstPersonCamera = function () {
         if (this._attachedCanvas == t) {
             this.unlockUnrelatedActions();
             var e = window.PointerEvent ? "pointer" : "mouse";
-            t.removeEventListener(e + "down", this.onMouseDown), t.removeEventListener(e + "up", this.onMouseUp), t.removeEventListener(e + "out", this.onMouseOut), t.removeEventListener(e + "move", this.onMouseMove), t.removeEventListener("mousewheel", this.onWheel), window.removeEventListener("keydown", this.onKeyDown), window.removeEventListener("keyup", this.onKeyUp), window.removeEventListener("blur", this.onLostFocus), document.removeEventListener("touchend", this.onMouseUp), document.removeEventListener("touchcancel", this.onMouseUp), document.removeEventListener("touchmove", this.onMouseMove), document.removeEventListener("touchstart", this.onMouseDown), document.removeEventListener("wnp.ui.messagebox.opened", this._onMessageBoxOpened), document.removeEventListener("wnp.ui.messagebox.closed", this._onMessageBoxClosed), this._attachedCanvas = null, this._reset && this._reset()
+            t.removeEventListener(e + "down", this.onMouseDown), t.removeEventListener(e + "up", this.onMouseUp), t.removeEventListener(e + "out", this.onMouseOut), t.removeEventListener(e + "move", this.onMouseMove), t.removeEventListener("mousewheel", this.onWheel), window.removeEventListener("keydown", this.onKeyDown), window.removeEventListener("keyup", this.onKeyUp), window.removeEventListener("blur", this.onLostFocus), document.removeEventListener("touchend", this.onMouseUp), document.removeEventListener("touchcancel", this.onMouseUp), document.removeEventListener("touchmove", this.onMouseMove), document.removeEventListener("touchstart", this.onMouseDown), document.removeEventListener("hcs.ui.messagebox.opened", this._onMessageBoxOpened), document.removeEventListener("hcs.ui.messagebox.closed", this._onMessageBoxClosed), this._attachedCanvas = null, this._reset && this._reset()
         }
     }, e.prototype._collideWithWorld = function (t) {
         this.position.subtractFromFloatsToRef(0, this.ellipsoid.y, 0, this._oldPosition), this._collider.radius = this.ellipsoid, this._scene._getNewPosition(this._oldPosition, t, this._collider, 3, this._newPosition), this._newPosition.subtractToRef(this._oldPosition, this._diffPosition), this._diffPosition.length() > BABYLON.Engine.collisionsEpsilon && (this.position.addInPlace(this._diffPosition), this.onCollide && this.onCollide(this._collider.collidedMesh))

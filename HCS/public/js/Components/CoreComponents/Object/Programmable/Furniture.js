@@ -1,22 +1,22 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Furniture = (function () {
+hcs.Programmable.Furniture = (function () {
     /**
      * Define a basic 3D object (draw dynamically)
      * @constructor
      * @class Furniture
-     * @param {wnp.Core} 
+     * @param {hcs.Core} 
      * @param {Object} 
      */
     var Furniture = function (engine, structure, params) {
-        wnp.Programmable.call(this, engine, structure, params);
+        hcs.Programmable.call(this, engine, structure, params);
         for (var i in params) {
             this[i] = params[i];
         }
@@ -25,8 +25,8 @@ wnp.Programmable.Furniture = (function () {
     };
 
     // heritage
-    for (var i in wnp.Programmable.prototype) {
-        Furniture.prototype[i] = wnp.Programmable.prototype[i];
+    for (var i in hcs.Programmable.prototype) {
+        Furniture.prototype[i] = hcs.Programmable.prototype[i];
     }
 
     Furniture.prototype.calcMeasure = function (measure) {
@@ -44,21 +44,21 @@ wnp.Programmable.Furniture = (function () {
     Furniture.prototype.getDefaultMaterials = function(scene) {
         var materials = {};
 
-        materials['global'] =  new wnp.WhiteMaterial("global", scene, {factor : 0.8});
-        materials['wheel'] =  new wnp.WhiteMaterial("global", scene, {factor : 0.8});
-        // materials['global'] =  new wnp.WoodMaterial("global", scene, {factor : 0.8});
-        materials['top'] =  new wnp.WhiteMaterial("top", scene, {factor : 0.8});
-        materials['tray'] =  new wnp.WhiteMaterial("tray", scene, {factor : 0.8});
-        //materials['fond'] =  new wnp.WhiteMaterial("fond", scene, {factor : 0.8});
-        materials['bottom'] =  new wnp.WhiteMaterial("bottom", scene, {factor : 0.8});
-        materials['handle'] =  new wnp.MetalMaterial("handle", scene);
-        materials['handle_deco'] =  new wnp.MetalMaterial("handle_deco", scene);
-        materials['foots'] =  new wnp.WoodMaterial("foots", scene);
-        //materials['fond'] =  new wnp.WoodMaterial("fond", scene);
-        materials['tiroir'] =   new wnp.LuxensMaterial("tiroir", scene, {
+        materials['global'] =  new hcs.WhiteMaterial("global", scene, {factor : 0.8});
+        materials['wheel'] =  new hcs.WhiteMaterial("global", scene, {factor : 0.8});
+        // materials['global'] =  new hcs.WoodMaterial("global", scene, {factor : 0.8});
+        materials['top'] =  new hcs.WhiteMaterial("top", scene, {factor : 0.8});
+        materials['tray'] =  new hcs.WhiteMaterial("tray", scene, {factor : 0.8});
+        //materials['fond'] =  new hcs.WhiteMaterial("fond", scene, {factor : 0.8});
+        materials['bottom'] =  new hcs.WhiteMaterial("bottom", scene, {factor : 0.8});
+        materials['handle'] =  new hcs.MetalMaterial("handle", scene);
+        materials['handle_deco'] =  new hcs.MetalMaterial("handle_deco", scene);
+        materials['foots'] =  new hcs.WoodMaterial("foots", scene);
+        //materials['fond'] =  new hcs.WoodMaterial("fond", scene);
+        materials['tiroir'] =   new hcs.LuxensMaterial("tiroir", scene, {
             ambientColor : new BABYLON.Color3(0.7, 1.0, 1.0)
         });
-        materials['casement'] =   new wnp.LuxensMaterial("casement", scene, {
+        materials['casement'] =   new hcs.LuxensMaterial("casement", scene, {
             ambientColor : new BABYLON.Color3(0.7, 1.0, 1.0)
         });
 
@@ -204,7 +204,7 @@ wnp.Programmable.Furniture = (function () {
                 }
 
         }
-        return wnp.Programmable.prototype.getParamType.call( this , name );
+        return hcs.Programmable.prototype.getParamType.call( this , name );
     }
 
     Furniture.prototype.getDefaultParams = function() {

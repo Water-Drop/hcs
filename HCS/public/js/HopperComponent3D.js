@@ -1,15 +1,15 @@
 var HopperComponent3D = function() {
     var t, e = function(e) {
         BaseComponent3D.call(this, e, "HopperComponent3D"), t = this;
-        var n = wanaplan.getComponentByName("RoomComponent3D");
+        var n = hcsdesign.getComponentByName("RoomComponent3D");
         this._commonHopperMaterial = n.getSideMaterial()
     };
     return e.prototype = new BaseComponent3D, e.prototype.startListening = function() {
-        document.addEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1)
+        document.addEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1)
     }, e.prototype.stopListening = function() {
-        document.removeEventListener("wnp.engine3d.floorReady", this.onFloorReady, !1)
+        document.removeEventListener("hcs.engine3d.floorReady", this.onFloorReady, !1)
     }, e.prototype.onFloorReady = function(e) {
-        for (var n = e.floor || t.getFloor(), i = e.structure || wanaplan.getSelectedStructure(), o = 0; o < i.hoppers.length; o++)
+        for (var n = e.floor || t.getFloor(), i = e.structure || hcsdesign.getSelectedStructure(), o = 0; o < i.hoppers.length; o++)
             t.createHopperSticks(i.hoppers[o], n)
     }, e.prototype.decorate = function(t, e) {
         var n = e.pickedMesh.material;
@@ -44,45 +44,45 @@ var HopperComponent3D = function() {
     }, e.prototype.createHopperSticks = function(t, e) {
         if (Object.keys(t.sticks).length) {
             var n = t.materials;
-            n = ujs.mergeObjects(this.getDefaultMaterials(wanaplan.engine3D.scene), n);
-            var i = new BABYLON.Mesh("sticks", wanaplan.engine3D.scene);
+            n = ujs.mergeObjects(this.getDefaultMaterials(hcsdesign.engine3D.scene), n);
+            var i = new BABYLON.Mesh("sticks", hcsdesign.engine3D.scene);
             i.isVisible = !1;
             for (var o in t.sticks) {
                 var r = t.sticks[o] ? o : !1;
                 if (r !== !1) {
-                    var s = new BABYLON.Mesh("rails", wanaplan.engine3D.scene);
+                    var s = new BABYLON.Mesh("rails", hcsdesign.engine3D.scene);
                     s.isVisible = !1;
                     var a = t.points[+r],
                         l = t.points[+r + 1 >= t.points.length ? 0 : +r + 1],
                         h = a.clone().lerp(l.clone(), .5),
                         c = Math.atan2(l.y - a.y, l.x - a.x),
                         u = a.distanceTo(l),
-                        p = BABYLON.Mesh.CreateBloc("bas", u, 10, 5, wanaplan.engine3D.scene);
+                        p = BABYLON.Mesh.CreateBloc("bas", u, 10, 5, hcsdesign.engine3D.scene);
                     p.parent = s, p.position.y = 5, p.name = "bas", p.isDecorable = !0;
-                    var d = BABYLON.Mesh.CreateBloc("rails", u, 3, 5, wanaplan.engine3D.scene);
+                    var d = BABYLON.Mesh.CreateBloc("rails", u, 3, 5, hcsdesign.engine3D.scene);
                     d.position.y = 90, d.name = "rails", d.isDecorable = !0, d.parent = s;
                     var m = 20,
                         g = Math.round(u / m),
                         m = u / g,
-                        f = new BABYLON.Mesh("stick", wanaplan.engine3D.scene);
+                        f = new BABYLON.Mesh("stick", hcsdesign.engine3D.scene);
                     f.isVisible = !1;
-                    for (var y = BABYLON.Mesh.CreateCylinder("rail_stick", 90, 2, 2, 6, 1, !0, wanaplan.engine3D.scene), _ = 0; g > _; _++) {
+                    for (var y = BABYLON.Mesh.CreateCylinder("rail_stick", 90, 2, 2, 6, 1, !0, hcsdesign.engine3D.scene), _ = 0; g > _; _++) {
                         var v = y.clone();
                         v.position.x = 3 + _ * m, v.position.z = 0, v.position.y = 45, v.parent = f
                     }
-                    y.dispose(), f = BABYLON.Mesh.mergeMeshesRec("rail_stick", [f], wanaplan.engine3D.scene), f.position.x -= u / 2, f.isDecorable = !0, f.parent = s, s.rotation.y = c, s.position.x = h.x, s.position.z = -h.y, s.parent = i
+                    y.dispose(), f = BABYLON.Mesh.mergeMeshesRec("rail_stick", [f], hcsdesign.engine3D.scene), f.position.x -= u / 2, f.isDecorable = !0, f.parent = s, s.rotation.y = c, s.position.x = h.x, s.position.z = -h.y, s.parent = i
                 }
             }
-            this.mergeGeometries(i, n, wanaplan.engine3D.scene), i.isDecorable = !0, i.decorate = this.decorate, i.structure = t, i.parent = e, this.initMaterials(i, n), t.materials = n
+            this.mergeGeometries(i, n, hcsdesign.engine3D.scene), i.isDecorable = !0, i.decorate = this.decorate, i.structure = t, i.parent = e, this.initMaterials(i, n), t.materials = n
         }
         return !1
     }, e.prototype.getDefaultMaterials = function(t) {
         var e = {};
-        return e.rails = new wnp.WhiteMaterial("rails", t, {
+        return e.rails = new hcs.WhiteMaterial("rails", t, {
             factor: .8
-        }), e.rail_stick = new wnp.MetalMaterial("rail_stick", t, {
+        }), e.rail_stick = new hcs.MetalMaterial("rail_stick", t, {
             brillance: .2
-        }), e.bas = new wnp.WhiteMaterial("bas", t, {
+        }), e.bas = new hcs.WhiteMaterial("bas", t, {
             factor: .8
         }), e
     }, e.prototype.prepareMaterials = function(t, e) {
@@ -103,27 +103,27 @@ var HopperComponent3D = function() {
                 s = 100 > o ? o + 1 : 100,
                 a = BABYLON.Mesh.ExtrudeNewMesh("hopper_temp", n.points, null, {
                     amount: s
-                }, wanaplan.engine3D.scene);
+                }, hcsdesign.engine3D.scene);
             if (!a)
                 return e;
             a.position.y += i, a.parent = e.parent, n.material = n.material || t._commonHopperMaterial, a.subMeshes[0].objectInstance = n;
             var l = BABYLON.CSG.FromMesh(a);
             r.subtractInPlace(l);
-            var h = r.toMesh("room_global", e.material, wanaplan.engine3D.scene, !0);
-            return h.parent = e.parent, wanaplan.getComponentByName("RoomComponent3D").replaceRoom(e, h), 0 != i && h.subMeshes.splice(h.subMeshes.length - 1, 1), h.isDecorable = !0, h.parent.roomMesh = h, a.dispose(), h
+            var h = r.toMesh("room_global", e.material, hcsdesign.engine3D.scene, !0);
+            return h.parent = e.parent, hcsdesign.getComponentByName("RoomComponent3D").replaceRoom(e, h), 0 != i && h.subMeshes.splice(h.subMeshes.length - 1, 1), h.isDecorable = !0, h.parent.roomMesh = h, a.dispose(), h
         }
     }, e.Debug = function() {
-        var t = BABYLON.Mesh.CreateSphere("sphere", 1, 40, wanaplan.engine3D.scene),
-            e = BABYLON.Mesh.CreateBox("box", 40, wanaplan.engine3D.scene);
+        var t = BABYLON.Mesh.CreateSphere("sphere", 1, 40, hcsdesign.engine3D.scene),
+            e = BABYLON.Mesh.CreateBox("box", 40, hcsdesign.engine3D.scene);
         t.position.y += 51, e.position.y += 25;
         var n = BABYLON.CSG.FromMesh(t),
             i = BABYLON.CSG.FromMesh(e),
-            o = new BABYLON.MultiMaterial("multiMat", wanaplan.engine3D.scene),
-            r = new BABYLON.StandardMaterial("mat0", wanaplan.engine3D.scene),
-            s = new BABYLON.StandardMaterial("mat1", wanaplan.engine3D.scene);
+            o = new BABYLON.MultiMaterial("multiMat", hcsdesign.engine3D.scene),
+            r = new BABYLON.StandardMaterial("mat0", hcsdesign.engine3D.scene),
+            s = new BABYLON.StandardMaterial("mat1", hcsdesign.engine3D.scene);
         r.diffuseColor.copyFromFloats(.8, .2, .2), r.backFaceCulling = !1, s.diffuseColor.copyFromFloats(.2, .8, .2), s.backFaceCulling = !1, o.subMaterials.push(r, s);
         var a = i.subtract(n),
-            l = a.toMesh("csg", o, wanaplan.engine3D.scene, !0);
-        l.position = new BABYLON.Vector3(-100, 0, 0), a = n.subtract(i), l = a.toMesh("csg2", o, wanaplan.engine3D.scene, !0), l.position = new BABYLON.Vector3(100, 0, 0), a = n.intersect(i), l = a.toMesh("csg3", o, wanaplan.engine3D.scene, !0), l.position = new BABYLON.Vector3(0, 0, 100)
+            l = a.toMesh("csg", o, hcsdesign.engine3D.scene, !0);
+        l.position = new BABYLON.Vector3(-100, 0, 0), a = n.subtract(i), l = a.toMesh("csg2", o, hcsdesign.engine3D.scene, !0), l.position = new BABYLON.Vector3(100, 0, 0), a = n.intersect(i), l = a.toMesh("csg3", o, hcsdesign.engine3D.scene, !0), l.position = new BABYLON.Vector3(0, 0, 100)
     }, e
 }();

@@ -173,11 +173,11 @@ StairwayStructure = function() {
             r = n[0].add(o),
             s = n[3].add(o),
             a = Math.round(r.distanceTo(s)) / 100;
-        if (a > .5 && wanaplan.engine2D.symbols2D.drawMeasure(t, r, s, a + "m", "#cccccc"), this.points.length > 2) {
+        if (a > .5 && hcsdesign.engine2D.symbols2D.drawMeasure(t, r, s, a + "m", "#cccccc"), this.points.length > 2) {
             var l = n[1].subtract(o),
                 h = n[2].subtract(o),
                 c = Math.round(l.distanceTo(h)) / 100;
-            c > .5 && wanaplan.engine2D.symbols2D.drawMeasure(t, l, h, c + "m", "#cccccc")
+            c > .5 && hcsdesign.engine2D.symbols2D.drawMeasure(t, l, h, c + "m", "#cccccc")
         }
         t.beginPath(), t.moveTo(n[0].x, n[0].y), t.lineTo(n[3].x, n[3].y), t.moveTo(n[1].x, n[1].y), t.lineTo(n[2].x, n[2].y), t.stroke(), this.drawStepStairs(t, e.stairsSegment), this.drawStepBearing(t, e.bearingPolygon0, 1), this.drawStepBearing(t, e.bearingPolygon1)
     }, t.prototype.drawStepStairs = function(t, e) {
@@ -190,9 +190,9 @@ StairwayStructure = function() {
             l = Math.floor(s / a),
             h = s / l,
             c = Math.atan2(o.y, o.x);
-        wanaplan.engine2D.symbols2D.drawArrows(t, n, [0, 1, 0, 0], 0, c, !1, {
+        hcsdesign.engine2D.symbols2D.drawArrows(t, n, [0, 1, 0, 0], 0, c, !1, {
             size: 10
-        }), wanaplan.engine2D.symbols2D.drawArrows(t, i, [0, 1, 0, 0], -10, c, !1, {
+        }), hcsdesign.engine2D.symbols2D.drawArrows(t, i, [0, 1, 0, 0], -10, c, !1, {
             size: 10
         });
         var u = o.scale(h);

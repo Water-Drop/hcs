@@ -1,13 +1,13 @@
 /**
- * @module Wanaplan
- * @namespace wnp
+ * @module hcsdesign
+ * @namespace hcs
  * @submodule Programmable
  */
 
-var wnp = window.wnp || {};
-wnp.Programmable = wnp.Programmable || {};
+var hcs = window.hcs || {};
+hcs.Programmable = hcs.Programmable || {};
 
-wnp.Programmable.Aperture.Window = (function() {
+hcs.Programmable.Aperture.Window = (function() {
                                     
                                     var that;
                                     var widthBarre = 10;
@@ -15,11 +15,11 @@ wnp.Programmable.Aperture.Window = (function() {
                                      *  Define a basic 3D object (draw dynamically)
                                      * @constructor
                                      * @class Window
-                                     * @param {wnp.Core} Le moteur principal.
+                                     * @param {hcs.Core} Le moteur principal.
                                      * @param {Object} Des paramètres de configuration.
                                      */
                                     var pWindow = function(engine, structure, params) {
-                                    wnp.Programmable.Aperture.call(this, engine, structure, params);
+                                    hcs.Programmable.Aperture.call(this, engine, structure, params);
                                     
                                     for (var i in params) {
                                     this[i] = params[i];
@@ -32,11 +32,11 @@ wnp.Programmable.Aperture.Window = (function() {
                                     
                                     pWindow.prototype.loaded = false;
                                     
-                                    if (typeof wnp.Programmable.Aperture != "undefined") {
-                                    for (var i in wnp.Programmable.Aperture.prototype) {
+                                    if (typeof hcs.Programmable.Aperture != "undefined") {
+                                    for (var i in hcs.Programmable.Aperture.prototype) {
                                     if (typeof pWindow.prototype[i] == 'undefined') {
                                     
-                                    pWindow.prototype[i] = wnp.Programmable.Aperture.prototype[i];
+                                    pWindow.prototype[i] = hcs.Programmable.Aperture.prototype[i];
                                     }
                                     }
                                     
@@ -46,18 +46,18 @@ wnp.Programmable.Aperture.Window = (function() {
                                     
                                     pWindow.prototype.getDefaultMaterials = function(scene) {
                                     var materials = {};
-                                    materials['cadre'] = new wnp.WhiteMaterial("cadre", scene, {factor : 0.7}); //cadre
-                                    //materials['poignee'] = new wnp.WhiteMaterial(); //poignee
-                                    materials['vitre'] = new wnp.TransparentMaterial("vitre", scene, {opacity : 0.2}); //porte
+                                    materials['cadre'] = new hcs.WhiteMaterial("cadre", scene, {factor : 0.7}); //cadre
+                                    //materials['poignee'] = new hcs.WhiteMaterial(); //poignee
+                                    materials['vitre'] = new hcs.TransparentMaterial("vitre", scene, {opacity : 0.2}); //porte
                                     materials['vitre'].backFaceCulling = false;
-                                    materials['serrure'] = new wnp.MetalMaterial("serrure", scene, {brillance : 0.2});
-                                    materials['poignee'] = new wnp.MetalMaterial("poignee", scene, {brillance : 0.2});
-                                    materials['poigneeB1'] = new wnp.MetalMaterial("poigneeB1", scene, {brillance : 0.2});
-                                    materials['poigneeB2'] = new wnp.MetalMaterial("poigneeB2", scene, {brillance : 0.2});
-                                    materials['joint'] = new wnp.MetalMaterial("joint", scene, {brillance : 0.2});
-                                    materials['hinge'] = new wnp.WhiteMaterial("hinge", scene, {factor : 0.7});
-                                    materials['Barre'] = new wnp.WhiteMaterial("Barre", scene, {factor : 0.7});
-                                    materials['bati'] = new wnp.WhiteMaterial("bati", scene, {factor : 0.7});
+                                    materials['serrure'] = new hcs.MetalMaterial("serrure", scene, {brillance : 0.2});
+                                    materials['poignee'] = new hcs.MetalMaterial("poignee", scene, {brillance : 0.2});
+                                    materials['poigneeB1'] = new hcs.MetalMaterial("poigneeB1", scene, {brillance : 0.2});
+                                    materials['poigneeB2'] = new hcs.MetalMaterial("poigneeB2", scene, {brillance : 0.2});
+                                    materials['joint'] = new hcs.MetalMaterial("joint", scene, {brillance : 0.2});
+                                    materials['hinge'] = new hcs.WhiteMaterial("hinge", scene, {factor : 0.7});
+                                    materials['Barre'] = new hcs.WhiteMaterial("Barre", scene, {factor : 0.7});
+                                    materials['bati'] = new hcs.WhiteMaterial("bati", scene, {factor : 0.7});
                                     
                                     return materials;
                                     };

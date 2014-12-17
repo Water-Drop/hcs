@@ -9,7 +9,7 @@ var OptionsComponent = function() {
             index: "3",
             items: [{
                 title: "Change language",
-                action: "wnp.request.changeLang",
+                action: "hcs.request.changeLang",
                 id: "toolbarChangeLanguage",
                 index: 100
             }, {
@@ -17,7 +17,7 @@ var OptionsComponent = function() {
                 index: 1e5
             }, {
                 title: "About Wanaplan",
-                action: "wnp.ui.showAboutWindow",
+                action: "hcs.ui.showAboutWindow",
                 id: "toolbarAbout",
                 index: 100001
             }]

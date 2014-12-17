@@ -2,7 +2,7 @@ var BaseComponent2D = function() {
     var t = function(t, e) {
         this.core = t, this.name = e || "Component2D", this.structure = null, this.keyboard = null, this.priority = 42, this.enabled = !0;
         var n = this;
-        "undefined" != typeof t && (this.structure = this.core.structure, this.keyboardManager = this.core.keyboardManager, document.addEventListener("wnp.contextChanged", function(t) {
+        "undefined" != typeof t && (this.structure = this.core.structure, this.keyboardManager = this.core.keyboardManager, document.addEventListener("hcs.contextChanged", function(t) {
             n.enabled && t.context != t.previousContext && n.onContextChanged(t.context)
         }, !1))
     };

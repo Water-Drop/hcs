@@ -8,7 +8,7 @@ var HandlesDisplayerForDimensionReshaperFactoryComponent3D = function() {
     };
     var e = function() {};
     return e.prototype.initialize = function(t, e) {
-        this.scene = e, this.camera = t, this.dimensionConfigurator = wanaplan.getComponentByName("DimensionReshaperComponent3D"), this._spriteManager = new BABYLON.SpriteManager("handleMgr", wnp.Assets.toolbarTextures.arrowTexture, 6, 128, this.scene), this._sprite = {}, this._animated = {}, this._availableHandles = {}, this.initBindForThisInstance()
+        this.scene = e, this.camera = t, this.dimensionConfigurator = hcsdesign.getComponentByName("DimensionReshaperComponent3D"), this._spriteManager = new BABYLON.SpriteManager("handleMgr", hcs.Assets.toolbarTextures.arrowTexture, 6, 128, this.scene), this._sprite = {}, this._animated = {}, this._availableHandles = {}, this.initBindForThisInstance()
     }, e.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -23,9 +23,9 @@ var HandlesDisplayerForDimensionReshaperFactoryComponent3D = function() {
             })();
         return this
     }, e.prototype.start = function(t) {
-        this.stop(), this.object = t, this._computeAvailableHandles(t), document.addEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove), document.addEventListener("wnp.engine3D.drag-start", this.myBind.onMouseDown), this.myBind.onCameraMove()
+        this.stop(), this.object = t, this._computeAvailableHandles(t), document.addEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove), document.addEventListener("hcs.engine3D.drag-start", this.myBind.onMouseDown), this.myBind.onCameraMove()
     }, e.prototype.stop = function() {
-        document.removeEventListener("wnp.engine3D.camera.move", this.myBind.onCameraMove), document.removeEventListener("wnp.engine3D.drag-start", this.myBind.onMouseDown), this.dispose()
+        document.removeEventListener("hcs.engine3D.camera.move", this.myBind.onCameraMove), document.removeEventListener("hcs.engine3D.drag-start", this.myBind.onMouseDown), this.dispose()
     }, e.prototype.startAnimeHandle = function(t) {
         var e = 2 * Math.abs(t.y) + 4 * Math.abs(t.z) + (t.x + t.z + t.y < 0 ? 0 : 1);
         if (!this._animated[e]) {
@@ -106,7 +106,7 @@ var HandlesDisplayerForDimensionReshaperFactoryComponent3D = function() {
             var e = [];
             for (var n in this._sprite || {})
                 this._sprite[n] && e.push(this._sprite[n]._colliderMesh);
-            var i = wanaplan.engine3D,
+            var i = hcsdesign.engine3D,
                 o = i.scene.createPickingRay(t.mstate.pos.x, t.mstate.pos.y),
                 r = o.intersectMeshes(e, !0, !0);
             if (r && r.pickedMesh) {

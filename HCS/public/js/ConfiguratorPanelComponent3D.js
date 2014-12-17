@@ -1,6 +1,6 @@
 ﻿var ConfiguratorPanelComponent3D = function() {
     var t = function(t) {
-        BaseComponent3D.call(this, t, "ConfiguratorPanelComponent3D"), this.confm = wanaplan.getComponentByName("ConfiguratorModComponent3D"), this.hec = wanaplan.getComponentByName("HistoryEditionComponent"), this.edcmp = wanaplan.getComponentByName("EditionComponent3D"), this.camF = wanaplan.engine3D.cameraFeatures
+        BaseComponent3D.call(this, t, "ConfiguratorPanelComponent3D"), this.confm = hcsdesign.getComponentByName("ConfiguratorModComponent3D"), this.hec = hcsdesign.getComponentByName("HistoryEditionComponent"), this.edcmp = hcsdesign.getComponentByName("EditionComponent3D"), this.camF = hcsdesign.engine3D.cameraFeatures
     };
     t.prototype = new BaseComponent3D, t.prototype.initialize = function() {
         this._options || this.setOptions()
@@ -12,9 +12,9 @@
             this._options[n] = "undefined" == typeof t[n] ? e[n] : t[n];
         return this
     }, t.prototype.stopListening = function() {
-        this.initBindForThisInstance(), document.removeEventListener("wnp.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("wnp.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.removeEventListener("wnp.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.removeEventListener("wnp.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
+        this.initBindForThisInstance(), document.removeEventListener("hcs.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.removeEventListener("hcs.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.removeEventListener("hcs.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.removeEventListener("hcs.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.startListening = function() {
-        this.stopListening(), document.addEventListener("wnp.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.addEventListener("wnp.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("wnp.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.addEventListener("wnp.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.addEventListener("wnp.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
+        this.stopListening(), document.addEventListener("hcs.engine3d.configurator.start", this.myBind.onEditionStart, !1), document.addEventListener("hcs.engine3d.configurator.stop", this.myBind.onEditionStop, !1), document.addEventListener("hcs.contextMenu.transformChanged", this.myBind.onTransformPropertyChanged, !1), document.addEventListener("hcs.contextMenu.propertyChanged", this.myBind.onParamPropertyChanged, !1), document.addEventListener("hcs.widget.contextMenu.FurnitureEditor.closed", this.myBind.onEditBoxClosed, !1)
     }, t.prototype.initBindForThisInstance = function() {
         if (this.myBind)
             return this;
@@ -29,24 +29,24 @@
             })();
         return this
     }, t.prototype.closeEditBox = function() {
-        wnp.UI.ContextMenu.close(), document.removeEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1)
+        hcs.UI.ContextMenu.close(), document.removeEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1), document.removeEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1)
     }, t.prototype.openEditBox = function(t) {
         if (t) {
             this._enabled = !0;
             var e = [{
                 label: _("删除"),
-                action: "wnp.request.object.remove",
+                action: "hcs.request.object.remove",
                 "class": "remove"
             }, {
                 label: _("复制"),
-                action: "wnp.request.object.clone"
+                action: "hcs.request.object.clone"
             }, {
                 label: _("确定"),
-                action: "wnp.widget.contextMenu.FurnitureEditor.closed"
+                action: "hcs.widget.contextMenu.FurnitureEditor.closed"
             }];
-            wanaplan.isPublisher() && e.push({
+            hcsdesign.isPublisher() && e.push({
                 label: _("增加到物品列表"),
-                action: "wnp.request.object.addToProducts"
+                action: "hcs.request.object.addToProducts"
             });
             var n = t.structure,
                 i = n.getAvailableProperties(),
@@ -57,7 +57,7 @@
                     title: _("位置 和 旋转"),
                     content: this._getPositionAndRotationMenu(n)
                 }];
-            wnp.UI.ContextMenu.show({
+            hcs.UI.ContextMenu.show({
                 menuName: "FurnitureEditor",
                 title: _("物品属性"),
                 width: 500,
@@ -68,7 +68,7 @@
                 id: "configuratorWindow"
             }, o, e, !1, {
                 furniture: t
-            }), document.addEventListener("wnp.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.rotate", this.myBind.onRefresh, !1), document.addEventListener("wnp.engine3D.object.translate", this.myBind.onRefresh, !1)
+            }), document.addEventListener("hcs.engine3D.object.refresh", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.rotate", this.myBind.onRefresh, !1), document.addEventListener("hcs.engine3D.object.translate", this.myBind.onRefresh, !1)
         }
     }, t.prototype.refreshEditBox = function(t) {
         if (t && this._enabled) {
@@ -81,7 +81,7 @@
                     title: _("位置 和 旋转"),
                     content: this._getPositionAndRotationMenu(e)
                 }];
-            wnp.UI.ContextMenu.update(i)
+            hcs.UI.ContextMenu.update(i)
         }
     }, t.prototype._setTransformProperty = function(t, e, n) {
         if (!t)
@@ -90,7 +90,7 @@
         i && (n = n / 180 * Math.PI);
         var o = t.rotation.clone(),
             r = t.position.clone();
-        ujs.setProperty(t, e, +n), ujs.notify("wnp.request.historyAction", {
+        ujs.setProperty(t, e, +n), ujs.notify("hcs.request.historyAction", {
             component: this.edcmp,
             object: t,
             params: {
@@ -100,7 +100,7 @@
                 newRotation: t.rotation.clone()
             },
             action: i ? this.edcmp.ROTATEACTION : this.edcmp.MOVEACTION
-        }), t.computeWorldMatrix(!0), t.parent.markAsDirty(), ujs.notify(i ? "wnp.engine3D.object.translate" : "wnp.engine3D.object.rotate", {
+        }), t.computeWorldMatrix(!0), t.parent.markAsDirty(), ujs.notify(i ? "hcs.engine3D.object.translate" : "hcs.engine3D.object.rotate", {
             object: t
         })
     }, t.prototype._setParamProperty = function(t, e, n) {
@@ -114,9 +114,9 @@
             exValue: ujs.getProperty(i, e)
         }, ujs.setProperty(i, e, n), this.edcmp.refreshObject(t, {
             modifiedProperties: o
-        }), ujs.notify("wnp.request.saveHistory")
+        }), ujs.notify("hcs.request.saveHistory")
     }, t.prototype._saveFrameState = function() {
-        for (var t = wnp.UI.ContextMenu.getPosition() || {
+        for (var t = hcs.UI.ContextMenu.getPosition() || {
                 x: 100,
                 y: 100
             }, e = document.querySelectorAll(".advancedParams"), n = !(!e.length || e[0].classList.contains("hidden")), o = document.querySelectorAll(".window .tabbed-tabcontent"), r = [], s = o.length; s--;)
@@ -129,7 +129,7 @@
         }
     }, t.prototype._restoreFrameState = function() {
         if (this._frameSavedState) {
-            this._frameSavedState.advancedVisible && wnp.Programmable.toggleVisible(), wnp.UI.ContextMenu.setPosition(this._frameSavedState.x, this._frameSavedState.y);
+            this._frameSavedState.advancedVisible && hcs.Programmable.toggleVisible(), hcs.UI.ContextMenu.setPosition(this._frameSavedState.x, this._frameSavedState.y);
             for (var t = document.querySelectorAll(".window .tabbed-tabcontent"), e = t.length; e--;)
                 n(t[e], this._frameSavedState.scroll[e].x, this._frameSavedState.scroll[e].y)
         }
@@ -153,7 +153,7 @@
                 value: n(t.rotation.x)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "rotation.x"
             },
             id: "rotation-x"
@@ -168,7 +168,7 @@
                 value: n(t.rotation.y)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "rotation.y"
             },
             id: "rotation-y"
@@ -183,7 +183,7 @@
                 value: n(t.rotation.z)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "rotation.z"
             },
             id: "rotation-z"
@@ -201,7 +201,7 @@
                 value: Math.round(t.position.x)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "position.x"
             },
             id: "position-x"
@@ -216,7 +216,7 @@
                 value: Math.round(t.position.y)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "position.y"
             },
             id: "position-y"
@@ -231,7 +231,7 @@
                 value: Math.round(t.position.z)
             },
             eventParams: {
-                eventName: "wnp.contextMenu.transformChanged",
+                eventName: "hcs.contextMenu.transformChanged",
                 property: "position.z"
             },
             id: "position-z"
@@ -253,7 +253,7 @@
             this._setTransformProperty(this.confm.getCurrentObject(), t.property, t.value)
         },
         onEditBoxClosed: function() {
-            this._enabled = !1, ujs.notify("wnp.request.configurator.stop")
+            this._enabled = !1, ujs.notify("hcs.request.configurator.stop")
         }
     };
     var n = function(t, e, n) {

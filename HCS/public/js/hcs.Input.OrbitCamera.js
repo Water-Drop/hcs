@@ -1,5 +1,5 @@
-var wnp = window.wnp || {};
-wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
+var hcs = window.hcs || {};
+hcs.Input = hcs.Input || {}, hcs.Input.OrbitCamera = function () {
     var t = (BABYLON.Tools.GetPointerPrefix(), function (e, n, i, o, r, s) {
         BABYLON.Camera.call(this, e, BABYLON.Vector3.Zero(), s), this.alpha = n, this.beta = i, this.radius = o, this.target = r, this.enabled = !0, this.cameraTranslationenabled = !0, this._keys = [], this.keysUp = [38], this.keysDown = [40], this.keysLeft = [37], this.keysRight = [39], this._viewMatrix = new BABYLON.Matrix, t.prototype._initCache.call(this), this.getViewMatrix()
     });
@@ -20,12 +20,12 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
     }, t.prototype._isSynchronizedViewMatrix = function () {
         return e.prototype._isSynchronizedViewMatrix.call(this) ? this._cache.target.equals(this._getTargetPosition()) && this._cache.alpha === this.alpha && this._cache.beta === this.beta && this._cache.radius === this.radius : !1
     }, t.prototype.attachControl = function (t, e, n) {
-        1 === wanaplan.engine3D.pointerManager.mode ? this.attachControlForMobile(t, e, n) : this.attachControlForDesktop(t, e, n)
+        1 === hcsdesign.engine3D.pointerManager.mode ? this.attachControlForMobile(t, e, n) : this.attachControlForDesktop(t, e, n)
     }, t.prototype.attachControlForMobile = function (t) {
         var e, n = this._scene.getEngine(), i = .005, o = !0, r = [{ x: 0, y: 0 }, { x: 0, y: 0}], s = 0, a = 0, l = this;
-        this.angularSensibility = 1, this._attachedCanvas = t, window.ejecta && (this._attachedCanvas = document), document.addEventListener("wnp.engine3d.dragcontrols.start", function () {
+        this.angularSensibility = 1, this._attachedCanvas = t, window.ejecta && (this._attachedCanvas = document), document.addEventListener("hcs.engine3d.dragcontrols.start", function () {
             o = !1
-        }, !1), document.addEventListener("wnp.engine3d.dragcontrols.end", function () {
+        }, !1), document.addEventListener("hcs.engine3d.dragcontrols.end", function () {
             o = !0
         }, !1);
         var h = function (t) {
@@ -41,12 +41,12 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
                     return;
                 var n = t.touches[0].clientX * i, u = t.touches[0].clientY * i, p = n - e.x, d = u - e.y;
                 if (t.touches.length > 2) {
-                    var m = wanaplan.engine3D.projectMouseOnGround(0 | +(e.x / i), 0 | +(e.y / i)), g = wanaplan.engine3D.projectMouseOnGround(0 | +(n / i), 0 | +(u / i));
-                    null !== m && null !== g && (g.subtractInPlace(m), l._getTargetPosition().addInPlace(g.scaleInPlace(-1)), l._getTargetPosition().x = ujs.Math.clamp(l._getTargetPosition().x, wanaplan.configuration.boundingSize.min.x, wanaplan.configuration.boundingSize.max.x), l._getTargetPosition().z = ujs.Math.clamp(l._getTargetPosition().z, wanaplan.configuration.boundingSize.min.z, wanaplan.configuration.boundingSize.max.z))
+                    var m = hcsdesign.engine3D.projectMouseOnGround(0 | +(e.x / i), 0 | +(e.y / i)), g = hcsdesign.engine3D.projectMouseOnGround(0 | +(n / i), 0 | +(u / i));
+                    null !== m && null !== g && (g.subtractInPlace(m), l._getTargetPosition().addInPlace(g.scaleInPlace(-1)), l._getTargetPosition().x = ujs.Math.clamp(l._getTargetPosition().x, hcsdesign.configuration.boundingSize.min.x, hcsdesign.configuration.boundingSize.max.x), l._getTargetPosition().z = ujs.Math.clamp(l._getTargetPosition().z, hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z))
                 } else if (2 == t.touches.length) {
                     a = s, s = c(r[0], r[1]);
                     var f = +(s - a) > 0 ? 2.5 : -2.5;
-                    f *= wanaplan.loopTimer.getDeltaTime(), l.inertialRadiusOffset += f
+                    f *= hcsdesign.loopTimer.getDeltaTime(), l.inertialRadiusOffset += f
                 } else
                     l.inertialAlphaOffset -= p / l.angularSensibility, l.inertialBetaOffset -= d / l.angularSensibility;
                 e = { x: n, y: u }
@@ -74,14 +74,14 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
                         else if (2 === c) {
                             if (!s.cameraTranslationenabled)
                                 return;
-                            var u = wanaplan.engine3D.projectMouseOnGround(o.x, o.y), p = wanaplan.engine3D.projectMouseOnGround(n(t), i(t));
+                            var u = hcsdesign.engine3D.projectMouseOnGround(o.x, o.y), p = hcsdesign.engine3D.projectMouseOnGround(n(t), i(t));
                             if (null !== u && null !== p) {
                                 p.subtractInPlace(u);
                                 var d = p.length();
-                                d > 125 && p.scaleInPlace(125 / d), s._getTargetPosition().addInPlace(p.scaleInPlace(-1)), s._getTargetPosition().x = ujs.Math.clamp(s._getTargetPosition().x, wanaplan.configuration.boundingSize.min.x, wanaplan.configuration.boundingSize.max.x), s._getTargetPosition().z = ujs.Math.clamp(s._getTargetPosition().z, wanaplan.configuration.boundingSize.min.z, wanaplan.configuration.boundingSize.max.z)
+                                d > 125 && p.scaleInPlace(125 / d), s._getTargetPosition().addInPlace(p.scaleInPlace(-1)), s._getTargetPosition().x = ujs.Math.clamp(s._getTargetPosition().x, hcsdesign.configuration.boundingSize.min.x, hcsdesign.configuration.boundingSize.max.x), s._getTargetPosition().z = ujs.Math.clamp(s._getTargetPosition().z, hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z)
                             }
                         }
-                        ujs.notify("wnp.engine3D.camera.move"), o = { x: n(t), y: i(t) }, e || t.preventDefault()
+                        ujs.notify("hcs.engine3D.camera.move"), o = { x: n(t), y: i(t) }, e || t.preventDefault()
                     }
                 }
             }, this._onMouseMove = function (t) {
@@ -124,7 +124,7 @@ wnp.Input = wnp.Input || {}, wnp.Input.OrbitCamera = function () {
     }, t.prototype._update = function () {
         for (var t = 0; t < this._keys.length; t++) {
             var e = this._keys[t];
-            ujs.notify("wnp.engine3D.camera.move"), -1 !== this.keysLeft.indexOf(e) ? this.inertialAlphaOffset -= .01 : -1 !== this.keysUp.indexOf(e) ? this.inertialBetaOffset -= .01 : -1 !== this.keysRight.indexOf(e) ? this.inertialAlphaOffset += .01 : -1 !== this.keysDown.indexOf(e) && (this.inertialBetaOffset += .01)
+            ujs.notify("hcs.engine3D.camera.move"), -1 !== this.keysLeft.indexOf(e) ? this.inertialAlphaOffset -= .01 : -1 !== this.keysUp.indexOf(e) ? this.inertialBetaOffset -= .01 : -1 !== this.keysRight.indexOf(e) ? this.inertialAlphaOffset += .01 : -1 !== this.keysDown.indexOf(e) && (this.inertialBetaOffset += .01)
         }
         (0 != this.inertialAlphaOffset || 0 != this.inertialBetaOffset || 0 != this.inertialRadiusOffset) && (this.alpha += this.inertialAlphaOffset, this.beta += this.inertialBetaOffset, this.radius -= this.inertialRadiusOffset, this.inertialAlphaOffset *= this.inertia, this.inertialBetaOffset *= this.inertia, this.inertialRadiusOffset *= this.inertia, Math.abs(this.inertialAlphaOffset) < BABYLON.Engine.epsilon && (this.inertialAlphaOffset = 0), Math.abs(this.inertialBetaOffset) < BABYLON.Engine.epsilon && (this.inertialBetaOffset = 0), Math.abs(this.inertialRadiusOffset) < BABYLON.Engine.epsilon && (this.inertialRadiusOffset = 0)), this.lowerAlphaLimit && this.alpha < this.lowerAlphaLimit && (this.alpha = this.lowerAlphaLimit), this.upperAlphaLimit && this.alpha > this.upperAlphaLimit && (this.alpha = this.upperAlphaLimit), this.lowerBetaLimit && this.beta < this.lowerBetaLimit && (this.beta = this.lowerBetaLimit), this.upperBetaLimit && this.beta > this.upperBetaLimit && (this.beta = this.upperBetaLimit), this.lowerRadiusLimit && this.radius < this.lowerRadiusLimit && (this.radius = this.lowerRadiusLimit), this.upperRadiusLimit && this.radius > this.upperRadiusLimit && (this.radius = this.upperRadiusLimit), this._constraintToUpScene()
     }, t.prototype.setPosition = function (t) {
