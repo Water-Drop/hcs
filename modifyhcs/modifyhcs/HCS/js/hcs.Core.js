@@ -8,7 +8,7 @@ hcs.Core = function () {
         return t.uuid || (t.uuid = hcs.uuid.uuid4()), t.lastModified || "hcsLocalStorage" == e ? t.lastModified || (t.lastModified = 0) : t.lastModified = (new Date).getTime(), t
     }
     var n = null, i = 640, o = 480, r = 260, s = 260, a = 1, l = null, h = null, c = {}, u = hcs.Constants.MODE_STANDALONE, p = null, d = null, m = null, g = null, f = !1, y = null, v = !1, b = null, w = "2D", x = null, C = function (e, _, v) {
-        if (this.version = e, this.isFullyInitialized = !1, window.hcsdesign = this, this.ENGINE_2D = 1, this.ENGINE_3D = 2, this.MODE_EDITOR = 1, this.MODE_VIEWER = 2, this.LOCAL_STORAGE_STRUCTURE_KEY = "wanadev.planner.structure", this.i18n = _, hcs.UI.LanguageSelector.setLocal(_.getLocale().split("_")[0]), l = document.getElementById("container2d"), h = document.getElementById("container3d"), a = this.ENGINE_2D, c = { structure: [], limit: 50, cursor: 0, getLatest: function () {
+        if (this.version = e, this.isFullyInitialized = !1, window.hcsdesign = this, this.ENGINE_2D = 1, this.ENGINE_3D = 2, this.MODE_EDITOR = 1, this.MODE_VIEWER = 2, this.LOCAL_STORAGE_STRUCTURE_KEY = "wanadev.planner.structure", this.i18n = _, /*hcs.UI.LanguageSelector.setLocal(_.getLocale().split("_")[0]),*/ l = document.getElementById("container2d"), h = document.getElementById("container3d"), a = this.ENGINE_2D, c = { structure: [], limit: 50, cursor: 0, getLatest: function () {
             return this.structure[this.cursor]
         } 
         }, v.css && HTMLHelper.addStylesheet(v.css), this.allow3D = "undefined" != typeof v.allow3D ? v.allow3D : !0, this.api = v || {}, d = this.api.saveUrl || null, m = this.api.newUrl || null, g = this.api.planUrl || null, y = this.api.screenshotUrl || null, f = this.api.publisher || !1, _origin = this.api.origin || !1, this.mode = "true" === this.api.isViewer ? this.MODE_VIEWER : this.MODE_EDITOR, this.api.params = this.api.params ? JSON.parse(this.api.params) : {}, this.api.components && (this.api.components = JSON.parse(this.api.components)), this.api.id > 0) {
@@ -19,7 +19,7 @@ hcs.Core = function () {
 			hcs.Constants.PRODUCTS_FILE = [hcs.Constants.WNP_URL, "data/", p, "/products" + C + ".json"].join(""), 
 			hcs.Constants.PRODUCTS_PREVIEWS = [hcs.Constants.WNP_URL, "data/previews/"].join("")
         }
-        i = window.innerWidth, o = window.innerHeight, this.needPageRefresh = !1, this.loopTimer = new hcs.LoopTimer, this.structure = new hcs.Structure(e), this.keyboardManager = new hcs.KeyboardManager, this.configuration = new hcs.Configuration, this.engine2D = new hcs.Engine2D(l, this), this.engine3D = null, this.engine3D = GlobalHelper.hasWebGL() ? new hcs.Engine3D(h) : new hcs.Dummy.Engine3D(h), this.aboutWindow = null;
+        i = window.innerWidth, o = window.innerHeight, this.needPageRefresh = !1, this.loopTimer = new hcs.LoopTimer, this.structure = new hcs.Structure(e), this.keyboardManager = new hcs.KeyboardManager, this.configuration = new hcs.Configuration, this.engine2D = new hcs.Engine2D(l, this), this.engine3D = null, this.engine3D = GlobalHelper.hasWebGL() ? new hcs.Engine3D(h) : new hcs.Dummy.Engine3D(h)/*, this.aboutWindow = null*/;
         var M = this;
         n = this, window.addEventListener("resize", t, !1);
         var D = !1;
@@ -67,24 +67,25 @@ hcs.Core = function () {
             e.switchEngine(), e.changeToggleEngineLabel("2D" == n.children[0].innerHTML ? "3D" : "2D")
         }, !1)) : n.style.display = "none", this.changeToggleEngineLabel(+this.api.startOn2D ? "3D" : "2D"), this._createDefaultStructure(), this.menu = { addMenuItem: function () {
         } 
-        }, this.helpBubbleManager = { alreadyDisplayed: function () {
+        }, /*this.helpBubbleManager = { alreadyDisplayed: function () {
         }, display: function () {
         } 
-        }, this.engine2D.isViewer = !0, this.engine3D.isViewer = !0, this.engine2D.initialize(), this.engine3D.initialize(), g ? this._getStructureFromUrl(g, function (e) {
+        },*/ this.engine2D.isViewer = !0, this.engine3D.isViewer = !0, this.engine2D.initialize(), this.engine3D.initialize(), g ? this._getStructureFromUrl(g, function (e) {
             this._loadStructure(e), this.engine2D.bestZoom(), this.hideSplashScreen(), t.call(this), ujs.notify("hcs.structure.locale.loaded")
         } .bind(this)) : this._localStructureExists() ? this._loadStructure(this._getLocaleStorageStructure(), function (e) {
             t(e), ujs.notify("hcs.structure.locale.loaded")
         }) : t(this)
     }, C.prototype.initializeEditor = function () {
         var t = this;
-        this.helpBubbleManager = new hcs.UI.HelpBubbleManager(!GlobalHelper.isMobileDevice()), document.addEventListener("hcs.request.takeScreenshot", this.takeScreenshot, !1), document.addEventListener("hcs.request.saveStructrure", this.saveStructure.bind(this), !1), document.addEventListener("hcs.request.loadStructure", this.loadStructure.bind(this), !1), this.engine2D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), !1), this.engine2D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), !1), this.engine3D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), !1), this.engine3D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), !1);
+        /*this.helpBubbleManager = new hcs.UI.HelpBubbleManager(!GlobalHelper.isMobileDevice()), */
+        document.addEventListener("hcs.request.takeScreenshot", this.takeScreenshot, !1), document.addEventListener("hcs.request.saveStructrure", this.saveStructure.bind(this), !1), document.addEventListener("hcs.request.loadStructure", this.loadStructure.bind(this), !1), this.engine2D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), !1), this.engine2D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), !1), this.engine3D.getContainer().addEventListener("touchend", this.saveHistory.bind(this), !1), this.engine3D.getContainer().addEventListener("touchcancel", this.saveHistory.bind(this), !1);
         var e = window.PointerEvent ? "pointerup" : "mouseup";
         if (e = window.MSPointerEvent ? "MSPointerUp" : e, this.engine2D.getContainer().addEventListener(e, this.saveHistory.bind(this), !1), this.engine3D.getContainer().addEventListener(e, this.saveHistory.bind(this), !1), document.addEventListener("hcs.request.saveHistory", this.saveHistory.bind(this), !1), document.addEventListener("hcs.request.switchEngine", this.switchEngine.bind(this), !1), document.addEventListener("hcs.request.changeEngine", function (e) {
             ujs.notify("hcs.request.closePopup"), "undefined" != typeof e.engine && setTimeout(function () {
                 t.setSelectedEngine(e.engine)
             }, 10)
         }, !1), document.addEventListener("hcs.request.changeLang", function () {
-            ujs.notify("hcs.menu.top.deselect"), hcs.UI.LanguageSelector.show()
+            ujs.notify("hcs.menu.top.deselect")/*, hcs.UI.LanguageSelector.show()*/
         }, !1), this._createDefaultStructure(), this.engine2D.initialize(), this.engine3D.initialize(), v = !0, ":new" == g) {
             var n = !1;
             if (this._localStructureExists()) {
@@ -101,7 +102,7 @@ hcs.Core = function () {
             } .bind(this)) : (this._localStructureExists() && this._loadStructure(this._getLocaleStorageStructure()), this.structure.setCurrentStructureIndex(0), this.engine2D.bestZoom(), this.hideSplashScreen());
 			window.addEventListener("focus", function () {
             this.saveLocalStructure(!1, !0)
-        } .bind(this), !1), this.aboutWindow = new hcs.UI.AboutWindow, this.setSize(window.innerWidth - 260, window.innerHeight)
+        } .bind(this), !1),/* this.aboutWindow = new hcs.UI.AboutWindow,*/ this.setSize(window.innerWidth - 260, window.innerHeight)
     }, C.prototype.update = function () {
         this.loopTimer.update(), this.keyboardManager.isPressed(82) && (this.keyboardManager.isPressed(17) || this.keyboardManager.isPressed(91) || this.keyboardManager.isPressed(224)) && (this.needPageRefresh || (this.needPageRefresh = !0, location.href = location.href, this.needPageRefresh = !1)), this.engine2D.isEnabled() && this.keyboardManager.isPressed(Keys.escape) && (this.engine2D.setMode(this.engine2D.MODE_NORMAL), ujs.notify("hcs.menu.main.deselect"), this.engine2D.requestStaticDraw(), this.keyboardManager.keys[Keys.escape] = !1), this.engine2D.isEnabled() ? this.engine2D.update(this.loopTimer.getDeltaTime()) : this.engine3D.update(this.loopTimer.getDeltaTime())
     }, C.prototype.draw = function () {
@@ -132,7 +133,7 @@ hcs.Core = function () {
             return void (e && e.parentNode.removeChild(e))
         }
         var n = t == this.ENGINE_3D || "3D" == t, i = this.engine2D.isEnabled() ? "2D" : "3D", o = n ? "3D" : "2D";
-        this.engine2D.setEnabled(!n), this.engine3D.setEnabled(n), a = "3D" == t || t == this.ENGINE_3D ? this.ENGINE_3D : this.ENGINE_2D, ujs.notify("hcs.contextChanged", { context: o, previousContext: i }), this.helpBubbleManager && this.helpBubbleManager.helpBubble && this.helpBubbleManager.helpBubble.hide()
+        this.engine2D.setEnabled(!n), this.engine3D.setEnabled(n), a = "3D" == t || t == this.ENGINE_3D ? this.ENGINE_3D : this.ENGINE_2D, ujs.notify("hcs.contextChanged", { context: o, previousContext: i })/*, this.helpBubbleManager && this.helpBubbleManager.helpBubble && this.helpBubbleManager.helpBubble.hide()*/
     }, C.prototype.getSelectedStructure = function () {
         return this.structure.getCurrentStructure()
     }, C.prototype.getHistory = function () {

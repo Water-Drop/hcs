@@ -4,10 +4,11 @@
  * 提供3D引擎接口
  * 参数container为html元素，会创建canvas
  * initialize后draw
+ *
  */
 var hcs = window.hcs || {};
 hcs.Engine3D = function() {
-    var t, 
+    var Engine3D,
 	engine = function(container, structure, viewer) {
 		this._initialized = !1, 
 		this._components = new hcs.ComponentCollection(hcsdesign), 
@@ -39,7 +40,7 @@ hcs.Engine3D = function() {
 		this.canvas.addEventListener("webglcontextlost", this.onContextLost.bind(this), !1), 
 		this.canvas.addEventListener("webglcontextrestored", this.onContextRestored.bind(this), !1), 
 		this.canDraw = !0, 
-		t = this, 
+		Engine3D = this,
 		structure || (this.structure = hcsdesign.structure, 
 		this.materialFactory = new hcs.MaterialFactory(hcsdesign.configuration), 
 		//新建材质工厂
@@ -58,7 +59,7 @@ hcs.Engine3D = function() {
 		hcsdesign.configuration.useStats && (this.stats.active = !0), 
 		document.body.appendChild(this.stats.domElement), 
 		document.addEventListener("hcs.engine3D.stats.activeChanged", function(container) {
-            t.stats.active = container.value, t.stats.domElement.style.display = container.value ? "block" : "none", hcsdesign.configuration.useStats = container.value ? !0 : !1, hcsdesign.configuration.saveConfiguration()
+            Engine3D.stats.active = container.value, Engine3D.stats.domElement.style.display = container.value ? "block" : "none", hcsdesign.configuration.useStats = container.value ? !0 : !1, hcsdesign.configuration.saveConfiguration()
         }, !1), 
 		document.addEventListener("hcs.engine3D.refreshGL", function() {
             var t = location.hash.replace("#", ""),
@@ -74,34 +75,34 @@ hcs.Engine3D = function() {
                 name: container
             })
         }, !1), 
-		this.isViewer || (document.addEventListener("hcs.engine3D.click", t.onClick, !1), 
-		document.addEventListener("hcs.engine3D.double-click", t.onDoubleClick, !1), 
-		document.addEventListener("pointerdown", t.onMouseDown, !1)), 
+		this.isViewer || (document.addEventListener("hcs.engine3D.click", Engine3D.onClick, !1),
+		document.addEventListener("hcs.engine3D.double-click", Engine3D.onDoubleClick, !1),
+		document.addEventListener("pointerdown", Engine3D.onMouseDown, !1)),
 		document.addEventListener("hcs.engine3d.wallsReady", this.onWallsReady, !1)), 
 		//绑定事件
 		this.getContainer = function() {
             return this.container
         }
     };
-    return engine.prototype.collideWithMeshes = function(engine, n, i) {
-        var o = t.scene.createPickingRay(engine, n),
-            r = o.intersectMeshes(i, !0, !0);
+    return engine.prototype.collideWithMeshes = function(engine, scene, mesh) {
+        var o = Engine3D.scene.createPickingRay(engine, scene),
+            r = o.intersectMeshes(mesh, !0, !0);
         return r
     }, //碰撞检测
-	engine.prototype.castShadows = function(t) {
+	engine.prototype.castShadows = function(model) {
         var engine = this.shadowGenerator ? this.shadowGenerator.getShadowMap() : null;
         if (engine) {
-            engine.renderList.push(t);
-            var n = t.onDispose;
-            t.onDispose = n ? function() {
-                n(), hcsdesign.engine3D.unCastShadows(t)
+            engine.renderList.push(model);
+            var tmp = model.onDispose;
+            model.onDispose = tmp ? function() {
+                tmp(), hcsdesign.engine3D.unCastShadows(model)
             } : function() {
-                hcsdesign.engine3D.unCastShadows(t)
+                hcsdesign.engine3D.unCastShadows(model)
             }
         }
     }, //设置光影效果
-	engine.prototype.unCastShadows = function(t) {
-        this.shadowGenerator.getShadowMap().renderList.splice(this.shadowGenerator.getShadowMap().renderList.indexOf(t), 1)
+	engine.prototype.unCastShadows = function(model) {
+        this.shadowGenerator.getShadowMap().renderList.splice(this.shadowGenerator.getShadowMap().renderList.indexOf(model), 1)
     }, 
 	engine.prototype.reinitializeEngine = function() {
         if (!GlobalHelper.isMobileDevice() || "Firefox" !== BrowserDetect.browser)
@@ -151,8 +152,8 @@ hcs.Engine3D = function() {
     }, 
 	//组件的增删改查
 	engine.prototype.collideWithScene = function(engine, n) {
-        var i = t.scene.createPickingRay(engine, n),
-            o = i.intersectMeshes(t.scene.meshes, !0, !0);
+        var i = Engine3D.scene.createPickingRay(engine, n),
+            o = i.intersectMeshes(Engine3D.scene.meshes, !0, !0);
         return o
     }, 
 	engine.prototype.projectMouseOnGround = function(engine, n) {
@@ -162,21 +163,21 @@ hcs.Engine3D = function() {
             i = r.pos.x, o = r.pos.y
         } else
             i = engine, o = n;
-        var s = t.scene.createPickingRay(i, o);
+        var s = Engine3D.scene.createPickingRay(i, o);
         return s.intersectPlane(this.worldPlane)
     }, 
 	engine.prototype.projectMouseOnPlane = function(engine, n, i) {
         var o = this.pointerManager.getStatus(),
             n = void 0 !== n ? n : o.pos.x,
             i = void 0 !== i ? i : o.pos.y,
-            r = t.scene.createPickingRay(n, i);
+            r = Engine3D.scene.createPickingRay(n, i);
         return r.intersectPlane(engine)
     }, 
 	engine.prototype.onClick = function(engine) {
-        engine.collided = t.collideWithScene(engine.mstate.pos.x, engine.mstate.pos.y), ujs.notify("hcs.engine3D.click.collided", engine)
+        engine.collided = Engine3D.collideWithScene(engine.mstate.pos.x, engine.mstate.pos.y), ujs.notify("hcs.engine3D.click.collided", engine)
     }, 
 	engine.prototype.onDoubleClick = function(engine) {
-        engine.collided = t.collideWithScene(engine.mstate.pos.x, engine.mstate.pos.y), ujs.notify("hcs.engine3D.dblclick.collided", engine)
+        engine.collided = Engine3D.collideWithScene(engine.mstate.pos.x, engine.mstate.pos.y), ujs.notify("hcs.engine3D.dblclick.collided", engine)
     }, 
 	engine.prototype.onMouseEvent = function(t, engine) {
         var n = !1;
@@ -192,7 +193,7 @@ hcs.Engine3D = function() {
         t.preventDefault(), this.reinitializeEngine()
     }, 
 	engine.prototype.onWallsReady = function() {
-        t.setInitialView()
+        Engine3D.setInitialView()
     }, 
 	//相关事件的响应
 	engine.prototype.initialize = function() {
