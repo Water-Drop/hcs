@@ -141,26 +141,26 @@ hcs.CameraFeatures = function() {
         z = z || {x: null,y: null};
         var s = 1 - px;
         return z.x = 3 * px * s * s * py + 3 * px * px * s * x + px * px * px, z.y = 3 * px * s * s * pz + 3 * px * px * s * y + px * px * px, z
-    }, x = function(py, pz, x, y, z) {
+    }, cx = function(py, pz, x, y, z) {
         for (var s, a = 0, l = 1, h = {x: null,y: null}; l - a > .001; )
             compute(s = (a + l) / 2, pz, x, y, z, h).x > py ? l = s : a = s;
         return (a + l) / 2
-    }, y = function(px, pz, x, y, z) {
-        return compute(x(px, pz, x, y, z), pz, x, y, z).y
-    }, z = {linear: function(t) {
+    }, cy = function(px, pz, x, y, z) {
+        return compute(cx(px, pz, x, y, z), pz, x, y, z).y
+    }, cz = {linear: function(t) {
         return t
     },ease: function(t) {
-        return y(t, .5, 0, .5, 1)
+        return cy(t, .5, 0, .5, 1)
     },easeOut: function(t) {
-        return y(t, .64, .47, .34, 1)
+        return cy(t, .64, .47, .34, 1)
     }};
     return camera.prototype.computeAnimation = function(camera, engine, model, status) {
         status = status || {};
         var r = Math.max(.01, status.duration || 0),
             s = status.callback, l = ("undefined" == typeof status.cleanAfterAnimation ? !0 : status.cleanAfterAnimation, status.name || "animation"),
-            h = status.isACamera, c = "function" == typeof status.smooth ? status.smooth : z[status.smooth || "linear"], u = [];
+            h = status.isACamera, c = "function" == typeof status.smooth ? status.smooth : cz[status.smooth || "linear"], u = [];
         for (var p in engine) {
-            for (var d, m, g = new BABYLON.Animation(l + "_" + p, p, 60, engine[p] instanceof BABYLON.Vector3 ? BABYLON.Animation.ANIMATIONTYPE_VECTOR3 : BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT), f = [], y = (c == z.linear ? 2 : Math.max(2, r / 40)) >> 0, _ = y; _--; ) {
+            for (var d, m, g = new BABYLON.Animation(l + "_" + p, p, 60, engine[p] instanceof BABYLON.Vector3 ? BABYLON.Animation.ANIMATIONTYPE_VECTOR3 : BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT), f = [], y = (c == cz.linear ? 2 : Math.max(2, r / 40)) >> 0, _ = y; _--; ) {
                 d = _ / (y - 1);
                 var v = 0 === d ? 0 : 1 === d ? 1 : c(d);
                 switch (g.dataType) {
