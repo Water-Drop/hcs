@@ -1,3 +1,7 @@
+/*
+ * Author: Zhou Jun
+ * Function: 控制创建表格，包括初始化、创建按钮、按钮组、选择框、单选框、多选框等控件
+ */
 var hcs = window.hcs || {};
 hcs.UI = hcs.UI || {}, hcs.UI.FormBuilder = function() {
     function t(t) {

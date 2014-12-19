@@ -1,3 +1,7 @@
+/*
+ * Author: Zhou Jun
+ * Function: 拓展js的原生对象
+ */
 window.requestAnimationFrame = function() {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(t) {
         window.setTimeout(t, 1e3 / 60)

@@ -1,4 +1,8 @@
-﻿var hcs = window.hcs || {};
+/*
+ * Author: Zhou Jun
+ * Function: 控制创建product list，包括初始化获得物品列表信息、添加物品、加载物品
+ */
+var hcs = window.hcs || {};
 hcs.UI = hcs.UI || {}, hcs.UI.ProductList = function() {
     function t(e) {
         var n = {};
@@ -16,9 +20,6 @@ hcs.UI = hcs.UI || {}, hcs.UI.ProductList = function() {
     }, r.prototype.initProductList = function(t) {
         var t = t || function() {
         };
-        /*ujs.ajax({method: "GET",url: [hcs.Constants.PRODUCTS_FILE].join(""),success: function(i) {
-                 n = JSON.parse(i), t.call(e)
-                 }})*/
 		xmlHttp = new XMLHttpRequest();
 		xmlHttp.open("GET", hcs.Constants.PRODUCTS_FILE, false);
 		xmlHttp.send(null);

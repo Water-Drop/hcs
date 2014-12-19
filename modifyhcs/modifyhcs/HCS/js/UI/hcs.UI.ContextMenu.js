@@ -1,4 +1,8 @@
-﻿var hcs = window.hcs || {};
+/*
+ * Author: Zhou Jun
+ * Function: 控制创建context menu，包括初始化、显示、关闭、设置显示位置
+ */
+var hcs = window.hcs || {};
 hcs.UI = hcs.UI || {}, hcs.UI.ContextMenu = function() {
     var t = null, e = !1, n = null, i = {x: !1,y: !1}, o = function(e) {
         var e = e || {};

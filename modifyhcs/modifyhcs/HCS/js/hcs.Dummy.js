@@ -1,22 +1,27 @@
+/*
+ * Author: Zhou Jun
+ * Function: 控制Dummy组件，初始化3d canvas的相关组件
+ */
+
 var hcs = window.hcs || {};
-hcs.Dummy = {Engine3D: function(t) {
-    var e = function() {
+hcs.Dummy = {Engine3D: function(temp) {
+    var empty = function() {
         return null
     };
-    this.dummy = !0, this._components = [], this.removeComponent = e, this.searchComponent = e, this.initialize = e, this.update = e, this.draw = e, this.resize = e, this.setEnabled = e, this.canvas = document.createElement("canvas"), this.castShadows = e, this.uncastShadows = e;
-    var n = this;
+    this.dummy = !0, this._components = [], this.removeComponent = empty, this.searchComponent = empty, this.initialize = empty, this.update = empty, this.draw = empty, this.resize = empty, this.setEnabled = empty, this.canvas = document.createElement("canvas"), this.castShadows = empty, this.uncastShadows = empty;
+    var dummy = this;
     this.engine = {_caps: {},_gl: null,_renderingCanvas: n.canvas,getRenderingCanvas: function() {
-        return n.canvas
+        return dummy.canvas
     },createRenderTargetTexture: function() {
     },getLoadedTexturesCache: function() {
         return []
-    },createVertexBuffer: e,createIndexBuffer: e,createTexture: e,createCubeTexture: e,createDynamicVertexBuffer: e,createEffect: e,scenes: []}, this.addComponent = function() {
+    },createVertexBuffer: empty,createIndexBuffer: empty,createTexture: empty,createCubeTexture: empty,createDynamicVertexBuffer: empty,createEffect: empty,scenes: []}, this.addComponent = function() {
         return {}
-    }, this.scene = {materials: [],textures: [],meshes: [],cameras: [],spriteManagers: [],getMeshByName: e,getRenderId: function() {
+    }, this.scene = {materials: [],textures: [],meshes: [],cameras: [],spriteManagers: [],getMeshByName: empty,getRenderId: function() {
         return 0
     },getEngine: function() {
-        return n.engine
+        return dummy.engine
     }}, this.scenes = [this.scene], this.getContainer = function() {
-        return t
+        return temp
     }
 }};

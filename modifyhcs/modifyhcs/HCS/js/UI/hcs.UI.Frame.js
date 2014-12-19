@@ -1,3 +1,7 @@
+/*
+ * Author: Zhou Jun
+ * Function: 控制创建对话框，包括初始化、显示、关闭、调整位置大小、设置对话框的标题、内容等函数
+ */
 var hcs = window.hcs || {};
 hcs.UI = hcs.UI || {}, hcs.UI.Frame = function() {
     function t(t) {

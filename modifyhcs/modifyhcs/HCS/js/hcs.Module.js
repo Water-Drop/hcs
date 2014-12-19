@@ -1,3 +1,8 @@
+/*
+ * Author: Zhou Jun
+ * Function: 负责2D到3D场景的转换
+ */
+
 !function(t) {
     if ("object" == typeof exports)
         module.exports = t();

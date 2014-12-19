@@ -1,3 +1,7 @@
+/*
+ * Author: Zhou Jun
+ * Function: 控制创建页面布局，包括初始化、显示、关闭、修改大小
+ */
 var hcs = window.hcs || {};
 hcs.UI = hcs.UI || {}, hcs.UI.IFrame = function() {
     function t() {
@@ -24,6 +28,6 @@ hcs.UI = hcs.UI || {}, hcs.UI.IFrame = function() {
         e && (e.close(t), e = null)
     }, n.prototype.resize = function(t, n) {
         var t = t, n = n;
-        t && (t > hcsdesign.getWidth() - 40 && (t = hcsdesign.getWidth() - 40), e.iframeContainer.style.width = t + "px", e.iframe.setAttribute("width", t), e.iframeContainer.style.left = Math.round(+(+window.innerWidth / 2) - +parseInt(e.iframeContainer.style.width) / 2) + "px"), n && (n > hcsdesign.getHeight() - 40 && (n = hcsdesign.getHeight() - 40), e.iframeContainer.style.height = n + "px", e.iframe.setAttribute("height", n), e.iframeContainer.style.top = Math.round(+(+window.innerHeight / 2) - +parseInt(e.iframeContainer.style.height) / 2) + "px")
+        t && (t > wanaplan.getWidth() - 40 && (t = wanaplan.getWidth() - 40), e.iframeContainer.style.width = t + "px", e.iframe.setAttribute("width", t), e.iframeContainer.style.left = Math.round(+(+window.innerWidth / 2) - +parseInt(e.iframeContainer.style.width) / 2) + "px"), n && (n > wanaplan.getHeight() - 40 && (n = wanaplan.getHeight() - 40), e.iframeContainer.style.height = n + "px", e.iframe.setAttribute("height", n), e.iframeContainer.style.top = Math.round(+(+window.innerHeight / 2) - +parseInt(e.iframeContainer.style.height) / 2) + "px")
     }, n.resize = n.prototype.resize, n
 }();

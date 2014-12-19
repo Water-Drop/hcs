@@ -1,18 +1,22 @@
+/*
+ * Author: Zhou Jun
+ * Function: LoopTime组件用来计时
+ */
 var hcs = window.hcs || {};
 hcs.LoopTimer = function() {
-    var t = function() {
-        var t = 0,
-            e = 0;
+    var looptimer = function() {
+        var start = 0,
+            end = 0;
         this.start = function() {
-            t = (new Date).getTime()
+            start = (new Date).getTime()
         }, this.update = function() {
             var n = (new Date).getTime();
-            e = n - t, t = n
+            end = n - start, start = n
         }, this.getElapsedTime = function() {
-            return t
+            return start
         }, this.getDeltaTime = function() {
-            return e
+            return end
         }
     };
-    return t
+    return looptimer
 }();
