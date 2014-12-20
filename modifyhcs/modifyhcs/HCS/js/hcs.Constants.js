@@ -1,4 +1,11 @@
-﻿var hcs = window.hcs || {};
+﻿/*
+ * Author：虞思源
+ *
+ * 存放本次项目中用到的一些常量
+ * 包括local storage的key值，一些文件的路径等
+ *
+ */
+var hcs = window.hcs || {};
 hcs.Constants = {
     VERSION: "1.2.0.0",
     BACK_URL: "",

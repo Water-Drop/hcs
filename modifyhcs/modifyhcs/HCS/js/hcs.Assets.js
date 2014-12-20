@@ -1,3 +1,9 @@
+/*
+ * Author：虞思源
+ *
+ * 存放本次项目中所有的本地文件路径
+ *
+ */
 var hcs = window.hcs || {};
 hcs.Assets = {
     globalPath: "",

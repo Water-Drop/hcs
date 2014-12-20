@@ -1,144 +1,271 @@
+/*
+ * Author：虞思源
+ * 
+ * 上帝视角，camera初始时在中心点正上方，
+ * 获取pointmanager和keyboardmanager中的事件，调整视角。
+ * 调用时attach control，切换视角时dettach
+ */
 var hcs = window.hcs || {};
-hcs.Input = hcs.Input || {}, hcs.Input.OrbitCamera = function () {
-    var t = (BABYLON.Tools.GetPointerPrefix(), function (e, n, i, o, r, s) {
-        BABYLON.Camera.call(this, e, BABYLON.Vector3.Zero(), s), this.alpha = n, this.beta = i, this.radius = o, this.target = r, this.enabled = !0, this.cameraTranslationenabled = !0, this._keys = [], this.keysUp = [38], this.keysDown = [40], this.keysLeft = [37], this.keysRight = [39], this._viewMatrix = new BABYLON.Matrix, t.prototype._initCache.call(this), this.getViewMatrix()
+hcs.Input = hcs.Input || {},
+	hcs.Input.OrbitCamera = function () {
+    var orbitCamera = (BABYLON.Tools.GetPointerPrefix(), function (camera, alpha, beta, radius, target, camera) {
+        BABYLON.Camera.call(this, camera, BABYLON.Vector3.Zero(), camera), 
+		this.alpha = alpha,
+		this.beta = beta, 
+		this.radius = radius, 
+		this.target = target, 
+		this.enabled = !0, 
+		this.cameraTranslationenabled = !0, 
+		this._keys = [], 
+		this.keysUp = [38], 
+		this.keysDown = [40], 
+		this.keysLeft = [37], 
+		this.keysRight = [39], 
+		this._viewMatrix = new BABYLON.Matrix, 
+		orbitCamera.prototype._initCache.call(this), 
+		this.getViewMatrix()
     });
-    t.prototype = Object.create(BABYLON.Camera.prototype);
-    var e = BABYLON.Camera;
-    t.prototype.inertialAlphaOffset = 0, t.prototype.inertialBetaOffset = 0, t.prototype.inertialRadiusOffset = 0, t.prototype.lowerAlphaLimit = null, t.prototype.upperAlphaLimit = null, t.prototype.lowerBetaLimit = null, t.prototype.upperBetaLimit = null, t.prototype.lowerRadiusLimit = 40, t.prototype.upperRadiusLimit = 6e3, t.prototype.radiusSpeedFactor = .2, t.prototype.moveSpeedFactor = .5, t.prototype.angularSensibility = 1e3;
-    var n = function (t) {
-        return t.offsetX ? t.offsetX : t.layerX ? t.layerX : t.clientX
-    }, i = function (t) {
-        return t.offsetY ? t.offsetY : t.layerY ? t.layerY : t.clientY
+    orbitCamera.prototype = Object.create(BABYLON.Camera.prototype);
+    var camera = BABYLON.Camera;
+    orbitCamera.prototype.inertialAlphaOffset = 0,
+	orbitCamera.prototype.inertialBetaOffset = 0, 
+	orbitCamera.prototype.inertialRadiusOffset = 0, 
+	orbitCamera.prototype.lowerAlphaLimit = null, 
+	orbitCamera.prototype.upperAlphaLimit = null, 
+	orbitCamera.prototype.lowerBetaLimit = null, 
+	orbitCamera.prototype.upperBetaLimit = null, 
+	orbitCamera.prototype.lowerRadiusLimit = 40, 
+	orbitCamera.prototype.upperRadiusLimit = 6e3, 
+	orbitCamera.prototype.radiusSpeedFactor = .2, 
+	orbitCamera.prototype.moveSpeedFactor = .5, 
+	orbitCamera.prototype.angularSensibility = 1e3;
+    var alpha = function (orbitCamera) {
+        return orbitCamera.offsetX ? orbitCamera.offsetX : orbitCamera.layerX ? orbitCamera.layerX : orbitCamera.clientX
+    }, beta = function (orbitCamera) {
+        return orbitCamera.offsetY ? orbitCamera.offsetY : orbitCamera.layerY ? orbitCamera.layerY : orbitCamera.clientY
     };
-    return t.prototype._getTargetPosition = function () {
+    return orbitCamera.prototype._getTargetPosition = function () {
         return this.target.position || this.target
-    }, t.prototype._initCache = function () {
-        e.prototype._initCache.call(this), this._cache.target = new BABYLON.Vector3(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE), this._cache.alpha = void 0, this._cache.beta = void 0, this._cache.radius = void 0
-    }, t.prototype._updateCache = function (t) {
-        t || e.prototype._updateCache.call(this), this._cache.target.copyFrom(this._getTargetPosition()), this._cache.alpha = this.alpha, this._cache.beta = this.beta, this._cache.radius = this.radius
-    }, t.prototype._isSynchronizedViewMatrix = function () {
-        return e.prototype._isSynchronizedViewMatrix.call(this) ? this._cache.target.equals(this._getTargetPosition()) && this._cache.alpha === this.alpha && this._cache.beta === this.beta && this._cache.radius === this.radius : !1
-    }, t.prototype.attachControl = function (t, e, n) {
-        1 === hcsdesign.engine3D.pointerManager.mode ? this.attachControlForMobile(t, e, n) : this.attachControlForDesktop(t, e, n)
-    }, t.prototype.attachControlForMobile = function (t) {
-        var e, n = this._scene.getEngine(), i = .005, o = !0, r = [{ x: 0, y: 0 }, { x: 0, y: 0}], s = 0, a = 0, l = this;
-        this.angularSensibility = 1, this._attachedCanvas = t, window.ejecta && (this._attachedCanvas = document), document.addEventListener("hcs.engine3d.dragcontrols.start", function () {
-            o = !1
-        }, !1), document.addEventListener("hcs.engine3d.dragcontrols.end", function () {
-            o = !0
+    }, orbitCamera.prototype._initCache = function () {
+        camera.prototype._initCache.call(this), 
+		this._cache.target = new BABYLON.Vector3(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE), 
+		this._cache.alpha = void 0, 
+		this._cache.beta = void 0, 
+		this._cache.radius = void 0
+    }, orbitCamera.prototype._updateCache = function (orbitCamera) {
+        orbitCamera || camera.prototype._updateCache.call(this), 
+		this._cache.target.copyFrom(this._getTargetPosition()),
+		this._cache.alpha = this.alpha, 
+		this._cache.beta = this.beta,
+		this._cache.radius = this.radius
+    }, orbitCamera.prototype._isSynchronizedViewMatrix = function () {
+        return camera.prototype._isSynchronizedViewMatrix.call(this) ? 
+		this._cache.target.equals(this._getTargetPosition()) && this._cache.alpha === this.alpha && 
+		this._cache.beta === this.beta && this._cache.radius === this.radius : !1
+    }, orbitCamera.prototype.attachControl = function (orbitCamera, camera, alpha) {
+        1 === hcsdesign.engine3D.pointerManager.mode ? this.attachControlForMobile(orbitCamera, camera, alpha) : 
+		this.attachControlForDesktop(orbitCamera, camera, alpha)
+    }, orbitCamera.prototype.attachControlForMobile = function (orbitCamera) {
+        var camera, alpha = this._scene.getEngine(), 
+		beta = .005, radius = !0, target = [{ x: 0, y: 0 }, { x: 0, y: 0}], 
+		camera = 0, a = 0, l = this;
+        this.angularSensibility = 1, 
+		this._attachedCanvas = orbitCamera,
+		window.ejecta && (this._attachedCanvas = document), d
+		ocument.addEventListener("hcs.engine3d.dragcontrols.start", function () {
+            radius = !1
+        }, !1), 
+		document.addEventListener("hcs.engine3d.dragcontrols.end", function () {
+            radius = !0
         }, !1);
-        var h = function (t) {
-            r[0].x = t.touches[0].clientX || t.touches[0].pageX, r[0].y = t.touches[0].clientY || t.touches[0].pageY, 2 === t.touches.length && (r[1].x = t.touches[1].clientX || t.touches[1].pageX, r[1].y = t.touches[1].clientY || t.touches[1].pageY)
-        }, c = function (t, e) {
-            var n = t.x - e.x, i = t.y - e.y;
-            return Math.sqrt(n * n + i * i)
-        }, u = function (t) {
-            o && (t.preventDefault(), h(t), n.isPointerLock = !0, t.touches.length && (e = { x: t.touches[0].clientX * i, y: t.touches[0].clientY * i }))
-        }, p = function (t) {
-            if (o && (t.preventDefault(), h(t), t.touches.length)) {
-                if (!e)
+        var h = function (orbitCamera) {
+            target[0].x = orbitCamera.touches[0].clientX || 
+			orbitCamera.touches[0].pageX, target[0].y = orbitCamera.touches[0].clientY ||
+			orbitCamera.touches[0].pageY, 2 === orbitCamera.touches.length && (target[1].x = orbitCamera.touches[1].clientX || 
+			orbitCamera.touches[1].pageX, target[1].y = orbitCamera.touches[1].clientY || orbitCamera.touches[1].pageY)
+        }, c = function (orbitCamera, camera) {
+            var alpha = orbitCamera.x - camera.x, beta = orbitCamera.y - camera.y;
+            return Math.sqrt(alpha * alpha + beta * beta)
+        }, u = function (orbitCamera) {
+            radius && (orbitCamera.preventDefault(), h(orbitCamera), alpha.isPointerLock = !0, orbitCamera.touches.length 
+			&& (camera = { x: orbitCamera.touches[0].clientX * beta, y: orbitCamera.touches[0].clientY * beta }))
+        }, p = function (orbitCamera) {
+            if (radius && (orbitCamera.preventDefault(), h(orbitCamera), orbitCamera.touches.length)) {
+                if (!camera)
                     return;
-                var n = t.touches[0].clientX * i, u = t.touches[0].clientY * i, p = n - e.x, d = u - e.y;
-                if (t.touches.length > 2) {
-                    var m = hcsdesign.engine3D.projectMouseOnGround(0 | +(e.x / i), 0 | +(e.y / i)), g = hcsdesign.engine3D.projectMouseOnGround(0 | +(n / i), 0 | +(u / i));
-                    null !== m && null !== g && (g.subtractInPlace(m), l._getTargetPosition().addInPlace(g.scaleInPlace(-1)), l._getTargetPosition().x = ujs.Math.clamp(l._getTargetPosition().x, hcsdesign.configuration.boundingSize.min.x, hcsdesign.configuration.boundingSize.max.x), l._getTargetPosition().z = ujs.Math.clamp(l._getTargetPosition().z, hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z))
-                } else if (2 == t.touches.length) {
-                    a = s, s = c(r[0], r[1]);
-                    var f = +(s - a) > 0 ? 2.5 : -2.5;
+                var alpha = orbitCamera.touches[0].clientX * beta, u = orbitCamera.touches[0].clientY * beta, p = alpha - camera.x, 
+				d = u - camera.y;
+                if (orbitCamera.touches.length > 2) {
+                    var m = hcsdesign.engine3D.projectMouseOnGround(0 | +(camera.x / beta), 0 | +(camera.y / beta)),
+					g = hcsdesign.engine3D.projectMouseOnGround(0 | +(alpha / beta), 0 | +(u / beta));
+                    null !== m && null !== g && (g.subtractInPlace(m), l._getTargetPosition().addInPlace(g.scaleInPlace(-1)),
+					l._getTargetPosition().x = ujs.Math.clamp(l._getTargetPosition().x, hcsdesign.configuration.boundingSize.min.x, 
+					hcsdesign.configuration.boundingSize.max.x), l._getTargetPosition().z = ujs.Math.clamp(l._getTargetPosition().z,
+					hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z))
+                } else if (2 == orbitCamera.touches.length) {
+                    a = camera, camera = c(target[0], target[1]);
+                    var f = +(camera - a) > 0 ? 2.5 : -2.5;
                     f *= hcsdesign.loopTimer.getDeltaTime(), l.inertialRadiusOffset += f
                 } else
                     l.inertialAlphaOffset -= p / l.angularSensibility, l.inertialBetaOffset -= d / l.angularSensibility;
-                e = { x: n, y: u }
+                camera = { x: alpha, y: u }
             }
-        }, d = function (t) {
-            o && (t.preventDefault(), n.isPointerLock = !1, e = null)
+        }, d = function (orbitCamera) {
+            radius && (orbitCamera.preventDefault(), alpha.isPointerLock = !1, camera = null)
         };
-        this._attachedCanvas.addEventListener("touchstart", u, !1), this._attachedCanvas.addEventListener("touchmove", p, !1), this._attachedCanvas.addEventListener("touchend", d, !1), this._attachedCanvas.addEventListener("touchcancel", d, !1)
-    }, t.prototype.attachControlForDesktop = function (t, e) {
-        var o, r, s = this, a = !1;
+        this._attachedCanvas.addEventListener("touchstart", u, !1), this._attachedCanvas.addEventListener("touchmove", p, !1), 
+		this._attachedCanvas.addEventListener("touchend", d, !1), this._attachedCanvas.addEventListener("touchcancel", d, !1)
+    }, orbitCamera.prototype.attachControlForDesktop = function (orbitCamera, camera) {
+        var radius, target, camera = this, a = !1;
         if (!this._attachedCanvas) {
-            this._attachedCanvas = t;
+            this._attachedCanvas = orbitCamera;
             var l = this._scene.getEngine();
-            void 0 === this._onPointerDown && (this._onPointerDown = function (t) {
-                return s.enabled ? void (r || (r = t.pointerId, o = { x: n(t), y: i(t) }, e || t.preventDefault())) : void (o = null)
-            }, this._onPointerUp = function (t) {
-                o = null, r = null, e || t.preventDefault()
-            }, this._onPointerMove = function (t) {
-                if (o && !a && r === t.pointerId) {
-                    var l = n(t) - o.x, h = i(t) - o.y;
-                    if (s.enabled) {
-                        var c = t.button;
-                        if (!t.button && t.buttons ? (c = t.buttons, c = 1 === t.buttons ? 0 : c) : -1 === c && (c = 1 === t.buttons ? 0 : t.buttons), 0 === c)
-                            s.inertialAlphaOffset -= l / s.angularSensibility, s.inertialBetaOffset -= h / s.angularSensibility;
+            void 0 === this._onPointerDown && (this._onPointerDown = function (orbitCamera) {
+                return camera.enabled ? void (target || (target = orbitCamera.pointerId, radius = { x: alpha(orbitCamera),
+				y: beta(orbitCamera) }, camera || orbitCamera.preventDefault())) : void (radius = null)
+            }, this._onPointerUp = function (orbitCamera) {
+                radius = null, target = null, camera || orbitCamera.preventDefault()
+            }, this._onPointerMove = function (orbitCamera) {
+                if (radius && !a && target === orbitCamera.pointerId) {
+                    var l = alpha(orbitCamera) - radius.x, h = beta(orbitCamera) - radius.y;
+                    if (camera.enabled) {
+                        var c = orbitCamera.button;
+                        if (!orbitCamera.button && orbitCamera.buttons ? (c = orbitCamera.buttons, c = 1 === orbitCamera.buttons ? 0 : c) : 
+						-1 === c && (c = 1 === orbitCamera.buttons ? 0 : orbitCamera.buttons), 0 === c)
+                            camera.inertialAlphaOffset -= l / camera.angularSensibility, 
+							camera.inertialBetaOffset -= h / camera.angularSensibility;
                         else if (2 === c) {
-                            if (!s.cameraTranslationenabled)
+                            if (!camera.cameraTranslationenabled)
                                 return;
-                            var u = hcsdesign.engine3D.projectMouseOnGround(o.x, o.y), p = hcsdesign.engine3D.projectMouseOnGround(n(t), i(t));
+                            var u = hcsdesign.engine3D.projectMouseOnGround(radius.x, radius.y),
+							p = hcsdesign.engine3D.projectMouseOnGround(alpha(orbitCamera), beta(orbitCamera));
                             if (null !== u && null !== p) {
                                 p.subtractInPlace(u);
                                 var d = p.length();
-                                d > 125 && p.scaleInPlace(125 / d), s._getTargetPosition().addInPlace(p.scaleInPlace(-1)), s._getTargetPosition().x = ujs.Math.clamp(s._getTargetPosition().x, hcsdesign.configuration.boundingSize.min.x, hcsdesign.configuration.boundingSize.max.x), s._getTargetPosition().z = ujs.Math.clamp(s._getTargetPosition().z, hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z)
+                                d > 125 && p.scaleInPlace(125 / d),
+								camera._getTargetPosition().addInPlace(p.scaleInPlace(-1)), 
+								camera._getTargetPosition().x = ujs.Math.clamp(camera._getTargetPosition().x,
+								hcsdesign.configuration.boundingSize.min.x, hcsdesign.configuration.boundingSize.max.x), 
+								camera._getTargetPosition().z = ujs.Math.clamp(camera._getTargetPosition().z,
+								hcsdesign.configuration.boundingSize.min.z, hcsdesign.configuration.boundingSize.max.z)
                             }
                         }
-                        ujs.notify("hcs.engine3D.camera.move"), o = { x: n(t), y: i(t) }, e || t.preventDefault()
+                        ujs.notify("hcs.engine3D.camera.move"), 
+						radius = { x: alpha(orbitCamera), y: beta(orbitCamera) }, camera || orbitCamera.preventDefault()
                     }
                 }
-            }, this._onMouseMove = function (t) {
-                if (s.enabled && l.isPointerLock) {
-                    var n = t.movementX || t.mozMovementX || t.webkitMovementX || t.msMovementX || 0, i = t.movementY || t.mozMovementY || t.webkitMovementY || t.msMovementY || 0;
-                    s.inertialAlphaOffset -= n / s.angularSensibility, s.inertialBetaOffset -= i / s.angularSensibility, e || t.preventDefault()
+            }, this._onMouseMove = function (orbitCamera) {
+                if (camera.enabled && l.isPointerLock) {
+                    var alpha = orbitCamera.movementX || orbitCamera.mozMovementX || 
+					orbitCamera.webkitMovementX || orbitCamera.msMovementX || 0, 
+					beta = orbitCamera.movementY || orbitCamera.mozMovementY || orbitCamera.webkitMovementY ||
+					orbitCamera.msMovementY || 0;
+                    camera.inertialAlphaOffset -= alpha / camera.angularSensibility, 
+					camera.inertialBetaOffset -= beta / camera.angularSensibility, 
+					camera || orbitCamera.preventDefault()
                 }
-            }, this._wheel = function (t) {
-                if (s.enabled) {
-                    var n = 0;
-                    t.wheelDelta ? n = t.wheelDelta / (120 * s.radiusSpeedFactor) : t.detail && (n = -t.detail / (3 * s.radiusSpeedFactor)), n && (s.inertialRadiusOffset += n), t.preventDefault && (e || t.preventDefault())
+            },//鼠标调整视角
+			this._wheel = function (orbitCamera) {
+                if (camera.enabled) {
+                    var alpha = 0;
+                    orbitCamera.wheelDelta ? alpha = orbitCamera.wheelDelta / (120 * camera.radiusSpeedFactor) : 
+					orbitCamera.detail && (alpha = -orbitCamera.detail / (3 * camera.radiusSpeedFactor)), 
+					alpha && (camera.inertialRadiusOffset += alpha), orbitCamera.preventDefault && (camera || orbitCamera.preventDefault())
                 }
-            }, this._onKeyDown = function (t) {
-                if (s.enabled && (-1 !== s.keysUp.indexOf(t.keyCode) || -1 !== s.keysDown.indexOf(t.keyCode) || -1 !== s.keysLeft.indexOf(t.keyCode) || -1 !== s.keysRight.indexOf(t.keyCode))) {
-                    var n = s._keys.indexOf(t.keyCode);
--1 === n && s._keys.push(t.keyCode), t.preventDefault && (e || t.preventDefault())
+            }, //滚轴调整视角
+			this._onKeyDown = function (orbitCamera) {
+                if (camera.enabled && (-1 !== camera.keysUp.indexOf(orbitCamera.keyCode) ||
+				-1 !== camera.keysDown.indexOf(orbitCamera.keyCode) || -1 !== camera.keysLeft.indexOf(orbitCamera.keyCode) ||
+				-1 !== camera.keysRight.indexOf(orbitCamera.keyCode))) {
+                    var alpha = camera._keys.indexOf(orbitCamera.keyCode);
+-1 === alpha && camera._keys.push(orbitCamera.keyCode), orbitCamera.preventDefault && (camera || orbitCamera.preventDefault())
                 }
-            }, this._onKeyUp = function (t) {
-                if (s.enabled && (-1 !== s.keysUp.indexOf(t.keyCode) || -1 !== s.keysDown.indexOf(t.keyCode) || -1 !== s.keysLeft.indexOf(t.keyCode) || -1 !== s.keysRight.indexOf(t.keyCode))) {
-                    var n = s._keys.indexOf(t.keyCode);
-                    n >= 0 && s._keys.splice(n, 1), t.preventDefault && (e || t.preventDefault())
+            }, this._onKeyUp = function (orbitCamera) {
+                if (camera.enabled && (-1 !== camera.keysUp.indexOf(orbitCamera.keyCode) || 
+				-1 !== camera.keysDown.indexOf(orbitCamera.keyCode) || -1 !== camera.keysLeft.indexOf(orbitCamera.keyCode) || 
+				-1 !== camera.keysRight.indexOf(orbitCamera.keyCode))) {
+                    var alpha = camera._keys.indexOf(orbitCamera.keyCode);
+                    alpha >= 0 && camera._keys.splice(alpha, 1), orbitCamera.preventDefault && (camera || orbitCamera.preventDefault())
                 }
             }, this._onLostFocus = function () {
-                s.enabled && (s._keys = [], r = null)
-            }, this._onGestureStart = function (e) {
-                s.enabled && void 0 !== window.MSGesture && (s._MSGestureHandler || (s._MSGestureHandler = new MSGesture, s._MSGestureHandler.target = t), s._MSGestureHandler.addPointer(e.pointerId))
-            }, this._onGesture = function (t) {
-                s.enabled && (1 !== t.scale ? (s.inertialRadiusOffset += 65 * t.scale * (t.expansion > 0 ? 1 : -1), a = !0) : a = !1, t.preventDefault && (e || (t.stopPropagation(), t.preventDefault())))
+                camera.enabled && (camera._keys = [], target = null)
+            }, this._onGestureStart = function (camera) {
+                camera.enabled && void 0 !== window.MSGesture && (camera._MSGestureHandler || 
+				(camera._MSGestureHandler = new MSGesture, camera._MSGestureHandler.target = orbitCamera), 
+				camera._MSGestureHandler.addPointer(camera.pointerId))
+            }, this._onGesture = function (orbitCamera) {
+                camera.enabled && (1 !== orbitCamera.scale ? 
+				(camera.inertialRadiusOffset += 65 * orbitCamera.scale * (orbitCamera.expansion > 0 ? 1 : -1), a = !0) :
+				a = !1, orbitCamera.preventDefault && (camera || (orbitCamera.stopPropagation(), orbitCamera.preventDefault())))
             }, this._reset = function () {
-                s._keys = [], s.inertialAlphaOffset = 0, s.inertialBetaOffset = 0, o = null, r = null
+                camera._keys = [], camera.inertialAlphaOffset = 0, camera.inertialBetaOffset = 0, radius = null, target = null
             });
             var h = window.PointerEvent ? "pointer" : "mouse";
-            t.addEventListener(h + "down", this._onPointerDown, !1), t.addEventListener(h + "up", this._onPointerUp, !1), t.addEventListener(h + "out", this._onPointerUp, !1), t.addEventListener(h + "move", this._onPointerMove, !1), t.addEventListener("mousemove", this._onMouseMove, !1), t.addEventListener("MSPointerDown", this._onGestureStart, !1), t.addEventListener("MSGestureChange", this._onGesture, !1), window.addEventListener("keydown", this._onKeyDown, !1), window.addEventListener("keyup", this._onKeyUp, !1), t.addEventListener("mousewheel", this._wheel, !1), window.addEventListener("DOMMouseScroll", this._wheel, !1), window.addEventListener("blur", this._onLostFocus, !1)
+            orbitCamera.addEventListener(h + "down", this._onPointerDown, !1), orbitCamera.addEventListener(h + "up", this._onPointerUp, !1), 
+			orbitCamera.addEventListener(h + "out", this._onPointerUp, !1), orbitCamera.addEventListener(h + "move", this._onPointerMove, !1), 
+			orbitCamera.addEventListener("mousemove", this._onMouseMove, !1), orbitCamera.addEventListener("MSPointerDown", this._onGestureStart, !1), 
+			orbitCamera.addEventListener("MSGestureChange", this._onGesture, !1), window.addEventListener("keydown", this._onKeyDown, !1), 
+			window.addEventListener("keyup", this._onKeyUp, !1), orbitCamera.addEventListener("mousewheel", this._wheel, !1), 
+			window.addEventListener("DOMMouseScroll", this._wheel, !1), window.addEventListener("blur", this._onLostFocus, !1)
         }
-    }, t.prototype.detachControl = function (t) {
-        if (this._attachedCanvas == t) {
-            var e = window.PointerEvent ? "pointer" : "mouse";
-            t.removeEventListener(e + "down", this._onPointerDown, !1), t.removeEventListener(e + "up", this._onPointerUp, !1), t.removeEventListener(e + "out", this._onPointerUp, !1), t.removeEventListener(e + "move", this._onPointerMove, !1), t.removeEventListener("mousemove", this._onMouseMove, !1), t.removeEventListener("MSPointerDown", this._onGestureStart, !1), t.removeEventListener("MSGestureChange", this._onGesture, !1), window.removeEventListener("keydown", this._onKeyDown), window.removeEventListener("keyup", this._onKeyUp), t.removeEventListener("mousewheel", this._wheel), window.removeEventListener("DOMMouseScroll", this._wheel, !1), window.removeEventListener("blur", this._onLostFocus), this._MSGestureHandler = null, this._attachedCanvas = null, this._reset && this._reset()
+    }, orbitCamera.prototype.detachControl = function (orbitCamera) {
+        if (this._attachedCanvas == orbitCamera) {
+            var camera = window.PointerEvent ? "pointer" : "mouse";
+            orbitCamera.removeEventListener(camera + "down", this._onPointerDown, !1),
+			orbitCamera.removeEventListener(camera + "up", this._onPointerUp, !1), 
+			orbitCamera.removeEventListener(camera + "out", this._onPointerUp, !1),
+			orbitCamera.removeEventListener(camera + "move", this._onPointerMove, !1), 
+			orbitCamera.removeEventListener("mousemove", this._onMouseMove, !1), 
+			orbitCamera.removeEventListener("MSPointerDown", this._onGestureStart, !1), 
+			orbitCamera.removeEventListener("MSGestureChange", this._onGesture, !1),
+			window.removeEventListener("keydown", this._onKeyDown),
+			window.removeEventListener("keyup", this._onKeyUp), 
+			orbitCamera.removeEventListener("mousewheel", this._wheel), 
+			window.removeEventListener("DOMMouseScroll", this._wheel, !1), 
+			window.removeEventListener("blur", this._onLostFocus), 
+			this._MSGestureHandler = null, this._attachedCanvas = null, 
+			this._reset && this._reset()
         }
-    }, t.prototype._update = function () {
-        for (var t = 0; t < this._keys.length; t++) {
-            var e = this._keys[t];
-            ujs.notify("hcs.engine3D.camera.move"), -1 !== this.keysLeft.indexOf(e) ? this.inertialAlphaOffset -= .01 : -1 !== this.keysUp.indexOf(e) ? this.inertialBetaOffset -= .01 : -1 !== this.keysRight.indexOf(e) ? this.inertialAlphaOffset += .01 : -1 !== this.keysDown.indexOf(e) && (this.inertialBetaOffset += .01)
+    }, orbitCamera.prototype._update = function () {
+        for (var orbitCamera = 0; orbitCamera < this._keys.length; orbitCamera++) {
+            var camera = this._keys[orbitCamera];
+            ujs.notify("hcs.engine3D.camera.move"), -1 !== this.keysLeft.indexOf(camera) ? 
+			this.inertialAlphaOffset -= .01 : -1 !== this.keysUp.indexOf(camera) ? this.inertialBetaOffset -= .01 :
+			-1 !== this.keysRight.indexOf(camera) ? this.inertialAlphaOffset += .01 : -1 !== this.keysDown.indexOf(camera)
+			&& (this.inertialBetaOffset += .01)
         }
-        (0 != this.inertialAlphaOffset || 0 != this.inertialBetaOffset || 0 != this.inertialRadiusOffset) && (this.alpha += this.inertialAlphaOffset, this.beta += this.inertialBetaOffset, this.radius -= this.inertialRadiusOffset, this.inertialAlphaOffset *= this.inertia, this.inertialBetaOffset *= this.inertia, this.inertialRadiusOffset *= this.inertia, Math.abs(this.inertialAlphaOffset) < BABYLON.Engine.epsilon && (this.inertialAlphaOffset = 0), Math.abs(this.inertialBetaOffset) < BABYLON.Engine.epsilon && (this.inertialBetaOffset = 0), Math.abs(this.inertialRadiusOffset) < BABYLON.Engine.epsilon && (this.inertialRadiusOffset = 0)), this.lowerAlphaLimit && this.alpha < this.lowerAlphaLimit && (this.alpha = this.lowerAlphaLimit), this.upperAlphaLimit && this.alpha > this.upperAlphaLimit && (this.alpha = this.upperAlphaLimit), this.lowerBetaLimit && this.beta < this.lowerBetaLimit && (this.beta = this.lowerBetaLimit), this.upperBetaLimit && this.beta > this.upperBetaLimit && (this.beta = this.upperBetaLimit), this.lowerRadiusLimit && this.radius < this.lowerRadiusLimit && (this.radius = this.lowerRadiusLimit), this.upperRadiusLimit && this.radius > this.upperRadiusLimit && (this.radius = this.upperRadiusLimit), this._constraintToUpScene()
-    }, t.prototype.setPosition = function (t) {
-        var e = t.subtract(this._getTargetPosition());
-        this.radius = e.length(), this.alpha = Math.atan(e.z / e.x), this.beta = Math.acos(e.y / this.radius)
-    }, t.prototype._getViewMatrix = function () {
+        (0 != this.inertialAlphaOffset || 0 != this.inertialBetaOffset || 0 != this.inertialRadiusOffset) && 
+		(this.alpha += this.inertialAlphaOffset, this.beta += this.inertialBetaOffset, 
+		this.radius -= this.inertialRadiusOffset, this.inertialAlphaOffset *= this.inertia,
+		this.inertialBetaOffset *= this.inertia, this.inertialRadiusOffset *= this.inertia, 
+		Math.abs(this.inertialAlphaOffset) < BABYLON.Engine.epsilon && (this.inertialAlphaOffset = 0), 
+		Math.abs(this.inertialBetaOffset) < BABYLON.Engine.epsilon && (this.inertialBetaOffset = 0), 
+		Math.abs(this.inertialRadiusOffset) < BABYLON.Engine.epsilon && (this.inertialRadiusOffset = 0)), 
+		this.lowerAlphaLimit && this.alpha < this.lowerAlphaLimit && (this.alpha = this.lowerAlphaLimit), 
+		this.upperAlphaLimit && this.alpha > this.upperAlphaLimit && (this.alpha = this.upperAlphaLimit), 
+		this.lowerBetaLimit && this.beta < this.lowerBetaLimit && (this.beta = this.lowerBetaLimit), 
+		this.upperBetaLimit && this.beta > this.upperBetaLimit && (this.beta = this.upperBetaLimit), 
+		this.lowerRadiusLimit && this.radius < this.lowerRadiusLimit && (this.radius = this.lowerRadiusLimit),
+		this.upperRadiusLimit && this.radius > this.upperRadiusLimit && (this.radius = this.upperRadiusLimit), 
+		this._constraintToUpScene()
+    }, orbitCamera.prototype.setPosition = function (orbitCamera) {
+        var camera = orbitCamera.subtract(this._getTargetPosition());
+        this.radius = camera.length(), this.alpha = Math.atan(camera.z / camera.x), 
+		this.beta = Math.acos(camera.y / this.radius)
+    }, orbitCamera.prototype._getViewMatrix = function () {
         this.beta > Math.PI && (this.beta = Math.PI), this.beta <= 0 && (this.beta = .01);
-        var t = Math.cos(this.alpha), e = Math.sin(this.alpha), n = Math.cos(this.beta), i = Math.sin(this.beta), o = this._getTargetPosition();
-        return o.addToRef(new BABYLON.Vector3(this.radius * t * i, this.radius * n, this.radius * e * i), this.position), BABYLON.Matrix.LookAtLHToRef(this.position, o, this.upVector, this._viewMatrix), this._viewMatrix
-    }, t.prototype._constraintToUpScene = function () {
-        var t = 3, e = -(this.target.y - t) / this.radius;
-        if (!(Math.abs(e) > 1)) {
-            var n = Math.abs(Math.acos(e));
-            this.beta = BABYLON.Math.NormalizeAngle(this.beta), this.beta = Math.min(this.beta, n), this.beta = Math.max(this.beta, -n)
+        var orbitCamera = Math.cos(this.alpha), camera = Math.sin(this.alpha), alpha = Math.cos(this.beta),
+		beta = Math.sin(this.beta), radius = this._getTargetPosition();
+        return radius.addToRef(new BABYLON.Vector3(this.radius * orbitCamera * beta,
+		this.radius * alpha, this.radius * camera * beta), this.position), 
+		BABYLON.Matrix.LookAtLHToRef(this.position, radius, this.upVector, this._viewMatrix), this._viewMatrix
+    }, orbitCamera.prototype._constraintToUpScene = function () {
+        var orbitCamera = 3, camera = -(this.target.y - orbitCamera) / this.radius;
+        if (!(Math.abs(camera) > 1)) {
+            var alpha = Math.abs(Math.acos(camera));
+            this.beta = BABYLON.Math.NormalizeAngle(this.beta), 
+			this.beta = Math.min(this.beta, alpha), 
+			this.beta = Math.max(this.beta, -alpha)
         }
-    }, t
+    }, orbitCamera
 } ();

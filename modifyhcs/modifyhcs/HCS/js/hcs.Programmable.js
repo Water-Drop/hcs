@@ -1,168 +1,187 @@
+/*
+ * Author：虞思源
+ * 
+ * 用于导入下载的babylon模型
+ * importBabylon
+ * 导入OBJ格式的模型待实现
+ */
 var hcs = window.hcs || {};
 hcs.Programmable = function() {
-    var t, e = function(e, n, i) {
-        this.params = {}, this.mergeParams(i), this.materials = null, this.structure = n, n && (this.magnetismCollider = this.structure.magnetismCollider), this.id = 0, this.async = !1, this.objectName = "Programmable", t = this
+    var model, 
+	programmable = function(programmable, structure, params) {
+        this.params = {}, 
+		this.mergeParams(params), 
+		this.materials = null, 
+		this.structure = structure, 
+		structure && (this.magnetismCollider = this.structure.magnetismCollider), 
+		this.id = 0, 
+		this.async = !1, 
+		this.objectName = "Programmable",
+		model = this
     };
-    return e.prototype.getDefaultMaterials = function() {
+    return programmable.prototype.getDefaultMaterials = function() {
         return {}
-    }, e.prototype.decorate = function(t, e) {
-        var n = e.pickedMesh.material;
-        return this.traverse(function(n) {
-            n.name === e.pickedMesh.name && (t.backFaceCulling = n.material.backFaceCulling, n.material = t)
-        }), this.structure.programmableInstance.materials[e.pickedMesh.name] = t, n
-    }, e.prototype.animate = function() {
+    }, programmable.prototype.decorate = function(model, programmable) {
+        var structure = programmable.pickedMesh.material;
+        return this.traverse(function(structure) {
+            structure.name === programmable.pickedMesh.name && (model.backFaceCulling = structure.material.backFaceCulling, structure.material = model)
+        }), 
+		this.structure.programmableInstance.materials[programmable.pickedMesh.name] = model, 
+		structure
+    }, //获得默认材质
+	programmable.prototype.animate = function() {
         Logger.message("No animation here :(")
-    }, e.prototype.importDAE = function() {
+    }, programmable.prototype.importDAE = function() {
         return console.warn("Can't use DAE with BABYLON"), null
-    }, e.prototype.importBabylon = function(t, e) {
-        var n = t.split("/"),
-            i = n[n.length - 1],
-            o = i.split(".")[0];
-        delete n[n.length - 1], n = n.join("/"), -1 === n.indexOf("http://") && -1 == n.indexOf("https://") && (n = hcs.Assets.globalPath + n);
+    }, programmable.prototype.importBabylon = function(model, programmable) {
+        var structure = model.split("/"),
+            params = structure[structure.length - 1],
+            o = params.split(".")[0];
+        delete structure[structure.length - 1], structure = structure.join("/"), -1 === structure.indexOf("http://") && -1 == structure.indexOf("https://") && (structure = hcs.Assets.globalPath + structure);
         var r = new BABYLON.Mesh(o, hcsdesign.engine3D.scene);
-        return r.isVisible = !1, BABYLON.SceneLoader.ImportMesh("", n, i, hcsdesign.engine3D.scene, function(t) {
-            for (var n = 0, i = t.length; i > n; n++)
-                t[n].parent = r, t[n].receiveShadows = !0, hcsdesign.engine3D.castShadows(t[n]);
-            e && e(r)
+        return r.isVisible = !1, BABYLON.SceneLoader.ImportMesh("", structure, params, hcsdesign.engine3D.scene, function(model) {
+            for (var structure = 0, params = model.length; params > structure; structure++)
+                model[structure].parent = r, model[structure].receiveShadows = !0, hcsdesign.engine3D.castShadows(model[structure]);
+            programmable && programmable(r)
         }), r
-    }, e.prototype.importOBJ = function() {
+    }, programmable.prototype.importOBJ = function() {
         return console.warn("Can't load OBJ file with BABYLON"), null
-    }, e.prototype.mergeParams = function(t) {
-        var t = t || {};
-        this.params = this.getDefaultParams(), this.params = ujs.mergeObjects(this.params, t, !0)
-    }, e.prototype.getDefaultParams = function() {
+    }, programmable.prototype.mergeParams = function(model) {
+        var model = model || {};
+        this.params = this.getDefaultParams(), this.params = ujs.mergeObjects(this.params, model, !0)
+    }, programmable.prototype.getDefaultParams = function() {
         return {}
-    }, e.prototype.getParamType = function(t) {
-        var e = t.split(".").slice(-1)[0];
-        switch (e) {
+    }, programmable.prototype.getParamType = function(model) {
+        var programmable = model.split(".").slice(-1)[0];
+        switch (programmable) {
             case "stretched_texture":
             case "rounded":
             case "active":
                 return "boolean"
         }
-        var n = this.getDefaultParams(),
-            i = typeof ujs.getProperty(n, t);
-        switch (i) {
+        var structure = this.getDefaultParams(),
+            params = typeof ujs.getProperty(structure, model);
+        switch (params) {
             case "boolean":
             case "string":
             case "number":
-                return i;
+                return params;
             case "undefined":
             default:
-                return console.warn('enable to determine the type of the param "' + t + '" in the programmable ' + this.objectName), "number"
+                return console.warn('enable to determine the type of the param "' + model + '" in the programmable ' + this.objectName), "number"
         }
-    }, e.prototype.validateParam = function() {
-        var t = function(t, e) {
-                if (e = e || {}, t = t.replace(/\s/g, ""), !/^-?\d*\.?\d*]*$/.exec(t) || !/\d/.exec(t)) {
-                    if (!(t = /-?\d+\.?\d*]*/.exec(t)))
-                        return e["default"] || null;
-                    t = t[0]
+    }, programmable.prototype.validateParam = function() {
+        var model = function(model, programmable) {
+                if (programmable = programmable || {}, model = model.replace(/\s/g, ""), !/^-?\d*\.?\d*]*$/.exec(model) || !/\d/.exec(model)) {
+                    if (!(model = /-?\d+\.?\d*]*/.exec(model)))
+                        return programmable["default"] || null;
+                    model = model[0]
                 }
-                var n = +t;
-                if (e.round) {
-                    var i = e.round === !0 ? 1 : e.round;
-                    n = Math.round(n * i) / i
+                var structure = +model;
+                if (programmable.round) {
+                    var params = programmable.round === !0 ? 1 : programmable.round;
+                    structure = Math.round(structure * params) / params
                 }
-                return "number" == typeof e.max && (n = Math.min(n, e.max)), "number" == typeof e.min && (n = Math.max(n, e.min)), n
+                return "number" == typeof programmable.max && (structure = Math.min(structure, programmable.max)), "number" == typeof programmable.min && (structure = Math.max(structure, programmable.min)), structure
             },
-            e = function(t) {
-                return !!+t << 0
+            programmable = function(model) {
+                return !!+model << 0
             },
-            n = function(e, n) {
-                if (n = n || {}, n.intList = n.intList || n.intListSeparator || n.inListOptions, n.intList) {
-                    for (var i = n.intListSeparator || ",", o = ("" + e).split(i), r = o.length; r--;)
-                        if ("undefined" == typeof(o[r] = t(o[r], n.inListOptions)) || null == o[r])
+            structure = function(programmable, structure) {
+                if (structure = structure || {}, structure.intList = structure.intList || structure.intListSeparator || structure.inListOptions, structure.intList) {
+                    for (var params = structure.intListSeparator || ",", o = ("" + programmable).split(params), r = o.length; r--;)
+                        if ("undefined" == typeof(o[r] = model(o[r], structure.inListOptions)) || null == o[r])
                             return null;
-                    e = o.join(i)
+                    programmable = o.join(params)
                 }
-                return e
-            };
-        return function(i, o) {
+                return programmable
+            };//将模型文件标准化
+        return function(params, o) {
             var r = null,
                 s = null;
-            switch ("params" == i.split(".")[0] && (i = i.split(".").slice(1).join(".")), r = this.getParamType(i), "string" != typeof r && (s = r, r = r.type), r) {
+            switch ("params" == params.split(".")[0] && (params = params.split(".").slice(1).join(".")), r = this.getParamType(params), "string" != typeof r && (s = r, r = r.type), r) {
                 case "boolean":
-                    return e(o, s);
+                    return programmable(o, s);
                 case "string":
-                    return n(o, s);
+                    return structure(o, s);
                 default:
                 case "number":
-                    return t(o, s)
+                    return model(o, s)
             }
         }
-    }(), e.prototype.prepareMaterials = function(t) {
-        return this.materials = t, t
-    }, e.prototype.applyShadow = function() {
+    }(), programmable.prototype.prepareMaterials = function(model) {
+        return this.materials = model, model
+    }, programmable.prototype.applyShadow = function() {
         console.warn("Not used in BABYLON")
-    }, e.createInstance = function(t, e, n, i, o, r, s) {
-        var a = t.split(".");
+    }, programmable.createInstance = function(model, programmable, structure, params, o, r, s) {
+        var a = model.split(".");
         a.length = a.length - 1;
-        var e = e || {},
+        var programmable = programmable || {},
             l = function() {
-                var t = ujs.getProperty(hcs.Programmable, a.join(".")),
-                    r = e.params || e,
-                    l = new t(s, i, r);
-                l.materials = n || l.getDefaultMaterials(hcsdesign.engine3D.scene);
-                e.id;
+                var model = ujs.getProperty(hcs.Programmable, a.join(".")),
+                    r = programmable.params || programmable,
+                    l = new model(s, params, r);
+                l.materials = structure || l.getDefaultMaterials(hcsdesign.engine3D.scene);
+                programmable.id;
                 o(l)
             },
             h = a.length,
-            c = function(t, e, n) {
-                if (t >= h)
+            c = function(model, programmable, structure) {
+                if (model >= h)
                     return void l();
-                var i = n || hcs.Constants.PROGRAMMABLE_PATH;
-                HTMLHelper.addScript([i, "/", e, ".js"].join(""), void 0, function() {
-                    var i = e + "/" + a[t + 1];
-                    c(t + 1, i, n)
+                var params = structure || hcs.Constants.PROGRAMMABLE_PATH;
+                HTMLHelper.addScript([params, "/", programmable, ".js"].join(""), void 0, function() {
+                    var params = programmable + "/" + a[model + 1];
+                    c(model + 1, params, structure)
                 })
             };
         c(0, a[0], r)
-    }, e.prototype.serialize = function() {
-        var t = {
+    }, programmable.prototype.serialize = function() {
+        var model = {
             "class": {
                 name: "hcs.Programmable"
             }
         };
-        return ujs.serializeObject(this, t, ["objectName", "id", "params", "materials"]), t
-    }, e.prototype.deserialize = function(t) {
-        return ujs.deserializeObject(t, this, ["objectName", "id", "params", "materials"]), this
-    }, e.Deserialize = function(t) {
-        var n = new e(hcsdesign.engine3D, null, t.params);
-        return n.deserialize(t), n
-    }, e.prototype.getAvailableProperties = function() {
-        var t = this.generateFormForObject("params", this);
+        return ujs.serializeObject(this, model, ["objectName", "id", "params", "materials"]), model
+    }, programmable.prototype.deserialize = function(model) {
+        return ujs.deserializeObject(model, this, ["objectName", "id", "params", "materials"]), this
+    }, programmable.Deserialize = function(model) {
+        var structure = new programmable(hcsdesign.engine3D, null, model.params);
+        return structure.deserialize(model), structure
+    }, programmable.prototype.getAvailableProperties = function() {
+        var model = this.generateFormForObject("params", this);
         if (this.localizeAndSortParams) {
-            for (var e = this.localizeAndSortParams(), n = t.length - 1; n >= 0; n--) {
-                var i = t[n].name ? t[n].name.replace("params.", "") : void 0,
-                    o = i.split(".")[0];
-                e.invisible && (e.invisible.hasOwnProperty(i) || e.invisible.hasOwnProperty(o)) ? delete t[n] : e.basic && e.basic.hasOwnProperty(i) ? t[n].label = t[n].label ? e.basic[i] : "" : e.advanced && e.advanced.hasOwnProperty(i) ? (t[n].label = t[n].label ? e.advanced[i] : "", t[n]["class"] = "hidden advancedParams") : delete t[n]
+            for (var programmable = this.localizeAndSortParams(), structure = model.length - 1; structure >= 0; structure--) {
+                var params = model[structure].name ? model[structure].name.replace("params.", "") : void 0,
+                    o = params.split(".")[0];
+                programmable.invisible && (programmable.invisible.hasOwnProperty(params) || programmable.invisible.hasOwnProperty(o)) ? delete model[structure] : programmable.basic && programmable.basic.hasOwnProperty(params) ? model[structure].label = model[structure].label ? programmable.basic[params] : "" : programmable.advanced && programmable.advanced.hasOwnProperty(params) ? (model[structure].label = model[structure].label ? programmable.advanced[params] : "", model[structure]["class"] = "hidden advancedParams") : delete model[structure]
             }
-//            Object.keys(e.advanced).length > 0 && t.push({
+//            Object.keys(programmable.advanced).length > 0 && model.push({
 //                type: "html",
 //                html: "<a href='' onclick='hcs.Programmable.toggleVisible();return false;' style='display:none'>" + _("show advanced params") + "</a>"
 //            })
         }
-        return t
-    }, e.prototype.generateFormForObject = function(t, e, n, i, o) {
-        var n = n || [],
+        return model
+    }, programmable.prototype.generateFormForObject = function(model, programmable, structure, params, o) {
+        var structure = structure || [],
             r = null,
-            i = i || "",
+            params = params || "",
             o = o || 0;
-        if (e[t] instanceof Object) {
-            i = i ? i + "." + t : t, "params" != t && (r = {
-                name: i,
-                label: t,
+        if (programmable[model] instanceof Object) {
+            params = params ? params + "." + model : model, "params" != model && (r = {
+                name: params,
+                label: model,
                 type: "separator",
-                html: t
-            }, n.push(r)), o++;
-            for (var s in e[t])
-                this.generateFormForObject(s, e[t], n, i, o);
-            n.push({
+                html: model
+            }, structure.push(r)), o++;
+            for (var s in programmable[model])
+                this.generateFormForObject(s, programmable[model], structure, params, o);
+            structure.push({
                 type: "separator",
-                name: i
+                name: params
             })
         } else {
-            var a = i ? i + "." + t : t,
+            var a = params ? params + "." + model : model,
                 l = this.getParamType(a.split(".").slice(1).join("."));
             l = l.type ? l : {
                 type: l
@@ -170,19 +189,19 @@ hcs.Programmable = function() {
             var h, c;
             switch (l.type) {
                 case "boolean":
-                    h = "checkbox", c = !!e[t];
+                    h = "checkbox", c = !!programmable[model];
                     break;
                 case "number":
                     h = "number", c = {
-                        value: +e[t]
+                        value: +programmable[model]
                     }, "undefined" != typeof l.max && (c.max = l.max), "undefined" != typeof l.min && (c.min = l.min), "undefined" != typeof l.round && (c.step = l.round);
                     break;
                 default:
-                    h = "text", c = e[t]
+                    h = "text", c = programmable[model]
             }
             r = {
                 name: a,
-                label: new Array(2 * o).join("&nbsp") + t,
+                label: new Array(2 * o).join("&nbsp") + model,
                 type: h,
                 value: c,
                 eventParams: {
@@ -190,21 +209,21 @@ hcs.Programmable = function() {
                     property: a
                 },
                 id: a.split(".").join("-")
-            }, n.push(r)
+            }, structure.push(r)
         }
-        return n
-    }, e.prototype.createPoignee = function() {
+        return structure
+    }, programmable.prototype.createPoignee = function() {
         return console.warn("Can't use it with BABYLON"), null
-    }, e.prototype.getWidthParam = function() {
+    }, programmable.prototype.getWidthParam = function() {
         return this.params.width ? "params.width" : !1
-    }, e.prototype.getHeightParam = function() {
+    }, programmable.prototype.getHeightParam = function() {
         return this.params.height ? "params.height" : !1
-    }, e.prototype.getDepthParam = function() {
+    }, programmable.prototype.getDepthParam = function() {
         return this.params.depth ? "params.depth" : !1
-    }, e.prototype.generateMissingFacesUvs = function() {
+    }, programmable.prototype.generateMissingFacesUvs = function() {
         return console.warn("Can't use it with BABYLON"), null
-    }, e
+    }, programmable
 }(), hcs.Programmable.toggleVisible = function() {
-    for (var t = document.querySelectorAll(".advancedParams"), e = 0; e < t.length; e++)
-        t[e].classList.toggle("hidden")
+    for (var model = document.querySelectorAll(".advancedParams"), programmable = 0; programmable < model.length; programmable++)
+        model[programmable].classList.toggle("hidden")
 };
